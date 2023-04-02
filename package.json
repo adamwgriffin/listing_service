@@ -1,0 +1,23 @@
+{
+  "name": "listing_service",
+  "version": "0.0.1",
+  "description": "A service for searching real estate listings",
+  "main": "dist/index.js",
+  "author": "Adam Griffin <a@4ag.io>",
+  "private": true,
+  "scripts": {
+    "start": "nodemon src/index.ts",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "koa": "^2.14.1",
+    "@koa/router": "^12.0.0",
+    "koa-bodyparser": "^4.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.3"
+  }
+}
