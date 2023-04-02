@@ -1,17 +1,12 @@
 import Koa from 'koa'
-import Router from '@koa/router'
 import bodyParser from 'koa-bodyparser'
 import * as dotenv from 'dotenv'
+import router from './routes/router'
 import { connectToDatabase } from './db'
 
 dotenv.config()
 
 const app = new Koa()
-
-const router = new Router()
-router.get('/ping', async (ctx) => {
-  ctx.body = { message: 'pong' }
-})
 
 app.use(bodyParser())
 app.use(router.routes())
