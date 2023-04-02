@@ -1,6 +1,9 @@
 import Koa from 'koa'
 import Router from '@koa/router'
 import bodyParser from 'koa-bodyparser'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const app = new Koa()
 const router = new Router()
@@ -12,6 +15,7 @@ router.get('/ping', async (ctx) => {
 app.use(bodyParser())
 app.use(router.routes())
 
-app.listen(3001, () => {
-  console.log('Server listening on port 3001')
+const port = process.env.PORT || 3001;
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
 })
