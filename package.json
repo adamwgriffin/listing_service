@@ -7,6 +7,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon src/index.ts",
+    "console": "ts-node src/console.ts",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
