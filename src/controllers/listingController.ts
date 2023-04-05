@@ -14,7 +14,7 @@ export const listing = async (ctx) => {
       ctx.status = 404
       ctx.body = { message: `Listing not found with ID ${id}` }
     } else {
-      ctx.body = { listing }
+      ctx.body = listing
     }
   } catch (error) {
     ctx.body = { error }
@@ -27,7 +27,7 @@ export const create = async (ctx) => {
   try {
     const listing = await Listing.create({ listPrice })
     ctx.status = 201
-    ctx.body = { listing }
+    ctx.body = listing
   } catch (error) {
     ctx.body = { error }
     ctx.status = 400
