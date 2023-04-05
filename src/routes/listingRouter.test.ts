@@ -44,4 +44,20 @@ describe('listingRouter', () => {
     })
   })
 
+  describe('DELETE /listing/:id', () => {
+    let listing
+
+    beforeAll(async () => {
+      listing = await Listing.create({ listPrice: 100000 })
+    })
+
+    it('deletes a listing', async () => {
+      const res = await request(app.callback())
+        .delete(`/listing/${listing._id}`)
+      expect(res.status).toBe(204)
+      const deletedListing = await Listing.findById(listing._id)
+      expect(deletedListing).toBeNull()
+    })
+  })
+
 })

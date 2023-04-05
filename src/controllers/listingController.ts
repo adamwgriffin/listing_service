@@ -33,3 +33,19 @@ export const create = async (ctx) => {
     ctx.status = 400
   }
 }
+
+export const deleteListing = async (ctx) => {
+  const { id } = ctx.params
+  try {
+    const deletedListing = await Listing.findByIdAndDelete(id)
+    if (!deletedListing) {
+      ctx.status = 404
+      ctx.body = { message: `Listing with ID ${id} not found` }
+    } else {
+      ctx.status = 204
+    }
+  } catch (error) {
+    ctx.status = 500
+    ctx.body = { message: error.message }
+  }
+}
