@@ -2,11 +2,11 @@
   "name": "listing_service",
   "version": "0.0.1",
   "description": "A service for searching real estate listings",
-  "main": "dist/index.js",
-  "author": "Adam Griffin <a@4ag.io>",
+  "main": "dist/server.js",
+  "author": "Adam Griffin <adam@adamgriffin.io>",
   "private": true,
   "scripts": {
-    "start": "nodemon src/index.ts",
+    "start": "nodemon src/server.ts",
     "dev": "docker-compose up",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
