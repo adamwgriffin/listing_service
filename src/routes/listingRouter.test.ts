@@ -22,4 +22,26 @@ describe('listingRouter', () => {
       createdListingId = res.body._id
     })
   })
+
+  describe('GET /listing/:id', () => {
+    let listing
+
+    beforeAll(async () => {
+      listing = await Listing.create({ listPrice: 100000 })
+    })
+
+    afterAll(async () => {
+      await Listing.deleteOne({ _id: listing._id })
+    })
+
+    it('returns a listing', async () => {
+      const listing = await Listing.create({ listPrice: 100000 })
+      const res = await request(app.callback())
+        .get(`/listing/${listing._id}`)
+      expect(res.status).toBe(200)
+      expect(res.body.listPrice).toBe(100000)
+      expect(res.body._id).toBe(listing._id.toString())
+    })
+  })
+
 })
