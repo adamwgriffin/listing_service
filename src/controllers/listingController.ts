@@ -2,9 +2,8 @@ import { Types } from 'mongoose'
 import Listing from '../models/listingModel'
 
 export const createListing = async (ctx) => {
-  const { listPrice } = ctx.request.body
   try {
-    const listing = await Listing.create({ listPrice })
+    const listing = await Listing.create(ctx.request.body)
     ctx.status = 201
     ctx.body = listing
   } catch (error) {
@@ -36,11 +35,10 @@ export const readListing = async (ctx) => {
 
 export const updateListing = async (ctx) => {
   const { id } = ctx.params
-  const { listPrice } = ctx.request.body
   try {
     const updatedListing = await Listing.findByIdAndUpdate(
       id,
-      { listPrice },
+      ctx.request.body,
       { new: true }
     )
     if (!updatedListing) {
