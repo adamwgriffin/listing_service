@@ -1,7 +1,19 @@
 import { Types } from 'mongoose'
 import Listing from '../models/listingModel'
 
-export const listing = async (ctx) => {
+export const createListing = async (ctx) => {
+  const { listPrice } = ctx.request.body
+  try {
+    const listing = await Listing.create({ listPrice })
+    ctx.status = 201
+    ctx.body = listing
+  } catch (error) {
+    ctx.body = { error }
+    ctx.status = 400
+  }
+}
+
+export const readListing = async (ctx) => {
   try {
     const { id } = ctx.params
     if (!Types.ObjectId.isValid(id)) {
@@ -22,15 +34,24 @@ export const listing = async (ctx) => {
   }
 }
 
-export const create = async (ctx) => {
+export const updateListing = async (ctx) => {
+  const { id } = ctx.params
   const { listPrice } = ctx.request.body
   try {
-    const listing = await Listing.create({ listPrice })
-    ctx.status = 201
-    ctx.body = listing
+    const updatedListing = await Listing.findByIdAndUpdate(
+      id,
+      { listPrice },
+      { new: true }
+    )
+    if (!updatedListing) {
+      ctx.status = 404
+      ctx.body = { message: `Listing with ID ${id} not found` }
+    } else {
+      ctx.body = updatedListing
+    }
   } catch (error) {
-    ctx.body = { error }
-    ctx.status = 400
+    ctx.status = 500
+    ctx.body = { message: error.message }
   }
 }
 

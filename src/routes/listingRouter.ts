@@ -1,7 +1,8 @@
 import Router from '@koa/router'
-import { listing, create, deleteListing } from '../controllers/listingController'
+import { createListing, readListing, updateListing, deleteListing } from '../controllers/listingController'
 
 export default new Router()
-  .get('/:id', listing)
-  .post('/create', create)
+  .post('/', createListing)
+  .get('/:id', readListing)
+  .put('/:id', updateListing)
   .delete('/:id', deleteListing)

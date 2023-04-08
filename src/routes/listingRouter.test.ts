@@ -4,7 +4,7 @@ import Listing from '../models/listingModel'
 
 describe('listingRouter', () => {
 
-  describe('POST /listing/create', () => {
+  describe('POST /listing', () => {
     let createdListingId
 
     afterEach(async () => {
@@ -14,7 +14,7 @@ describe('listingRouter', () => {
 
     it('creates a new listing', async () => {
       const res = await request(app.callback())
-        .post('/listing/create')
+        .post('/listing')
         .send({ listPrice: 100000 })
       expect(res.status).toBe(201)
       expect(res.body.listPrice).toBe(100000)
@@ -40,6 +40,27 @@ describe('listingRouter', () => {
         .get(`/listing/${listing._id}`)
       expect(res.status).toBe(200)
       expect(res.body.listPrice).toBe(100000)
+      expect(res.body._id).toBe(listing._id.toString())
+    })
+  })
+
+  describe('PUT /listing/:id', () => {
+    let listing
+
+    beforeAll(async () => {
+      listing = await Listing.create({ listPrice: 100000 })
+    })
+
+    afterAll(async () => {
+      await Listing.deleteOne({ _id: listing._id })
+    })
+
+    it('updates a listing', async () => {
+      const res = await request(app.callback())
+        .put(`/listing/${listing._id}`)
+        .send({ listPrice: 200000 })
+      expect(res.status).toBe(200)
+      expect(res.body.listPrice).toBe(200000)
       expect(res.body._id).toBe(listing._id.toString())
     })
   })
