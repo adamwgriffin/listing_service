@@ -1,11 +1,20 @@
-import mongoose from 'mongoose'
-import GeoSchema from './GeoSchema'
+import type { IPoint } from './PointSchema'
+import { Schema, model } from 'mongoose'
+import PointSchema from './PointSchema'
 
-const ListingSchema = new mongoose.Schema({
+export interface IListing extends Document {
+  listPrice: number
+  geometry: IPoint
+}
+
+const ListingSchema = new Schema<IListing>({
   listPrice: Number,
-  geometry: GeoSchema
+  geometry: {
+    type: PointSchema,
+    required: true
+  }
 })
 
-const Listing = mongoose.model('Listing', ListingSchema)
+const Listing = model<IListing>('Listing', ListingSchema)
 
 export default Listing
