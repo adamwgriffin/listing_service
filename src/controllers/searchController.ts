@@ -1,5 +1,7 @@
 import type { Context } from 'koa'
 import Listing from '../models/listingModel'
+// import multiPolygon from '../test/test_data/boundary_data/fremont_geojson'
+import multiPolygon from '../test/test_data/boundary_data/ballard_geojson'
 
 export const radiusSearch = async (ctx: Context) => {
   const { lat, lng, maxDistance, listPriceMin, listPriceMax } = ctx.query
@@ -34,6 +36,22 @@ export const radiusSearch = async (ctx: Context) => {
         }
       }
     ])
+    ctx.body = listings
+  } catch (error) {
+    ctx.status = 500
+    ctx.body = { message: error.message }
+  }
+}
+
+export const boundarySearch = async (ctx: Context) => {
+  try {
+    const listings = await Listing.find({
+      geometry: {
+        $geoWithin: {
+          $geometry: multiPolygon
+        }
+      }
+    })
     ctx.body = listings
   } catch (error) {
     ctx.status = 500
