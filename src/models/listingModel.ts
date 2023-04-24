@@ -11,6 +11,7 @@ const ListingSchema = new Schema<IListing>({
   listPrice: Number,
   geometry: {
     type: PointSchema,
+    index: '2dsphere',
     required: true
   }
 })
