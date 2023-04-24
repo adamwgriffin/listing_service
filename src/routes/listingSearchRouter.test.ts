@@ -1,7 +1,7 @@
 import request from 'supertest'
 import Koa from 'koa'
 import Router from '@koa/router'
-import { radiusSearch } from '../controllers/searchController'
+import { radiusSearch } from '../controllers/listingSearchController'
 
 jest.mock('../models/listingModel', () => ({
   async aggregate() {
