@@ -1,5 +1,12 @@
 import type { Context } from 'koa'
 import Listing from '../models/listingModel'
+import Boundary from '../models/BoundaryModel'
+import { Client } from '@googlemaps/google-maps-services-js'
+
+const client = new Client({})
+const apiKey = process.env.GOOGLE_MAPS_API_KEY
+
+// TODO: replace these with real boundaries from a db lookup
 // import multiPolygon from '../test/test_data/boundary_data/fremont_geojson'
 import multiPolygon from '../test/test_data/boundary_data/ballard_geojson'
 
@@ -43,6 +50,7 @@ export const radiusSearch = async (ctx: Context) => {
   }
 }
 
+// TODO: make this take a boundary_id as a param and lookup the boundary _id and use that as "multiPolygon"
 export const boundarySearch = async (ctx: Context) => {
   try {
     const listings = await Listing.find({
@@ -57,4 +65,65 @@ export const boundarySearch = async (ctx: Context) => {
     ctx.status = 500
     ctx.body = { message: error.message }
   }
+}
+
+export const geocodeBoundarySearch = async (ctx: Context) => {
+  
+  // validate the params
+  const { address, placeId } = ctx.query
+  let geocodeParams
+  if (address) {
+    geocodeParams = { address }
+  } else if (placeId) {
+    geocodeParams = { place_id: placeId }
+  } else {
+    ctx.status = 400
+    ctx.body = {
+      error: 'Either address or placeId query parameter is required'
+    }
+    return
+  }
+
+  try {
+
+    // make the request to the geocode service
+    const geocoderResult = await client.geocode({
+      params: { ...geocodeParams, key: apiKey },
+      timeout: 1000 // milliseconds
+    })
+    const { lat, lng } = geocoderResult.data.results[0].geometry.location
+
+    // search for a boundary that matches the geocoder response coordinates
+    const boundaries = await Boundary.find({
+      geometry: {
+        $geoIntersects: {
+          $geometry: {
+            type: 'Point',
+            coordinates: [lng, lat]
+          }
+        }
+      }
+    })
+
+    // search for listings that are inside of the boundary that was found
+    const listings = await Listing.find({
+      geometry: {
+        $geoWithin: {
+          $geometry: boundaries[0].geometry
+        }
+      }
+    })
+
+    // send all the data that was found back in the response
+    ctx.body = {
+      listings,
+      boundary: boundaries[0],
+      geocoderResult: geocoderResult.data.results
+    }
+
+  } catch (error) {
+    ctx.status = error?.response?.status || 500
+    ctx.body = { error: error.message }
+  }
+
 }
