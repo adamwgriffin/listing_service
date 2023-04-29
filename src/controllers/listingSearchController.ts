@@ -60,7 +60,13 @@ export const geocodeBoundarySearch = async (ctx: Context) => {
           }
         }
       ]
-    }).select('address listPrice geometry.coordinates')
+    }).select({
+      address: 1,
+      listPrice: 1,
+      distance: 1,
+      latitude: { $arrayElemAt: ['$geometry.coordinates', 1] },
+      longitude: { $arrayElemAt: ['$geometry.coordinates', 0] }
+    })
 
     // send all the data that was found back in the response
     ctx.body = {
@@ -95,7 +101,13 @@ export const boundarySearch = async (ctx: Context) => {
           }
         }
       ]
-    }).select('address listPrice geometry.coordinates')
+    }).select({
+      address: 1,
+      listPrice: 1,
+      distance: 1,
+      latitude: { $arrayElemAt: ['$geometry.coordinates', 1] },
+      longitude: { $arrayElemAt: ['$geometry.coordinates', 0] }
+    })
     ctx.body = listings
   } catch (error) {
     ctx.status = 500
@@ -118,6 +130,12 @@ export const boundsSearch = async (ctx: Context) => {
           $geometry: geoJSONPolygon
         }
       }
+    }).select({
+      address: 1,
+      listPrice: 1,
+      distance: 1,
+      latitude: { $arrayElemAt: ['$geometry.coordinates', 1] },
+      longitude: { $arrayElemAt: ['$geometry.coordinates', 0] }
     })
     ctx.body = listings
   } catch (error) {
