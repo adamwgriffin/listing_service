@@ -2,6 +2,7 @@ import type { Context } from 'koa'
 import { Client } from '@googlemaps/google-maps-services-js'
 import Listing from '../models/listingModel'
 import Boundary from '../models/BoundaryModel'
+import { boundsParamsToGeoJSONPolygon } from '../lib/util'
 
 const client = new Client({})
 const apiKey = process.env.GOOGLE_MAPS_API_KEY
@@ -75,6 +76,25 @@ export const boundarySearch = async (ctx: Context) => {
       geometry: {
         $geoWithin: {
           $geometry: boundary.geometry
+        }
+      }
+    })
+    ctx.body = listings
+  } catch (error) {
+    ctx.status = 500
+    ctx.body = { message: error.message }
+  }
+}
+
+export const boundsSearch = async (ctx: Context) => {
+  const  { boundsNorth, boundsEast, boundsSouth, boundsWest } = ctx.query
+  console.log("typeof boundsNorth:", typeof boundsNorth)
+  const geoJSONPolygon = boundsParamsToGeoJSONPolygon({ boundsNorth, boundsEast, boundsSouth, boundsWest })
+  try {
+    const listings = await Listing.find({
+      geometry: {
+        $geoWithin: {
+          $geometry: geoJSONPolygon
         }
       }
     })
