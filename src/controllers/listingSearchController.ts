@@ -8,7 +8,6 @@ const client = new Client({})
 const apiKey = process.env.GOOGLE_MAPS_API_KEY
 
 export const geocodeBoundarySearch = async (ctx: Context) => {
-  
   // get and validate the params
   const { address, placeId } = ctx.query
   let geocodeParams
@@ -25,7 +24,6 @@ export const geocodeBoundarySearch = async (ctx: Context) => {
   }
 
   try {
-
     // make the request to the geocode service
     const geocoderResult = await client.geocode({
       params: { ...geocodeParams, key: apiKey },
@@ -60,12 +58,10 @@ export const geocodeBoundarySearch = async (ctx: Context) => {
       boundary: boundaries[0],
       geocoderResult: geocoderResult.data.results
     }
-
   } catch (error) {
     ctx.status = error?.response?.status || 500
     ctx.body = { error: error.message }
   }
-
 }
 
 export const boundarySearch = async (ctx: Context) => {
@@ -87,8 +83,13 @@ export const boundarySearch = async (ctx: Context) => {
 }
 
 export const boundsSearch = async (ctx: Context) => {
-  const  { boundsNorth, boundsEast, boundsSouth, boundsWest } = ctx.query
-  const geoJSONPolygon = boundsParamsToGeoJSONPolygon({ boundsNorth, boundsEast, boundsSouth, boundsWest })
+  const { boundsNorth, boundsEast, boundsSouth, boundsWest } = ctx.query
+  const geoJSONPolygon = boundsParamsToGeoJSONPolygon({
+    boundsNorth,
+    boundsEast,
+    boundsSouth,
+    boundsWest
+  })
   try {
     const listings = await Listing.find({
       geometry: {
