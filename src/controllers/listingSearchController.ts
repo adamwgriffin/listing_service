@@ -9,7 +9,7 @@ const apiKey = process.env.GOOGLE_MAPS_API_KEY
 
 export const geocodeBoundarySearch = async (ctx: Context) => {
   // get and validate the params
-  const { address, placeId } = ctx.query
+  const { address, placeId, listPriceMin, listPriceMax } = ctx.query
   let geocodeParams
   if (address) {
     geocodeParams = { address }
@@ -45,12 +45,22 @@ export const geocodeBoundarySearch = async (ctx: Context) => {
 
     // search for listings that are inside of the boundary that was found
     const listings = await Listing.find({
-      geometry: {
-        $geoWithin: {
-          $geometry: boundaries[0].geometry
+      $and: [
+        {
+          geometry: {
+            $geoWithin: {
+              $geometry: boundaries[0].geometry
+            }
+          }
+        },
+        {
+          listPrice: {
+            $gte: Number(listPriceMin) || 0,
+            $lte: Number(listPriceMax) || Number.MAX_SAFE_INTEGER
+          }
         }
-      }
-    })
+      ]
+    }).select('address listPrice geometry.coordinates')
 
     // send all the data that was found back in the response
     ctx.body = {
@@ -85,8 +95,7 @@ export const boundarySearch = async (ctx: Context) => {
           }
         }
       ]
-    })
-    .select('address listPrice geometry.coordinates')
+    }).select('address listPrice geometry.coordinates')
     ctx.body = listings
   } catch (error) {
     ctx.status = 500
