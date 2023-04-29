@@ -66,15 +66,27 @@ export const geocodeBoundarySearch = async (ctx: Context) => {
 
 export const boundarySearch = async (ctx: Context) => {
   const { id } = ctx.params
+  const { listPriceMin, listPriceMax } = ctx.query
   try {
     const boundary = await Boundary.findById(id)
     const listings = await Listing.find({
-      geometry: {
-        $geoWithin: {
-          $geometry: boundary.geometry
+      $and: [
+        {
+          geometry: {
+            $geoWithin: {
+              $geometry: boundary.geometry
+            }
+          }
+        },
+        {
+          listPrice: {
+            $gte: Number(listPriceMin) || 0,
+            $lte: Number(listPriceMax) || Number.MAX_SAFE_INTEGER
+          }
         }
-      }
+      ]
     })
+    .select('address listPrice geometry.coordinates')
     ctx.body = listings
   } catch (error) {
     ctx.status = 500
