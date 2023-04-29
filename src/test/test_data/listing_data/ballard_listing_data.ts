@@ -1,6 +1,7 @@
 export default [
   {
     "listPrice": 735000,
+    "neighborhood": "Ballard",
     "geometry": {
       "type": "Point",
       "coordinates": [
@@ -11,6 +12,7 @@ export default [
   },
   {
     "listPrice": 1445995,
+    "neighborhood": "Ballard",
     "geometry": {
       "type": "Point",
       "coordinates": [

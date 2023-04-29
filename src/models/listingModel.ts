@@ -4,11 +4,13 @@ import PointSchema from './PointSchema'
 
 export interface IListing extends Document {
   listPrice: number
+  neighborhood: string
   geometry: IPoint
 }
 
 const ListingSchema = new Schema<IListing>({
   listPrice: Number,
+  neighborhood: String,
   geometry: {
     type: PointSchema,
     index: '2dsphere',

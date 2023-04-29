@@ -88,7 +88,6 @@ export const boundarySearch = async (ctx: Context) => {
 
 export const boundsSearch = async (ctx: Context) => {
   const  { boundsNorth, boundsEast, boundsSouth, boundsWest } = ctx.query
-  console.log("typeof boundsNorth:", typeof boundsNorth)
   const geoJSONPolygon = boundsParamsToGeoJSONPolygon({ boundsNorth, boundsEast, boundsSouth, boundsWest })
   try {
     const listings = await Listing.find({

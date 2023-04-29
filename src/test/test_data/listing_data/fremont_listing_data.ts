@@ -1,6 +1,7 @@
 export default [
   {
     "listPrice": 700000,
+    "neighborhood": "Fremont",
     "geometry": {
       "type": "Point",
       "coordinates": [
@@ -11,6 +12,7 @@ export default [
   },
   {
     "listPrice": 809000,
+    "neighborhood": "Fremont",
     "geometry": {
       "type": "Point",
       "coordinates": [
@@ -21,6 +23,7 @@ export default [
   },
   {
     "listPrice": 798000,
+    "neighborhood": "Fremont",
     "geometry": {
       "type": "Point",
       "coordinates": [
