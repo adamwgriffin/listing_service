@@ -4,8 +4,7 @@ import Listing from '../models/listingModel'
 import Boundary from '../models/BoundaryModel'
 import { boundsParamsToGeoJSONPolygon } from '../lib/util'
 
-const client = new Client({})
-const apiKey = process.env.GOOGLE_MAPS_API_KEY
+const googleMapsClient = new Client({})
 
 export const geocodeBoundarySearch = async (ctx: Context) => {
   // get and validate the params
@@ -25,8 +24,8 @@ export const geocodeBoundarySearch = async (ctx: Context) => {
 
   try {
     // make the request to the geocode service
-    const geocoderResult = await client.geocode({
-      params: { ...geocodeParams, key: apiKey },
+    const geocoderResult = await googleMapsClient.geocode({
+      params: { ...geocodeParams, key: process.env.GOOGLE_MAPS_API_KEY },
       timeout: 1000 // milliseconds
     })
     const { lat, lng } = geocoderResult.data.results[0].geometry.location
