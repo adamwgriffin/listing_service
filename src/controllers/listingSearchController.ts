@@ -6,10 +6,6 @@ import { Client } from '@googlemaps/google-maps-services-js'
 const client = new Client({})
 const apiKey = process.env.GOOGLE_MAPS_API_KEY
 
-// TODO: replace these with real boundaries from a db lookup
-// import multiPolygon from '../test/test_data/boundary_data/fremont_geojson'
-import multiPolygon from '../test/test_data/boundary_data/ballard_geojson'
-
 export const radiusSearch = async (ctx: Context) => {
   const { lat, lng, maxDistance, listPriceMin, listPriceMax } = ctx.query
   try {
@@ -50,13 +46,14 @@ export const radiusSearch = async (ctx: Context) => {
   }
 }
 
-// TODO: make this take a boundary_id as a param and lookup the boundary _id and use that as "multiPolygon"
 export const boundarySearch = async (ctx: Context) => {
+  const { id } = ctx.params
   try {
+    const boundary = await Boundary.findById(id)
     const listings = await Listing.find({
       geometry: {
         $geoWithin: {
-          $geometry: multiPolygon
+          $geometry: boundary.geometry
         }
       }
     })
@@ -69,7 +66,7 @@ export const boundarySearch = async (ctx: Context) => {
 
 export const geocodeBoundarySearch = async (ctx: Context) => {
   
-  // validate the params
+  // get and validate the params
   const { address, placeId } = ctx.query
   let geocodeParams
   if (address) {

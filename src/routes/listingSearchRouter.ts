@@ -3,5 +3,5 @@ import { radiusSearch, boundarySearch, geocodeBoundarySearch } from '../controll
 
 export default new Router()
   .get('/radius', radiusSearch)
-  .get('/boundary', boundarySearch)
+  .get('/boundary/:id', boundarySearch)
   .get('/geocode', geocodeBoundarySearch)
