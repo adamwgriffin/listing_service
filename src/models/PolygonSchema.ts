@@ -1,11 +1,7 @@
+import { Polygon } from '@turf/turf'
 import { Schema } from 'mongoose'
 
-export interface IPolygon {
-  type: 'Polygon'
-  coordinates: Array<Array<[number, number]>>
-}
-
-const PolygonSchema = new Schema<IPolygon>({
+const PolygonSchema = new Schema<Polygon>({
   type: {
     type: String,
     enum: ['Polygon'],

@@ -1,12 +1,7 @@
+import type { Point } from '@turf/turf'
 import { Schema } from 'mongoose'
 
-// Note that longitude comes first in a GeoJSON coordinate array, not latitude.
-export interface IPoint {
-  type: 'Point'
-  coordinates: [number, number]
-}
-
-const PointSchema = new Schema<IPoint>({
+const PointSchema = new Schema<Point>({
   type: {
     type: String,
     enum: ['Point'],

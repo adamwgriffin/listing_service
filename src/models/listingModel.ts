@@ -1,11 +1,11 @@
-import type { IPoint } from './PointSchema'
+import type { Point } from '@turf/turf'
 import { Schema, model } from 'mongoose'
 import PointSchema from './PointSchema'
 
 export interface IListing extends Document {
   listPrice: number
   neighborhood: string
-  geometry: IPoint
+  geometry: Point
 }
 
 const ListingSchema = new Schema<IListing>({

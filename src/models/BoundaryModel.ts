@@ -1,11 +1,11 @@
-import type { IMultiPolygon } from './MultiPolygonSchema'
+import type { MultiPolygon } from '@turf/turf'
 import { Schema, model } from 'mongoose'
 import MultiPolygonSchema from './MultiPolygonSchema'
 
 export interface IBoundary extends Document {
   name: string
   type: 'neighborhood' | 'city' | 'zipcode' | 'county' | 'state' | 'country'
-  geometry: IMultiPolygon
+  geometry: MultiPolygon
 }
 
 export const BoundarySchema = new Schema<IBoundary>({

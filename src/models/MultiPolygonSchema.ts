@@ -1,11 +1,7 @@
+import type { MultiPolygon } from '@turf/turf'
 import { Schema } from 'mongoose'
 
-export interface IMultiPolygon {
-  type: 'MultiPolygon'
-  coordinates: [[[[number, number]]]]
-}
-
-const MultiPolygonSchema = new Schema<IMultiPolygon>({
+const MultiPolygonSchema = new Schema<MultiPolygon>({
   type: {
     type: String,
     enum: ['MultiPolygon'],
