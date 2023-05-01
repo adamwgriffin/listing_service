@@ -3,6 +3,7 @@ import { Client } from '@googlemaps/google-maps-services-js'
 import Listing from '../models/listingModel'
 import Boundary from '../models/BoundaryModel'
 import { boundsParamsToGeoJSONPolygon } from '../lib/util'
+import { removePartsOfBoundaryOutsideOfBounds } from '../lib/util'
 
 const googleMapsClient = new Client({})
 
@@ -43,12 +44,21 @@ export const geocodeBoundarySearch = async (ctx: Context) => {
     })
 
     // search for listings that are inside of the boundary that was found
+    let boundary
+    const { boundsNorth, boundsEast, boundsSouth, boundsWest } = ctx.query
+    if (boundsNorth && boundsEast && boundsSouth && boundsWest) {
+      const bounds = { boundsNorth, boundsEast, boundsSouth, boundsWest }
+      boundary = removePartsOfBoundaryOutsideOfBounds(bounds, boundaries[0].geometry)
+    } else {
+      boundary = boundaries[0].geometry
+    }
+
     const listings = await Listing.find({
       $and: [
         {
           geometry: {
             $geoWithin: {
-              $geometry: boundaries[0].geometry
+              $geometry: boundary
             }
           }
         },

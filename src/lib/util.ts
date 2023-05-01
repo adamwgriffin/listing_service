@@ -1,4 +1,6 @@
 import type { IPolygon } from '../models/PolygonSchema'
+import type { Polygon, MultiPolygon } from '@turf/turf'
+import { bboxPolygon, intersect } from '@turf/turf'
 
 export interface iBoundsParams {
   boundsNorth: number
@@ -21,4 +23,18 @@ export const boundsParamsToGeoJSONPolygon = (bounds: iBoundsParams): IPolygon =>
       ]
     ]
   }
+}
+
+export const removePartsOfBoundaryOutsideOfBounds = (
+  bounds: iBoundsParams,
+  boundary: Polygon | MultiPolygon
+): Polygon | MultiPolygon => {
+  const { boundsNorth, boundsEast, boundsSouth, boundsWest } = bounds
+  const boundsPolygon = bboxPolygon([
+    boundsWest,
+    boundsSouth,
+    boundsEast,
+    boundsNorth
+  ])
+  return intersect(boundsPolygon, boundary).geometry
 }
