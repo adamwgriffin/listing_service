@@ -46,24 +46,12 @@ export const geocodeBoundarySearch = async (ctx: Context) => {
     })
 
     // search for listings that are inside of the boundary that was found
-    let boundary
-    const { boundsNorth, boundsEast, boundsSouth, boundsWest } = ctx.query
-    if (boundsNorth && boundsEast && boundsSouth && boundsWest) {
-      const bounds = { boundsNorth, boundsEast, boundsSouth, boundsWest }
-      boundary = removePartsOfBoundaryOutsideOfBounds(
-        bounds,
-        boundaries[0].geometry
-      )
-    } else {
-      boundary = boundaries[0].geometry
-    }
-
     const listings = await Listing.find({
       $and: [
         {
           geometry: {
             $geoWithin: {
-              $geometry: boundary
+              $geometry: boundaries[0].geometry
             }
           }
         },
@@ -100,12 +88,27 @@ export const boundarySearch = async (ctx: Context) => {
   const { listPriceMin, listPriceMax } = ctx.query
   try {
     const boundary = await Boundary.findById(id)
+
+    let boundaryGeometry
+    const { boundsNorth, boundsEast, boundsSouth, boundsWest } = ctx.query
+    // if bounds params are present, we want to modify the boundary so that any parts that are outside of the bounds
+    // will be removed. this way the search will only return results that are within both the boundary & the bounds
+    if (boundsNorth && boundsEast && boundsSouth && boundsWest) {
+      const bounds = { boundsNorth, boundsEast, boundsSouth, boundsWest }
+      boundaryGeometry = removePartsOfBoundaryOutsideOfBounds(
+        bounds,
+        boundary.geometry
+      )
+    } else {
+      boundaryGeometry = boundary.geometry
+    }
+
     const listings = await Listing.find({
       $and: [
         {
           geometry: {
             $geoWithin: {
-              $geometry: boundary.geometry
+              $geometry: boundaryGeometry
             }
           }
         },
