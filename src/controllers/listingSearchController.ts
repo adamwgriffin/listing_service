@@ -71,6 +71,7 @@ export const geocodeBoundarySearch = async (ctx: Context) => {
       ]
     }).select({
       address: 1,
+      neighborhood: 1,
       listPrice: 1,
       distance: 1,
       latitude: { $arrayElemAt: ['$geometry.coordinates', 1] },
@@ -112,6 +113,7 @@ export const boundarySearch = async (ctx: Context) => {
       ]
     }).select({
       address: 1,
+      neighborhood: 1,
       listPrice: 1,
       distance: 1,
       latitude: { $arrayElemAt: ['$geometry.coordinates', 1] },
@@ -141,6 +143,7 @@ export const boundsSearch = async (ctx: Context) => {
       }
     }).select({
       address: 1,
+      neighborhood: 1,
       listPrice: 1,
       distance: 1,
       latitude: { $arrayElemAt: ['$geometry.coordinates', 1] },
@@ -179,6 +182,7 @@ export const radiusSearch = async (ctx: Context) => {
       {
         $project: {
           address: 1,
+          neighborhood: 1,
           listPrice: 1,
           distance: 1,
           latitude: { $arrayElemAt: ['$geometry.coordinates', 1] },
