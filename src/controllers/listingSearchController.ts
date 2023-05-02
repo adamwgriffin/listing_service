@@ -7,6 +7,22 @@ import {
   removePartsOfBoundaryOutsideOfBounds
 } from '../lib/util'
 
+const DefaultListingResultFields = {
+  listPrice: 1,
+  beds: 1,
+  baths: 1,
+  sqft: 1,
+  neighborhood: 1,
+  description: 1,
+  address: 1,
+  latitude: { $arrayElemAt: ['$geometry.coordinates', 1] },
+  longitude: { $arrayElemAt: ['$geometry.coordinates', 0] }
+}
+
+const DefaultMaxDistance = 1609.34 // 1 mile in meters
+
+const GeocodeTimeout = 1000 // milliseconds
+
 const googleMapsClient = new Client({})
 
 export const geocodeBoundarySearch = async (ctx: Context) => {
@@ -29,7 +45,7 @@ export const geocodeBoundarySearch = async (ctx: Context) => {
     // make the request to the geocode service
     const geocoderResult = await googleMapsClient.geocode({
       params: { ...geocodeParams, key: process.env.GOOGLE_MAPS_API_KEY },
-      timeout: 1000 // milliseconds
+      timeout: GeocodeTimeout
     })
     const { lat, lng } = geocoderResult.data.results[0].geometry.location
 
@@ -62,14 +78,7 @@ export const geocodeBoundarySearch = async (ctx: Context) => {
           }
         }
       ]
-    }).select({
-      address: 1,
-      neighborhood: 1,
-      listPrice: 1,
-      distance: 1,
-      latitude: { $arrayElemAt: ['$geometry.coordinates', 1] },
-      longitude: { $arrayElemAt: ['$geometry.coordinates', 0] }
-    })
+    }).select(DefaultListingResultFields)
 
     // send all the data that was found back in the response
     ctx.body = {
@@ -119,14 +128,7 @@ export const boundarySearch = async (ctx: Context) => {
           }
         }
       ]
-    }).select({
-      address: 1,
-      neighborhood: 1,
-      listPrice: 1,
-      distance: 1,
-      latitude: { $arrayElemAt: ['$geometry.coordinates', 1] },
-      longitude: { $arrayElemAt: ['$geometry.coordinates', 0] }
-    })
+    }).select(DefaultListingResultFields)
     ctx.body = listings
   } catch (error) {
     ctx.status = 500
@@ -149,14 +151,7 @@ export const boundsSearch = async (ctx: Context) => {
           $geometry: geoJSONPolygon
         }
       }
-    }).select({
-      address: 1,
-      neighborhood: 1,
-      listPrice: 1,
-      distance: 1,
-      latitude: { $arrayElemAt: ['$geometry.coordinates', 1] },
-      longitude: { $arrayElemAt: ['$geometry.coordinates', 0] }
-    })
+    }).select(DefaultListingResultFields)
     ctx.body = listings
   } catch (error) {
     ctx.status = 500
@@ -174,7 +169,7 @@ export const radiusSearch = async (ctx: Context) => {
             type: 'Point',
             coordinates: [Number(lng), Number(lat)]
           },
-          maxDistance: Number(maxDistance) || 1609.34, // default 1 mile in meters
+          maxDistance: Number(maxDistance) || DefaultMaxDistance,
           spherical: true,
           distanceField: 'distance'
         }
@@ -188,14 +183,8 @@ export const radiusSearch = async (ctx: Context) => {
         }
       },
       {
-        $project: {
-          address: 1,
-          neighborhood: 1,
-          listPrice: 1,
-          distance: 1,
-          latitude: { $arrayElemAt: ['$geometry.coordinates', 1] },
-          longitude: { $arrayElemAt: ['$geometry.coordinates', 0] }
-        }
+        // "distance" is the fieldname set in the  "distanceField" for the $geoNear query above
+        $project: { ...DefaultListingResultFields, distance: 1 }
       }
     ])
     ctx.body = listings
