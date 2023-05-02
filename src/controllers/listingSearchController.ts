@@ -27,12 +27,23 @@ const googleMapsClient = new Client({})
 
 export const geocodeBoundarySearch = async (ctx: Context) => {
   // get and validate the params
-  const { address, placeId, listPriceMin, listPriceMax } = ctx.query
+  const {
+    address,
+    place_id,
+    price_min,
+    price_max,
+    beds_min,
+    beds_max,
+    baths_min,
+    baths_max,
+    sqft_min,
+    sqft_max
+  } = ctx.query
   let geocodeParams
   if (address) {
     geocodeParams = { address }
-  } else if (placeId) {
-    geocodeParams = { place_id: placeId }
+  } else if (place_id) {
+    geocodeParams = { place_id }
   } else {
     ctx.status = 400
     ctx.body = {
@@ -73,10 +84,28 @@ export const geocodeBoundarySearch = async (ctx: Context) => {
         },
         {
           listPrice: {
-            $gte: Number(listPriceMin) || 0,
-            $lte: Number(listPriceMax) || Number.MAX_SAFE_INTEGER
+            $gte: Number(price_min) || 0,
+            $lte: Number(price_max) || Number.MAX_SAFE_INTEGER
           }
-        }
+        },
+        {
+          beds: {
+            $gte: Number(beds_min) || 0,
+            $lte: Number(beds_max) || Number.MAX_SAFE_INTEGER
+          }
+        },
+        {
+          baths: {
+            $gte: Number(baths_min) || 0,
+            $lte: Number(baths_max) || Number.MAX_SAFE_INTEGER
+          }
+        },
+        {
+          sqft: {
+            $gte: Number(sqft_min) || 0,
+            $lte: Number(sqft_max) || Number.MAX_SAFE_INTEGER
+          }
+        },
       ]
     }).select(DefaultListingResultFields)
 
