@@ -1,17 +1,13 @@
 import type { Context } from 'koa'
 import type { IGeocodeBoundaryContext } from '../lib/listing_search_params_types'
-import { Client } from '@googlemaps/google-maps-services-js'
 import Listing from '../models/listingModel'
 import Boundary from '../models/BoundaryModel'
 import { DefaultListingResultFields, DefaultMaxDistance } from '../config'
+import { geocode } from '../lib/geocoder'
 import {
   boundsParamsToGeoJSONPolygon,
   removePartsOfBoundaryOutsideOfBounds
 } from '../lib/listing_search_helpers'
-
-const GeocodeTimeout = 1000 // milliseconds
-
-const googleMapsClient = new Client({})
 
 export const geocodeBoundarySearch = async (ctx: IGeocodeBoundaryContext) => {
   // get and validate the params
@@ -42,10 +38,7 @@ export const geocodeBoundarySearch = async (ctx: IGeocodeBoundaryContext) => {
 
   try {
     // make the request to the geocode service
-    const geocoderResult = await googleMapsClient.geocode({
-      params: { ...geocodeParams, key: process.env.GOOGLE_MAPS_API_KEY },
-      timeout: GeocodeTimeout
-    })
+    const geocoderResult = await geocode(geocodeParams)
     const { lat, lng } = geocoderResult.data.results[0].geometry.location
 
     // search for a boundary that matches the geocoder response coordinates
