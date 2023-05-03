@@ -6,7 +6,7 @@ import Boundary from '../models/BoundaryModel'
 import {
   boundsParamsToGeoJSONPolygon,
   removePartsOfBoundaryOutsideOfBounds
-} from '../lib/util'
+} from '../lib/listing_search_helpers'
 
 const DefaultListingResultFields = {
   listPrice: 1,
