@@ -1,4 +1,5 @@
 import type { Context } from 'koa'
+import type { IGeocodeBoundaryContext } from '../lib/listing_search_params_types'
 import { Client } from '@googlemaps/google-maps-services-js'
 import Listing from '../models/listingModel'
 import Boundary from '../models/BoundaryModel'
@@ -25,7 +26,7 @@ const GeocodeTimeout = 1000 // milliseconds
 
 const googleMapsClient = new Client({})
 
-export const geocodeBoundarySearch = async (ctx: Context) => {
+export const geocodeBoundarySearch = async (ctx: IGeocodeBoundaryContext) => {
   // get and validate the params
   const {
     address,
