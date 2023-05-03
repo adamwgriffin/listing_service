@@ -3,24 +3,11 @@ import type { IGeocodeBoundaryContext } from '../lib/listing_search_params_types
 import { Client } from '@googlemaps/google-maps-services-js'
 import Listing from '../models/listingModel'
 import Boundary from '../models/BoundaryModel'
+import { DefaultListingResultFields, DefaultMaxDistance } from '../config'
 import {
   boundsParamsToGeoJSONPolygon,
   removePartsOfBoundaryOutsideOfBounds
 } from '../lib/listing_search_helpers'
-
-const DefaultListingResultFields = {
-  listPrice: 1,
-  beds: 1,
-  baths: 1,
-  sqft: 1,
-  neighborhood: 1,
-  description: 1,
-  address: 1,
-  latitude: { $arrayElemAt: ['$geometry.coordinates', 1] },
-  longitude: { $arrayElemAt: ['$geometry.coordinates', 0] }
-}
-
-const DefaultMaxDistance = 1609.34 // 1 mile in meters
 
 const GeocodeTimeout = 1000 // milliseconds
 
