@@ -50,6 +50,13 @@ export interface IListingParams {
   sold_days: number
 }
 
+export interface IBoundsParams {
+  boundsNorth: number
+  boundsEast: number
+  boundsSouth: number
+  boundsWest: number
+}
+
 export interface IGeocodeBoundarySearchParams extends Partial<IListingParams> {
   address?: string
   place_id?: string
