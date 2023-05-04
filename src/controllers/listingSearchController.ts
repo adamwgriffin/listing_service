@@ -6,23 +6,14 @@ import { DefaultListingResultFields, DefaultMaxDistance } from '../config'
 import { geocode } from '../lib/geocoder'
 import {
   boundsParamsToGeoJSONPolygon,
-  removePartsOfBoundaryOutsideOfBounds
+  removePartsOfBoundaryOutsideOfBounds,
+  buildfilterQueries,
+  buildfilterQueriesObject
 } from '../lib/listing_search_helpers'
 
 export const geocodeBoundarySearch = async (ctx: IGeocodeBoundaryContext) => {
   // get and validate the params
-  const {
-    address,
-    place_id,
-    price_min,
-    price_max,
-    beds_min,
-    beds_max,
-    baths_min,
-    baths_max,
-    sqft_min,
-    sqft_max
-  } = ctx.query
+  const { address, place_id } = ctx.query
   let geocodeParams
   if (address) {
     geocodeParams = { address }
@@ -63,30 +54,7 @@ export const geocodeBoundarySearch = async (ctx: IGeocodeBoundaryContext) => {
             }
           }
         },
-        {
-          listPrice: {
-            $gte: Number(price_min) || 0,
-            $lte: Number(price_max) || Number.MAX_SAFE_INTEGER
-          }
-        },
-        {
-          beds: {
-            $gte: Number(beds_min) || 0,
-            $lte: Number(beds_max) || Number.MAX_SAFE_INTEGER
-          }
-        },
-        {
-          baths: {
-            $gte: Number(baths_min) || 0,
-            $lte: Number(baths_max) || Number.MAX_SAFE_INTEGER
-          }
-        },
-        {
-          sqft: {
-            $gte: Number(sqft_min) || 0,
-            $lte: Number(sqft_max) || Number.MAX_SAFE_INTEGER
-          }
-        },
+        ...buildfilterQueries(ctx.query)
       ]
     }).select(DefaultListingResultFields)
 
@@ -104,7 +72,6 @@ export const geocodeBoundarySearch = async (ctx: IGeocodeBoundaryContext) => {
 
 export const boundarySearch = async (ctx: Context) => {
   const { id } = ctx.params
-  const { listPriceMin, listPriceMax } = ctx.query
   try {
     const boundary = await Boundary.findById(id)
 
@@ -131,12 +98,7 @@ export const boundarySearch = async (ctx: Context) => {
             }
           }
         },
-        {
-          listPrice: {
-            $gte: Number(listPriceMin) || 0,
-            $lte: Number(listPriceMax) || Number.MAX_SAFE_INTEGER
-          }
-        }
+        ...buildfilterQueries(ctx.query)
       ]
     }).select(DefaultListingResultFields)
     ctx.body = listings
@@ -156,11 +118,16 @@ export const boundsSearch = async (ctx: Context) => {
   })
   try {
     const listings = await Listing.find({
-      geometry: {
-        $geoWithin: {
-          $geometry: geoJSONPolygon
-        }
-      }
+      $and: [
+        {
+          geometry: {
+            $geoWithin: {
+              $geometry: geoJSONPolygon
+            }
+          }
+        },
+        ...buildfilterQueries(ctx.query)
+      ]
     }).select(DefaultListingResultFields)
     ctx.body = listings
   } catch (error) {
@@ -170,7 +137,7 @@ export const boundsSearch = async (ctx: Context) => {
 }
 
 export const radiusSearch = async (ctx: Context) => {
-  const { lat, lng, maxDistance, listPriceMin, listPriceMax } = ctx.query
+  const { lat, lng, maxDistance } = ctx.query
   try {
     const listings = await Listing.aggregate([
       {
@@ -185,12 +152,7 @@ export const radiusSearch = async (ctx: Context) => {
         }
       },
       {
-        $match: {
-          listPrice: {
-            $gte: Number(listPriceMin) || 0,
-            $lte: Number(listPriceMax) || Number.MAX_SAFE_INTEGER
-          }
-        }
+        $match: buildfilterQueriesObject(ctx.query)
       },
       {
         // "distance" is the fieldname set in the  "distanceField" for the $geoNear query above
