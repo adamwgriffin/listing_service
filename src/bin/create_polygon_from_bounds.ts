@@ -3,17 +3,17 @@ import fs from 'fs'
 import path from 'path'
 
 export const bounds = {
-  boundsNorth: 47.69196108041875,
-  boundsEast: -122.35243876227011,
-  boundsSouth: 47.62542076759343,
-  boundsWest: -122.40599711187949,
+  bounds_north: 47.69196108041875,
+  bounds_east: -122.35243876227011,
+  bounds_south: 47.62542076759343,
+  bounds_west: -122.40599711187949,
 }
 
 const polygon = turf.bboxPolygon([
-  bounds.boundsWest,
-  bounds.boundsSouth,
-  bounds.boundsEast,
-  bounds.boundsNorth
+  bounds.bounds_west,
+  bounds.bounds_south,
+  bounds.bounds_east,
+  bounds.bounds_north
 ])
 
 const outputPath = path.join(

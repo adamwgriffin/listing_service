@@ -10,8 +10,8 @@ import { bboxPolygon, intersect } from '@turf/turf'
 export const boundsParamsToGeoJSONPolygon = (
   bounds: IBoundsParams
 ): Polygon => {
-  const { boundsNorth, boundsEast, boundsSouth, boundsWest } = bounds
-  return bboxPolygon([boundsWest, boundsSouth, boundsEast, boundsNorth])
+  const { bounds_north, bounds_east, bounds_south, bounds_west } = bounds
+  return bboxPolygon([bounds_west, bounds_south, bounds_east, bounds_north])
     .geometry
 }
 

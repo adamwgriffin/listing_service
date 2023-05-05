@@ -51,10 +51,10 @@ export interface IListingParams {
 }
 
 export interface IBoundsParams {
-  boundsNorth: number
-  boundsEast: number
-  boundsSouth: number
-  boundsWest: number
+  bounds_north: number
+  bounds_east: number
+  bounds_south: number
+  bounds_west: number
 }
 
 export interface IGeocodeBoundarySearchParams extends Partial<IListingParams> {

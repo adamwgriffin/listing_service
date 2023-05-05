@@ -76,11 +76,11 @@ export const boundarySearch = async (ctx: Context) => {
     const boundary = await Boundary.findById(id)
 
     let boundaryGeometry
-    const { boundsNorth, boundsEast, boundsSouth, boundsWest } = ctx.query
+    const { bounds_north, bounds_east, bounds_south, bounds_west } = ctx.query
     // if bounds params are present, we want to modify the boundary so that any parts that are outside of the bounds
     // will be removed. this way the search will only return results that are within both the boundary & the bounds
-    if (boundsNorth && boundsEast && boundsSouth && boundsWest) {
-      const bounds = { boundsNorth, boundsEast, boundsSouth, boundsWest }
+    if (bounds_north && bounds_east && bounds_south && bounds_west) {
+      const bounds = { bounds_north, bounds_east, bounds_south, bounds_west }
       boundaryGeometry = removePartsOfBoundaryOutsideOfBounds(
         bounds,
         boundary.geometry
@@ -109,12 +109,12 @@ export const boundarySearch = async (ctx: Context) => {
 }
 
 export const boundsSearch = async (ctx: Context) => {
-  const { boundsNorth, boundsEast, boundsSouth, boundsWest } = ctx.query
+  const { bounds_north, bounds_east, bounds_south, bounds_west } = ctx.query
   const geoJSONPolygon = boundsParamsToGeoJSONPolygon({
-    boundsNorth,
-    boundsEast,
-    boundsSouth,
-    boundsWest
+    bounds_north,
+    bounds_east,
+    bounds_south,
+    bounds_west
   })
   try {
     const listings = await Listing.find({
