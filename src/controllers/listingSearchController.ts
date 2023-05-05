@@ -137,7 +137,7 @@ export const boundsSearch = async (ctx: Context) => {
 }
 
 export const radiusSearch = async (ctx: Context) => {
-  const { lat, lng, maxDistance } = ctx.query
+  const { lat, lng, max_distance } = ctx.query
   try {
     const listings = await Listing.aggregate([
       {
@@ -146,7 +146,7 @@ export const radiusSearch = async (ctx: Context) => {
             type: 'Point',
             coordinates: [Number(lng), Number(lat)]
           },
-          maxDistance: Number(maxDistance) || DefaultMaxDistance,
+          maxDistance: Number(max_distance) || DefaultMaxDistance,
           spherical: true,
           distanceField: 'distance'
         }
