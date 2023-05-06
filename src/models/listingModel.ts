@@ -2,12 +2,12 @@ import type { Point } from '@turf/turf'
 import { Schema, model } from 'mongoose'
 import PointSchema from './PointSchema'
 
-interface IListingAddress {
-  line1: string;
-  line2?: string;
-  city: string;
-  state: string;
-  zip: string;
+export interface IListingAddress {
+  line1: string
+  line2?: string
+  city: string
+  state: string
+  zip: string
 }
 
 export interface IListing extends Document {
