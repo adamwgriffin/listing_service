@@ -1,13 +1,98 @@
-import type { GeocodeRequest } from '@googlemaps/google-maps-services-js'
-import { Client } from '@googlemaps/google-maps-services-js'
+import type {
+  AddressComponent,
+  GeocodeRequest,
+  ReverseGeocodeResponse
+} from '@googlemaps/google-maps-services-js'
+import { Client, AddressType } from '@googlemaps/google-maps-services-js'
+
+export interface AddressComponentAddress {
+  streetNumber: string
+  streetAddress: string
+  city: string
+  state: string
+  postalCode: string
+  neighborhood: string
+}
 
 export const GeocodeTimeout = 1000 // milliseconds
 
 const googleMapsClient = new Client({})
 
-export const geocode = async (params: Partial<GeocodeRequest>, timeout=GeocodeTimeout) => {
+// maps all the different types in an AddressComponent.types array to a specific address field
+const AddressComponentMapping = {
+  streetNumber: ['street_number'],
+  streetAddress: ['street_address', 'route'],
+  city: [
+    'locality',
+    'sublocality',
+    'sublocality_level_1',
+    'sublocality_level_2',
+    'sublocality_level_3',
+    'sublocality_level_4'
+  ],
+  state: [
+    'administrative_area_level_1',
+    'administrative_area_level_2',
+    'administrative_area_level_3',
+    'administrative_area_level_4',
+    'administrative_area_level_5'
+  ],
+  postalCode: ['postal_code'],
+  neighborhood: ['neighborhood']
+}
+
+export const AddressComponentAddressTemplate = Object.freeze({
+  streetNumber: '',
+  streetAddress: '',
+  city: '',
+  state: '',
+  postalCode: '',
+  neighborhood: ''
+})
+
+export const geocode = async (
+  params: Partial<GeocodeRequest>,
+  timeout = GeocodeTimeout
+) => {
   return googleMapsClient.geocode({
     params: { ...params, key: process.env.GOOGLE_MAPS_API_KEY },
     timeout
   })
+}
+
+export const reverseGeocode = async (
+  lat: number,
+  lng: number,
+  result_type: AddressType[] = [AddressType.street_address]
+): Promise<ReverseGeocodeResponse> => {
+  const response = await googleMapsClient.reverseGeocode({
+    params: {
+      latlng: `${lat},${lng}`,
+      result_type,
+      key: process.env.GOOGLE_MAPS_API_KEY
+    },
+    timeout: GeocodeTimeout
+  })
+  if (response.status < 200 || response.status > 299) {
+    throw new Error('Failed to fetch address')
+  }
+  return response
+}
+
+export const addressComponentsToAddress = (
+  address_components: AddressComponent[]
+): AddressComponentAddress => {
+  const address = { ...AddressComponentAddressTemplate }
+
+  address_components.forEach((component) => {
+    for (const addressComponent in AddressComponentMapping) {
+      if (
+        AddressComponentMapping[addressComponent].includes(component.types[0])
+      ) {
+        address[addressComponent] = component.long_name
+      }
+    }
+  })
+
+  return address
 }
