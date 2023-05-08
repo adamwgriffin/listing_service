@@ -2,7 +2,7 @@ import type { Context } from 'koa'
 import type { IGeocodeBoundaryContext } from '../lib/listing_search_params_types'
 import Listing from '../models/listingModel'
 import Boundary from '../models/BoundaryModel'
-import { DefaultListingResultFields, DefaultMaxDistance } from '../config'
+import { DefaultListingResultFields, DefaultMaxDistance, DefaultPageSize } from '../config'
 import { geocode } from '../lib/geocoder'
 import {
   boundsParamsToGeoJSONPolygon,
@@ -44,26 +44,61 @@ export const geocodeBoundarySearch = async (ctx: IGeocodeBoundaryContext) => {
       }
     })
 
-    // search for listings that are inside of the boundary that was found
-    const listings = await Listing.find({
-      $and: [
-        {
-          geometry: {
-            $geoWithin: {
-              $geometry: boundaries[0].geometry
-            }
-          }
-        },
-        ...buildfilterQueries(ctx.query)
-      ]
-    }).select(DefaultListingResultFields)
+    const page_size = Number(ctx.query.page_size) || DefaultPageSize
+    const page_index = Number(ctx.query.page_index) || 0
 
-    // send all the data that was found back in the response
+    // search for listings that are inside of the boundary that was found
+    const results = await Listing.aggregate([
+      {
+        $match: {
+          $and: [
+            {
+              geometry: {
+                $geoWithin: {
+                  $geometry: boundaries[0].geometry
+                }
+              }
+            },
+            ...buildfilterQueries(ctx.query)
+          ]
+        }
+      },
+      // using the aggregation pipline in combination with $facet allows us to get the total number of documents that
+      // match the query when using $skip & $limit for pagination. it allows us to count the total results from the
+      // $match stage before they go through the $skip/$limit stages that will reduce the number of results returned.
+      {
+        $facet: {
+          metadata: [
+            // this part counts the total. "numberAvailable" is just a name for the field
+            { $count: 'numberAvailable' },
+          ],
+          data: [
+            // $skip allows us to move ahead to each page in the results set by skipping the previous page results we
+            // have already seen, while $limit only returns the amount per page. together they create a slice of the
+            // result set represented as a "page"
+            { $skip: page_index * page_size },
+            { $limit: page_size },
+            { $project: DefaultListingResultFields }
+          ]
+        }
+      }
+    ])
+    
+    const r = results[0]
+    const numberAvailable = r.metadata[0]?.numberAvailable || 0
     ctx.body = {
-      listings,
+      listings: r.data,
       boundary: boundaries[0],
-      geocoderResult: geocoderResult.data.results
+      geocoderResult: geocoderResult.data.results,
+      pagination: {
+        page: page_index,
+        pageSize: page_size,
+        numberReturned: r.data.length,
+        numberAvailable: numberAvailable,
+        numberOfPages: Math.ceil(numberAvailable / page_size)
+      }
     }
+
   } catch (error) {
     ctx.status = error?.response?.status || 500
     ctx.body = { error: error.message }
@@ -89,19 +124,51 @@ export const boundarySearch = async (ctx: Context) => {
       boundaryGeometry = boundary.geometry
     }
 
-    const listings = await Listing.find({
-      $and: [
-        {
-          geometry: {
-            $geoWithin: {
-              $geometry: boundaryGeometry
-            }
-          }
-        },
-        ...buildfilterQueries(ctx.query)
-      ]
-    }).select(DefaultListingResultFields)
-    ctx.body = listings
+    const page_size = Number(ctx.query.page_size) || DefaultPageSize
+    const page_index = Number(ctx.query.page_index) || 0
+
+    const results = await Listing.aggregate([
+      {
+        $match: {
+          $and: [
+            {
+              geometry: {
+                $geoWithin: {
+                  $geometry: boundaryGeometry
+                }
+              }
+            },
+            ...buildfilterQueries(ctx.query)
+          ]
+        }
+      },
+      {
+        $facet: {
+          metadata: [
+            { $count: 'numberAvailable' },
+          ],
+          data: [
+            { $skip: page_index * page_size },
+            { $limit: page_size },
+            { $project: DefaultListingResultFields }
+          ]
+        }
+      }
+    ])
+
+    const r = results[0]
+    const numberAvailable = r.metadata[0]?.numberAvailable || 0
+    ctx.body = {
+      listings: r.data,
+      pagination: {
+        page: page_index,
+        pageSize: page_size,
+        numberReturned: r.data.length,
+        numberAvailable: numberAvailable,
+        numberOfPages: Math.ceil(numberAvailable / page_size)
+      }
+    }
+
   } catch (error) {
     ctx.status = 500
     ctx.body = { message: error.message }
@@ -117,19 +184,51 @@ export const boundsSearch = async (ctx: Context) => {
     bounds_west
   })
   try {
-    const listings = await Listing.find({
-      $and: [
-        {
-          geometry: {
-            $geoWithin: {
-              $geometry: geoJSONPolygon
-            }
-          }
-        },
-        ...buildfilterQueries(ctx.query)
-      ]
-    }).select(DefaultListingResultFields)
-    ctx.body = listings
+    const page_size = Number(ctx.query.page_size) || DefaultPageSize
+    const page_index = Number(ctx.query.page_index) || 0
+
+    const results = await Listing.aggregate([
+      {
+        $match: {
+          $and: [
+            {
+              geometry: {
+                $geoWithin: {
+                  $geometry: geoJSONPolygon
+                }
+              }
+            },
+            ...buildfilterQueries(ctx.query)
+          ]
+        }
+      },
+      {
+        $facet: {
+          metadata: [
+            { $count: 'numberAvailable' },
+          ],
+          data: [
+            { $skip: page_index * page_size },
+            { $limit: page_size },
+            { $project: DefaultListingResultFields }
+          ]
+        }
+      }
+    ])
+
+    const r = results[0]
+    const numberAvailable = r.metadata[0]?.numberAvailable || 0
+    ctx.body = {
+      listings: r.data,
+      pagination: {
+        page: page_index,
+        pageSize: page_size,
+        numberReturned: r.data.length,
+        numberAvailable: numberAvailable,
+        numberOfPages: Math.ceil(numberAvailable / page_size)
+      }
+    }
+
   } catch (error) {
     ctx.status = 500
     ctx.body = { message: error.message }
@@ -138,8 +237,13 @@ export const boundsSearch = async (ctx: Context) => {
 
 export const radiusSearch = async (ctx: Context) => {
   const { lat, lng, max_distance } = ctx.query
+  const page_size = Number(ctx.query.page_size) || DefaultPageSize
+  const page_index = Number(ctx.query.page_index) || 0
+
   try {
-    const listings = await Listing.aggregate([
+    const results = await Listing.aggregate([
+      // $geoNear doesn't go inside of $match like the other queries because it is aggregation pipeline stage, not an
+      // aggregation operator. also, you can only use $geoNear as the first stage of a pipeline.
       {
         $geoNear: {
           near: {
@@ -155,11 +259,35 @@ export const radiusSearch = async (ctx: Context) => {
         $match: buildfilterQueriesObject(ctx.query)
       },
       {
-        // "distance" is the fieldname set in the  "distanceField" for the $geoNear query above
-        $project: { ...DefaultListingResultFields, distance: 1 }
+        $facet: {
+          metadata: [
+            { $count: 'numberAvailable' },
+          ],
+          data: [
+            { $skip: page_index * page_size },
+            { $limit: page_size },
+            {
+              // "distance" is the fieldname set in the  "distanceField" for the $geoNear query above
+              $project: { ...DefaultListingResultFields, distance: 1 }
+            }
+          ]
+        }
       }
     ])
-    ctx.body = listings
+    
+    const r = results[0]
+    const numberAvailable = r.metadata[0]?.numberAvailable || 0
+    ctx.body = {
+      listings: r.data,
+      pagination: {
+        page: page_index,
+        pageSize: page_size,
+        numberReturned: r.data.length,
+        numberAvailable: numberAvailable,
+        numberOfPages: Math.ceil(numberAvailable / page_size)
+      }
+    }
+
   } catch (error) {
     ctx.status = 500
     ctx.body = { message: error.message }

@@ -57,6 +57,15 @@ export interface IBoundsParams {
   bounds_west: number
 }
 
+// TODO: not 100% on what really needs to be returned here
+export interface IPaginationResponse {
+  page: number
+  pageSize: number
+  numberReturned: number
+  numberAvailable: number
+  numberOfPages: number
+}
+
 export interface IGeocodeBoundarySearchParams extends Partial<IListingParams> {
   address?: string
   place_id?: string
@@ -65,7 +74,8 @@ export interface IGeocodeBoundarySearchParams extends Partial<IListingParams> {
 export interface IGeocodeBoundarySuccessResponse{
   listings: IListing[]
   boundary: IBoundary
-  geocoderResult: GeocodeResult[]
+  geocoderResult: GeocodeResult[],
+  pagination: IPaginationResponse
 }
 
 export interface IErrorResponse {

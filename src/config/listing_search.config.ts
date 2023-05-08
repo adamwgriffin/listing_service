@@ -1,3 +1,4 @@
+// used for mongodb's $project section to select the fields we want to return in the response
 export const DefaultListingResultFields = {
   listPrice: 1,
   beds: 1,
@@ -11,3 +12,5 @@ export const DefaultListingResultFields = {
 }
 
 export const DefaultMaxDistance = 1609.34 // 1 mile in meters
+
+export const DefaultPageSize = 20
