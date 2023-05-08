@@ -61,7 +61,7 @@ const createListingModel = (
 
 const createListing = async (point: Point): Promise<Partial<IListing>> => {
   const description = await generateLoremIpsumText(
-    generateRandomNumberInRange(1, 5)
+    generateRandomNumberInRange(1, 2)
   )
   const res = await reverseGeocode(point.coordinates[1], point.coordinates[0])
   if (res.data.results[0]?.address_components) {
@@ -91,7 +91,7 @@ const generateListingData = async (
 const main = async () => {
   const listings = await generateListingData(
     (boundary as IBoundary).geometry,
-    25
+    48
   )
 
   const outputPath = path.join(
