@@ -2,7 +2,11 @@ import type { Context } from 'koa'
 import type { IGeocodeBoundaryContext } from '../lib/listing_search_params_types'
 import Listing from '../models/listingModel'
 import Boundary from '../models/BoundaryModel'
-import { DefaultListingResultFields, DefaultMaxDistance, DefaultPageSize } from '../config'
+import {
+  DefaultListingResultFields,
+  DefaultMaxDistance,
+  DefaultPageSize
+} from '../config'
 import { geocode } from '../lib/geocoder'
 import {
   boundsParamsToGeoJSONPolygon,
@@ -70,7 +74,7 @@ export const geocodeBoundarySearch = async (ctx: IGeocodeBoundaryContext) => {
         $facet: {
           metadata: [
             // this part counts the total. "numberAvailable" is just a name for the field
-            { $count: 'numberAvailable' },
+            { $count: 'numberAvailable' }
           ],
           data: [
             // $skip allows us to move ahead to each page in the results set by skipping the previous page results we
@@ -83,7 +87,7 @@ export const geocodeBoundarySearch = async (ctx: IGeocodeBoundaryContext) => {
         }
       }
     ])
-    
+
     const r = results[0]
     const numberAvailable = r.metadata[0]?.numberAvailable || 0
     ctx.body = {
@@ -98,7 +102,6 @@ export const geocodeBoundarySearch = async (ctx: IGeocodeBoundaryContext) => {
         numberOfPages: Math.ceil(numberAvailable / page_size)
       }
     }
-
   } catch (error) {
     ctx.status = error?.response?.status || 500
     ctx.body = { error: error.message }
@@ -144,9 +147,7 @@ export const boundarySearch = async (ctx: Context) => {
       },
       {
         $facet: {
-          metadata: [
-            { $count: 'numberAvailable' },
-          ],
+          metadata: [{ $count: 'numberAvailable' }],
           data: [
             { $skip: page_index * page_size },
             { $limit: page_size },
@@ -168,7 +169,6 @@ export const boundarySearch = async (ctx: Context) => {
         numberOfPages: Math.ceil(numberAvailable / page_size)
       }
     }
-
   } catch (error) {
     ctx.status = 500
     ctx.body = { message: error.message }
@@ -204,9 +204,7 @@ export const boundsSearch = async (ctx: Context) => {
       },
       {
         $facet: {
-          metadata: [
-            { $count: 'numberAvailable' },
-          ],
+          metadata: [{ $count: 'numberAvailable' }],
           data: [
             { $skip: page_index * page_size },
             { $limit: page_size },
@@ -228,7 +226,6 @@ export const boundsSearch = async (ctx: Context) => {
         numberOfPages: Math.ceil(numberAvailable / page_size)
       }
     }
-
   } catch (error) {
     ctx.status = 500
     ctx.body = { message: error.message }
@@ -260,9 +257,7 @@ export const radiusSearch = async (ctx: Context) => {
       },
       {
         $facet: {
-          metadata: [
-            { $count: 'numberAvailable' },
-          ],
+          metadata: [{ $count: 'numberAvailable' }],
           data: [
             { $skip: page_index * page_size },
             { $limit: page_size },
@@ -274,7 +269,7 @@ export const radiusSearch = async (ctx: Context) => {
         }
       }
     ])
-    
+
     const r = results[0]
     const numberAvailable = r.metadata[0]?.numberAvailable || 0
     ctx.body = {
@@ -287,7 +282,6 @@ export const radiusSearch = async (ctx: Context) => {
         numberOfPages: Math.ceil(numberAvailable / page_size)
       }
     }
-
   } catch (error) {
     ctx.status = 500
     ctx.body = { message: error.message }
