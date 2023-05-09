@@ -3,25 +3,9 @@ import type { IListing } from '../models/listingModel'
 import type { IBoundary } from '../models/BoundaryModel'
 import { GeocodeResult } from '@googlemaps/google-maps-services-js'
 
-export type ISortById =
-  | 1
-  | 2
-  | 3
-  | 4
-  | 5
-  | 6
-  | 7
-  | 8
-  | 9
-  | 10
-  | 11
-  | 12
-  | 13
-  | 14
-  | 15
-  | 16
-  | 17
-  | 18
+export type SortType = 'listedDate' | 'listPrice' | 'beds' | 'baths' | 'sqft'
+
+export type SortDirection = 'asc' | 'desc'
 
 export interface IListingParams {
   page_index: number
@@ -39,7 +23,8 @@ export interface IListingParams {
   lot_size_min: number
   lot_size_max: number
   status: 'active' | 'sold'
-  sort_by: ISortById
+  sort_by: SortType
+  sort_direction: SortDirection
   waterfront: boolean
   view: boolean
   garage: boolean

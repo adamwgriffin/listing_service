@@ -50,6 +50,10 @@ export const geocodeBoundarySearch = async (ctx: IGeocodeBoundaryContext) => {
 
     const page_size = Number(ctx.query.page_size) || DefaultPageSize
     const page_index = Number(ctx.query.page_index) || 0
+    const sort_by = ctx.query.sort_by || 'listedDate'
+    // 1 == ascending, e.g., 1-10
+    // -1 == descending, e.g., 10-1
+    const sort_direction = ctx.query.sort_direction === 'asc' ? 1 : -1
 
     // search for listings that are inside of the boundary that was found
     const results = await Listing.aggregate([
@@ -67,6 +71,7 @@ export const geocodeBoundarySearch = async (ctx: IGeocodeBoundaryContext) => {
           ]
         }
       },
+      { $sort: { [sort_by]: sort_direction } },
       // using the aggregation pipline in combination with $facet allows us to get the total number of documents that
       // match the query when using $skip & $limit for pagination. it allows us to count the total results from the
       // $match stage before they go through the $skip/$limit stages that will reduce the number of results returned.
@@ -129,6 +134,8 @@ export const boundarySearch = async (ctx: Context) => {
 
     const page_size = Number(ctx.query.page_size) || DefaultPageSize
     const page_index = Number(ctx.query.page_index) || 0
+    const sort_by = ctx.query.sort_by || 'listedDate'
+    const sort_direction = ctx.query.sort_direction === 'asc' ? 1 : -1
 
     const results = await Listing.aggregate([
       {
@@ -145,6 +152,7 @@ export const boundarySearch = async (ctx: Context) => {
           ]
         }
       },
+      { $sort: { [sort_by]: sort_direction } },
       {
         $facet: {
           metadata: [{ $count: 'numberAvailable' }],
@@ -186,6 +194,8 @@ export const boundsSearch = async (ctx: Context) => {
   try {
     const page_size = Number(ctx.query.page_size) || DefaultPageSize
     const page_index = Number(ctx.query.page_index) || 0
+    const sort_by = ctx.query.sort_by || 'listedDate'
+    const sort_direction = ctx.query.sort_direction === 'asc' ? 1 : -1
 
     const results = await Listing.aggregate([
       {
@@ -202,6 +212,7 @@ export const boundsSearch = async (ctx: Context) => {
           ]
         }
       },
+      { $sort: { [sort_by]: sort_direction } },
       {
         $facet: {
           metadata: [{ $count: 'numberAvailable' }],
@@ -236,6 +247,8 @@ export const radiusSearch = async (ctx: Context) => {
   const { lat, lng, max_distance } = ctx.query
   const page_size = Number(ctx.query.page_size) || DefaultPageSize
   const page_index = Number(ctx.query.page_index) || 0
+  const sort_by = ctx.query.sort_by || 'listedDate'
+  const sort_direction = ctx.query.sort_direction === 'asc' ? 1 : -1
 
   try {
     const results = await Listing.aggregate([
@@ -255,6 +268,7 @@ export const radiusSearch = async (ctx: Context) => {
       {
         $match: buildfilterQueriesObject(ctx.query)
       },
+      { $sort: { [sort_by]: sort_direction } },
       {
         $facet: {
           metadata: [{ $count: 'numberAvailable' }],
