@@ -1,6 +1,7 @@
 export default [
   {
     listPrice: 797778,
+    listedDate: '2023-05-04T21:12:57.627Z',
     beds: 2,
     baths: 2,
     sqft: 1200,
@@ -20,6 +21,7 @@ export default [
   },
   {
     listPrice: 1160415,
+    listedDate: '2023-02-10T04:56:44.603Z',
     beds: 4,
     baths: 2,
     sqft: 1720,

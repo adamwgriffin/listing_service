@@ -1,31 +1,240 @@
 [
   {
-    "listPrice": 642932,
-    "beds": 3,
-    "baths": 3,
-    "sqft": 1671,
+    "listPrice": 185337,
+    "listedDate": "2023-05-05T06:41:55.449Z",
+    "beds": 4,
+    "baths": 2,
+    "sqft": 1251,
     "address": {
-      "line1": "3935 Leary Way Northwest",
+      "line1": "4014 Francis Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "neighborhood": "Fremont",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Roges enim Aristonem, bonane ei videantur haec: vacuitas doloris, divitiae, valitudo; Neque solum ea communia, verum etiam paria esse dixerunt. Itaque ad tempus ad Pisonem omnes. Omnium enim rerum principia parva sunt, sed suis progressionibus usa augentur nec sine causa; Duo Reges: constructio interrete. Nec lapathi suavitatem acupenseri Galloni Laelius anteponebat, sed suavitatem ipsam neglegebat; Superiores tres erant, quae esse possent, quarum est una sola defensa, eaque vehementer. Quae cum magnifice primo dici viderentur, considerata minus probabantur. Si enim ad populum me vocas, eum. Itaque hic ipse iam pridem est reiectus; \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35353691768395,
+        47.655945816918596
+      ]
+    }
+  },
+  {
+    "listPrice": 146983,
+    "listedDate": "2023-02-01T20:37:36.979Z",
+    "beds": 3,
+    "baths": 1,
+    "sqft": 1278,
+    "address": {
+      "line1": "4723 Phinney Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "neighborhood": "Northwest Seattle",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Apparet statim, quae sint officia, quae actiones. Cuius similitudine perspecta in formarum specie ac dignitate transitum est ad honestatem dictorum atque factorum. Quam ob rem tandem, inquit, non satisfacit? Quae cum dixisset, finem ille. Duo Reges: constructio interrete. At iam decimum annum in spelunca iacet. Minime id quidem, inquam, alienum, multumque ad ea, quae quaerimus, explicatio tua ista profecerit. \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35418798001125,
+        47.66348346004864
+      ]
+    }
+  },
+  {
+    "listPrice": 148600,
+    "listedDate": "2023-01-20T03:43:18.603Z",
+    "beds": 3,
+    "baths": 2,
+    "sqft": 1684,
+    "address": {
+      "line1": "4630 Linden Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "neighborhood": "Fremont",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Audio equidem philosophi vocem, Epicure, sed quid tibi dicendum sit oblitus es. Sed quoniam et advesperascit et mihi ad villam revertendum est, nunc quidem hactenus; Ergo instituto veterum, quo etiam Stoici utuntur, hinc capiamus exordium. Sed ille, ut dixi, vitiose. Summus dolor plures dies manere non potest? Duo Reges: constructio interrete. \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.34835065861336,
+        47.66208766769739
+      ]
+    }
+  },
+  {
+    "listPrice": 188744,
+    "listedDate": "2023-04-07T12:09:42.225Z",
+    "beds": 3,
+    "baths": 1,
+    "sqft": 1701,
+    "address": {
+      "line1": "612N North 45th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "neighborhood": "Fremont",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nemo igitur esse beatus potest. Cum id fugiunt, re eadem defendunt, quae Peripatetici, verba. Octavio fuit, cum illam severitatem in eo filio adhibuit, quem in adoptionem D. Qui autem de summo bono dissentit de tota philosophiae ratione dissentit. Deinde disputat, quod cuiusque generis animantium statui deceat extremum. Utrum igitur tibi litteram videor an totas paginas commovere? Duo Reges: constructio interrete. Si quidem, inquit, tollerem, sed relinquo. \n\nAn quod ita callida est, ut optime possit architectari voluptates? Collige omnia, quae soletis: Praesidium amicorum. Nam et a te perfici istam disputationem volo, nec tua mihi oratio longa videri potest. Hoc est dicere: Non reprehenderem asotos, si non essent asoti. Hoc dictum in una re latissime patet, ut in omnibus factis re, non teste moveamur. Suo genere perveniant ad extremum; \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35075845320239,
+        47.66196056253389
+      ]
+    }
+  },
+  {
+    "listPrice": 110185,
+    "listedDate": "2023-04-09T17:55:59.276Z",
+    "beds": 2,
+    "baths": 3,
+    "sqft": 1141,
+    "address": {
+      "line1": "519 Northwest 44th Street",
       "line2": "",
       "city": "Seattle",
       "state": "Washington",
       "zip": "98107"
     },
     "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Videmusne ut pueri ne verberibus quidem a contemplandis rebus perquirendisque deterreantur? Quo plebiscito decreta a senatu est consuli quaestio Cn. Hoc non est positum in nostra actione. Non dolere, inquam, istud quam vim habeat postea videro; Qua igitur re ab deo vincitur, si aeternitate non vincitur? Duo Reges: constructio interrete. At enim hic etiam dolore. Hoc enim constituto in philosophia constituta sunt omnia. Sed quid attinet de rebus tam apertis plura requirere? Ne in odium veniam, si amicum destitero tueri. Non quaeritur autem quid naturae tuae consentaneum sit, sed quid disciplinae. Tertium autem omnibus aut maximis rebus iis, quae secundum naturam sint, fruentem vivere. \n\nAtque ab his initiis profecti omnium virtutum et originem et progressionem persecuti sunt. Qui autem diffidet perpetuitati bonorum suorum, timeat necesse est, ne aliquando amissis illis sit miser. Immo vero, inquit, ad beatissime vivendum parum est, ad beate vero satis. Bork Videamus igitur sententias eorum, tum ad verba redeamus. Non quaeritur autem quid naturae tuae consentaneum sit, sed quid disciplinae. Atque ab his initiis profecti omnium virtutum et originem et progressionem persecuti sunt. Id enim volumus, id contendimus, ut officii fructus sit ipsum officium. \n\n",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Si mala non sunt, iacet omnis ratio Peripateticorum. Quasi ego id curem, quid ille aiat aut neget. Quid autem habent admirationis, cum prope accesseris? Quid enim ab antiquis ex eo genere, quod ad disserendum valet, praetermissum est? Duo Reges: constructio interrete. Tum Piso: Quoniam igitur aliquid omnes, quid Lucius noster? \n\nSed quia studebat laudi et dignitati, multum in virtute processerat. Eam stabilem appellas. \n\n",
     "geometry": {
       "type": "Point",
       "coordinates": [
-        -122.36139637827253,
-        47.65486487271796
+        -122.36361669151742,
+        47.660535371226544
       ]
     }
   },
   {
-    "listPrice": 685776,
+    "listPrice": 579696,
+    "listedDate": "2023-03-04T22:32:39.684Z",
+    "beds": 4,
+    "baths": 3,
+    "sqft": 1463,
+    "address": {
+      "line1": "3802 Bridge Way North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "neighborhood": "Fremont",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. An eiusdem modi? Negat esse eam, inquit, propter se expetendam. Aeque enim contingit omnibus fidibus, ut incontentae sint. Duo Reges: constructio interrete. Tubulum fuisse, qua illum, cuius is condemnatus est rogatione, P. Non quaeritur autem quid naturae tuae consentaneum sit, sed quid disciplinae. Omnes enim iucundum motum, quo sensus hilaretur. Levatio igitur vitiorum magna fit in iis, qui habent ad virtutem progressionis aliquantum. \n\nQuod cum accidisset ut alter alterum necopinato videremus, surrexit statim. Stulti autem malorum memoria torquentur, sapientes bona praeterita grata recordatione renovata delectant. Huius, Lyco, oratione locuples, rebus ipsis ielunior. \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.34481365017295,
+        47.652786326273606
+      ]
+    }
+  },
+  {
+    "listPrice": 472936,
+    "listedDate": "2023-02-26T06:47:26.975Z",
+    "beds": 2,
+    "baths": 3,
+    "sqft": 1398,
+    "address": {
+      "line1": "4701 Aurora Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "neighborhood": "Fremont",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. An eum discere ea mavis, quae cum plane perdidiceriti nihil sciat? Quos quidem tibi studiose et diligenter tractandos magnopere censeo. Quae cum praeponunt, ut sit aliqua rerum selectio, naturam videntur sequi; Easdemne res? Quod non faceret, si in voluptate summum bonum poneret. Duo Reges: constructio interrete. Qui-vere falsone, quaerere mittimus-dicitur oculis se privasse; Videsne quam sit magna dissensio? Non minor, inquit, voluptas percipitur ex vilissimis rebus quam ex pretiosissimis. \n\nNam de isto magna dissensio est. Illum mallem levares, quo optimum atque humanissimum virum, Cn. Unum nescio, quo modo possit, si luxuriosus sit, finitas cupiditates habere. Quamquam tu hanc copiosiorem etiam soles dicere. \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.34731772878317,
+        47.6630048007842
+      ]
+    }
+  },
+  {
+    "listPrice": 614514,
+    "listedDate": "2023-01-11T19:39:54.718Z",
+    "beds": 4,
+    "baths": 3,
+    "sqft": 1326,
+    "address": {
+      "line1": "423 North 46th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "neighborhood": "Fremont",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non modo carum sibi quemque, verum etiam vehementer carum esse? Isto modo ne improbos quidem, si essent boni viri. Qui-vere falsone, quaerere mittimus-dicitur oculis se privasse; Sapiens autem semper beatus est et est aliquando in dolore; Quare, quoniam de primis naturae commodis satis dietum est nunc de maioribus consequentibusque videamus. Quis non odit sordidos, vanos, leves, futtiles? Duo Reges: constructio interrete. \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.353262309353,
+        47.662171471967156
+      ]
+    }
+  },
+  {
+    "listPrice": 372217,
+    "listedDate": "2023-03-08T05:44:51.341Z",
+    "beds": 4,
+    "baths": 3,
+    "sqft": 1892,
+    "address": {
+      "line1": "4040 Aurora Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "neighborhood": "Fremont",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et quod est munus, quod opus sapientiae? Atqui, inquam, Cato, si istud optinueris, traducas me ad te totum licebit. Duo Reges: constructio interrete. Praeteritis, inquit, gaudeo. Vitiosum est enim in dividendo partem in genere numerare. Itaque homo in primis ingenuus et gravis, dignus illa familiaritate Scipionis et Laelii, Panaetius, cum ad Q. Terram, mihi crede, ea lanx et maria deprimet. \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.34682571511445,
+        47.65659284208323
+      ]
+    }
+  },
+  {
+    "listPrice": 279308,
+    "listedDate": "2023-01-06T03:58:09.206Z",
     "beds": 3,
-    "baths": 4,
-    "sqft": 1428,
+    "baths": 3,
+    "sqft": 1916,
+    "address": {
+      "line1": "601 Northwest 41st Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "neighborhood": "Fremont",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quid de Platone aut de Democrito loquar? Hanc ergo intuens debet institutum illud quasi signum absolvere. Duo Reges: constructio interrete. Cur deinde Metrodori liberos commendas? Res enim concurrent contrariae. De quibus cupio scire quid sentias. \n\nSi enim sapiens aliquis miser esse possit, ne ego istam gloriosam memorabilemque virtutem non magno aestimandam putem. Eorum enim omnium multa praetermittentium, dum eligant aliquid, quod sequantur, quasi curta sententia; Quarum ambarum rerum cum medicinam pollicetur, luxuriae licentiam pollicetur. Quare, quoniam de primis naturae commodis satis dietum est nunc de maioribus consequentibusque videamus. Ostendit pedes et pectus. Nondum autem explanatum satis, erat, quid maxime natura vellet. \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.3634830328279,
+        47.65635419450543
+      ]
+    }
+  },
+  {
+    "listPrice": 114795,
+    "listedDate": "2023-03-31T00:29:31.591Z",
+    "beds": 2,
+    "baths": 3,
+    "sqft": 1226,
     "address": {
       "line1": "4333b Leary Way Northwest",
       "line2": "",
@@ -34,64 +243,780 @@
       "zip": "98107"
     },
     "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Modo etiam paulum ad dexteram de via declinavi, ut ad Pericli sepulcrum accederem. Octavio fuit, cum illam severitatem in eo filio adhibuit, quem in adoptionem D. Isto modo ne improbos quidem, si essent boni viri. \n\n",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Potius inflammat, ut coercendi magis quam dedocendi esse videantur. Et quidem iure fortasse, sed tamen non gravissimum est testimonium multitudinis. Nemo igitur esse beatus potest. Duo Reges: constructio interrete. Qui autem de summo bono dissentit de tota philosophiae ratione dissentit. Quid sequatur, quid repugnet, vident. \n\nClaudii libidini, qui tum erat summo ne imperio, dederetur. Profectus in exilium Tubulus statim nec respondere ausus; Primum in nostrane potestate est, quid meminerimus? Qua tu etiam inprudens utebare non numquam. Sed in rebus apertissimis nimium longi sumus. Saepe ab Aristotele, a Theophrasto mirabiliter est laudata per se ipsa rerum scientia; Nec vero sum nescius esse utilitatem in historia, non modo voluptatem. \n\n",
     "geometry": {
       "type": "Point",
       "coordinates": [
-        -122.36569282337105,
-        47.659681932604215
+        -122.36581998158651,
+        47.65976553093159
       ]
     }
   },
   {
-    "listPrice": 129490,
-    "beds": 3,
+    "listPrice": 743755,
+    "listedDate": "2023-01-29T04:40:09.305Z",
+    "beds": 4,
     "baths": 3,
-    "sqft": 1593,
+    "sqft": 1512,
     "address": {
-      "line1": "4620 3rd Avenue Northwest",
+      "line1": "4225 3rd Avenue Northwest",
       "line2": "",
       "city": "Seattle",
       "state": "Washington",
       "zip": "98107"
     },
     "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quod autem principium officii quaerunt, melius quam Pyrrho; At ego quem huic anteponam non audeo dicere; Nam de isto magna dissensio est. Nummus in Croesi divitiis obscuratur, pars est tamen divitiarum. Atqui perspicuum est hominem e corpore animoque constare, cum primae sint animi partes, secundae corporis. Duo Reges: constructio interrete. Qui enim existimabit posse se miserum esse beatus non erit. Hic quoque suus est de summoque bono dissentiens dici vere Peripateticus non potest. Aliter enim explicari, quod quaeritur, non potest. Egone quaeris, inquit, quid sentiam? \n\n",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quibus doctissimi illi veteres inesse quiddam caeleste et divinum putaverunt. Igitur neque stultorum quisquam beatus neque sapientium non beatus. Stulti autem malorum memoria torquentur, sapientes bona praeterita grata recordatione renovata delectant. Duo Reges: constructio interrete. Si de re disceptari oportet, nulla mihi tecum, Cato, potest esse dissensio. Est enim effectrix multarum et magnarum voluptatum. Familiares nostros, credo, Sironem dicis et Philodemum, cum optimos viros, tum homines doctissimos. Pisone in eo gymnasio, quod Ptolomaeum vocatur, unaque nobiscum Q. \n\nIncommoda autem et commoda-ita enim estmata et dustmata appello-communia esse voluerunt, paria noluerunt. Haec igitur Epicuri non probo, inquam. Multoque hoc melius nos veriusque quam Stoici. Ergo et avarus erit, sed finite, et adulter, verum habebit modum, et luxuriosus eodem modo. Bork Voluptatem cum summum bonum diceret, primum in eo ipso parum vidit, deinde hoc quoque alienum; Videsne, ut haec concinant? \n\n",
     "geometry": {
       "type": "Point",
       "coordinates": [
-        -122.35971127524951,
-        47.66330766066325
+        -122.36136864511293,
+        47.65846341708514
       ]
     }
   },
   {
-    "listPrice": 521295,
+    "listPrice": 737367,
+    "listedDate": "2023-04-24T17:59:59.447Z",
     "beds": 2,
     "baths": 4,
-    "sqft": 1491,
+    "sqft": 1594,
     "address": {
-      "line1": "4429 2nd Avenue Northwest",
+      "line1": "4312 3rd Avenue Northwest",
       "line2": "",
       "city": "Seattle",
       "state": "Washington",
       "zip": "98107"
     },
     "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ego vero isti, inquam, permitto. Sed tamen enitar et, si minus multa mihi occurrent, non fugiam ista popularia. Quae sequuntur igitur? Nonne igitur tibi videntur, inquit, mala? Non potes ergo ista tueri, Torquate, mihi crede, si te ipse et tuas cogitationes et studia perspexeris; Atqui iste locus est, Piso, tibi etiam atque etiam confirmandus, inquam; Cur iustitia laudatur? Unum nescio, quo modo possit, si luxuriosus sit, finitas cupiditates habere. \n\nDuo Reges: constructio interrete. Bork Nos paucis ad haec additis finem faciamus aliquando; Scientiam pollicentur, quam non erat mirum sapientiae cupido patria esse cariorem. Profectus in exilium Tubulus statim nec respondere ausus; Peccata paria. Quod non faceret, si in voluptate summum bonum poneret. Ergo ita: non posse honeste vivi, nisi honeste vivatur? \n\n",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sic enim censent, oportunitatis esse beate vivere. Illud dico, ea, quae dicat, praeclare inter se cohaerere. Illa videamus, quae a te de amicitia dicta sunt. Illa videamus, quae a te de amicitia dicta sunt. Quod idem cum vestri faciant, non satis magnam tribuunt inventoribus gratiam. \n\nQui autem de summo bono dissentit de tota philosophiae ratione dissentit. Mihi enim erit isdem istis fortasse iam utendum. Duo Reges: constructio interrete. Id enim volumus, id contendimus, ut officii fructus sit ipsum officium. Quam ob rem tandem, inquit, non satisfacit? Verum tamen cum de rebus grandioribus dicas, ipsae res verba rapiunt; \n\n",
     "geometry": {
       "type": "Point",
       "coordinates": [
-        -122.35828501529913,
-        47.66068091213874
+        -122.36001166870577,
+        47.65908739039517
       ]
     }
   },
   {
-    "listPrice": 194144,
+    "listPrice": 720314,
+    "listedDate": "2023-03-16T02:37:47.331Z",
+    "beds": 3,
+    "baths": 1,
+    "sqft": 1971,
+    "address": {
+      "line1": "4268 Aurora Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "neighborhood": "Wallingford",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Homines optimi non intellegunt totam rationem everti, si ita res se habeat. Sed quot homines, tot sententiae; De quibus cupio scire quid sentias. Nunc ita separantur, ut disiuncta sint, quo nihil potest esse perversius. Idemque diviserunt naturam hominis in animum et corpus. Duo Reges: constructio interrete. Si longus, levis dictata sunt. Sin est etiam corpus, ista explanatio naturae nempe hoc effecerit, ut ea, quae ante explanationem tenebamus, relinquamus. Non quam nostram quidem, inquit Pomponius iocans; \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.34723055670257,
+        47.659200412122374
+      ]
+    }
+  },
+  {
+    "listPrice": 558141,
+    "listedDate": "2023-01-14T11:19:52.357Z",
     "beds": 3,
     "baths": 4,
-    "sqft": 1691,
+    "sqft": 1101,
+    "address": {
+      "line1": "4902 Linden Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "neighborhood": "Fremont",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Restincta enim sitis stabilitatem voluptatis habet, inquit, illa autem voluptas ipsius restinctionis in motu est. Quid ergo attinet gloriose loqui, nisi constanter loquare? Restincta enim sitis stabilitatem voluptatis habet, inquit, illa autem voluptas ipsius restinctionis in motu est. Huius, Lyco, oratione locuples, rebus ipsis ielunior. Si sapiens, ne tum quidem miser, cum ab Oroete, praetore Darei, in crucem actus est. \n\nTum Piso: Quoniam igitur aliquid omnes, quid Lucius noster? Duo Reges: constructio interrete. Iam doloris medicamenta illa Epicurea tamquam de narthecio proment: Si gravis, brevis; Aliena dixit in physicis nec ea ipsa, quae tibi probarentur; Quid igitur dubitamus in tota eius natura quaerere quid sit effectum? Equidem etiam Epicurum, in physicis quidem, Democriteum puto. Sed non sunt in eo genere tantae commoditates corporis tamque productae temporibus tamque multae. Non pugnem cum homine, cur tantum habeat in natura boni; Et quod est munus, quod opus sapientiae? Roges enim Aristonem, bonane ei videantur haec: vacuitas doloris, divitiae, valitudo; \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.34855259300811,
+        47.66448588140525
+      ]
+    }
+  },
+  {
+    "listPrice": 566059,
+    "listedDate": "2023-01-26T18:51:26.662Z",
+    "beds": 2,
+    "baths": 4,
+    "sqft": 1780,
+    "address": {
+      "line1": "3916 Aurora Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "neighborhood": "Fremont",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sin tantum modo ad indicia veteris memoriae cognoscenda, curiosorum. Nemo nostrum istius generis asotos iucunde putat vivere. An tu me de L. Tum Torquatus: Prorsus, inquit, assentior; Duo Reges: constructio interrete. Sed quanta sit alias, nunc tantum possitne esse tanta. Hoc non est positum in nostra actione. Inscite autem medicinae et gubernationis ultimum cum ultimo sapientiae comparatur. Tamen a proposito, inquam, aberramus. Quod maxime efficit Theophrasti de beata vita liber, in quo multum admodum fortunae datur. \n\nVerum esto: verbum ipsum voluptatis non habet dignitatem, nec nos fortasse intellegimus. Quid, si etiam iucunda memoria est praeteritorum malorum? Quis istud possit, inquit, negare? Quid in isto egregio tuo officio et tanta fide-sic enim existimo-ad corpus refers? Si qua in iis corrigere voluit, deteriora fecit. Aliam vero vim voluptatis esse, aliam nihil dolendi, nisi valde pertinax fueris, concedas necesse est. Quae hic rei publicae vulnera inponebat, eadem ille sanabat. \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.34694182164434,
+        47.654746362939164
+      ]
+    }
+  },
+  {
+    "listPrice": 621648,
+    "listedDate": "2023-03-19T16:22:20.050Z",
+    "beds": 2,
+    "baths": 4,
+    "sqft": 1047,
+    "address": {
+      "line1": "345 North 34th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "neighborhood": "Fremont",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita prorsus, inquam; Omnes enim iucundum motum, quo sensus hilaretur. Quantum Aristoxeni ingenium consumptum videmus in musicis? Illud quaero, quid ei, qui in voluptate summum bonum ponat, consentaneum sit dicere. Ex eorum enim scriptis et institutis cum omnis doctrina liberalis, omnis historia. Prodest, inquit, mihi eo esse animo. Sit hoc ultimum bonorum, quod nunc a me defenditur; Sed eum qui audiebant, quoad poterant, defendebant sententiam suam. Duo Reges: constructio interrete. Quae duo sunt, unum facit. \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35408797494368,
+        47.65041098821056
+      ]
+    }
+  },
+  {
+    "listPrice": 243522,
+    "listedDate": "2023-04-16T13:03:16.936Z",
+    "beds": 4,
+    "baths": 3,
+    "sqft": 1801,
+    "address": {
+      "line1": "4203 Stone Way North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "neighborhood": "Wallingford",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Utrum igitur tibi litteram videor an totas paginas commovere? Quodsi vultum tibi, si incessum fingeres, quo gravior viderere, non esses tui similis; Mihi enim satis est, ipsis non satis. Et quidem illud ipsum non nimium probo et tantum patior, philosophum loqui de cupiditatibus finiendis. \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.3427773069173,
+        47.657925573172726
+      ]
+    }
+  },
+  {
+    "listPrice": 237522,
+    "listedDate": "2023-03-06T11:02:42.176Z",
+    "beds": 4,
+    "baths": 2,
+    "sqft": 1925,
+    "address": {
+      "line1": "3925 Whitman Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "neighborhood": "Fremont",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. De quibus cupio scire quid sentias. Atqui iste locus est, Piso, tibi etiam atque etiam confirmandus, inquam; Hoc ne statuam quidem dicturam pater aiebat, si loqui posset. Ergo in gubernando nihil, in officio plurimum interest, quo in genere peccetur. Qui-vere falsone, quaerere mittimus-dicitur oculis se privasse; Sed quod proximum fuit non vidit. Duo Reges: constructio interrete. Urgent tamen et nihil remittunt. Quod autem principium officii quaerunt, melius quam Pyrrho; Quicquid porro animo cernimus, id omne oritur a sensibus; \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.34638953646648,
+        47.655029878460745
+      ]
+    }
+  },
+  {
+    "listPrice": 596194,
+    "listedDate": "2023-03-07T03:13:32.419Z",
+    "beds": 3,
+    "baths": 4,
+    "sqft": 1496,
+    "address": {
+      "line1": "3829 Linden Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "neighborhood": "Fremont",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi autem rerum natura perspecta erit, nullo modo poterimus sensuum iudicia defendere. Est tamen ea secundum naturam multoque nos ad se expetendam magis hortatur quam superiora omnia. Hoc dixerit potius Ennius: Nimium boni est, cui nihil est mali. Eorum enim omnium multa praetermittentium, dum eligant aliquid, quod sequantur, quasi curta sententia; Iam in altera philosophiae parte. Modo etiam paulum ad dexteram de via declinavi, ut ad Pericli sepulcrum accederem. Conclusum est enim contra Cyrenaicos satis acute, nihil ad Epicurum. Duo Reges: constructio interrete. Non potes, nisi retexueris illa. Vitae autem degendae ratio maxime quidem illis placuit quieta. \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.3487645758395,
+        47.6536000157579
+      ]
+    }
+  },
+  {
+    "listPrice": 700327,
+    "listedDate": "2023-02-28T09:47:39.716Z",
+    "beds": 3,
+    "baths": 2,
+    "sqft": 1827,
+    "address": {
+      "line1": "4416A Francis Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "neighborhood": "Fremont",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duo Reges: constructio interrete. Cum autem in quo sapienter dicimus, id a primo rectissime dicitur. Sed erat aequius Triarium aliquid de dissensione nostra iudicare. Omnia contraria, quos etiam insanos esse vultis. Rationis enim perfectio est virtus; Quis est, qui non oderit libidinosam, protervam adolescentiam? Hoc est non modo cor non habere, sed ne palatum quidem. De ingenio eius in his disputationibus, non de moribus quaeritur. \n\nQuo igitur, inquit, modo? De ingenio eius in his disputationibus, non de moribus quaeritur. \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35258893351677,
+        47.661061608571316
+      ]
+    }
+  },
+  {
+    "listPrice": 753338,
+    "listedDate": "2023-03-10T17:18:51.353Z",
+    "beds": 4,
+    "baths": 2,
+    "sqft": 1867,
+    "address": {
+      "line1": "4125 9th Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "neighborhood": "West Woodland",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. An tu me de L. Non enim quaero quid verum, sed quid cuique dicendum sit. Contemnit enim disserendi elegantiam, confuse loquitur. Oculorum, inquit Plato, est in nobis sensus acerrimus, quibus sapientiam non cernimus. \n\nDuo Reges: constructio interrete. In eo enim positum est id, quod dicimus esse expetendum. Beatus sibi videtur esse moriens. Verba tu fingas et ea dicas, quae non sentias? Commoda autem et incommoda in eo genere sunt, quae praeposita et reiecta diximus; Idem etiam dolorem saepe perpetiuntur, ne, si id non faciant, incidant in maiorem. \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.36652525865722,
+        47.656503492893115
+      ]
+    }
+  },
+  {
+    "listPrice": 795649,
+    "listedDate": "2023-01-11T13:55:19.562Z",
+    "beds": 3,
+    "baths": 1,
+    "sqft": 1497,
+    "address": {
+      "line1": "510 North Bowdoin Place",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "neighborhood": "Fremont",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Hoc etsi multimodis reprehendi potest, tamen accipio, quod dant. Videsne quam sit magna dissensio? Duo Reges: constructio interrete. Conferam avum tuum Drusum cum C. Quis non odit sordidos, vanos, leves, futtiles? Quamquam te quidem video minime esse deterritum. Gracchum patrem non beatiorem fuisse quam fillum, cum alter stabilire rem publicam studuerit, alter evertere. \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35200759953882,
+        47.65440734428575
+      ]
+    }
+  },
+  {
+    "listPrice": 610647,
+    "listedDate": "2023-03-07T20:59:27.583Z",
+    "beds": 2,
+    "baths": 4,
+    "sqft": 1088,
+    "address": {
+      "line1": "306 North 47th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "neighborhood": "Northwest Seattle",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quae cum dixisset paulumque institisset, Quid est? Sed haec ab Antiocho, familiari nostro, dicuntur multo melius et fortius, quam a Stasea dicebantur. Atqui perspicuum est hominem e corpore animoque constare, cum primae sint animi partes, secundae corporis. Sed potestne rerum maior esse dissensio? Illa videamus, quae a te de amicitia dicta sunt. Duo Reges: constructio interrete. Mihi enim satis est, ipsis non satis. Quod autem ratione actum est, id officium appellamus. \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35527236746492,
+        47.663091358123815
+      ]
+    }
+  },
+  {
+    "listPrice": 501349,
+    "listedDate": "2023-01-19T13:19:20.841Z",
+    "beds": 4,
+    "baths": 2,
+    "sqft": 1230,
+    "address": {
+      "line1": "223 Northwest 41st Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "neighborhood": "Fremont",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed virtutem ipsam inchoavit, nihil amplius. Qui non moveatur et offensione turpitudinis et comprobatione honestatis? Nihil enim hoc differt. Nam Pyrrho, Aristo, Erillus iam diu abiecti. Quid interest, nisi quod ego res notas notis verbis appello, illi nomina nova quaerunt, quibus idem dicant? Duo Reges: constructio interrete. An vero displicuit ea, quae tributa est animi virtutibus tanta praestantia? \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35976688911836,
+        47.65592155655032
+      ]
+    }
+  },
+  {
+    "listPrice": 564480,
+    "listedDate": "2023-03-22T11:38:52.560Z",
+    "beds": 2,
+    "baths": 4,
+    "sqft": 1494,
+    "address": {
+      "line1": "106 Northwest 43rd Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "neighborhood": "Fremont",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Prodest, inquit, mihi eo esse animo. Habes, inquam, Cato, formam eorum, de quibus loquor, philosophorum. Si longus, levis dictata sunt. Duo Reges: constructio interrete. Huic mori optimum esse propter desperationem sapientiae, illi propter spem vivere. Sed ut iis bonis erigimur, quae expectamus, sic laetamur iis, quae recordamur. \n\nIubet igitur nos Pythius Apollo noscere nosmet ipsos. Sed haec quidem liberius ab eo dicuntur et saepius. Atque ab his initiis profecti omnium virtutum et originem et progressionem persecuti sunt. Sin tantum modo ad indicia veteris memoriae cognoscenda, curiosorum. Sin kakan malitiam dixisses, ad aliud nos unum certum vitium consuetudo Latina traduceret. Comprehensum, quod cognitum non habet? \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35676999171957,
+        47.65964781102907
+      ]
+    }
+  },
+  {
+    "listPrice": 413690,
+    "listedDate": "2023-05-04T21:12:57.627Z",
+    "beds": 2,
+    "baths": 2,
+    "sqft": 1064,
+    "address": {
+      "line1": "419 North 34th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "neighborhood": "Fremont",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Qualis ista philosophia est, quae non interitum afferat pravitatis, sed sit contenta mediocritate vitiorum? Quae similitudo in genere etiam humano apparet. Aliter homines, aliter philosophos loqui putas oportere? Tum Triarius: Posthac quidem, inquit, audacius. Et non ex maxima parte de tota iudicabis? Hanc ergo intuens debet institutum illud quasi signum absolvere. Duo Reges: constructio interrete. \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35347151166049,
+        47.64988281376202
+      ]
+    }
+  },
+  {
+    "listPrice": 474239,
+    "listedDate": "2023-02-10T04:56:44.603Z",
+    "beds": 2,
+    "baths": 2,
+    "sqft": 1571,
+    "address": {
+      "line1": "4130 3rd Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "neighborhood": "Fremont",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scio enim esse quosdam, qui quavis lingua philosophari possint; Quae cum magnifice primo dici viderentur, considerata minus probabantur. Expressa vero in iis aetatibus, quae iam confirmatae sunt. Duo Reges: constructio interrete. Equidem etiam Epicurum, in physicis quidem, Democriteum puto. At, si voluptas esset bonum, desideraret. Qui autem de summo bono dissentit de tota philosophiae ratione dissentit. Quae hic rei publicae vulnera inponebat, eadem ille sanabat. Maximas vero virtutes iacere omnis necesse est voluptate dominante. Quis est, qui non oderit libidinosam, protervam adolescentiam? Diodorus, eius auditor, adiungit ad honestatem vacuitatem doloris. At ille non pertimuit saneque fidenter: Istis quidem ipsis verbis, inquit; \n\nQuorum altera prosunt, nocent altera. Esse enim quam vellet iniquus iustus poterat inpune. Quod, inquit, quamquam voluptatibus quibusdam est saepe iucundius, tamen expetitur propter voluptatem. Illud dico, ea, quae dicat, praeclare inter se cohaerere. Non est igitur voluptas bonum. Nam quibus rebus efficiuntur voluptates, eae non sunt in potestate sapientis. \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.36038157167692,
+        47.65711885051433
+      ]
+    }
+  },
+  {
+    "listPrice": 261226,
+    "listedDate": "2023-04-23T17:30:12.152Z",
+    "beds": 2,
+    "baths": 1,
+    "sqft": 1620,
+    "address": {
+      "line1": "551 North 34th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "neighborhood": "Fremont",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ergo, si semel tristior effectus est, hilara vita amissa est? Summus dolor plures dies manere non potest? Utinam quidem dicerent alium alio beatiorem! Iam ruinas videres. Indicant pueri, in quibus ut in speculis natura cernitur. Duo Reges: constructio interrete. Efficiens dici potest. Sunt autem, qui dicant foedus esse quoddam sapientium, ut ne minus amicos quam se ipsos diligant. Hoc ne statuam quidem dicturam pater aiebat, si loqui posset. \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35106972099477,
+        47.649131561542006
+      ]
+    }
+  },
+  {
+    "listPrice": 311889,
+    "listedDate": "2023-04-21T07:50:54.866Z",
+    "beds": 3,
+    "baths": 4,
+    "sqft": 1920,
+    "address": {
+      "line1": "4313 Woodland Park Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "neighborhood": "Wallingford",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quibus doctissimi illi veteres inesse quiddam caeleste et divinum putaverunt. Quae similitudo in genere etiam humano apparet. Quis negat? Tu autem negas fortem esse quemquam posse, qui dolorem malum putet. Duo Reges: constructio interrete. Quid, quod res alia tota est? At modo dixeras nihil in istis rebus esse, quod interesset. \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.34468671219977,
+        47.66005140878793
+      ]
+    }
+  },
+  {
+    "listPrice": 171954,
+    "listedDate": "2023-02-01T05:14:40.987Z",
+    "beds": 3,
+    "baths": 1,
+    "sqft": 1972,
+    "address": {
+      "line1": "3600 3rd Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "neighborhood": "Fremont",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Deinde prima illa, quae in congressu solemus: Quid tu, inquit, huc? Egone non intellego, quid sit don Graece, Latine voluptas? Quamquam te quidem video minime esse deterritum. Ne in odium veniam, si amicum destitero tueri. Duo Reges: constructio interrete. Maximas vero virtutes iacere omnis necesse est voluptate dominante. Profectus in exilium Tubulus statim nec respondere ausus; His singulis copiose responderi solet, sed quae perspicua sunt longa esse non debent. Illa argumenta propria videamus, cur omnia sint paria peccata. \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.36054062445979,
+        47.653244732746266
+      ]
+    }
+  },
+  {
+    "listPrice": 371586,
+    "listedDate": "2023-04-04T22:08:43.855Z",
+    "beds": 2,
+    "baths": 3,
+    "sqft": 1340,
+    "address": {
+      "line1": "3814 Evanston Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "neighborhood": "Fremont",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Illud quaero, quid ei, qui in voluptate summum bonum ponat, consentaneum sit dicere. Ita fit cum gravior, tum etiam splendidior oratio. Illud mihi a te nimium festinanter dictum videtur, sapientis omnis esse semper beatos; Itaque primos congressus copulationesque et consuetudinum instituendarum voluntates fieri propter voluptatem; Negat enim summo bono afferre incrementum diem. Et quidem Arcesilas tuus, etsi fuit in disserendo pertinacior, tamen noster fuit; Cur tantas regiones barbarorum pedibus obiit, tot maria transmisit? Si longus, levis; \n\nDuo Reges: constructio interrete. Expectoque quid ad id, quod quaerebam, respondeas. Quaesita enim virtus est, non quae relinqueret naturam, sed quae tueretur. Sapientem locupletat ipsa natura, cuius divitias Epicurus parabiles esse docuit. Tum Piso: Quoniam igitur aliquid omnes, quid Lucius noster? Sed emolumenta communia esse dicuntur, recte autem facta et peccata non habentur communia. \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35071220092699,
+        47.65339320328112
+      ]
+    }
+  },
+  {
+    "listPrice": 318394,
+    "listedDate": "2023-04-16T04:19:27.370Z",
+    "beds": 4,
+    "baths": 4,
+    "sqft": 1455,
+    "address": {
+      "line1": "3622 Albion Place North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "neighborhood": "Fremont",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quid est enim aliud esse versutum? Quodsi ipsam honestatem undique pertectam atque absolutam. Et hi quidem ita non sola virtute finem bonorum contineri putant, ut rebus tamen omnibus virtutem anteponant; Quia dolori non voluptas contraria est, sed doloris privatio. Quarum ambarum rerum cum medicinam pollicetur, luxuriae licentiam pollicetur. Duo Reges: constructio interrete. Venit ad extremum; \n\nUterque enim summo bono fruitur, id est voluptate. Sine ea igitur iucunde negat posse se vivere? Nobis Heracleotes ille Dionysius flagitiose descivisse videtur a Stoicis propter oculorum dolorem. Nunc omni virtuti vitium contrario nomine opponitur. An dolor longissimus quisque miserrimus, voluptatem non optabiliorem diuturnitas facit? Audeo dicere, inquit. Hoc est non modo cor non habere, sed ne palatum quidem. \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.3445500047206,
+        47.651384928889115
+      ]
+    }
+  },
+  {
+    "listPrice": 605441,
+    "listedDate": "2023-02-05T19:58:54.960Z",
+    "beds": 4,
+    "baths": 4,
+    "sqft": 1025,
+    "address": {
+      "line1": "4318B Greenwood Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "neighborhood": "Fremont",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc haec primum fortasse audientis servire debemus. At cum de plurimis eadem dicit, tum certe de maximis. Itaque primos congressus copulationesque et consuetudinum instituendarum voluntates fieri propter voluptatem; Quae cum essent dicta, discessimus. Quis est enim, in quo sit cupiditas, quin recte cupidus dici possit? Cum id fugiunt, re eadem defendunt, quae Peripatetici, verba. Duo Reges: constructio interrete. Respondent extrema primis, media utrisque, omnia omnibus. Ut id aliis narrare gestiant? \n\nQuem Tiberina descensio festo illo die tanto gaudio affecit, quanto L. Serpere anguiculos, nare anaticulas, evolare merulas, cornibus uti videmus boves, nepas aculeis. Iam quae corporis sunt, ea nec auctoritatem cum animi partibus, comparandam et cognitionem habent faciliorem. Quid ei reliquisti, nisi te, quoquo modo loqueretur, intellegere, quid diceret? Qua ex cognitione facilior facta est investigatio rerum occultissimarum. Quis est, qui non oderit libidinosam, protervam adolescentiam? \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35507577329,
+        47.659474659129685
+      ]
+    }
+  },
+  {
+    "listPrice": 192146,
+    "listedDate": "2023-01-01T15:52:22.572Z",
+    "beds": 3,
+    "baths": 4,
+    "sqft": 1109,
+    "address": {
+      "line1": "464 North 36th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "neighborhood": "Fremont",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Traditur, inquit, ab Epicuro ratio neglegendi doloris. At cum de plurimis eadem dicit, tum certe de maximis. Sed haec quidem liberius ab eo dicuntur et saepius. Callipho ad virtutem nihil adiunxit nisi voluptatem, Diodorus vacuitatem doloris. Cur id non ita fit? Quid ergo attinet gloriose loqui, nisi constanter loquare? \n\nQuare, quoniam de primis naturae commodis satis dietum est nunc de maioribus consequentibusque videamus. Duo Reges: constructio interrete. Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Quem Tiberina descensio festo illo die tanto gaudio affecit, quanto L. \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35262601383404,
+        47.65177738757258
+      ]
+    }
+  },
+  {
+    "listPrice": 243372,
+    "listedDate": "2023-03-31T14:48:17.251Z",
+    "beds": 2,
+    "baths": 4,
+    "sqft": 1313,
+    "address": {
+      "line1": "4000 6th Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "neighborhood": "Fremont",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etsi qui potest intellegi aut cogitari esse aliquod animal, quod se oderit? Nam illud vehementer repugnat, eundem beatum esse et multis malis oppressum. Quo invento omnis ab eo quasi capite de summo bono et malo disputatio ducitur. Tu enim ista lenius, hic Stoicorum more nos vexat. Inde sermone vario sex illa a Dipylo stadia confecimus. Duo Reges: constructio interrete. Illa videamus, quae a te de amicitia dicta sunt. Nam aliquando posse recte fieri dicunt nulla expectata nec quaesita voluptate. \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.36396169337985,
+        47.656143573851615
+      ]
+    }
+  },
+  {
+    "listPrice": 328231,
+    "listedDate": "2023-01-23T10:14:02.148Z",
+    "beds": 2,
+    "baths": 2,
+    "sqft": 1688,
+    "address": {
+      "line1": "612E North 45th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "neighborhood": "Fremont",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ille vero, si insipiens-quo certe, quoniam tyrannus -, numquam beatus; Quem si tenueris, non modo meum Ciceronem, sed etiam me ipsum abducas licebit. Qui est in parvis malis. Suo enim quisque studio maxime ducitur. Duo Reges: constructio interrete. Earum etiam rerum, quas terra gignit, educatio quaedam et perfectio est non dissimilis animantium. Neque enim disputari sine reprehensione nec cum iracundia aut pertinacia recte disputari potest. Graccho, eius fere, aequalí? \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35079069893132,
+        47.66164578961344
+      ]
+    }
+  },
+  {
+    "listPrice": 349094,
+    "listedDate": "2023-02-13T15:13:15.085Z",
+    "beds": 4,
+    "baths": 1,
+    "sqft": 1588,
+    "address": {
+      "line1": "4015 Evanston Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "neighborhood": "Fremont",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ne, dum huic obsequor, vobis molestus sim. Septem autem illi non suo, sed populorum suffragio omnium nominati sunt. Nos quidem Virtutes sic natae sumus, ut tibi serviremus, aliud negotii nihil habemus. \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35179883123666,
+        47.656017756951606
+      ]
+    }
+  },
+  {
+    "listPrice": 152715,
+    "listedDate": "2023-04-05T20:36:20.095Z",
+    "beds": 4,
+    "baths": 1,
+    "sqft": 1364,
+    "address": {
+      "line1": "4330 Francis Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "neighborhood": "Fremont",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Miserum hominem! Si dolor summum malum est, dici aliter non potest. Quae similitudo in genere etiam humano apparet. Pugnant Stoici cum Peripateticis. Quamquam haec quidem praeposita recte et reiecta dicere licebit. \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35316276871166,
+        47.66004487834558
+      ]
+    }
+  },
+  {
+    "listPrice": 479550,
+    "listedDate": "2023-04-04T22:45:20.388Z",
+    "beds": 3,
+    "baths": 4,
+    "sqft": 1044,
+    "address": {
+      "line1": "410 North 45th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "neighborhood": "Fremont",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duo Reges: constructio interrete. Ego quoque, inquit, didicerim libentius si quid attuleris, quam te reprehenderim. Animum autem reliquis rebus ita perfecit, ut corpus; Et quidem illud ipsum non nimium probo et tantum patior, philosophum loqui de cupiditatibus finiendis. Tecum optime, deinde etiam cum mediocri amico. Quia voluptatem hanc esse sentiunt omnes, quam sensus accipiens movetur et iucunditate quadam perfunditur. \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.3532082578463,
+        47.66133157406045
+      ]
+    }
+  },
+  {
+    "listPrice": 483976,
+    "listedDate": "2023-01-06T08:16:32.146Z",
+    "beds": 3,
+    "baths": 3,
+    "sqft": 1495,
+    "address": {
+      "line1": "615 North 40th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "neighborhood": "Fremont",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dici enim nihil potest verius. Tamen aberramus a proposito, et, ne longius, prorsus, inquam, Piso, si ista mala sunt, placet. Quare hoc videndum est, possitne nobis hoc ratio philosophorum dare. Duo Reges: constructio interrete. \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35064657976496,
+        47.65551024167363
+      ]
+    }
+  },
+  {
+    "listPrice": 285058,
+    "listedDate": "2023-03-20T06:02:38.005Z",
+    "beds": 4,
+    "baths": 2,
+    "sqft": 1979,
+    "address": {
+      "line1": "326 Northwest 41st Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "neighborhood": "Fremont",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. An est aliquid per se ipsum flagitiosum, etiamsi nulla comitetur infamia? Verum hoc idem saepe faciamus. Quarum ambarum rerum cum medicinam pollicetur, luxuriae licentiam pollicetur. Duo Reges: constructio interrete. Ergo hoc quidem apparet, nos ad agendum esse natos. Reguli reiciendam; Quia nec honesto quic quam honestius nec turpi turpius. \n\nSi enim non fuit eorum iudicii, nihilo magis hoc non addito illud est iudicatum-. Itaque e contrario moderati aequabilesque habitus, affectiones ususque corporis apti esse ad naturam videntur. Primum in nostrane potestate est, quid meminerimus? \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.36191610071634,
+        47.657175560942804
+      ]
+    }
+  },
+  {
+    "listPrice": 468320,
+    "listedDate": "2023-01-22T02:37:37.675Z",
+    "beds": 4,
+    "baths": 3,
+    "sqft": 1002,
+    "address": {
+      "line1": "716 North 35th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "neighborhood": "Fremont",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Itaque dicunt nec dubitant: mihi sic usus est, tibi ut opus est facto, fac. Compensabatur, inquit, cum summis doloribus laetitia. Non modo carum sibi quemque, verum etiam vehementer carum esse? Quid censes in Latino fore? Dic in quovis conventu te omnia facere, ne doleas. Duae sunt enim res quoque, ne tu verba solum putes. Non enim solum Torquatus dixit quid sentiret, sed etiam cur. Duo Reges: constructio interrete. \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.34887686404377,
+        47.65053643318423
+      ]
+    }
+  },
+  {
+    "listPrice": 784516,
+    "listedDate": "2023-04-17T19:50:00.126Z",
+    "beds": 2,
+    "baths": 4,
+    "sqft": 1151,
+    "address": {
+      "line1": "306 North 47th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "neighborhood": "Northwest Seattle",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam de isto magna dissensio est. Primum in nostrane potestate est, quid meminerimus? Respondeat totidem verbis. Idemne potest esse dies saepius, qui semel fuit? Sed tamen intellego quid velit. Duo Reges: constructio interrete. Atqui iste locus est, Piso, tibi etiam atque etiam confirmandus, inquam; Qui autem de summo bono dissentit de tota philosophiae ratione dissentit. Qui enim voluptatem ipsam contemnunt, iis licet dicere se acupenserem maenae non anteponere. Quid igitur, inquit, eos responsuros putas? \n\nApparet statim, quae sint officia, quae actiones. Scientiam pollicentur, quam non erat mirum sapientiae cupido patria esse cariorem. Quis suae urbis conservatorem Codrum, quis Erechthei filias non maxime laudat? At ille non pertimuit saneque fidenter: Istis quidem ipsis verbis, inquit; \n\n",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35496069442678,
+        47.66332350662702
+      ]
+    }
+  },
+  {
+    "listPrice": 760839,
+    "listedDate": "2023-03-08T12:28:59.314Z",
+    "beds": 2,
+    "baths": 3,
+    "sqft": 1390,
     "address": {
       "line1": "130 2nd Avenue Northwest",
       "line2": "",
@@ -100,892 +1025,12 @@
       "zip": "98107"
     },
     "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cui Tubuli nomen odio non est? Etenim semper illud extra est, quod arte comprehenditur. Hoc non est positum in nostra actione. Duo Reges: constructio interrete. Perturbationes autem nulla naturae vi commoventur, omniaque ea sunt opiniones ac iudicia levitatis. Sapiens autem semper beatus est et est aliquando in dolore; Si quicquam extra virtutem habeatur in bonis. \n\n",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Hinc ceteri particulas arripere conati suam quisque videro voluit afferre sententiam. Quid, si etiam iucunda memoria est praeteritorum malorum? Quasi vero, inquit, perpetua oratio rhetorum solum, non etiam philosophorum sit. Aliud igitur esse censet gaudere, aliud non dolere. Sin autem ad animum, falsum est, quod negas animi ullum esse gaudium, quod non referatur ad corpus. Duo Reges: constructio interrete. \n\n",
     "geometry": {
       "type": "Point",
       "coordinates": [
-        -122.3595745109463,
-        47.663854113146996
-      ]
-    }
-  },
-  {
-    "listPrice": 564672,
-    "beds": 2,
-    "baths": 4,
-    "sqft": 1464,
-    "address": {
-      "line1": "426 North 34th Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Memini vero, inquam; Pudebit te, inquam, illius tabulae, quam Cleanthes sane commode verbis depingere solebat. Omnia contraria, quos etiam insanos esse vultis. Quamquam tu hanc copiosiorem etiam soles dicere. \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35436918754463,
-        47.65063232385147
-      ]
-    }
-  },
-  {
-    "listPrice": 270930,
-    "beds": 2,
-    "baths": 4,
-    "sqft": 1593,
-    "address": {
-      "line1": "3817 Fremont Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Age nunc isti doceant, vel tu potius quis enim ista melius? Haec bene dicuntur, nec ego repugno, sed inter sese ipsa pugnant. Id enim volumus, id contendimus, ut officii fructus sit ipsum officium. Erat enim Polemonis. Ut pulsi recurrant? \n\nDuo Reges: constructio interrete. Quia nec honesto quic quam honestius nec turpi turpius. Illud quaero, quid ei, qui in voluptate summum bonum ponat, consentaneum sit dicere. Facillimum id quidem est, inquam. Est enim tanti philosophi tamque nobilis audacter sua decreta defendere. At certe gravius. \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35006570632774,
-        47.65322880145037
-      ]
-    }
-  },
-  {
-    "listPrice": 287928,
-    "beds": 4,
-    "baths": 2,
-    "sqft": 1627,
-    "address": {
-      "line1": "4035 Stone Way North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Habent enim et bene longam et satis litigiosam disputationem. Quae hic rei publicae vulnera inponebat, eadem ille sanabat. Septem autem illi non suo, sed populorum suffragio omnium nominati sunt. Et quod est munus, quod opus sapientiae? Ab his oratores, ab his imperatores ac rerum publicarum principes extiterunt. Quam ob rem tandem, inquit, non satisfacit? Idem iste, inquam, de voluptate quid sentit? Itaque haec cum illis est dissensio, cum Peripateticis nulla sane. \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.34260437808426,
-        47.65645698421798
-      ]
-    }
-  },
-  {
-    "listPrice": 338988,
-    "beds": 4,
-    "baths": 1,
-    "sqft": 1083,
-    "address": {
-      "line1": "105 North Market Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Atque his de rebus et splendida est eorum et illustris oratio. Summae mihi videtur inscitiae. Duo Reges: constructio interrete. Quem si tenueris, non modo meum Ciceronem, sed etiam me ipsum abducas licebit. Haeret in salebra. Et quidem, Cato, hanc totam copiam iam Lucullo nostro notam esse oportebit; \n\nSed quid sentiat, non videtis. At iam decimum annum in spelunca iacet. Dolere malum est: in crucem qui agitur, beatus esse non potest. Quid est enim aliud esse versutum? \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.3573997031454,
-        47.66302685528822
-      ]
-    }
-  },
-  {
-    "listPrice": 350472,
-    "beds": 4,
-    "baths": 2,
-    "sqft": 1664,
-    "address": {
-      "line1": "323 North 49th Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "neighborhood": "Northwest Seattle",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vadem te ad mortem tyranno dabis pro amico, ut Pythagoreus ille Siculo fecit tyranno? Quorum altera prosunt, nocent altera. Quid, de quo nulla dissensio est? Duo Reges: constructio interrete. Quamquam non negatis nos intellegere quid sit voluptas, sed quid ille dicat. Sin aliud quid voles, postea. \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35436029362049,
-        47.66440615745258
-      ]
-    }
-  },
-  {
-    "listPrice": 140146,
-    "beds": 3,
-    "baths": 4,
-    "sqft": 1330,
-    "address": {
-      "line1": "4202 Greenwood Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. A quibus propter discendi cupiditatem videmus ultimas terras esse peragratas. Apud ceteros autem philosophos, qui quaesivit aliquid, tacet; Recte dicis; Quamquam haec quidem praeposita recte et reiecta dicere licebit. Mihi, inquam, qui te id ipsum rogavi? Duo Reges: constructio interrete. Deinceps videndum est, quoniam satis apertum est sibi quemque natura esse carum, quae sit hominis natura. Ergo hoc quidem apparet, nos ad agendum esse natos. \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35501115459068,
-        47.658074761751024
-      ]
-    }
-  },
-  {
-    "listPrice": 474072,
-    "beds": 3,
-    "baths": 1,
-    "sqft": 1325,
-    "address": {
-      "line1": "3427 Fremont Place North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Superiores tres erant, quae esse possent, quarum est una sola defensa, eaque vehementer. At ego quem huic anteponam non audeo dicere; Duo Reges: constructio interrete. Quod autem principium officii quaerunt, melius quam Pyrrho; Eam si varietatem diceres, intellegerem, ut etiam non dicente te intellego; Intellegi quidem, ut propter aliam quampiam rem, verbi gratia propter voluptatem, nos amemus; Alterum significari idem, ut si diceretur, officia media omnia aut pleraque servantem vivere. \n\nHosne igitur laudas et hanc eorum, inquam, sententiam sequi nos censes oportere? Quis tibi ergo istud dabit praeter Pyrrhonem, Aristonem eorumve similes, quos tu non probas? Tum mihi Piso: Quid ergo? Non enim, si omnia non sequebatur, idcirco non erat ortus illinc. Ego quoque, inquit, didicerim libentius si quid attuleris, quam te reprehenderim. Quamvis enim depravatae non sint, pravae tamen esse possunt. Cur igitur easdem res, inquam, Peripateticis dicentibus verbum nullum est, quod non intellegatur? \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35023933626705,
-        47.65042878895491
-      ]
-    }
-  },
-  {
-    "listPrice": 732183,
-    "beds": 2,
-    "baths": 4,
-    "sqft": 1075,
-    "address": {
-      "line1": "806B North 46th Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non est enim vitium in oratione solum, sed etiam in moribus. Non est igitur summum malum dolor. Esse enim, nisi eris, non potes. Immo alio genere; Collige omnia, quae soletis: Praesidium amicorum. Duo Reges: constructio interrete. Si verbum sequimur, primum longius verbum praepositum quam bonum. Eam tum adesse, cum dolor omnis absit; \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.3480128075304,
-        47.66206518974622
-      ]
-    }
-  },
-  {
-    "listPrice": 537074,
-    "beds": 4,
-    "baths": 3,
-    "sqft": 1876,
-    "address": {
-      "line1": "3833 Fremont Way North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc omni virtuti vitium contrario nomine opponitur. Ubi ut eam caperet aut quando? Quod si ita est, sequitur id ipsum, quod te velle video, omnes semper beatos esse sapientes. Summus dolor plures dies manere non potest? Duo Reges: constructio interrete. Quid censes in Latino fore? Ergo id est convenienter naturae vivere, a natura discedere. Audeo dicere, inquit. Nosti, credo, illud: Nemo pius est, qui pietatem-; Re mihi non aeque satisfacit, et quidem locis pluribus. Sed tamen intellego quid velit. \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.34995589387036,
-        47.65376584620709
-      ]
-    }
-  },
-  {
-    "listPrice": 478326,
-    "beds": 3,
-    "baths": 2,
-    "sqft": 1475,
-    "address": {
-      "line1": "3801 Linden Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ex quo, id quod omnes expetunt, beate vivendi ratio inveniri et comparari potest. Potius inflammat, ut coercendi magis quam dedocendi esse videantur. Pollicetur certe. Quod idem cum vestri faciant, non satis magnam tribuunt inventoribus gratiam. Fortitudinis quaedam praecepta sunt ac paene leges, quae effeminari virum vetant in dolore. Duo Reges: constructio interrete. Tum ille: Tu autem cum ipse tantum librorum habeas, quos hic tandem requiris? Ergo ita: non posse honeste vivi, nisi honeste vivatur? Ita ne hoc quidem modo paria peccata sunt. \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.34868524015428,
-        47.65304622985771
-      ]
-    }
-  },
-  {
-    "listPrice": 155252,
-    "beds": 2,
-    "baths": 4,
-    "sqft": 1397,
-    "address": {
-      "line1": "3643 Dayton Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et quidem Arcesilas tuus, etsi fuit in disserendo pertinacior, tamen noster fuit; Aufert enim sensus actionemque tollit omnem. \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35273524235843,
-        47.6530988160553
-      ]
-    }
-  },
-  {
-    "listPrice": 795962,
-    "beds": 4,
-    "baths": 2,
-    "sqft": 1108,
-    "address": {
-      "line1": "4252 Aurora Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "neighborhood": "Wallingford",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Audax negotium, dicerem impudens, nisi hoc institutum postea translatum ad philosophos nostros esset. Dicimus aliquem hilare vivere; An potest, inquit ille, quicquam esse suavius quam nihil dolere? Modo etiam paulum ad dexteram de via declinavi, ut ad Pericli sepulcrum accederem. Haec dicuntur inconstantissime. Sed id ne cogitari quidem potest quale sit, ut non repugnet ipsum sibi. \n\nHoc sic expositum dissimile est superiori. Duo Reges: constructio interrete. Si longus, levis dictata sunt. Hinc ceteri particulas arripere conati suam quisque videro voluit afferre sententiam. Atque his de rebus et splendida est eorum et illustris oratio. Hoc non est positum in nostra actione. Mihi, inquam, qui te id ipsum rogavi? \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.3467320621841,
-        47.65893731493901
-      ]
-    }
-  },
-  {
-    "listPrice": 474760,
-    "beds": 4,
-    "baths": 3,
-    "sqft": 1723,
-    "address": {
-      "line1": "721 North 38th Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis est, qui non oderit libidinosam, protervam adolescentiam? Qui autem esse poteris, nisi te amor ipse ceperit? Sed haec quidem liberius ab eo dicuntur et saepius. Cum audissem Antiochum, Brute, ut solebam, cum M. Dolere malum est: in crucem qui agitur, beatus esse non potest. Duo Reges: constructio interrete. Ipse Epicurus fortasse redderet, ut Sextus Peducaeus, Sex. Quos quidem tibi studiose et diligenter tractandos magnopere censeo. \n\nConferam tecum, quam cuique verso rem subicias; Ita multo sanguine profuso in laetitia et in victoria est mortuus. Sed ad haec, nisi molestum est, habeo quae velim. Quodcumque in mentem incideret, et quodcumque tamquam occurreret. \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.34856813717357,
-        47.65263386140705
-      ]
-    }
-  },
-  {
-    "listPrice": 528635,
-    "beds": 3,
-    "baths": 3,
-    "sqft": 1513,
-    "address": {
-      "line1": "819 North Allen Place",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. At enim sequor utilitatem. Hic ego: Pomponius quidem, inquam, noster iocari videtur, et fortasse suo iure. Ex ea difficultate illae fallaciloquae, ut ait Accius, malitiae natae sunt. Duo Reges: constructio interrete. Sin te auctoritas commovebat, nobisne omnibus et Platoni ipsi nescio quem illum anteponebas? Idemne potest esse dies saepius, qui semel fuit? \n\nQuid igitur dubitamus in tota eius natura quaerere quid sit effectum? Mihi, inquam, qui te id ipsum rogavi? Poterat autem inpune; Sapiens autem semper beatus est et est aliquando in dolore; Graecum enim hunc versum nostis omnes-: Suavis laborum est praeteritorum memoria. Quid ad utilitatem tantae pecuniae? Verum tamen cum de rebus grandioribus dicas, ipsae res verba rapiunt; Consequens enim est et post oritur, ut dixi. \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.347468061647,
-        47.66063641807155
-      ]
-    }
-  },
-  {
-    "listPrice": 307838,
-    "beds": 3,
-    "baths": 4,
-    "sqft": 1333,
-    "address": {
-      "line1": "709 North Motor Place",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quodsi ipsam honestatem undique pertectam atque absolutam. Unum est sine dolore esse, alterum cum voluptate. Quae cum essent dicta, discessimus. Non potes, nisi retexueris illa. Laboro autem non sine causa; Deinde prima illa, quae in congressu solemus: Quid tu, inquit, huc? Quis enim potest ea, quae probabilia videantur ei, non probare? Duo Reges: constructio interrete. Dolor ergo, id est summum malum, metuetur semper, etiamsi non aderit; Itaque a sapientia praecipitur se ipsam, si usus sit, sapiens ut relinquat. \n\nVideamus animi partes, quarum est conspectus illustrior; Non minor, inquit, voluptas percipitur ex vilissimis rebus quam ex pretiosissimis. Sic, et quidem diligentius saepiusque ista loquemur inter nos agemusque communiter. Minime vero istorum quidem, inquit. \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.34945834920879,
-        47.658573379698794
-      ]
-    }
-  },
-  {
-    "listPrice": 493791,
-    "beds": 4,
-    "baths": 1,
-    "sqft": 1339,
-    "address": {
-      "line1": "705 North 42nd Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non est enim vitium in oratione solum, sed etiam in moribus. \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.3493460457862,
-        47.657769996516876
-      ]
-    }
-  },
-  {
-    "listPrice": 698703,
-    "beds": 3,
-    "baths": 2,
-    "sqft": 1886,
-    "address": {
-      "line1": "264 Northwest 42nd Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit hoc ultimum bonorum, quod nunc a me defenditur; Quis non odit sordidos, vanos, leves, futtiles? In qua quid est boni praeter summam voluptatem, et eam sempiternam? Cur post Tarentum ad Archytam? Duo Reges: constructio interrete. At enim hic etiam dolore. Si enim non fuit eorum iudicii, nihilo magis hoc non addito illud est iudicatum-. Quod cum ita sit, perspicuum est omnis rectas res atque laudabilis eo referri, ut cum voluptate vivatur. Non igitur potestis voluptate omnia dirigentes aut tueri aut retinere virtutem. \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.36012018517368,
-        47.657660991326246
-      ]
-    }
-  },
-  {
-    "listPrice": 434428,
-    "beds": 2,
-    "baths": 2,
-    "sqft": 1839,
-    "address": {
-      "line1": "250 Northwest 39th Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etenim nec iustitia nec amicitia esse omnino poterunt, nisi ipsae per se expetuntur. Illum mallem levares, quo optimum atque humanissimum virum, Cn. Tenesne igitur, inquam, Hieronymus Rhodius quid dicat esse summum bonum, quo putet omnia referri oportere? Hoc positum in Phaedro a Platone probavit Epicurus sensitque in omni disputatione id fieri oportere. Primum in nostrane potestate est, quid meminerimus? \n\nSin laboramus, quis est, qui alienae modum statuat industriae? Duo Reges: constructio interrete. Apparet statim, quae sint officia, quae actiones. Ut proverbia non nulla veriora sint quam vestra dogmata. Quoniam, si dis placet, ab Epicuro loqui discimus. Hanc ergo intuens debet institutum illud quasi signum absolvere. Quod autem magnum dolorem brevem, longinquum levem esse dicitis, id non intellego quale sit. Pauca mutat vel plura sane; \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.36021987289874,
-        47.6542402658404
-      ]
-    }
-  },
-  {
-    "listPrice": 517798,
-    "beds": 4,
-    "baths": 4,
-    "sqft": 1304,
-    "address": {
-      "line1": "4810 Linden Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tenesne igitur, inquam, Hieronymus Rhodius quid dicat esse summum bonum, quo putet omnia referri oportere? Tecum optime, deinde etiam cum mediocri amico. Sed residamus, inquit, si placet. Qua ex cognitione facilior facta est investigatio rerum occultissimarum. Tanta vis admonitionis inest in locis; Esse enim, nisi eris, non potes. Duo Reges: constructio interrete. Nos autem non solum beatae vitae istam esse oblectationem videmus, sed etiam levamentum miseriarum. \n\nInnumerabilia dici possunt in hanc sententiam, sed non necesse est. Hoc mihi cum tuo fratre convenit. Que Manilium, ab iisque M. Morbo gravissimo affectus, exul, orbus, egens, torqueatur eculeo: quem hunc appellas, Zeno? Non quam nostram quidem, inquit Pomponius iocans; \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.34892943987691,
-        47.66380186629718
-      ]
-    }
-  },
-  {
-    "listPrice": 129486,
-    "beds": 3,
-    "baths": 2,
-    "sqft": 1594,
-    "address": {
-      "line1": "4502 3rd Avenue Northwest",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ex rebus enim timiditas, non ex vocabulis nascitur. Quamvis enim depravatae non sint, pravae tamen esse possunt. Addidisti ad extremum etiam indoctum fuisse. Eodem modo is enim tibi nemo dabit, quod, expetendum sit, id esse laudabile. \n\nDuo Reges: constructio interrete. Tum Piso: Quoniam igitur aliquid omnes, quid Lucius noster? At ille pellit, qui permulcet sensum voluptate. Cum audissem Antiochum, Brute, ut solebam, cum M. Ergo illi intellegunt quid Epicurus dicat, ego non intellego? Philosophi autem in suis lectulis plerumque moriuntur. Num igitur eum postea censes anxio animo aut sollicito fuisse? Graecum enim hunc versum nostis omnes-: Suavis laborum est praeteritorum memoria. Quamquam haec quidem praeposita recte et reiecta dicere licebit. Sin tantum modo ad indicia veteris memoriae cognoscenda, curiosorum. \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.36044911270173,
-        47.661338986930964
-      ]
-    }
-  },
-  {
-    "listPrice": 796263,
-    "beds": 4,
-    "baths": 1,
-    "sqft": 1186,
-    "address": {
-      "line1": "4114 3rd Avenue Northwest",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Apparet statim, quae sint officia, quae actiones. Aliter enim explicari, quod quaeritur, non potest. Aeque enim contingit omnibus fidibus, ut incontentae sint. Duo Reges: constructio interrete. At ille non pertimuit saneque fidenter: Istis quidem ipsis verbis, inquit; \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35992959812953,
-        47.65664625793611
-      ]
-    }
-  },
-  {
-    "listPrice": 153081,
-    "beds": 4,
-    "baths": 4,
-    "sqft": 1508,
-    "address": {
-      "line1": "3670 Francis Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amicitiam autem adhibendam esse censent, quia sit ex eo genere, quae prosunt. Quasi ego id curem, quid ille aiat aut neget. Nam, ut sint illa vendibiliora, haec uberiora certe sunt. Sed haec omittamus; Non pugnem cum homine, cur tantum habeat in natura boni; Intrandum est igitur in rerum naturam et penitus quid ea postulet pervidendum; Profectus in exilium Tubulus statim nec respondere ausus; \n\nAge sane, inquam. Duo Reges: constructio interrete. Quid de Platone aut de Democrito loquar? \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35301175904054,
-        47.65423589733462
-      ]
-    }
-  },
-  {
-    "listPrice": 632482,
-    "beds": 3,
-    "baths": 2,
-    "sqft": 1397,
-    "address": {
-      "line1": "309 39th Avenue East",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Teneo, inquit, finem illi videri nihil dolere. Etsi ea quidem, quae adhuc dixisti, quamvis ad aetatem recte isto modo dicerentur. Et ille ridens: Video, inquit, quid agas; Tum ille timide vel potius verecunde: Facio, inquit. \n\nRes tota, Torquate, non doctorum hominum, velle post mortem epulis celebrari memoriam sui nominis. At tu eadem ista dic in iudicio aut, si coronam times, dic in senatu. Est, ut dicis, inquam. Duo Reges: constructio interrete. Igitur neque stultorum quisquam beatus neque sapientium non beatus. Themistocles quidem, cum ei Simonides an quis alius artem memoriae polliceretur, Oblivionis, inquit, mallem. \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.3614940217593,
-        47.65410900873967
-      ]
-    }
-  },
-  {
-    "listPrice": 223184,
-    "beds": 4,
-    "baths": 4,
-    "sqft": 1653,
-    "address": {
-      "line1": "3630 Dayton Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Hoc dixerit potius Ennius: Nimium boni est, cui nihil est mali. Cupit enim dícere nihil posse ad beatam vitam deesse sapienti. Atque ut ceteri dicere existimantur melius quam facere, sic hi mihi videntur facere melius quam dicere. Semper enim ex eo, quod maximas partes continet latissimeque funditur, tota res appellatur. Duo Reges: constructio interrete. Nunc haec primum fortasse audientis servire debemus. Laboro autem non sine causa; Odium autem et invidiam facile vitabis. Tu enim ista lenius, hic Stoicorum more nos vexat. \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35205904122988,
-        47.6528636399251
-      ]
-    }
-  },
-  {
-    "listPrice": 309030,
-    "beds": 4,
-    "baths": 3,
-    "sqft": 1081,
-    "address": {
-      "line1": "4500 Baker Avenue Northwest",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Putabam equidem satis, inquit, me dixisse. Perturbationes autem nulla naturae vi commoventur, omniaque ea sunt opiniones ac iudicia levitatis. Tu autem negas fortem esse quemquam posse, qui dolorem malum putet. \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35913943119355,
-        47.66175378950173
-      ]
-    }
-  },
-  {
-    "listPrice": 147511,
-    "beds": 4,
-    "baths": 1,
-    "sqft": 1892,
-    "address": {
-      "line1": "116a Northwest 39th Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Itaque primos congressus copulationesque et consuetudinum instituendarum voluntates fieri propter voluptatem; Nihilo beatiorem esse Metellum quam Regulum. Idemne potest esse dies saepius, qui semel fuit? Id enim volumus, id contendimus, ut officii fructus sit ipsum officium. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35800602416093,
-        47.65420219798475
-      ]
-    }
-  },
-  {
-    "listPrice": 413189,
-    "beds": 4,
-    "baths": 4,
-    "sqft": 1795,
-    "address": {
-      "line1": "4213 Aurora Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Si autem id non concedatur, non continuo vita beata tollitur. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Fortasse id optimum, sed ubi illud: Plus semper voluptatis? Videmus igitur ut conquiescere ne infantes quidem possint. Mihi enim erit isdem istis fortasse iam utendum. Sed ad haec, nisi molestum est, habeo quae velim. \n\nDuo Reges: constructio interrete. Iubet igitur nos Pythius Apollo noscere nosmet ipsos. \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.34782032394803,
-        47.658406974394026
-      ]
-    }
-  },
-  {
-    "listPrice": 569172,
-    "beds": 2,
-    "baths": 4,
-    "sqft": 1577,
-    "address": {
-      "line1": "4002 3rd Avenue Northwest",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tamen est aliquid, quod nobis non liceat, liceat illis. Verum tamen cum de rebus grandioribus dicas, ipsae res verba rapiunt; Nam et complectitur verbis, quod vult, et dicit plane, quod intellegam; Quid enim tanto opus est instrumento in optimis artibus comparandis? Itaque hoc frequenter dici solet a vobis, non intellegere nos, quam dicat Epicurus voluptatem. Duae sunt enim res quoque, ne tu verba solum putes. Duo Reges: constructio interrete. Quid est igitur, cur ita semper deum appellet Epicurus beatum et aeternum? Ut in geometria, prima si dederis, danda sunt omnia. Neminem videbis ita laudatum, ut artifex callidus comparandarum voluptatum diceretur. Est igitur officium eius generis, quod nec in bonis ponatur nec in contrariis. Nam adhuc, meo fortasse vitio, quid ego quaeram non perspicis. \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.36020293711904,
-        47.65574550106206
-      ]
-    }
-  },
-  {
-    "listPrice": 504980,
-    "beds": 3,
-    "baths": 2,
-    "sqft": 1525,
-    "address": {
-      "line1": "1220 North 43rd Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "neighborhood": "Wallingford",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. An ea, quae per vinitorem antea consequebatur, per se ipsa curabit? Primum quid tu dicis breve? Qui autem esse poteris, nisi te amor ipse ceperit? Duo Reges: constructio interrete. \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.3427848144767,
-        47.659463271334815
-      ]
-    }
-  },
-  {
-    "listPrice": 799202,
-    "beds": 4,
-    "baths": 4,
-    "sqft": 1916,
-    "address": {
-      "line1": "4325 3rd Avenue Northwest",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eadem nunc mea adversum te oratio est. Bonum integritas corporis: misera debilitas. Intrandum est igitur in rerum naturam et penitus quid ea postulet pervidendum; Tibi hoc incredibile, quod beatissimum. Bork Quo modo autem philosophus loquitur? Duo Reges: constructio interrete. Qua ex cognitione facilior facta est investigatio rerum occultissimarum. Quid affers, cur Thorius, cur Caius Postumius, cur omnium horum magister, Orata, non iucundissime vixerit? At modo dixeras nihil in istis rebus esse, quod interesset. Quae cum essent dicta, discessimus. \n\nHoc loco tenere se Triarius non potuit. Atque haec ita iustitiae propria sunt, ut sint virtutum reliquarum communia. Quas enim kakaw Graeci appellant, vitia malo quam malitias nominare. Quis istud, quaeso, nesciebat? Huic mori optimum esse propter desperationem sapientiae, illi propter spem vivere. \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.36141951511105,
-        47.65932980976259
-      ]
-    }
-  },
-  {
-    "listPrice": 380474,
-    "beds": 4,
-    "baths": 2,
-    "sqft": 1019,
-    "address": {
-      "line1": "1101 North 38th Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scio enim esse quosdam, qui quavis lingua philosophari possint; Neque enim civitas in seditione beata esse potest nec in discordia dominorum domus; Sed quae tandem ista ratio est? Nam quid possumus facere melius? \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.34346939739194,
-        47.65246187881183
-      ]
-    }
-  },
-  {
-    "listPrice": 528073,
-    "beds": 4,
-    "baths": 1,
-    "sqft": 1405,
-    "address": {
-      "line1": "4130 1st Avenue Northwest",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quid de Platone aut de Democrito loquar? Quicquid enim a sapientia proficiscitur, id continuo debet expletum esse omnibus suis partibus; Summum ením bonum exposuit vacuitatem doloris; Color egregius, integra valitudo, summa gratia, vita denique conferta voluptatum omnium varietate. Itaque dicunt nec dubitant: mihi sic usus est, tibi ut opus est facto, fac. Duo Reges: constructio interrete. Sextilio Rufo, cum is rem ad amicos ita deferret, se esse heredem Q. Igitur neque stultorum quisquam beatus neque sapientium non beatus. \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35726722988176,
-        47.65729727904727
-      ]
-    }
-  },
-  {
-    "listPrice": 104851,
-    "beds": 2,
-    "baths": 1,
-    "sqft": 1915,
-    "address": {
-      "line1": "419-A North 50th Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ego vero volo in virtute vim esse quam maximam; Hoc loco discipulos quaerere videtur, ut, qui asoti esse velint, philosophi ante fiant. Sed quid attinet de rebus tam apertis plura requirere? Sin te auctoritas commovebat, nobisne omnibus et Platoni ipsi nescio quem illum anteponebas? \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35324150525531,
-        47.664560878178165
-      ]
-    }
-  },
-  {
-    "listPrice": 333047,
-    "beds": 3,
-    "baths": 1,
-    "sqft": 1136,
-    "address": {
-      "line1": "729 North Motor Place",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pisone in eo gymnasio, quod Ptolomaeum vocatur, unaque nobiscum Q. Nec vero alia sunt quaerenda contra Carneadeam illam sententiam. Duo Reges: constructio interrete. Quid igitur, inquit, eos responsuros putas? Non ego tecum iam ita iocabor, ut isdem his de rebus, cum L. Tecum optime, deinde etiam cum mediocri amico. \n\nSine ea igitur iucunde negat posse se vivere? Intellegi quidem, ut propter aliam quampiam rem, verbi gratia propter voluptatem, nos amemus; Nonne igitur tibi videntur, inquit, mala? Quamvis enim depravatae non sint, pravae tamen esse possunt. Qua ex cognitione facilior facta est investigatio rerum occultissimarum. Si est nihil nisi corpus, summa erunt illa: valitudo, vacuitas doloris, pulchritudo, cetera. Verum tamen cum de rebus grandioribus dicas, ipsae res verba rapiunt; Quasi ego id curem, quid ille aiat aut neget. Commoda autem et incommoda in eo genere sunt, quae praeposita et reiecta diximus; Illa videamus, quae a te de amicitia dicta sunt. Sed quod proximum fuit non vidit. Hanc ergo intuens debet institutum illud quasi signum absolvere. \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.34876128847618,
-        47.65846497414748
-      ]
-    }
-  },
-  {
-    "listPrice": 506652,
-    "beds": 4,
-    "baths": 1,
-    "sqft": 1552,
-    "address": {
-      "line1": "4136 Midvale Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "neighborhood": "Wallingford",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ille, ut dixi, vitiose. Non est igitur summum malum dolor. Quicquid enim a sapientia proficiscitur, id continuo debet expletum esse omnibus suis partibus; Aliud igitur esse censet gaudere, aliud non dolere. Qui ita affectus, beatum esse numquam probabis; Habent enim et bene longam et satis litigiosam disputationem. Duo Reges: constructio interrete. Non autem hoc: igitur ne illud quidem. \n\nEorum enim est haec querela, qui sibi cari sunt seseque diligunt. Erillus autem ad scientiam omnia revocans unum quoddam bonum vidit, sed nec optimum nec quo vita gubernari possit. Si longus, levis dictata sunt. Ea possunt paria non esse. \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.34385980715601,
-        47.65767624958699
-      ]
-    }
-  },
-  {
-    "listPrice": 768203,
-    "beds": 4,
-    "baths": 1,
-    "sqft": 1907,
-    "address": {
-      "line1": "128 North 35th Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scrupulum, inquam, abeunti; At ille non pertimuit saneque fidenter: Istis quidem ipsis verbis, inquit; \n\nTu vero, inquam, ducas licet, si sequetur; Quod, inquit, quamquam voluptatibus quibusdam est saepe iucundius, tamen expetitur propter voluptatem. \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35568327463145,
-        47.65182669483885
-      ]
-    }
-  },
-  {
-    "listPrice": 150041,
-    "beds": 3,
-    "baths": 3,
-    "sqft": 1791,
-    "address": {
-      "line1": "4003 Whitman Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Hoc non est positum in nostra actione. An tu me de L. Apparet statim, quae sint officia, quae actiones. At iste non dolendi status non vocatur voluptas. Duo Reges: constructio interrete. Quippe: habes enim a rhetoribus; \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.34576890392658,
-        47.6555525933659
-      ]
-    }
-  },
-  {
-    "listPrice": 178496,
-    "beds": 4,
-    "baths": 1,
-    "sqft": 1359,
-    "address": {
-      "line1": "3898 Fremont Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non quaeritur autem quid naturae tuae consentaneum sit, sed quid disciplinae. Nam et complectitur verbis, quod vult, et dicit plane, quod intellegam; Intrandum est igitur in rerum naturam et penitus quid ea postulet pervidendum; Hic nihil fuit, quod quaereremus. Quod autem satis est, eo quicquid accessit, nimium est; Nihilne est in his rebus, quod dignum libero aut indignum esse ducamus? Cur tantas regiones barbarorum pedibus obiit, tot maria transmisit? Duo Reges: constructio interrete. \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.34970537915295,
-        47.65454392170196
-      ]
-    }
-  },
-  {
-    "listPrice": 193959,
-    "beds": 3,
-    "baths": 1,
-    "sqft": 1777,
-    "address": {
-      "line1": "501 North 39th Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cuius ad naturam apta ratio vera illa et summa lex a philosophis dicitur. Tum Piso: Quoniam igitur aliquid omnes, quid Lucius noster? Magni enim aestimabat pecuniam non modo non contra leges, sed etiam legibus partam. Primum in nostrane potestate est, quid meminerimus? Duo Reges: constructio interrete. Neque enim disputari sine reprehensione nec cum iracundia aut pertinacia recte disputari potest. \n\nErit enim mecum, si tecum erit. Quamquam te quidem video minime esse deterritum. Perturbationes autem nulla naturae vi commoventur, omniaque ea sunt opiniones ac iudicia levitatis. Quae hic rei publicae vulnera inponebat, eadem ille sanabat. Eaedem enim utilitates poterunt eas labefactare atque pervertere. Maximas vero virtutes iacere omnis necesse est voluptate dominante. Sit enim idem caecus, debilis. Igitur neque stultorum quisquam beatus neque sapientium non beatus. Hic nihil fuit, quod quaereremus. \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.36211302567722,
-        47.65446702850812
-      ]
-    }
-  },
-  {
-    "listPrice": 212780,
-    "beds": 4,
-    "baths": 2,
-    "sqft": 1516,
-    "address": {
-      "line1": "4025 Whitman Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "neighborhood": "Fremont",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. An hoc usque quaque, aliter in vita? Invidiosum nomen est, infame, suspectum. Bonum integritas corporis: misera debilitas. Superiores tres erant, quae esse possent, quarum est una sola defensa, eaque vehementer. Quae cum ita sint, effectum est nihil esse malum, quod turpe non sit. A quibus propter discendi cupiditatem videmus ultimas terras esse peragratas. Duo Reges: constructio interrete. Polycratem Samium felicem appellabant. Vitiosum est enim in dividendo partem in genere numerare. Ut in geometria, prima si dederis, danda sunt omnia. \n\n",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.34534425999067,
-        47.65598360126202
+        -122.35950751505271,
+        47.6638874360898
       ]
     }
   }

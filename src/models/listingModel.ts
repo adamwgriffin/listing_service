@@ -12,6 +12,7 @@ export interface IListingAddress {
 
 export interface IListing extends Document {
   listPrice: number
+  listedDate: Date
   beds: number
   baths: number
   sqft: number
@@ -24,6 +25,11 @@ export interface IListing extends Document {
 const ListingSchema = new Schema<IListing>({
   listPrice: {
     type: Number,
+    required: true,
+    index: true
+  },
+  listedDate: {
+    type: Date,
     required: true,
     index: true
   },

@@ -27,6 +27,12 @@ const generateRandomNumberInRange = (min: number, max: number): number => {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
+const generateRandomDateInRange = (start: Date, end: Date): Date => {
+  return new Date(
+    start.getTime() + Math.random() * (end.getTime() - start.getTime())
+  )
+}
+
 const generateLoremIpsumText = async (
   numSentences: number
 ): Promise<string> => {
@@ -43,6 +49,10 @@ const createListingModel = (
 ) => {
   return {
     listPrice: generateRandomNumberInRange(100000, 800000),
+    listedDate: generateRandomDateInRange( 
+      new Date(2023, 0, 1),
+      new Date(2023, 4, 9)
+    ),
     beds: generateRandomNumberInRange(2, 4),
     baths: generateRandomNumberInRange(1, 4),
     sqft: generateRandomNumberInRange(1000, 2000),

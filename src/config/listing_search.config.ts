@@ -1,6 +1,7 @@
 // used for mongodb's $project section to select the fields we want to return in the response
 export const DefaultListingResultFields = {
   listPrice: 1,
+  listedDate: 1,
   beds: 1,
   baths: 1,
   sqft: 1,
