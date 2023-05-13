@@ -55,7 +55,9 @@ const createListingModel = (
     description: faker.lorem.sentences({ min: 1, max: 3 }),
     beds: generateRandomNumberInRange(2, 4),
     baths: generateRandomNumberInRange(1, 4),
-    sqft: generateRandomNumberInRange(1000, 2000)
+    sqft: generateRandomNumberInRange(1000, 2000),
+    lot_size: generateRandomNumberInRange(1000, 2000),
+    year_built: generateRandomNumberInRange(1910, 1993)
   }
 }
 
