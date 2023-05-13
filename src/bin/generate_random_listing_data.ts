@@ -5,6 +5,7 @@ import type { AddressComponentAddress } from '../lib/geocoder'
 import { bbox, randomPoint, booleanPointInPolygon } from '@turf/turf'
 import fs from 'fs'
 import path from 'path'
+import { faker } from '@faker-js/faker'
 import boundary from '../test/test_data/boundary_data/fremont_boundary'
 import { reverseGeocode, addressComponentsToAddress } from '../lib/geocoder'
 
@@ -27,35 +28,21 @@ const generateRandomNumberInRange = (min: number, max: number): number => {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
-const generateRandomDateInRange = (start: Date, end: Date): Date => {
-  return new Date(
-    start.getTime() + Math.random() * (end.getTime() - start.getTime())
-  )
-}
-
-const generateLoremIpsumText = async (
-  numSentences: number
-): Promise<string> => {
-  const response = await fetch(
-    `https://loripsum.net/api/${numSentences}/plaintext`
-  )
-  return await response.text()
+const monthsAgo = (months=6) => {
+  const today = new Date();
+  return new Date(today.getFullYear(), today.getMonth() - months, today.getDate())
 }
 
 const createListingModel = (
   address: AddressComponentAddress,
-  description: string,
   point: Point
 ) => {
   return {
     listPrice: generateRandomNumberInRange(100000, 800000),
-    listedDate: generateRandomDateInRange( 
-      new Date(2023, 0, 1),
-      new Date(2023, 4, 9)
-    ),
-    beds: generateRandomNumberInRange(2, 4),
-    baths: generateRandomNumberInRange(1, 4),
-    sqft: generateRandomNumberInRange(1000, 2000),
+    listedDate: faker.date.between({ 
+      from: monthsAgo(6),
+      to: new Date()
+    }),
     address: {
       line1: [address?.streetNumber, address?.streetAddress].join(' ').trim(),
       line2: '',
@@ -63,22 +50,22 @@ const createListingModel = (
       state: address.state,
       zip: address.postalCode
     },
+    geometry: point,
     neighborhood: address?.neighborhood,
-    description,
-    geometry: point
+    description: faker.lorem.sentences({ min: 1, max: 3 }),
+    beds: generateRandomNumberInRange(2, 4),
+    baths: generateRandomNumberInRange(1, 4),
+    sqft: generateRandomNumberInRange(1000, 2000)
   }
 }
 
 const createListing = async (point: Point): Promise<Partial<IListing>> => {
-  const description = await generateLoremIpsumText(
-    generateRandomNumberInRange(1, 2)
-  )
   const res = await reverseGeocode(point.coordinates[1], point.coordinates[0])
   if (res.data.results[0]?.address_components) {
     const address = addressComponentsToAddress(
       res.data.results[0].address_components
     )
-    return createListingModel(address, description, point)
+    return createListingModel(address, point)
   } else {
     console.log(
       `No address_components found for reverseGeocode of ${point.coordinates}. No model created.`
