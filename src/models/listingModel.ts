@@ -13,13 +13,13 @@ export interface IListingAddress {
 export interface IListing extends Document {
   listPrice: number
   listedDate: Date
+  address: IListingAddress
+  geometry: Point
+  neighborhood: string
+  description?: string
   beds: number
   baths: number
   sqft: number
-  address: IListingAddress
-  neighborhood: string
-  description?: string
-  geometry: Point
 }
 
 const ListingSchema = new Schema<IListing>({
@@ -30,21 +30,6 @@ const ListingSchema = new Schema<IListing>({
   },
   listedDate: {
     type: Date,
-    required: true,
-    index: true
-  },
-  beds: {
-    type: Number,
-    required: true,
-    index: true
-  },
-  baths: {
-    type: Number,
-    required: true,
-    index: true
-  },
-  sqft: {
-    type: Number,
     required: true,
     index: true
   },
@@ -67,15 +52,30 @@ const ListingSchema = new Schema<IListing>({
       required: true
     }
   },
+  geometry: {
+    type: PointSchema,
+    index: '2dsphere',
+    required: true
+  },
   neighborhood: {
     type: String,
     required: true
   },
   description: String,
-  geometry: {
-    type: PointSchema,
-    index: '2dsphere',
-    required: true
+  beds: {
+    type: Number,
+    required: true,
+    index: true
+  },
+  baths: {
+    type: Number,
+    required: true,
+    index: true
+  },
+  sqft: {
+    type: Number,
+    required: true,
+    index: true
   }
 })
 
