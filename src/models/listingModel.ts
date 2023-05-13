@@ -20,6 +20,8 @@ export interface IListing extends Document {
   beds: number
   baths: number
   sqft: number
+  lot_size: number
+  year_built: number
 }
 
 const ListingSchema = new Schema<IListing>({
@@ -76,7 +78,17 @@ const ListingSchema = new Schema<IListing>({
     type: Number,
     required: true,
     index: true
-  }
+  },
+  lot_size: {
+    type: Number,
+    required: true,
+    index: true
+  },
+  year_built: {
+    type: Number,
+    required: true,
+    index: true
+  },
 })
 
 const Listing = model<IListing>('Listing', ListingSchema)
