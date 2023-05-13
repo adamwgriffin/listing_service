@@ -13,6 +13,7 @@ services:
       - DB_HOST=mongodb
     volumes:
       - './src:/app/src'
+      - node_modules:/app/node_modules
     depends_on:
       - mongodb
     stdin_open: true
@@ -30,3 +31,4 @@ services:
       - 'mongo-data:/data/db'
 volumes:
   mongo-data:
+  node_modules:
