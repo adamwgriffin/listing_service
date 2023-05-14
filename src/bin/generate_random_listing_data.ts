@@ -9,7 +9,7 @@ import { faker } from '@faker-js/faker'
 import boundary from '../test/test_data/boundary_data/fremont_boundary'
 import { reverseGeocode, addressComponentsToAddress } from '../lib/geocoder'
 
-const generateRandomPointsInPolygon = (
+const randomPointsWithinPolygon = (
   polygon: Polygon | MultiPolygon,
   numPoints: number
 ) => {
@@ -24,7 +24,7 @@ const generateRandomPointsInPolygon = (
   return points
 }
 
-const generateRandomNumberInRange = (min: number, max: number): number => {
+const randomNumberInRange = (min: number, max: number): number => {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
@@ -38,7 +38,7 @@ const createListingModel = (
   point: Point
 ) => {
   return {
-    listPrice: generateRandomNumberInRange(100000, 800000),
+    listPrice: randomNumberInRange(100000, 800000),
     listedDate: faker.date.between({ 
       from: monthsAgo(6),
       to: new Date()
@@ -53,11 +53,11 @@ const createListingModel = (
     geometry: point,
     neighborhood: address?.neighborhood,
     description: faker.lorem.sentences({ min: 1, max: 3 }),
-    beds: generateRandomNumberInRange(2, 4),
-    baths: generateRandomNumberInRange(1, 4),
-    sqft: generateRandomNumberInRange(1000, 2000),
     lot_size: generateRandomNumberInRange(1000, 2000),
     year_built: generateRandomNumberInRange(1910, 1993)
+    beds: randomNumberInRange(2, 5),
+    baths: randomNumberInRange(1, 4),
+    sqft: randomNumberInRange(1000, 5000),
   }
 }
 
@@ -80,7 +80,7 @@ const generateListingData = async (
   polygon: Polygon | MultiPolygon,
   amount: number
 ) => {
-  const points = generateRandomPointsInPolygon(polygon, amount)
+  const points = randomPointsWithinPolygon(polygon, amount)
   const listings = await Promise.all(
     points.map(async (point) => await createListing(point))
   )
