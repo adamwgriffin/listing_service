@@ -38,11 +38,12 @@ const monthsAgo = (months = 6) => {
 }
 
 const createListingModel = (address: AddressComponentAddress, point: Point) => {
+  const today = new Date()
   return {
     listPrice: randomNumberInRange(100000, 800000),
-    listedDate: faker.date.between({ 
+    listedDate: faker.date.between({
       from: monthsAgo(6),
-      to: new Date()
+      to: today
     }),
     address: {
       line1: [address?.streetNumber, address?.streetAddress].join(' ').trim(),
@@ -54,11 +55,11 @@ const createListingModel = (address: AddressComponentAddress, point: Point) => {
     geometry: point,
     neighborhood: address?.neighborhood,
     description: faker.lorem.sentences({ min: 1, max: 3 }),
-    lot_size: generateRandomNumberInRange(1000, 2000),
-    year_built: generateRandomNumberInRange(1910, 1993)
     beds: randomNumberInRange(2, 5),
     baths: randomNumberInRange(1, 4),
     sqft: randomNumberInRange(1000, 5000),
+    lotSize: randomNumberInRange(1000, 7500),
+    yearBuilt: randomNumberInRange(1910, today.getFullYear())
   }
 }
 

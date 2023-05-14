@@ -20,8 +20,8 @@ export interface IListing extends Document {
   beds: number
   baths: number
   sqft: number
-  lot_size: number
-  year_built: number
+  lotSize: number
+  yearBuilt: number
 }
 
 const ListingSchema = new Schema<IListing>({
@@ -79,12 +79,12 @@ const ListingSchema = new Schema<IListing>({
     required: true,
     index: true
   },
-  lot_size: {
+  lotSize: {
     type: Number,
     required: true,
     index: true
   },
-  year_built: {
+  yearBuilt: {
     type: Number,
     required: true,
     index: true
