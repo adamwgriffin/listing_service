@@ -29,7 +29,7 @@ const randomNumberInRange = (min: number, max: number): number => {
 }
 
 const monthsAgo = (months=6) => {
-  const today = new Date();
+  const today = new Date()
   return new Date(today.getFullYear(), today.getMonth() - months, today.getDate())
 }
 
