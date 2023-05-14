@@ -63,17 +63,22 @@ const createListingModel = (
 
 const createListing = async (point: Point): Promise<Partial<IListing>> => {
   const res = await reverseGeocode(point.coordinates[1], point.coordinates[0])
-  if (res.data.results[0]?.address_components) {
-    const address = addressComponentsToAddress(
-      res.data.results[0].address_components
-    )
-    return createListingModel(address, point)
-  } else {
+  if (!res.data.results[0]?.address_components) {
     console.log(
       `No address_components found for reverseGeocode of ${point.coordinates}. No model created.`
     )
     return
   }
+  const address = addressComponentsToAddress(
+    res.data.results[0].address_components
+  )
+  if (address.neighborhood == '') {
+    console.log(
+      `No neighborhood found for reverseGeocode of ${point.coordinates}. No model created.`
+    )
+    return
+  }
+  return createListingModel(address, point)
 }
 
 const generateListingData = async (
