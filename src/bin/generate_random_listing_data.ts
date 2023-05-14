@@ -28,15 +28,16 @@ const randomNumberInRange = (min: number, max: number): number => {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
-const monthsAgo = (months=6) => {
+const monthsAgo = (months = 6) => {
   const today = new Date()
-  return new Date(today.getFullYear(), today.getMonth() - months, today.getDate())
+  return new Date(
+    today.getFullYear(),
+    today.getMonth() - months,
+    today.getDate()
+  )
 }
 
-const createListingModel = (
-  address: AddressComponentAddress,
-  point: Point
-) => {
+const createListingModel = (address: AddressComponentAddress, point: Point) => {
   return {
     listPrice: randomNumberInRange(100000, 800000),
     listedDate: faker.date.between({ 
