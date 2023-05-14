@@ -60,9 +60,14 @@ export const buildfilterQueries = (
     baths_min,
     baths_max,
     sqft_min,
-    sqft_max
+    sqft_max,
+    year_built_min,
+    year_built_max,
+    lot_size_min,
+    lot_size_max
   } = params
   const filters = []
+  // TODO: make this more DRY
   if (price_min || price_max) {
     filters.push(numberRangeQuery('listPrice', price_min, price_max))
   }
@@ -74,6 +79,12 @@ export const buildfilterQueries = (
   }
   if (sqft_min || sqft_max) {
     filters.push(numberRangeQuery('sqft', sqft_min, sqft_max))
+  }
+  if (year_built_min || year_built_max) {
+    filters.push(numberRangeQuery('yearBuilt', year_built_min, year_built_max))
+  }
+  if (lot_size_min || lot_size_max) {
+    filters.push(numberRangeQuery('lotSize', lot_size_min, lot_size_max))
   }
   return filters
 }
