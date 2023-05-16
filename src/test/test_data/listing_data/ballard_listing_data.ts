@@ -5,6 +5,8 @@ export default [
     beds: 2,
     baths: 2,
     sqft: 1200,
+    lotSize: 2000,
+    yearBuilt: 1985,
     address: {
       line1: '1535 NW 63rd St',
       line2: null,
@@ -25,6 +27,8 @@ export default [
     beds: 4,
     baths: 2,
     sqft: 1720,
+    lotSize: 2300,
+    yearBuilt: 1975,
     address: {
       line1: '2846 NW 70th St',
       line2: null,
