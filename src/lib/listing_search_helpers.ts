@@ -53,6 +53,7 @@ export const buildfilterQueries = (
   params: IGeocodeBoundarySearchParams
 ): FilterQuery<IListingDocument>[] => {
   const {
+    property_type,
     price_min,
     price_max,
     beds_min,
@@ -67,6 +68,13 @@ export const buildfilterQueries = (
     lot_size_max
   } = params
   const filters = []
+  if (property_type) {
+    filters.push({
+      propertyType: {
+        $in: property_type.split(',')
+      }
+    })
+  }
   // TODO: make this more DRY
   if (price_min || price_max) {
     filters.push(numberRangeQuery('listPrice', price_min, price_max))

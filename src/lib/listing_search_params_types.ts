@@ -33,6 +33,7 @@ export interface IListingParams {
   pool: boolean
   senior_community: boolean
   sold_days: number
+  property_type: string
 }
 
 export interface IBoundsParams {
