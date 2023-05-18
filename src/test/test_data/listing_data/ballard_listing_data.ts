@@ -15,6 +15,7 @@ export default [
       zip: '98107'
     },
     neighborhood: 'Ballard',
+    propertyType: 'single-family',
     description: 'Near Taco Del Mar and Taco Bell!',
     geometry: {
       type: 'Point',
@@ -37,6 +38,7 @@ export default [
       zip: '98117'
     },
     neighborhood: 'Ballard',
+    propertyType: 'condo',
     description:
       '1929 Tudor Gingerbread-esc House with original charm throughout.',
     geometry: {

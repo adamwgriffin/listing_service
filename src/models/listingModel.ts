@@ -10,12 +10,21 @@ export interface IListingAddress {
   zip: string
 }
 
+export type PropertyType =
+  | 'single-family'
+  | 'condo'
+  | 'townhouse'
+  | 'manufactured'
+  | 'land'
+  | 'multi-family'
+
 export interface IListing {
   listPrice: number
   listedDate: Date
   address: IListingAddress
   geometry: Point
   neighborhood: string
+  propertyType: PropertyType
   description?: string
   beds: number
   baths: number
@@ -25,6 +34,15 @@ export interface IListing {
 }
 
 export interface IListingDocument extends IListing, Document {}
+
+export const PropertyTypes: PropertyType[] = [
+  'single-family',
+  'condo',
+  'townhouse',
+  'manufactured',
+  'land',
+  'multi-family'
+]
 
 const ListingSchema = new Schema<IListingDocument>({
   listPrice: {
@@ -63,6 +81,11 @@ const ListingSchema = new Schema<IListingDocument>({
   },
   neighborhood: {
     type: String,
+    required: true
+  },
+  propertyType: {
+    type: String,
+    enum: PropertyTypes,
     required: true
   },
   description: String,
