@@ -86,7 +86,8 @@ const ListingSchema = new Schema<IListingDocument>({
   propertyType: {
     type: String,
     enum: PropertyTypes,
-    required: true
+    required: true,
+    index: true
   },
   description: String,
   beds: {
