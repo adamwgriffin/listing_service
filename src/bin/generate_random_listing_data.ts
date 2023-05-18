@@ -38,6 +38,7 @@ const monthsAgo = (months = 6) => {
 }
 
 const createListingModel = (address: AddressComponentAddress, point: Point) => {
+const createListingModel = (address: AddressComponentAddress, point: Point): IListing => {
   const today = new Date()
   return {
     listPrice: randomNumberInRange(100000, 800000),
@@ -63,7 +64,7 @@ const createListingModel = (address: AddressComponentAddress, point: Point) => {
   }
 }
 
-const createListing = async (point: Point): Promise<Partial<IListing>> => {
+const createListing = async (point: Point): Promise<IListing> => {
   const res = await reverseGeocode(point.coordinates[1], point.coordinates[0])
   if (!res.data.results[0]?.address_components) {
     console.log(

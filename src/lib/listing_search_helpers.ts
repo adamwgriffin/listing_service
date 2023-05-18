@@ -1,6 +1,6 @@
 import type { Polygon, MultiPolygon } from '@turf/turf'
 import type { FilterQuery } from 'mongoose'
-import type { IListing } from '../models/listingModel'
+import type { IListingDocument } from '../models/listingModel'
 import type {
   IBoundsParams,
   IGeocodeBoundarySearchParams
@@ -27,8 +27,8 @@ export const numberRangeQuery = (
   field: string,
   min: number | undefined,
   max: number | undefined
-): FilterQuery<IListing> => {
-  const query: FilterQuery<IListing> = { [field]: {} }
+): FilterQuery<IListingDocument> => {
+  const query: FilterQuery<IListingDocument> = { [field]: {} }
   if (min) {
     query[field].$gte = Number(min)
   }
@@ -51,7 +51,7 @@ example return value:
 */
 export const buildfilterQueries = (
   params: IGeocodeBoundarySearchParams
-): FilterQuery<IListing>[] => {
+): FilterQuery<IListingDocument>[] => {
   const {
     price_min,
     price_max,
@@ -89,6 +89,6 @@ export const buildfilterQueries = (
   return filters
 }
 
-export const buildfilterQueriesObject = (params: IGeocodeBoundarySearchParams): FilterQuery<IListing> => {
+export const buildfilterQueriesObject = (params: IGeocodeBoundarySearchParams): FilterQuery<IListingDocument> => {
   return buildfilterQueries(params).reduce((q, acc) => ({ ...acc, ...q }), {})
 }

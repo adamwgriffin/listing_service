@@ -57,7 +57,7 @@ export interface IGeocodeBoundarySearchParams extends Partial<IListingParams> {
 }
 
 export interface IGeocodeBoundarySuccessResponse{
-  listings: IListing[]
+  listings: Partial<IListing>[]
   boundary: IBoundary
   geocoderResult: GeocodeResult[],
   pagination: IPaginationResponse

@@ -10,7 +10,7 @@ export interface IListingAddress {
   zip: string
 }
 
-export interface IListing extends Document {
+export interface IListing {
   listPrice: number
   listedDate: Date
   address: IListingAddress
@@ -24,7 +24,9 @@ export interface IListing extends Document {
   yearBuilt: number
 }
 
-const ListingSchema = new Schema<IListing>({
+export interface IListingDocument extends IListing, Document {}
+
+const ListingSchema = new Schema<IListingDocument>({
   listPrice: {
     type: Number,
     required: true,
@@ -88,9 +90,9 @@ const ListingSchema = new Schema<IListing>({
     type: Number,
     required: true,
     index: true
-  },
+  }
 })
 
-const Listing = model<IListing>('Listing', ListingSchema)
+const Listing = model<IListingDocument>('Listing', ListingSchema)
 
 export default Listing
