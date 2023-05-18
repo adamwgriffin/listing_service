@@ -9,7 +9,10 @@
     "start": "nodemon src/server.ts",
     "dev": "docker-compose up",
     "build": "tsc",
-    "test": "jest"
+    "test": "jest",
+    "console": "docker compose run --rm app yarn ts-node",
+    "generate_listing_data": "docker compose run --rm app yarn ts-node src/bin/generate_random_listing_data.ts",
+    "load_listing_data": "docker compose run --rm app yarn ts-node src/bin/load_listing_data.ts"
   },
   "dependencies": {
     "@googlemaps/google-maps-services-js": "^3.3.28",
