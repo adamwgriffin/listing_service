@@ -100,7 +100,7 @@ const generateListingData = async (
 const main = async () => {
   const listings = await generateListingData(
     (boundary as IBoundary).geometry,
-    48
+    100
   )
 
   const outputPath = path.join(
