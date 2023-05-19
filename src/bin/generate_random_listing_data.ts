@@ -39,11 +39,6 @@ const monthsAgo = (months = 6) => {
   )
 }
 
-const randomPropertyType = (): PropertyType => {
-  const index = randomNumberInRange(0, PropertyTypes.length - 1)
-  return PropertyTypes[index]
-}
-
 const createListingModel = (address: AddressComponentAddress, point: Point): IListing => {
   const today = new Date()
   return {
@@ -61,7 +56,7 @@ const createListingModel = (address: AddressComponentAddress, point: Point): ILi
     },
     geometry: point,
     neighborhood: address?.neighborhood,
-    propertyType: randomPropertyType(),
+    propertyType: faker.helpers.arrayElement(PropertyTypes),
     description: faker.lorem.sentences({ min: 1, max: 3 }),
     beds: randomNumberInRange(2, 5),
     baths: randomNumberInRange(1, 4),
