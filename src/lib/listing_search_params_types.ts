@@ -22,7 +22,6 @@ export interface IListingParams {
   year_built_max: number
   lot_size_min: number
   lot_size_max: number
-  status: 'active' | 'sold'
   sort_by: SortType
   sort_direction: SortDirection
   waterfront: boolean
@@ -34,6 +33,7 @@ export interface IListingParams {
   senior_community: boolean
   sold_days: number
   property_type: string
+  status: string
 }
 
 export interface IBoundsParams {

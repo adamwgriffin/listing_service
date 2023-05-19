@@ -23,6 +23,15 @@ export const removePartsOfBoundaryOutsideOfBounds = (
   return intersect(boundsPolygon, boundary).geometry
 }
 
+/*
+example return value:
+{
+  fieldName: {
+    $gte: min,
+    $lte: max
+  }
+}
+*/
 export const numberRangeQuery = (
   field: string,
   min: number | undefined,
@@ -38,22 +47,12 @@ export const numberRangeQuery = (
   return query
 }
 
-/*
-example return value:
-[
-  {
-    fieldName: {
-      $gte: min,
-      $lte: max
-    }
-  }
-]
-*/
 export const buildfilterQueries = (
   params: IGeocodeBoundarySearchParams
 ): FilterQuery<IListingDocument>[] => {
   const {
     property_type,
+    status,
     price_min,
     price_max,
     beds_min,
@@ -74,6 +73,15 @@ export const buildfilterQueries = (
         $in: property_type.split(',')
       }
     })
+  }
+  if (status) {
+    filters.push({
+      status: {
+        $in: status.split(',')
+      }
+    })
+  } else {
+    filters.push({ status: 'active' })
   }
   // TODO: make this more DRY
   if (price_min || price_max) {
@@ -97,6 +105,8 @@ export const buildfilterQueries = (
   return filters
 }
 
-export const buildfilterQueriesObject = (params: IGeocodeBoundarySearchParams): FilterQuery<IListingDocument> => {
+export const buildfilterQueriesObject = (
+  params: IGeocodeBoundarySearchParams
+): FilterQuery<IListingDocument> => {
   return buildfilterQueries(params).reduce((q, acc) => ({ ...acc, ...q }), {})
 }

@@ -2,14 +2,13 @@ import type { IListing } from '../models/listingModel'
 import type { Point, Polygon, MultiPolygon } from '@turf/turf'
 import type { IBoundary } from '../models/BoundaryModel'
 import type { AddressComponentAddress } from '../lib/geocoder'
-import type { PropertyType } from '../models/listingModel'
 import { bbox, randomPoint, booleanPointInPolygon } from '@turf/turf'
 import fs from 'fs'
 import path from 'path'
 import { faker } from '@faker-js/faker'
 import boundary from '../test/test_data/boundary_data/fremont_boundary'
 import { reverseGeocode, addressComponentsToAddress } from '../lib/geocoder'
-import { PropertyTypes } from '../models/listingModel'
+import { PropertyTypes, PropertyStatuses } from '../models/listingModel'
 
 const randomPointsWithinPolygon = (
   polygon: Polygon | MultiPolygon,
@@ -57,6 +56,7 @@ const createListingModel = (address: AddressComponentAddress, point: Point): ILi
     geometry: point,
     neighborhood: address?.neighborhood,
     propertyType: faker.helpers.arrayElement(PropertyTypes),
+    status: faker.helpers.arrayElement(PropertyStatuses),
     description: faker.lorem.sentences({ min: 1, max: 3 }),
     beds: randomNumberInRange(2, 5),
     baths: randomNumberInRange(1, 4),

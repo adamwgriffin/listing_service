@@ -18,6 +18,8 @@ export type PropertyType =
   | 'land'
   | 'multi-family'
 
+export type PropertyStatus = 'active' | 'pending' | 'sold'
+
 export interface IListing {
   listPrice: number
   listedDate: Date
@@ -25,6 +27,7 @@ export interface IListing {
   geometry: Point
   neighborhood: string
   propertyType: PropertyType
+  status: PropertyStatus
   description?: string
   beds: number
   baths: number
@@ -43,6 +46,8 @@ export const PropertyTypes: PropertyType[] = [
   'land',
   'multi-family'
 ]
+
+export const PropertyStatuses: PropertyStatus[] = ['active', 'pending', 'sold']
 
 const ListingSchema = new Schema<IListingDocument>({
   listPrice: {
@@ -87,6 +92,13 @@ const ListingSchema = new Schema<IListingDocument>({
     type: String,
     enum: PropertyTypes,
     required: true,
+    index: true
+  },
+  status: {
+    type: String,
+    required: true,
+    enum: PropertyStatuses,
+    default: 'active',
     index: true
   },
   description: String,
