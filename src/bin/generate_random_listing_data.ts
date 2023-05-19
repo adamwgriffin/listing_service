@@ -69,7 +69,7 @@ const createListingModel = (address: AddressComponentAddress, point: Point): ILi
 const createListing = async (point: Point): Promise<IListing> => {
   const res = await reverseGeocode(point.coordinates[1], point.coordinates[0])
   if (!res.data.results[0]?.address_components) {
-    console.log(
+    console.warn(
       `No address_components found for reverseGeocode of ${point.coordinates}. No model created.`
     )
     return
@@ -78,7 +78,7 @@ const createListing = async (point: Point): Promise<IListing> => {
     res.data.results[0].address_components
   )
   if (address.neighborhood == '') {
-    console.log(
+    console.warn(
       `No neighborhood found for reverseGeocode of ${point.coordinates}. No model created.`
     )
     return
