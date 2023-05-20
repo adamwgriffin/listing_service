@@ -17,8 +17,8 @@ const DefaultFilePath = path.join(
 const main = async (): Promise<void> => {
   const argv = await yargs(process.argv.slice(2))
     .option('file', {
-      type: 'string',
       alias: 'f',
+      type: 'string',
       default: DefaultFilePath,
       describe: 'Path to the file to use to load listing data'
     })
