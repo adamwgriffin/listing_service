@@ -1,898 +1,7 @@
 [
   {
-    "listPrice": 382599,
-    "listedDate": "2023-01-26T16:24:07.255Z",
-    "address": {
-      "line1": "4029 Fremont Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35068545448469,
-        47.656368760369865
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "condo",
-    "status": "pending",
-    "description": "Sunt quam harum sequi suscipit. Doloribus nulla totam dolor. Eius atque quidem soluta nostrum quasi minus vero.",
-    "beds": 5,
-    "baths": 3,
-    "sqft": 4427,
-    "lotSize": 7460,
-    "yearBuilt": 1966
-  },
-  {
-    "listPrice": 212535,
-    "listedDate": "2023-02-01T04:10:37.497Z",
-    "address": {
-      "line1": "3504 Fremont Place North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35033744463207,
-        47.65071003720625
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "single-family",
-    "status": "active",
-    "description": "Ex tempore odit explicabo. Sunt nam facere.",
-    "beds": 3,
-    "baths": 2,
-    "sqft": 3107,
-    "lotSize": 4255,
-    "yearBuilt": 1914
-  },
-  {
-    "listPrice": 671928,
-    "listedDate": "2023-04-18T01:46:22.137Z",
-    "address": {
-      "line1": "4315 Leary Way Northwest",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.36516322499722,
-        47.65926721969052
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "land",
-    "status": "sold",
-    "description": "Dolorum adipisci adipisci est nam earum suscipit magni.",
-    "beds": 3,
-    "baths": 1,
-    "sqft": 4651,
-    "lotSize": 1910,
-    "yearBuilt": 1928
-  },
-  {
-    "listPrice": 202375,
-    "listedDate": "2023-05-03T13:16:03.319Z",
-    "address": {
-      "line1": "4038 Woodland Park Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.34396250972259,
-        47.65658371859343
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "condo",
-    "status": "active",
-    "description": "Unde laboriosam suscipit id illum beatae praesentium.",
-    "beds": 5,
-    "baths": 1,
-    "sqft": 2484,
-    "lotSize": 5034,
-    "yearBuilt": 1932
-  },
-  {
-    "listPrice": 399641,
-    "listedDate": "2023-01-30T03:26:47.378Z",
-    "address": {
-      "line1": "4012 Leary Way Northwest",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.36218800343391,
-        47.65639738274979
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "manufactured",
-    "status": "sold",
-    "description": "Impedit provident vero quam saepe recusandae sed sequi.",
-    "beds": 2,
-    "baths": 3,
-    "sqft": 2160,
-    "lotSize": 2908,
-    "yearBuilt": 1980
-  },
-  {
-    "listPrice": 453448,
-    "listedDate": "2023-04-05T03:10:38.763Z",
-    "address": {
-      "line1": "3802 Bridge Way North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.34537284134007,
-        47.65291678250103
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "condo",
-    "status": "active",
-    "description": "Autem nam nostrum id accusantium quaerat quidem. Placeat quasi earum sint asperiores odio quaerat mollitia voluptate distinctio. Quisquam molestiae laudantium eos illo.",
-    "beds": 5,
-    "baths": 1,
-    "sqft": 1318,
-    "lotSize": 4763,
-    "yearBuilt": 2007
-  },
-  {
-    "listPrice": 383088,
-    "listedDate": "2022-12-30T11:18:09.185Z",
-    "address": {
-      "line1": "613 Northwest 41st Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.36445493058525,
-        47.656579147927445
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "condo",
-    "status": "sold",
-    "description": "Iusto quos explicabo ipsam ducimus dolorum quos et culpa. Quisquam ducimus quam.",
-    "beds": 2,
-    "baths": 3,
-    "sqft": 4163,
-    "lotSize": 4090,
-    "yearBuilt": 1962
-  },
-  {
-    "listPrice": 123518,
-    "listedDate": "2023-03-18T10:33:25.167Z",
-    "address": {
-      "line1": "4502 3rd Avenue Northwest",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.36070244991832,
-        47.661678257556005
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "townhouse",
-    "status": "sold",
-    "description": "Minus autem aliquam delectus dicta ea nemo. Reiciendis quasi eius sit. Dicta rem amet rem accusamus quo libero dolorum neque.",
-    "beds": 2,
-    "baths": 2,
-    "sqft": 2185,
-    "lotSize": 6033,
-    "yearBuilt": 2010
-  },
-  {
-    "listPrice": 662087,
-    "listedDate": "2023-04-04T19:33:32.382Z",
-    "address": {
-      "line1": "4310 Evanston Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35100474533041,
-        47.65936977608653
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "multi-family",
-    "status": "active",
-    "description": "Dolores amet voluptatum exercitationem.",
-    "beds": 5,
-    "baths": 2,
-    "sqft": 1289,
-    "lotSize": 6805,
-    "yearBuilt": 2021
-  },
-  {
-    "listPrice": 106116,
-    "listedDate": "2023-02-19T11:40:53.774Z",
-    "address": {
-      "line1": "301 North 43rd Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35551171140168,
-        47.65903474649937
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "condo",
-    "status": "pending",
-    "description": "Labore sed necessitatibus error eum eius magni autem maxime. Amet possimus autem ab nemo dolorem quisquam.",
-    "beds": 3,
-    "baths": 3,
-    "sqft": 2928,
-    "lotSize": 3761,
-    "yearBuilt": 1996
-  },
-  {
-    "listPrice": 527707,
-    "listedDate": "2023-05-08T12:12:00.172Z",
-    "address": {
-      "line1": "4407 Greenwood Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35590480717487,
-        47.660463829959696
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "manufactured",
-    "status": "sold",
-    "description": "Veritatis nam eos cum vitae cumque. Deserunt odio id autem adipisci laborum tempore.",
-    "beds": 5,
-    "baths": 3,
-    "sqft": 1608,
-    "lotSize": 1556,
-    "yearBuilt": 1998
-  },
-  {
-    "listPrice": 220792,
-    "listedDate": "2023-02-25T19:00:42.235Z",
-    "address": {
-      "line1": "191 North 46th Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35640063783664,
-        47.66248901636854
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "land",
-    "status": "sold",
-    "description": "Rerum harum quasi esse necessitatibus assumenda tenetur neque qui. Officia laudantium excepturi numquam cupiditate.",
-    "beds": 4,
-    "baths": 3,
-    "sqft": 3824,
-    "lotSize": 5147,
-    "yearBuilt": 1932
-  },
-  {
-    "listPrice": 361755,
-    "listedDate": "2023-03-20T04:29:34.019Z",
-    "address": {
-      "line1": "4223 Francis Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35352333213673,
-        47.658097740649204
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "land",
-    "status": "sold",
-    "description": "Debitis animi pariatur sit consequuntur magni eligendi consequuntur assumenda consequatur.",
-    "beds": 4,
-    "baths": 1,
-    "sqft": 1385,
-    "lotSize": 3326,
-    "yearBuilt": 1996
-  },
-  {
-    "listPrice": 148852,
-    "listedDate": "2023-05-11T12:53:01.134Z",
-    "address": {
-      "line1": "4329 6th Avenue Northwest",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.36438466922532,
-        47.66002136943258
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "manufactured",
-    "status": "pending",
-    "description": "Explicabo veritatis accusamus est adipisci fugit dolores.",
-    "beds": 4,
-    "baths": 3,
-    "sqft": 3037,
-    "lotSize": 2109,
-    "yearBuilt": 1918
-  },
-  {
-    "listPrice": 282471,
-    "listedDate": "2023-01-31T07:51:23.189Z",
-    "address": {
-      "line1": "716 North 35th Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.34901016496775,
-        47.650657453464504
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "single-family",
-    "status": "active",
-    "description": "Quia fugit aperiam excepturi perferendis sunt quae quae dolor enim. Reiciendis harum exercitationem eos pariatur reprehenderit delectus odit.",
-    "beds": 4,
-    "baths": 2,
-    "sqft": 1229,
-    "lotSize": 3096,
-    "yearBuilt": 1982
-  },
-  {
-    "listPrice": 752342,
-    "listedDate": "2023-01-15T02:23:43.615Z",
-    "address": {
-      "line1": "4217 Stone Way North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.3427934662441,
-        47.65897849818005
-      ]
-    },
-    "neighborhood": "Wallingford",
-    "propertyType": "manufactured",
-    "status": "pending",
-    "description": "Perspiciatis quam aut. Sapiente tempore earum eligendi.",
-    "beds": 5,
-    "baths": 1,
-    "sqft": 2805,
-    "lotSize": 6621,
-    "yearBuilt": 1981
-  },
-  {
-    "listPrice": 387177,
-    "listedDate": "2023-01-27T00:42:40.546Z",
-    "address": {
-      "line1": "3919 2nd Avenue Northwest",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35908322687715,
-        47.655202546114616
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "multi-family",
-    "status": "sold",
-    "description": "Illo alias alias quos repellendus nesciunt aperiam explicabo dolorum deserunt. Rem impedit dolorum adipisci labore tenetur rerum.",
-    "beds": 3,
-    "baths": 3,
-    "sqft": 1183,
-    "lotSize": 4216,
-    "yearBuilt": 2016
-  },
-  {
-    "listPrice": 547444,
-    "listedDate": "2023-03-14T20:14:16.631Z",
-    "address": {
-      "line1": "4801G Dayton Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35300811254172,
-        47.66432878209742
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "manufactured",
-    "status": "pending",
-    "description": "Occaecati adipisci in omnis aliquid praesentium at assumenda. Consequuntur rem numquam libero.",
-    "beds": 5,
-    "baths": 1,
-    "sqft": 4289,
-    "lotSize": 4304,
-    "yearBuilt": 1980
-  },
-  {
-    "listPrice": 247594,
-    "listedDate": "2023-05-17T17:08:01.927Z",
-    "address": {
-      "line1": "3610B 1st Avenue Northwest",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35708392208946,
-        47.65325412762399
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "multi-family",
-    "status": "sold",
-    "description": "Praesentium veritatis voluptates inventore ipsa exercitationem laboriosam quo. Explicabo deserunt vitae ex sapiente ad sit qui.",
-    "beds": 2,
-    "baths": 1,
-    "sqft": 1484,
-    "lotSize": 4273,
-    "yearBuilt": 1948
-  },
-  {
-    "listPrice": 576258,
-    "listedDate": "2023-01-08T07:11:46.936Z",
-    "address": {
-      "line1": "501 North 34th Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35173445876798,
-        47.649721936828534
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "single-family",
-    "status": "pending",
-    "description": "Ad quo dolor distinctio mollitia cumque assumenda nobis ipsum. Accusantium corporis libero asperiores nobis nemo sit itaque. Quisquam corporis nostrum fuga error cupiditate exercitationem minima iure.",
-    "beds": 5,
-    "baths": 1,
-    "sqft": 3808,
-    "lotSize": 6120,
-    "yearBuilt": 1963
-  },
-  {
-    "listPrice": 125657,
-    "listedDate": "2022-12-16T06:56:07.679Z",
-    "address": {
-      "line1": "118B Northwest 39th Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35810258952483,
-        47.65440576257644
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "single-family",
-    "status": "sold",
-    "description": "Excepturi sapiente labore in sapiente.",
-    "beds": 2,
-    "baths": 4,
-    "sqft": 4143,
-    "lotSize": 6953,
-    "yearBuilt": 2023
-  },
-  {
-    "listPrice": 491859,
-    "listedDate": "2023-04-08T11:28:10.902Z",
-    "address": {
-      "line1": "4234 4th Avenue Northwest",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.36159316043309,
-        47.65876959003549
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "land",
-    "status": "pending",
-    "description": "Odio molestias nesciunt voluptatibus assumenda odio. Sapiente quas maxime. Ea doloremque minus sequi cum a repellendus sapiente.",
-    "beds": 4,
-    "baths": 2,
-    "sqft": 1346,
-    "lotSize": 3849,
-    "yearBuilt": 1976
-  },
-  {
-    "listPrice": 151801,
-    "listedDate": "2022-11-25T09:10:57.497Z",
-    "address": {
-      "line1": "323 North 49th Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35474552233455,
-        47.66404461604303
-      ]
-    },
-    "neighborhood": "Northwest Seattle",
-    "propertyType": "manufactured",
-    "status": "sold",
-    "description": "Distinctio necessitatibus repellat natus consequatur.",
-    "beds": 3,
-    "baths": 2,
-    "sqft": 2091,
-    "lotSize": 5911,
-    "yearBuilt": 1934
-  },
-  {
-    "listPrice": 639267,
-    "listedDate": "2023-01-16T14:11:14.306Z",
-    "address": {
-      "line1": "4205 Baker Avenue Northwest",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35976179831583,
-        47.65824838998935
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "manufactured",
-    "status": "active",
-    "description": "Id rem iure quas corporis repellat sint labore.",
-    "beds": 3,
-    "baths": 1,
-    "sqft": 2848,
-    "lotSize": 2084,
-    "yearBuilt": 1925
-  },
-  {
-    "listPrice": 323444,
-    "listedDate": "2022-12-05T19:27:57.184Z",
-    "address": {
-      "line1": "610 North 36th Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35054079733648,
-        47.65164342457512
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "townhouse",
-    "status": "sold",
-    "description": "Corporis ipsum natus eligendi expedita. Nesciunt unde reiciendis pariatur voluptatibus culpa illum tempora. Recusandae veritatis impedit error quis sapiente tempora earum autem earum.",
-    "beds": 5,
-    "baths": 3,
-    "sqft": 2965,
-    "lotSize": 5963,
-    "yearBuilt": 1964
-  },
-  {
-    "listPrice": 405018,
-    "listedDate": "2023-04-20T07:02:48.542Z",
-    "address": {
-      "line1": "464 North 36th Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35281615014253,
-        47.65187108185713
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "single-family",
-    "status": "pending",
-    "description": "Occaecati voluptas voluptate iusto quos animi culpa officia molestias. Nemo reprehenderit eum qui impedit pariatur.",
-    "beds": 3,
-    "baths": 2,
-    "sqft": 3358,
-    "lotSize": 3930,
-    "yearBuilt": 1952
-  },
-  {
-    "listPrice": 379092,
-    "listedDate": "2023-03-01T22:52:33.293Z",
-    "address": {
-      "line1": "4316 Baker Avenue Northwest",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35874478002663,
-        47.65912614849408
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "townhouse",
-    "status": "sold",
-    "description": "Modi nisi distinctio. Facere quos cumque quia deleniti molestiae quos dolor. Esse quidem libero nulla.",
-    "beds": 5,
-    "baths": 1,
-    "sqft": 1340,
-    "lotSize": 1024,
-    "yearBuilt": 1917
-  },
-  {
-    "listPrice": 671695,
-    "listedDate": "2022-11-26T09:24:56.668Z",
-    "address": {
-      "line1": "4255 4th Avenue Northwest",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.36195205338726,
-        47.65884656569674
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "multi-family",
-    "status": "sold",
-    "description": "Autem beatae accusamus aspernatur fugit error eum corporis atque. Atque voluptas fugit nostrum accusamus dolore itaque enim tempore harum.",
-    "beds": 4,
-    "baths": 2,
-    "sqft": 2082,
-    "lotSize": 4248,
-    "yearBuilt": 1946
-  },
-  {
-    "listPrice": 176243,
-    "listedDate": "2023-04-22T04:47:22.503Z",
-    "address": {
-      "line1": "114 Northwest 36th Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35850136694341,
-        47.65337700424441
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "multi-family",
-    "status": "sold",
-    "description": "Culpa veritatis beatae ipsam eos voluptate.",
-    "beds": 2,
-    "baths": 1,
-    "sqft": 3229,
-    "lotSize": 4616,
-    "yearBuilt": 1924
-  },
-  {
-    "listPrice": 183648,
-    "listedDate": "2023-05-10T08:38:05.780Z",
-    "address": {
-      "line1": "4033 41st Street Pedestrian Viaduct",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.34767028202964,
-        47.65620068928751
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "single-family",
-    "status": "active",
-    "description": "Error perspiciatis possimus consectetur doloremque. Repellendus magnam ullam ut earum tempora non. Accusantium et quam.",
-    "beds": 4,
-    "baths": 4,
-    "sqft": 2879,
-    "lotSize": 3753,
-    "yearBuilt": 2003
-  },
-  {
-    "listPrice": 484468,
-    "listedDate": "2023-04-27T04:04:05.443Z",
-    "address": {
-      "line1": "4219 Linden Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.3490397508399,
-        47.657973805724104
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "townhouse",
-    "status": "pending",
-    "description": "Cupiditate officiis dignissimos velit nobis facilis consectetur.",
-    "beds": 4,
-    "baths": 2,
-    "sqft": 3655,
-    "lotSize": 5105,
-    "yearBuilt": 1996
-  },
-  {
-    "listPrice": 370837,
-    "listedDate": "2023-04-07T00:30:08.245Z",
-    "address": {
-      "line1": "308 Northwest 44th Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.36164050864544,
-        47.66080420048942
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "townhouse",
-    "status": "sold",
-    "description": "Molestiae ratione et ducimus animi omnis tempore quasi labore. Amet voluptate nesciunt.",
-    "beds": 3,
-    "baths": 1,
-    "sqft": 3791,
-    "lotSize": 7060,
-    "yearBuilt": 2006
-  },
-  {
-    "listPrice": 486204,
-    "listedDate": "2023-03-07T07:44:11.076Z",
-    "address": {
-      "line1": "4136 Midvale Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.343615585362,
-        47.65807319659279
-      ]
-    },
-    "neighborhood": "Wallingford",
-    "propertyType": "manufactured",
-    "status": "pending",
-    "description": "Beatae dicta maiores explicabo repudiandae neque laudantium. Iure voluptate facere aperiam ut vero nulla fugit repellendus. Distinctio fugiat aperiam ducimus doloremque.",
-    "beds": 2,
-    "baths": 3,
-    "sqft": 2520,
-    "lotSize": 1887,
-    "yearBuilt": 1952
-  },
-  {
-    "listPrice": 734710,
-    "listedDate": "2023-01-12T16:13:55.886Z",
+    "listPrice": 605600,
+    "listedDate": "2023-05-08T10:38:13.193Z",
     "address": {
       "line1": "3921 6th Avenue Northwest",
       "line2": "",
@@ -903,943 +12,25 @@
     "geometry": {
       "type": "Point",
       "coordinates": [
-        -122.36368233112736,
-        47.655188950995594
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "townhouse",
-    "status": "sold",
-    "description": "Iure accusamus illum magnam hic laudantium.",
-    "beds": 4,
-    "baths": 2,
-    "sqft": 4114,
-    "lotSize": 3798,
-    "yearBuilt": 2016
-  },
-  {
-    "listPrice": 695958,
-    "listedDate": "2023-04-17T09:48:21.006Z",
-    "address": {
-      "line1": "4114 3rd Avenue Northwest",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.36015465138784,
-        47.6571122112575
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "manufactured",
-    "status": "pending",
-    "description": "Dolor non officia fugit pariatur saepe modi sed.",
-    "beds": 4,
-    "baths": 1,
-    "sqft": 2722,
-    "lotSize": 2137,
-    "yearBuilt": 1948
-  },
-  {
-    "listPrice": 610926,
-    "listedDate": "2022-12-19T18:55:25.725Z",
-    "address": {
-      "line1": "3650 Greenwood Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35553486149269,
-        47.65401074218971
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "condo",
-    "status": "pending",
-    "description": "Voluptatibus itaque laboriosam quibusdam eos dicta distinctio sapiente. Distinctio tempore dolorum. Nesciunt maxime consectetur consectetur quisquam necessitatibus porro consectetur.",
-    "beds": 3,
-    "baths": 1,
-    "sqft": 1583,
-    "lotSize": 4102,
-    "yearBuilt": 1944
-  },
-  {
-    "listPrice": 116807,
-    "listedDate": "2023-02-18T17:42:52.775Z",
-    "address": {
-      "line1": "100 Northwest 43rd Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35743290850763,
-        47.65935788674071
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "condo",
-    "status": "sold",
-    "description": "Voluptates blanditiis quia nobis voluptates quo odio.",
-    "beds": 2,
-    "baths": 2,
-    "sqft": 1652,
-    "lotSize": 4890,
-    "yearBuilt": 1970
-  },
-  {
-    "listPrice": 156702,
-    "listedDate": "2023-02-21T16:16:10.326Z",
-    "address": {
-      "line1": "3622 Evanston Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35087451851881,
-        47.65231001151719
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "condo",
-    "status": "sold",
-    "description": "Odio expedita sint. Saepe inventore quod maiores cum veniam fuga non autem.",
-    "beds": 3,
-    "baths": 2,
-    "sqft": 3217,
-    "lotSize": 2675,
-    "yearBuilt": 1998
-  },
-  {
-    "listPrice": 478920,
-    "listedDate": "2023-03-22T08:52:22.213Z",
-    "address": {
-      "line1": "4508 Fremont Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.3498113182849,
-        47.661780595245226
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "multi-family",
-    "status": "pending",
-    "description": "Minima quia officia nobis quaerat commodi mollitia. Ipsam repellendus blanditiis quam nulla quos perspiciatis. Reprehenderit earum perferendis veritatis iste asperiores quidem.",
-    "beds": 5,
-    "baths": 4,
-    "sqft": 2029,
-    "lotSize": 1952,
-    "yearBuilt": 1987
-  },
-  {
-    "listPrice": 666151,
-    "listedDate": "2022-12-14T16:02:34.175Z",
-    "address": {
-      "line1": "325 Northwest Bowdoin Place",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.36259468203637,
-        47.6553277388229
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "land",
-    "status": "active",
-    "description": "Est aliquam incidunt. Dignissimos non neque ratione praesentium doloribus aliquid praesentium deleniti quos. Ipsam ipsam corrupti perferendis qui temporibus quaerat aspernatur.",
-    "beds": 5,
-    "baths": 3,
-    "sqft": 2832,
-    "lotSize": 1322,
-    "yearBuilt": 2001
-  },
-  {
-    "listPrice": 472413,
-    "listedDate": "2023-03-31T13:08:50.706Z",
-    "address": {
-      "line1": "328B Northwest 41st Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.36180568270983,
-        47.65752992104272
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "manufactured",
-    "status": "sold",
-    "description": "Deserunt ullam explicabo quod ipsum. Itaque veritatis incidunt accusantium fugiat suscipit occaecati eveniet.",
-    "beds": 2,
-    "baths": 2,
-    "sqft": 2574,
-    "lotSize": 6375,
-    "yearBuilt": 1911
-  },
-  {
-    "listPrice": 599708,
-    "listedDate": "2022-12-23T07:50:39.853Z",
-    "address": {
-      "line1": "809-A North 47th Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.3482122561684,
-        47.66257923022443
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "land",
-    "status": "sold",
-    "description": "Nostrum odit architecto. Laudantium vel vitae fugiat consequatur deleniti quisquam incidunt aperiam. Modi quibusdam quibusdam eligendi natus dicta molestiae suscipit at.",
-    "beds": 4,
-    "baths": 1,
-    "sqft": 2871,
-    "lotSize": 2223,
-    "yearBuilt": 2022
-  },
-  {
-    "listPrice": 419129,
-    "listedDate": "2023-05-05T11:13:11.691Z",
-    "address": {
-      "line1": "705 North 42nd Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.3493265712533,
-        47.65750485191384
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "land",
-    "status": "pending",
-    "description": "Corrupti dolor quasi. Dolor facere aperiam facilis labore sint iusto. Est facilis quos eveniet veritatis et dignissimos excepturi repudiandae.",
-    "beds": 5,
-    "baths": 2,
-    "sqft": 3145,
-    "lotSize": 3409,
-    "yearBuilt": 1929
-  },
-  {
-    "listPrice": 188275,
-    "listedDate": "2023-02-27T05:39:38.052Z",
-    "address": {
-      "line1": "3815 Bridge Way North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.34547599959849,
-        47.653464109939726
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "land",
-    "status": "sold",
-    "description": "Inventore atque nulla quisquam qui qui. Dolorem culpa atque tenetur quas.",
-    "beds": 3,
-    "baths": 3,
-    "sqft": 2720,
-    "lotSize": 7496,
-    "yearBuilt": 1945
-  },
-  {
-    "listPrice": 423479,
-    "listedDate": "2023-02-19T09:38:03.113Z",
-    "address": {
-      "line1": "4226D Midvale Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.34279823879824,
-        47.659053171798156
-      ]
-    },
-    "neighborhood": "Wallingford",
-    "propertyType": "single-family",
-    "status": "pending",
-    "description": "Repellendus iure quas labore mollitia illo consequuntur expedita. Aliquid aut magnam distinctio commodi veritatis ipsam.",
-    "beds": 4,
-    "baths": 2,
-    "sqft": 4050,
-    "lotSize": 5721,
-    "yearBuilt": 1989
-  },
-  {
-    "listPrice": 548506,
-    "listedDate": "2023-02-23T07:07:59.529Z",
-    "address": {
-      "line1": "3401 Fremont Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.34994187656643,
-        47.64955610471625
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "townhouse",
-    "status": "active",
-    "description": "Architecto quo architecto eligendi. Facilis placeat autem quam ipsam. Praesentium quidem eaque voluptas iure in consequuntur accusantium ea pariatur.",
-    "beds": 3,
-    "baths": 1,
-    "sqft": 2268,
-    "lotSize": 1020,
-    "yearBuilt": 1941
-  },
-  {
-    "listPrice": 403576,
-    "listedDate": "2023-01-02T02:23:01.228Z",
-    "address": {
-      "line1": "273 Northwest 36th Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.3613317275905,
-        47.65330888306557
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "multi-family",
-    "status": "pending",
-    "description": "Ullam aliquam ipsum.",
-    "beds": 2,
-    "baths": 4,
-    "sqft": 4350,
-    "lotSize": 7242,
-    "yearBuilt": 2001
-  },
-  {
-    "listPrice": 336392,
-    "listedDate": "2022-12-31T17:29:39.252Z",
-    "address": {
-      "line1": "3637 Woodland Park Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.34441296337737,
-        47.651641692533396
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "land",
-    "status": "active",
-    "description": "Magni occaecati impedit nobis iure modi cumque magni. Culpa exercitationem nemo illo modi mollitia doloremque cupiditate blanditiis. Et nostrum soluta minus magni perferendis nostrum.",
-    "beds": 2,
-    "baths": 3,
-    "sqft": 1066,
-    "lotSize": 7045,
-    "yearBuilt": 1956
-  },
-  {
-    "listPrice": 523762,
-    "listedDate": "2022-12-04T02:34:40.439Z",
-    "address": {
-      "line1": "4503 Woodland Park Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.34486353339923,
-        47.66146602489849
-      ]
-    },
-    "neighborhood": "Wallingford",
-    "propertyType": "multi-family",
-    "status": "sold",
-    "description": "Esse natus dolores commodi. Aliquam deserunt quisquam molestias. Labore expedita tenetur autem.",
-    "beds": 5,
-    "baths": 1,
-    "sqft": 1801,
-    "lotSize": 1095,
-    "yearBuilt": 1940
-  },
-  {
-    "listPrice": 357029,
-    "listedDate": "2023-02-26T22:10:39.104Z",
-    "address": {
-      "line1": "501 North 36th Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35261877304669,
-        47.6513941016445
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "townhouse",
-    "status": "active",
-    "description": "Magni aliquam pariatur. Deserunt neque nostrum nam earum similique eius quas.",
-    "beds": 5,
-    "baths": 4,
-    "sqft": 1479,
-    "lotSize": 3492,
-    "yearBuilt": 1992
-  },
-  {
-    "listPrice": 216988,
-    "listedDate": "2022-12-25T14:45:34.871Z",
-    "address": {
-      "line1": "1021 North 36th Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.34498822672013,
-        47.650401364784706
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "condo",
-    "status": "active",
-    "description": "Maiores quas non quam perspiciatis saepe sapiente quos ea optio. Accusantium omnis ea occaecati sit quis beatae quam inventore.",
-    "beds": 2,
-    "baths": 3,
-    "sqft": 2790,
-    "lotSize": 3332,
-    "yearBuilt": 1998
-  },
-  {
-    "listPrice": 600126,
-    "listedDate": "2022-11-24T17:01:57.150Z",
-    "address": {
-      "line1": "519 Northwest 43rd Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.36308529644482,
-        47.658597474995226
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "condo",
-    "status": "active",
-    "description": "Magni at quibusdam ea. Vitae voluptatibus libero.",
-    "beds": 4,
-    "baths": 1,
-    "sqft": 1985,
-    "lotSize": 6940,
-    "yearBuilt": 2018
-  },
-  {
-    "listPrice": 187855,
-    "listedDate": "2023-01-28T08:56:06.447Z",
-    "address": {
-      "line1": "3601 Woodland Park Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.34424839038002,
-        47.650738215515695
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "multi-family",
-    "status": "active",
-    "description": "Deleniti voluptatum enim.",
-    "beds": 3,
-    "baths": 3,
-    "sqft": 2014,
-    "lotSize": 1412,
-    "yearBuilt": 2016
-  },
-  {
-    "listPrice": 766210,
-    "listedDate": "2023-05-11T21:13:27.658Z",
-    "address": {
-      "line1": "4250 1st Avenue Northwest",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35750183215107,
-        47.65910019416203
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "single-family",
-    "status": "active",
-    "description": "Optio sint vitae nobis quaerat consequuntur quod dolorum. Pariatur minus aliquid tenetur soluta pariatur alias cumque ad cumque.",
-    "beds": 3,
-    "baths": 4,
-    "sqft": 1894,
-    "lotSize": 1364,
-    "yearBuilt": 1974
-  },
-  {
-    "listPrice": 673890,
-    "listedDate": "2022-12-17T06:33:30.362Z",
-    "address": {
-      "line1": "4124 Aurora Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.34676934831579,
-        47.6573901898832
-      ]
-    },
-    "neighborhood": "Wallingford",
-    "propertyType": "manufactured",
-    "status": "pending",
-    "description": "Repellendus cumque amet ea.",
-    "beds": 2,
-    "baths": 3,
-    "sqft": 4282,
-    "lotSize": 5713,
-    "yearBuilt": 1977
-  },
-  {
-    "listPrice": 443298,
-    "listedDate": "2023-02-23T22:50:59.954Z",
-    "address": {
-      "line1": "160 Northwest Canal Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35504056481983,
-        47.65079186974664
+        -122.36465341043292,
+        47.655157787943075
       ]
     },
     "neighborhood": "Fremont",
     "propertyType": "townhouse",
     "status": "pending",
-    "description": "Recusandae a id id iste consequuntur. Sed aliquid optio dolores sequi est veritatis explicabo. Culpa natus a unde eos beatae dolorum similique molestiae molestias.",
-    "beds": 3,
-    "baths": 3,
-    "sqft": 2190,
-    "lotSize": 5410,
-    "yearBuilt": 2003
-  },
-  {
-    "listPrice": 605339,
-    "listedDate": "2023-02-11T20:11:49.257Z",
-    "address": {
-      "line1": "3651 Whitman Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.346968371329,
-        47.6522642601761
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "multi-family",
-    "status": "pending",
-    "description": "Sint modi facere corporis. Accusamus quibusdam assumenda neque omnis nemo fugit.",
-    "beds": 3,
-    "baths": 1,
-    "sqft": 1963,
-    "lotSize": 5294,
-    "yearBuilt": 1991
-  },
-  {
-    "listPrice": 446373,
-    "listedDate": "2023-04-21T15:09:34.277Z",
-    "address": {
-      "line1": "3902 Woodland Park Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.34452742074077,
-        47.65416326177948
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "condo",
-    "status": "pending",
-    "description": "Soluta placeat neque eligendi consequuntur.",
-    "beds": 2,
-    "baths": 3,
-    "sqft": 1239,
-    "lotSize": 2906,
-    "yearBuilt": 1919
-  },
-  {
-    "listPrice": 688489,
-    "listedDate": "2023-03-15T22:40:05.248Z",
-    "address": {
-      "line1": "4415 Phinney Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35470353502544,
-        47.660647993161845
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "townhouse",
-    "status": "sold",
-    "description": "Beatae placeat nesciunt eius vitae soluta neque facere ratione repellat.",
+    "description": "Tempore quasi repellat rem animi laudantium perspiciatis nisi.",
     "beds": 4,
     "baths": 1,
-    "sqft": 2298,
-    "lotSize": 1044,
-    "yearBuilt": 1974
-  },
-  {
-    "listPrice": 187544,
-    "listedDate": "2022-12-30T15:05:12.656Z",
-    "address": {
-      "line1": "4033 41st Street Pedestrian Viaduct",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.34744154477198,
-        47.656383769340195
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "single-family",
-    "status": "sold",
-    "description": "Earum excepturi repellat magni. Eum recusandae fugiat autem aspernatur harum consectetur nihil blanditiis.",
-    "beds": 2,
-    "baths": 4,
-    "sqft": 2690,
-    "lotSize": 3122,
-    "yearBuilt": 1974
-  },
-  {
-    "listPrice": 339461,
-    "listedDate": "2023-01-20T23:50:34.049Z",
-    "address": {
-      "line1": "4005 Midvale Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.34348884465125,
-        47.655534449320655
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "multi-family",
-    "status": "sold",
-    "description": "Nulla accusantium possimus.",
-    "beds": 2,
-    "baths": 3,
-    "sqft": 3050,
-    "lotSize": 5892,
-    "yearBuilt": 1964
-  },
-  {
-    "listPrice": 535326,
-    "listedDate": "2023-04-16T04:44:39.402Z",
-    "address": {
-      "line1": "974 North Allen Place",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.34573017148129,
-        47.66070050742659
-      ]
-    },
-    "neighborhood": "Wallingford",
-    "propertyType": "land",
-    "status": "pending",
-    "description": "Placeat esse voluptas ipsam exercitationem commodi. Deleniti labore esse officia laboriosam blanditiis ut porro.",
-    "beds": 5,
-    "baths": 2,
-    "sqft": 4341,
-    "lotSize": 5994,
-    "yearBuilt": 1955
-  },
-  {
-    "listPrice": 230772,
-    "listedDate": "2022-12-18T03:25:10.801Z",
-    "address": {
-      "line1": "4212 4th Avenue Northwest",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.36146812286125,
-        47.658255800975326
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "multi-family",
-    "status": "pending",
-    "description": "Minus minima asperiores necessitatibus. Odio reprehenderit ex tempora commodi dolorum corrupti optio. Modi cupiditate earum laudantium fugit.",
-    "beds": 5,
-    "baths": 3,
-    "sqft": 1770,
-    "lotSize": 5545,
-    "yearBuilt": 1959
-  },
-  {
-    "listPrice": 609099,
-    "listedDate": "2023-01-26T09:19:27.847Z",
-    "address": {
-      "line1": "4003 Greenwood Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35496932959782,
-        47.65597336556738
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "multi-family",
-    "status": "pending",
-    "description": "Voluptate adipisci consectetur. Nam eos perspiciatis saepe dolorum eius. Consectetur fuga dolore.",
-    "beds": 3,
-    "baths": 2,
-    "sqft": 3830,
-    "lotSize": 2177,
-    "yearBuilt": 1954
-  },
-  {
-    "listPrice": 280280,
-    "listedDate": "2023-05-14T02:54:31.264Z",
-    "address": {
-      "line1": "4129 Woodland Park Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.34500519878408,
-        47.65721638696158
-      ]
-    },
-    "neighborhood": "Wallingford",
-    "propertyType": "townhouse",
-    "status": "active",
-    "description": "Ab sed totam.",
-    "beds": 5,
-    "baths": 1,
-    "sqft": 3724,
-    "lotSize": 2088,
-    "yearBuilt": 1937
-  },
-  {
-    "listPrice": 240612,
-    "listedDate": "2023-01-02T00:44:21.315Z",
-    "address": {
-      "line1": "4316 Baker Avenue Northwest",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.3594979193904,
-        47.659789831669315
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "manufactured",
-    "status": "active",
-    "description": "Neque impedit tempora sit harum dolores odit.",
-    "beds": 5,
-    "baths": 4,
-    "sqft": 1169,
-    "lotSize": 6363,
+    "sqft": 1205,
+    "lotSize": 3323,
     "yearBuilt": 2023
   },
   {
-    "listPrice": 702942,
-    "listedDate": "2023-02-03T07:24:57.630Z",
+    "listPrice": 206330,
+    "listedDate": "2023-02-20T05:24:00.114Z",
     "address": {
-      "line1": "4202 4th Avenue Northwest",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.36181187547199,
-        47.65787223056534
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "townhouse",
-    "status": "sold",
-    "description": "Perspiciatis eveniet corporis. Excepturi iusto corporis ducimus voluptatem suscipit ad ducimus reiciendis.",
-    "beds": 5,
-    "baths": 1,
-    "sqft": 2046,
-    "lotSize": 5361,
-    "yearBuilt": 1970
-  },
-  {
-    "listPrice": 422920,
-    "listedDate": "2023-04-21T18:32:02.096Z",
-    "address": {
-      "line1": "628 Northwest 40th Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.36600498931313,
-        47.65579446334585
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "condo",
-    "status": "sold",
-    "description": "Iure doloremque quaerat voluptate voluptas libero facilis repellendus alias. Sapiente quasi animi dignissimos fugiat illum quisquam. Necessitatibus ipsam architecto deserunt deleniti amet voluptatum.",
-    "beds": 3,
-    "baths": 4,
-    "sqft": 2418,
-    "lotSize": 4626,
-    "yearBuilt": 2023
-  },
-  {
-    "listPrice": 667971,
-    "listedDate": "2023-01-03T04:41:25.623Z",
-    "address": {
-      "line1": "900n J.P. Patches Place",
+      "line1": "961 North Motor Place",
       "line2": "",
       "city": "Seattle",
       "state": "Washington",
@@ -1848,25 +39,25 @@
     "geometry": {
       "type": "Point",
       "coordinates": [
-        -122.34734077472163,
-        47.64944020167759
+        -122.3459115590309,
+        47.6587893482423
       ]
     },
-    "neighborhood": "Fremont",
-    "propertyType": "single-family",
+    "neighborhood": "Wallingford",
+    "propertyType": "manufactured",
     "status": "pending",
-    "description": "Adipisci aliquid molestiae. Neque laboriosam minima natus. Nemo aut totam fuga voluptates.",
-    "beds": 5,
-    "baths": 2,
-    "sqft": 4985,
-    "lotSize": 2825,
-    "yearBuilt": 2014
+    "description": "Modi nam mollitia reiciendis repudiandae odit repellendus sed. Provident explicabo libero ab voluptatem.",
+    "beds": 4,
+    "baths": 3,
+    "sqft": 3579,
+    "lotSize": 6154,
+    "yearBuilt": 2015
   },
   {
-    "listPrice": 142501,
-    "listedDate": "2023-03-31T09:33:09.164Z",
+    "listPrice": 695693,
+    "listedDate": "2023-03-27T12:45:56.703Z",
     "address": {
-      "line1": "4038 Woodland Park Avenue North",
+      "line1": "403 North 44th Street",
       "line2": "",
       "city": "Seattle",
       "state": "Washington",
@@ -1875,106 +66,25 @@
     "geometry": {
       "type": "Point",
       "coordinates": [
-        -122.34497065259403,
-        47.65644720512266
+        -122.35443470661319,
+        47.66007816354171
       ]
     },
     "neighborhood": "Fremont",
     "propertyType": "manufactured",
-    "status": "active",
-    "description": "Accusantium eius recusandae aliquid laudantium cumque magni.",
-    "beds": 2,
-    "baths": 3,
-    "sqft": 4356,
-    "lotSize": 1403,
-    "yearBuilt": 1987
-  },
-  {
-    "listPrice": 419688,
-    "listedDate": "2023-04-18T01:09:37.536Z",
-    "address": {
-      "line1": "4502 3rd Avenue Northwest",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.3603767496621,
-        47.661504842321776
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "townhouse",
     "status": "sold",
-    "description": "Quas molestiae nam temporibus beatae consequatur eius optio corrupti. Provident enim nam quam. Officiis numquam laudantium aspernatur numquam assumenda nostrum placeat molestias.",
-    "beds": 2,
-    "baths": 4,
-    "sqft": 1601,
-    "lotSize": 4142,
-    "yearBuilt": 2014
-  },
-  {
-    "listPrice": 257510,
-    "listedDate": "2023-01-09T08:44:51.176Z",
-    "address": {
-      "line1": "3908 North 39th Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.34485960885445,
-        47.654533577324216
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "single-family",
-    "status": "active",
-    "description": "Ipsam labore dolorum porro labore praesentium quas cupiditate. Illum neque debitis esse. Aliquam tempora consectetur.",
-    "beds": 3,
+    "description": "Harum ipsum culpa. Alias modi iure excepturi odit laudantium necessitatibus tenetur quaerat.",
+    "beds": 5,
     "baths": 3,
-    "sqft": 3369,
-    "lotSize": 6213,
-    "yearBuilt": 1956
+    "sqft": 3820,
+    "lotSize": 6106,
+    "yearBuilt": 2002
   },
   {
-    "listPrice": 164756,
-    "listedDate": "2023-03-19T04:48:36.810Z",
+    "listPrice": 523068,
+    "listedDate": "2023-02-19T22:31:25.864Z",
     "address": {
-      "line1": "3905 Leary Way Northwest",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.3607759554337,
-        47.65469622022509
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "multi-family",
-    "status": "active",
-    "description": "Consectetur laudantium tenetur dolores quis labore accusamus cupiditate. Iste consequatur distinctio accusamus deserunt ratione quo quae. Neque necessitatibus voluptate qui.",
-    "beds": 4,
-    "baths": 4,
-    "sqft": 4096,
-    "lotSize": 2395,
-    "yearBuilt": 1969
-  },
-  {
-    "listPrice": 297342,
-    "listedDate": "2023-01-01T08:08:16.321Z",
-    "address": {
-      "line1": "4234 Phinney Avenue North",
+      "line1": "989 North 45th Street",
       "line2": "",
       "city": "Seattle",
       "state": "Washington",
@@ -1983,23 +93,50 @@
     "geometry": {
       "type": "Point",
       "coordinates": [
-        -122.35395004135607,
-        47.65873422026996
+        -122.3457940257206,
+        47.66133094005177
+      ]
+    },
+    "neighborhood": "Wallingford",
+    "propertyType": "condo",
+    "status": "pending",
+    "description": "Eligendi maxime odit dicta incidunt autem eius impedit. Debitis quisquam repudiandae dolorum et. Doloremque tenetur debitis doloribus.",
+    "beds": 4,
+    "baths": 1,
+    "sqft": 3964,
+    "lotSize": 5556,
+    "yearBuilt": 1982
+  },
+  {
+    "listPrice": 501879,
+    "listedDate": "2023-01-07T00:44:06.927Z",
+    "address": {
+      "line1": "3631 Phinney Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35453783812935,
+        47.653029240371445
       ]
     },
     "neighborhood": "Fremont",
     "propertyType": "land",
     "status": "active",
-    "description": "Totam voluptate rem itaque. Voluptas natus nesciunt sint omnis assumenda neque iure id.",
-    "beds": 4,
-    "baths": 4,
-    "sqft": 4576,
-    "lotSize": 7287,
-    "yearBuilt": 1954
+    "description": "Aliquam quibusdam a tenetur minus in earum corporis dolores. Odit ea odit distinctio sunt. Repudiandae doloribus corporis sit consectetur distinctio.",
+    "beds": 3,
+    "baths": 3,
+    "sqft": 2248,
+    "lotSize": 6384,
+    "yearBuilt": 1985
   },
   {
-    "listPrice": 596665,
-    "listedDate": "2022-12-25T19:17:07.480Z",
+    "listPrice": 589280,
+    "listedDate": "2022-12-31T14:11:51.977Z",
     "address": {
       "line1": "127 North Bowdoin Place",
       "line2": "",
@@ -2010,25 +147,52 @@
     "geometry": {
       "type": "Point",
       "coordinates": [
-        -122.35569665193566,
-        47.65494444226956
+        -122.3558324913915,
+        47.654904124357216
       ]
     },
     "neighborhood": "Fremont",
-    "propertyType": "multi-family",
+    "propertyType": "single-family",
     "status": "pending",
-    "description": "Distinctio quia odit cumque assumenda.",
-    "beds": 4,
-    "baths": 1,
-    "sqft": 2461,
-    "lotSize": 4987,
-    "yearBuilt": 1983
+    "description": "Harum impedit enim voluptate suscipit odio facere quidem eveniet. Iure exercitationem sed praesentium.",
+    "beds": 5,
+    "baths": 4,
+    "sqft": 1531,
+    "lotSize": 7205,
+    "yearBuilt": 1981
   },
   {
-    "listPrice": 390373,
-    "listedDate": "2022-12-15T06:47:41.446Z",
+    "listPrice": 136865,
+    "listedDate": "2022-11-28T19:56:51.789Z",
     "address": {
-      "line1": "4136 1st Avenue Northwest",
+      "line1": "904 North Northlake Way",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.3481005019561,
+        47.64856151682503
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "manufactured",
+    "status": "sold",
+    "description": "Suscipit aut accusantium cumque necessitatibus distinctio.",
+    "beds": 5,
+    "baths": 3,
+    "sqft": 3994,
+    "lotSize": 4808,
+    "yearBuilt": 1946
+  },
+  {
+    "listPrice": 614432,
+    "listedDate": "2023-02-09T02:19:17.057Z",
+    "address": {
+      "line1": "3639 1st Avenue Northwest",
       "line2": "",
       "city": "Seattle",
       "state": "Washington",
@@ -2037,23 +201,887 @@
     "geometry": {
       "type": "Point",
       "coordinates": [
-        -122.35718618453346,
-        47.657827953479476
+        -122.35792021686073,
+        47.65387248220745
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "land",
+    "status": "pending",
+    "description": "Laudantium eos atque corporis eaque similique quibusdam. Distinctio itaque corporis aperiam quo velit libero possimus.",
+    "beds": 4,
+    "baths": 1,
+    "sqft": 2962,
+    "lotSize": 1774,
+    "yearBuilt": 2006
+  },
+  {
+    "listPrice": 202940,
+    "listedDate": "2023-01-06T08:41:01.293Z",
+    "address": {
+      "line1": "221 Northwest 40th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.3603930785886,
+        47.65534207748752
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "condo",
+    "status": "sold",
+    "description": "Itaque doloribus voluptas neque repudiandae sint vitae repellendus eaque. Enim aliquid iusto tempore iste. Iste dolor fugit modi delectus tempora modi amet consequuntur blanditiis.",
+    "beds": 3,
+    "baths": 2,
+    "sqft": 1298,
+    "lotSize": 5141,
+    "yearBuilt": 1917
+  },
+  {
+    "listPrice": 264460,
+    "listedDate": "2023-01-04T00:44:03.963Z",
+    "address": {
+      "line1": "3500 Troll Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.34737188095313,
+        47.65014918770698
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "townhouse",
+    "status": "pending",
+    "description": "Distinctio odio iure dolor perferendis laboriosam assumenda saepe ea. Corrupti rem sapiente. Vitae dolorum nesciunt totam voluptatem architecto quis aspernatur et.",
+    "beds": 3,
+    "baths": 3,
+    "sqft": 1936,
+    "lotSize": 3685,
+    "yearBuilt": 2018
+  },
+  {
+    "listPrice": 709794,
+    "listedDate": "2023-01-30T08:59:43.114Z",
+    "address": {
+      "line1": "1301 North 34th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.34246759743941,
+        47.64806285970025
+      ]
+    },
+    "neighborhood": "Wallingford",
+    "propertyType": "townhouse",
+    "status": "active",
+    "description": "Quibusdam beatae doloribus officiis odio reiciendis et suscipit. Ducimus ut distinctio quia in expedita.",
+    "beds": 3,
+    "baths": 2,
+    "sqft": 2108,
+    "lotSize": 4306,
+    "yearBuilt": 1920
+  },
+  {
+    "listPrice": 590310,
+    "listedDate": "2023-03-14T08:10:31.517Z",
+    "address": {
+      "line1": "615 North 35th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35056266811802,
+        47.650355601211
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "land",
+    "status": "sold",
+    "description": "Aspernatur perspiciatis repudiandae cupiditate corrupti iure ab pariatur laboriosam soluta.",
+    "beds": 3,
+    "baths": 3,
+    "sqft": 1810,
+    "lotSize": 7053,
+    "yearBuilt": 1958
+  },
+  {
+    "listPrice": 793931,
+    "listedDate": "2022-12-22T13:14:53.560Z",
+    "address": {
+      "line1": "4205 Dayton Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35242791738607,
+        47.657614474640084
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "manufactured",
+    "status": "pending",
+    "description": "Iure debitis nobis suscipit quis magni pariatur optio dicta. Reiciendis perferendis repudiandae excepturi. Nemo ex quae aspernatur iste aspernatur iure asperiores autem ea.",
+    "beds": 4,
+    "baths": 2,
+    "sqft": 1260,
+    "lotSize": 5911,
+    "yearBuilt": 1982
+  },
+  {
+    "listPrice": 731964,
+    "listedDate": "2023-03-14T07:00:55.688Z",
+    "address": {
+      "line1": "4121 Leary Way Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.36391828441411,
+        47.65774347672526
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "townhouse",
+    "status": "pending",
+    "description": "Eaque aliquid ipsum libero earum. Maxime deleniti iusto aperiam cum quasi. Vitae dolore cupiditate maxime autem consectetur fugit sit placeat ullam.",
+    "beds": 4,
+    "baths": 4,
+    "sqft": 3201,
+    "lotSize": 1018,
+    "yearBuilt": 1946
+  },
+  {
+    "listPrice": 556221,
+    "listedDate": "2023-01-21T05:14:22.974Z",
+    "address": {
+      "line1": "4325 Leary Way Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.36608053103636,
+        47.65962853517203
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "single-family",
+    "status": "sold",
+    "description": "Consectetur reiciendis recusandae vero. Repellendus officia eveniet ex.",
+    "beds": 4,
+    "baths": 4,
+    "sqft": 3687,
+    "lotSize": 5981,
+    "yearBuilt": 1914
+  },
+  {
+    "listPrice": 155349,
+    "listedDate": "2023-05-09T09:39:37.096Z",
+    "address": {
+      "line1": "521 North 40th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35118082228209,
+        47.654928636639575
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "land",
+    "status": "active",
+    "description": "Aut aperiam harum dolorum ex assumenda modi itaque officia accusantium. Totam doloribus est numquam deserunt eum atque.",
+    "beds": 4,
+    "baths": 1,
+    "sqft": 2219,
+    "lotSize": 3964,
+    "yearBuilt": 2011
+  },
+  {
+    "listPrice": 198851,
+    "listedDate": "2023-03-06T23:30:34.330Z",
+    "address": {
+      "line1": "3860 Bridge Way North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.34394690351495,
+        47.65360250290864
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "townhouse",
+    "status": "pending",
+    "description": "Est rerum nisi fugiat provident amet maxime natus. Iste dolorum cupiditate numquam.",
+    "beds": 4,
+    "baths": 3,
+    "sqft": 3982,
+    "lotSize": 2714,
+    "yearBuilt": 1946
+  },
+  {
+    "listPrice": 177422,
+    "listedDate": "2023-04-26T09:00:15.567Z",
+    "address": {
+      "line1": "610 North 39th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.3502875973555,
+        47.654407581069236
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "manufactured",
+    "status": "pending",
+    "description": "Doloribus repudiandae eligendi maiores.",
+    "beds": 2,
+    "baths": 2,
+    "sqft": 4685,
+    "lotSize": 6648,
+    "yearBuilt": 1984
+  },
+  {
+    "listPrice": 485668,
+    "listedDate": "2023-04-30T11:27:55.476Z",
+    "address": {
+      "line1": "900n J.P. Patches Place",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.34699607969382,
+        47.64932452905739
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "townhouse",
+    "status": "pending",
+    "description": "Distinctio aperiam maxime.",
+    "beds": 4,
+    "baths": 2,
+    "sqft": 1480,
+    "lotSize": 4384,
+    "yearBuilt": 2000
+  },
+  {
+    "listPrice": 697013,
+    "listedDate": "2022-12-21T18:00:54.975Z",
+    "address": {
+      "line1": "4268 Aurora Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.34717921401885,
+        47.659122439552206
+      ]
+    },
+    "neighborhood": "Wallingford",
+    "propertyType": "condo",
+    "status": "pending",
+    "description": "Doloremque ad quisquam molestias suscipit. Alias laborum pariatur nihil dolores dolore vitae.",
+    "beds": 3,
+    "baths": 3,
+    "sqft": 2742,
+    "lotSize": 6050,
+    "yearBuilt": 1945
+  },
+  {
+    "listPrice": 124196,
+    "listedDate": "2023-03-26T08:16:56.880Z",
+    "address": {
+      "line1": "619 Northwest 43rd Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.36473401818171,
+        47.65873516099222
       ]
     },
     "neighborhood": "Fremont",
     "propertyType": "multi-family",
     "status": "pending",
-    "description": "Similique nihil sapiente necessitatibus.",
-    "beds": 5,
-    "baths": 4,
-    "sqft": 3120,
-    "lotSize": 5599,
-    "yearBuilt": 1973
+    "description": "Tenetur similique quasi minima provident nisi quos animi.",
+    "beds": 3,
+    "baths": 3,
+    "sqft": 1056,
+    "lotSize": 7383,
+    "yearBuilt": 2012
   },
   {
-    "listPrice": 509533,
-    "listedDate": "2022-11-22T19:22:49.901Z",
+    "listPrice": 405515,
+    "listedDate": "2022-12-26T12:28:52.216Z",
+    "address": {
+      "line1": "4301 Dayton Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35216527423755,
+        47.65912021603294
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "townhouse",
+    "status": "pending",
+    "description": "Aliquid quis molestias. Iste nesciunt dolore totam doloribus repudiandae architecto provident. Magnam laboriosam dolor.",
+    "beds": 5,
+    "baths": 1,
+    "sqft": 2637,
+    "lotSize": 4209,
+    "yearBuilt": 1919
+  },
+  {
+    "listPrice": 699576,
+    "listedDate": "2023-04-03T05:09:33.381Z",
+    "address": {
+      "line1": "1102 North 35th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.34405421095245,
+        47.64994717237117
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "single-family",
+    "status": "sold",
+    "description": "Illo impedit ullam. Nisi quo quasi veniam. Animi id quam at doloremque explicabo blanditiis corrupti.",
+    "beds": 5,
+    "baths": 2,
+    "sqft": 2733,
+    "lotSize": 2218,
+    "yearBuilt": 1971
+  },
+  {
+    "listPrice": 293674,
+    "listedDate": "2023-04-15T05:40:14.516Z",
+    "address": {
+      "line1": "4001 Stone Way North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.34261569963876,
+        47.65550493150486
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "multi-family",
+    "status": "pending",
+    "description": "Voluptatum harum eum tempora modi quibusdam. Aliquam beatae commodi sequi blanditiis delectus labore porro.",
+    "beds": 5,
+    "baths": 3,
+    "sqft": 2689,
+    "lotSize": 3257,
+    "yearBuilt": 1979
+  },
+  {
+    "listPrice": 608421,
+    "listedDate": "2023-02-21T09:38:27.782Z",
+    "address": {
+      "line1": "620 North 49th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.3506766896623,
+        47.66446489010075
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "townhouse",
+    "status": "sold",
+    "description": "Blanditiis vitae aliquid officiis placeat mollitia. Doloremque quae iste officiis ex. Natus animi soluta.",
+    "beds": 4,
+    "baths": 2,
+    "sqft": 2120,
+    "lotSize": 7365,
+    "yearBuilt": 1911
+  },
+  {
+    "listPrice": 640516,
+    "listedDate": "2023-02-03T07:05:10.191Z",
+    "address": {
+      "line1": "433 North 34th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.3531324442893,
+        47.65012463551679
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "single-family",
+    "status": "active",
+    "description": "Ipsum animi commodi rerum provident vel.",
+    "beds": 2,
+    "baths": 2,
+    "sqft": 1829,
+    "lotSize": 5575,
+    "yearBuilt": 1979
+  },
+  {
+    "listPrice": 572796,
+    "listedDate": "2023-01-16T02:26:30.701Z",
+    "address": {
+      "line1": "301A North 46th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35542884694756,
+        47.661974330023796
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "single-family",
+    "status": "active",
+    "description": "Distinctio voluptatem alias corporis distinctio suscipit quos distinctio.",
+    "beds": 3,
+    "baths": 4,
+    "sqft": 3083,
+    "lotSize": 2880,
+    "yearBuilt": 1954
+  },
+  {
+    "listPrice": 378448,
+    "listedDate": "2023-02-09T14:17:14.062Z",
+    "address": {
+      "line1": "956-A North 42nd Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.34629032317352,
+        47.65762901851398
+      ]
+    },
+    "neighborhood": "Wallingford",
+    "propertyType": "townhouse",
+    "status": "pending",
+    "description": "Necessitatibus non assumenda minus sapiente optio unde fugiat totam.",
+    "beds": 3,
+    "baths": 1,
+    "sqft": 3476,
+    "lotSize": 7083,
+    "yearBuilt": 1932
+  },
+  {
+    "listPrice": 462302,
+    "listedDate": "2022-11-24T18:26:38.942Z",
+    "address": {
+      "line1": "706 North 36th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.34913652142394,
+        47.651359240000254
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "manufactured",
+    "status": "pending",
+    "description": "Esse minus nihil veritatis commodi tempora temporibus sint illo. Fuga beatae incidunt occaecati.",
+    "beds": 4,
+    "baths": 4,
+    "sqft": 4712,
+    "lotSize": 6920,
+    "yearBuilt": 2005
+  },
+  {
+    "listPrice": 372946,
+    "listedDate": "2023-03-03T19:29:29.782Z",
+    "address": {
+      "line1": "118A Northwest 39th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35793603785949,
+        47.65483137112925
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "multi-family",
+    "status": "sold",
+    "description": "Ea vel suscipit cum eaque esse voluptatum ipsum repellendus ad.",
+    "beds": 5,
+    "baths": 3,
+    "sqft": 4555,
+    "lotSize": 6880,
+    "yearBuilt": 2020
+  },
+  {
+    "listPrice": 589880,
+    "listedDate": "2023-04-29T14:28:06.429Z",
+    "address": {
+      "line1": "3626B Palatine Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.3563757991796,
+        47.65342473336419
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "land",
+    "status": "pending",
+    "description": "Doloribus provident eveniet quae sapiente asperiores quis.",
+    "beds": 4,
+    "baths": 1,
+    "sqft": 2218,
+    "lotSize": 5044,
+    "yearBuilt": 2000
+  },
+  {
+    "listPrice": 153673,
+    "listedDate": "2023-03-17T06:41:55.962Z",
+    "address": {
+      "line1": "4500 Baker Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35916425201022,
+        47.66182089640118
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "single-family",
+    "status": "pending",
+    "description": "Alias non est. Modi omnis deserunt occaecati cum nobis hic ab.",
+    "beds": 4,
+    "baths": 2,
+    "sqft": 3953,
+    "lotSize": 5542,
+    "yearBuilt": 1915
+  },
+  {
+    "listPrice": 678452,
+    "listedDate": "2023-05-05T02:53:35.240Z",
+    "address": {
+      "line1": "1102 North 35th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.34362738979235,
+        47.64978836022821
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "land",
+    "status": "sold",
+    "description": "Quo doloremque voluptatibus aspernatur ea rem eligendi ab ex commodi. Consequatur sint nobis nisi repellendus quidem inventore numquam dolorem ab.",
+    "beds": 2,
+    "baths": 2,
+    "sqft": 4947,
+    "lotSize": 4166,
+    "yearBuilt": 1963
+  },
+  {
+    "listPrice": 449176,
+    "listedDate": "2023-01-14T06:43:24.197Z",
+    "address": {
+      "line1": "4025 Whitman Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.34579677337297,
+        47.65607738733281
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "townhouse",
+    "status": "active",
+    "description": "Facere itaque nulla quo reiciendis ipsam totam voluptates. Eaque autem ipsa qui quisquam. Inventore corrupti velit reprehenderit ipsum ad libero eos recusandae tenetur.",
+    "beds": 3,
+    "baths": 3,
+    "sqft": 4009,
+    "lotSize": 2300,
+    "yearBuilt": 1944
+  },
+  {
+    "listPrice": 763820,
+    "listedDate": "2023-04-23T08:07:06.303Z",
+    "address": {
+      "line1": "3615 2nd Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35927071629207,
+        47.65371572332409
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "multi-family",
+    "status": "sold",
+    "description": "Hic nemo necessitatibus illum excepturi facilis quis quos ad.",
+    "beds": 2,
+    "baths": 4,
+    "sqft": 1768,
+    "lotSize": 4237,
+    "yearBuilt": 1949
+  },
+  {
+    "listPrice": 739361,
+    "listedDate": "2023-01-31T17:31:51.366Z",
+    "address": {
+      "line1": "1203 North 43rd Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.34361411766781,
+        47.65959714510437
+      ]
+    },
+    "neighborhood": "Wallingford",
+    "propertyType": "land",
+    "status": "active",
+    "description": "Sint quisquam beatae laudantium vero. Accusamus consequatur ducimus earum quis deleniti officia saepe. Saepe ipsum ratione necessitatibus eligendi nam ex alias.",
+    "beds": 5,
+    "baths": 4,
+    "sqft": 1605,
+    "lotSize": 4029,
+    "yearBuilt": 2012
+  },
+  {
+    "listPrice": 693224,
+    "listedDate": "2023-05-15T08:08:32.042Z",
+    "address": {
+      "line1": "4110 1st Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35762613116657,
+        47.65663452621371
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "single-family",
+    "status": "pending",
+    "description": "Fugit distinctio tenetur pariatur repudiandae aperiam cumque. Libero reiciendis quam nobis suscipit fugiat architecto reiciendis velit.",
+    "beds": 5,
+    "baths": 2,
+    "sqft": 1825,
+    "lotSize": 1480,
+    "yearBuilt": 1952
+  },
+  {
+    "listPrice": 613854,
+    "listedDate": "2023-02-10T00:33:36.708Z",
+    "address": {
+      "line1": "3920 6th Avenue West",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.36254602146185,
+        47.654178248900635
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "condo",
+    "status": "sold",
+    "description": "Optio sapiente nisi blanditiis cupiditate. Minima possimus sint dignissimos quod. Nesciunt sint recusandae suscipit porro.",
+    "beds": 5,
+    "baths": 2,
+    "sqft": 3887,
+    "lotSize": 5277,
+    "yearBuilt": 1943
+  },
+  {
+    "listPrice": 132523,
+    "listedDate": "2023-01-06T00:32:42.262Z",
+    "address": {
+      "line1": "3957 Fremont Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35077982881596,
+        47.654901261374995
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "land",
+    "status": "pending",
+    "description": "Veniam sint praesentium iusto architecto cumque labore. Consequuntur recusandae delectus sequi mollitia in eligendi. Labore sapiente laborum fugiat reiciendis assumenda sint modi.",
+    "beds": 2,
+    "baths": 4,
+    "sqft": 2806,
+    "lotSize": 2900,
+    "yearBuilt": 1984
+  },
+  {
+    "listPrice": 277489,
+    "listedDate": "2023-02-12T15:42:01.923Z",
+    "address": {
+      "line1": "4331 Dayton Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35211772444728,
+        47.65980451495716
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "townhouse",
+    "status": "pending",
+    "description": "Sapiente aspernatur voluptate necessitatibus nostrum aut sunt. Corrupti aliquam beatae inventore repudiandae. Minus nam corporis illum.",
+    "beds": 3,
+    "baths": 4,
+    "sqft": 2013,
+    "lotSize": 2178,
+    "yearBuilt": 2016
+  },
+  {
+    "listPrice": 741469,
+    "listedDate": "2023-04-28T03:11:23.286Z",
     "address": {
       "line1": "3930 Woodland Park Avenue North",
       "line2": "",
@@ -2064,79 +1092,25 @@
     "geometry": {
       "type": "Point",
       "coordinates": [
-        -122.34446656915274,
-        47.655279083672845
+        -122.34406487390022,
+        47.654865132867165
       ]
     },
     "neighborhood": "Fremont",
-    "propertyType": "multi-family",
+    "propertyType": "single-family",
     "status": "pending",
-    "description": "Ut eveniet distinctio eligendi earum. Iusto in distinctio facere optio cum rerum.",
-    "beds": 5,
-    "baths": 3,
-    "sqft": 2163,
-    "lotSize": 6992,
-    "yearBuilt": 1925
-  },
-  {
-    "listPrice": 390859,
-    "listedDate": "2023-01-28T17:12:33.603Z",
-    "address": {
-      "line1": "4216A Evanston Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35032328031198,
-        47.65807871833094
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "multi-family",
-    "status": "pending",
-    "description": "Dignissimos odio ab saepe cupiditate illo voluptatum quam et nostrum.",
-    "beds": 2,
-    "baths": 3,
-    "sqft": 2529,
-    "lotSize": 5368,
-    "yearBuilt": 1937
-  },
-  {
-    "listPrice": 630538,
-    "listedDate": "2023-02-07T15:23:33.049Z",
-    "address": {
-      "line1": "612 Northwest Bright Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.36504023844701,
-        47.660527136679704
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "land",
-    "status": "sold",
-    "description": "Illo quisquam quasi voluptatem architecto.",
+    "description": "Quasi error nesciunt natus. Tenetur consequuntur itaque sed aspernatur omnis. Ducimus ad non.",
     "beds": 4,
     "baths": 4,
-    "sqft": 2512,
-    "lotSize": 3899,
-    "yearBuilt": 1964
+    "sqft": 2660,
+    "lotSize": 6667,
+    "yearBuilt": 1930
   },
   {
-    "listPrice": 708196,
-    "listedDate": "2023-05-15T10:08:21.457Z",
+    "listPrice": 663313,
+    "listedDate": "2022-12-24T14:17:04.983Z",
     "address": {
-      "line1": "4321 Woodland Park Avenue North",
+      "line1": "4815 Fremont Avenue North",
       "line2": "",
       "city": "Seattle",
       "state": "Washington",
@@ -2145,52 +1119,25 @@
     "geometry": {
       "type": "Point",
       "coordinates": [
-        -122.3448024648387,
-        47.660340807064884
+        -122.3498575579264,
+        47.66434231749335
       ]
     },
-    "neighborhood": "Wallingford",
-    "propertyType": "multi-family",
+    "neighborhood": "Fremont",
+    "propertyType": "single-family",
     "status": "active",
-    "description": "Reiciendis itaque dignissimos eius adipisci natus necessitatibus inventore. Nihil aut a mollitia ad tempore autem molestias reiciendis.",
-    "beds": 5,
-    "baths": 3,
-    "sqft": 2865,
-    "lotSize": 6656,
-    "yearBuilt": 1915
+    "description": "Tempore molestias earum cupiditate modi explicabo. Doloremque consequatur eius vel soluta sapiente.",
+    "beds": 3,
+    "baths": 1,
+    "sqft": 4176,
+    "lotSize": 7382,
+    "yearBuilt": 1972
   },
   {
-    "listPrice": 786986,
-    "listedDate": "2023-01-03T07:02:21.521Z",
+    "listPrice": 775589,
+    "listedDate": "2023-04-15T03:44:11.062Z",
     "address": {
-      "line1": "4500 Aurora Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.34703180056302,
-        47.6615238432084
-      ]
-    },
-    "neighborhood": "Wallingford",
-    "propertyType": "manufactured",
-    "status": "active",
-    "description": "Consequuntur tempora vero rerum perspiciatis dicta veniam. Labore ipsam quisquam rerum totam. Labore atque a.",
-    "beds": 2,
-    "baths": 3,
-    "sqft": 1479,
-    "lotSize": 1315,
-    "yearBuilt": 1970
-  },
-  {
-    "listPrice": 636189,
-    "listedDate": "2023-02-26T21:40:18.631Z",
-    "address": {
-      "line1": "4316 2nd Avenue Northwest",
+      "line1": "3618 Leary Way Northwest",
       "line2": "",
       "city": "Seattle",
       "state": "Washington",
@@ -2199,187 +1146,133 @@
     "geometry": {
       "type": "Point",
       "coordinates": [
-        -122.35833809557819,
-        47.659423807576836
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "land",
-    "status": "sold",
-    "description": "Inventore unde veniam. Laborum occaecati dolor sint omnis voluptas modi sunt. Molestias labore veniam quo quae minima in.",
-    "beds": 2,
-    "baths": 1,
-    "sqft": 2124,
-    "lotSize": 4350,
-    "yearBuilt": 1920
-  },
-  {
-    "listPrice": 383320,
-    "listedDate": "2023-02-02T03:30:24.443Z",
-    "address": {
-      "line1": "4008 Aurora Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.34697827271324,
-        47.65600193850175
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "manufactured",
-    "status": "active",
-    "description": "Harum mollitia facere eveniet iure facere aliquam. Aut harum dolor est molestiae amet. Eligendi libero provident error mollitia dignissimos qui est quas.",
-    "beds": 3,
-    "baths": 1,
-    "sqft": 3053,
-    "lotSize": 1486,
-    "yearBuilt": 1949
-  },
-  {
-    "listPrice": 462761,
-    "listedDate": "2023-02-08T15:19:22.960Z",
-    "address": {
-      "line1": "1108 North 44th Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.34401422795504,
-        47.6602187831341
-      ]
-    },
-    "neighborhood": "Wallingford",
-    "propertyType": "condo",
-    "status": "pending",
-    "description": "Repudiandae ex explicabo quod odio aspernatur perferendis dolorem praesentium consectetur. Dignissimos possimus mollitia labore eum. Totam omnis delectus vitae molestiae architecto eligendi explicabo asperiores veniam.",
-    "beds": 3,
-    "baths": 1,
-    "sqft": 4668,
-    "lotSize": 2646,
-    "yearBuilt": 1911
-  },
-  {
-    "listPrice": 365790,
-    "listedDate": "2023-04-30T15:13:51.085Z",
-    "address": {
-      "line1": "4022 Stone Way North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.34246572431756,
-        47.656096724270704
-      ]
-    },
-    "neighborhood": "Wallingford",
-    "propertyType": "single-family",
-    "status": "active",
-    "description": "Quae facere ab odio perferendis nesciunt placeat ex. Animi tempora quae. Consectetur dolorem aut similique exercitationem soluta consequuntur.",
-    "beds": 3,
-    "baths": 3,
-    "sqft": 1026,
-    "lotSize": 6032,
-    "yearBuilt": 1947
-  },
-  {
-    "listPrice": 149586,
-    "listedDate": "2023-04-22T02:12:04.750Z",
-    "address": {
-      "line1": "4220B Fremont Avenue North",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.34967095587704,
-        47.65836351061146
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "single-family",
-    "status": "sold",
-    "description": "Adipisci iste unde dolores ullam temporibus voluptatibus esse.",
-    "beds": 3,
-    "baths": 1,
-    "sqft": 4519,
-    "lotSize": 4355,
-    "yearBuilt": 1970
-  },
-  {
-    "listPrice": 705736,
-    "listedDate": "2022-12-30T03:17:10.109Z",
-    "address": {
-      "line1": "712 North 34th Street",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98103"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.34904985494158,
-        47.64970098389135
-      ]
-    },
-    "neighborhood": "Fremont",
-    "propertyType": "single-family",
-    "status": "pending",
-    "description": "Modi ipsa dicta amet. Temporibus tenetur fugit nostrum modi. Unde accusantium ut fugiat sunt.",
-    "beds": 5,
-    "baths": 4,
-    "sqft": 4357,
-    "lotSize": 7300,
-    "yearBuilt": 1962
-  },
-  {
-    "listPrice": 478793,
-    "listedDate": "2023-01-16T20:21:10.097Z",
-    "address": {
-      "line1": "4429 2nd Avenue Northwest",
-      "line2": "",
-      "city": "Seattle",
-      "state": "Washington",
-      "zip": "98107"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -122.35919954709276,
-        47.66105604888454
+        -122.36003927643205,
+        47.65391538187631
       ]
     },
     "neighborhood": "Fremont",
     "propertyType": "townhouse",
     "status": "pending",
-    "description": "Repellat nihil quia harum dolores rerum ducimus.",
-    "beds": 3,
-    "baths": 3,
-    "sqft": 2948,
-    "lotSize": 4874,
-    "yearBuilt": 1943
+    "description": "Dolores assumenda ipsa repellendus nobis. Laborum praesentium asperiores officia officiis voluptatibus omnis amet.",
+    "beds": 5,
+    "baths": 4,
+    "sqft": 2904,
+    "lotSize": 2328,
+    "yearBuilt": 2015
   },
   {
-    "listPrice": 164993,
-    "listedDate": "2023-03-10T06:38:32.255Z",
+    "listPrice": 104226,
+    "listedDate": "2023-05-17T02:36:29.817Z",
     "address": {
-      "line1": "130 Northwest 40th Street",
+      "line1": "106 North 36th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35708728550576,
+        47.6530540430008
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "multi-family",
+    "status": "pending",
+    "description": "Itaque atque id sequi asperiores aspernatur nobis nobis.",
+    "beds": 3,
+    "baths": 2,
+    "sqft": 4633,
+    "lotSize": 2718,
+    "yearBuilt": 1927
+  },
+  {
+    "listPrice": 215567,
+    "listedDate": "2023-01-16T23:19:42.530Z",
+    "address": {
+      "line1": "910n North Northlake Way",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.34712126147436,
+        47.649042147483925
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "land",
+    "status": "active",
+    "description": "Nemo laudantium cum velit. Recusandae vero veritatis blanditiis.",
+    "beds": 5,
+    "baths": 2,
+    "sqft": 1956,
+    "lotSize": 1065,
+    "yearBuilt": 2002
+  },
+  {
+    "listPrice": 670244,
+    "listedDate": "2023-04-06T21:00:02.625Z",
+    "address": {
+      "line1": "604 North 34th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35118010447972,
+        47.649684573110775
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "land",
+    "status": "active",
+    "description": "Tempora quisquam aspernatur accusamus ratione dicta totam.",
+    "beds": 3,
+    "baths": 2,
+    "sqft": 1481,
+    "lotSize": 4060,
+    "yearBuilt": 1912
+  },
+  {
+    "listPrice": 302000,
+    "listedDate": "2022-12-17T08:13:47.358Z",
+    "address": {
+      "line1": "4118 Palatine Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.3557966653323,
+        47.656898248099495
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "townhouse",
+    "status": "sold",
+    "description": "Ipsa blanditiis mollitia quas et maiores. Nisi porro error deleniti.",
+    "beds": 4,
+    "baths": 3,
+    "sqft": 1342,
+    "lotSize": 4146,
+    "yearBuilt": 1966
+  },
+  {
+    "listPrice": 300579,
+    "listedDate": "2023-05-03T21:35:36.471Z",
+    "address": {
+      "line1": "4624 3rd Avenue Northwest",
       "line2": "",
       "city": "Seattle",
       "state": "Washington",
@@ -2388,25 +1281,52 @@
     "geometry": {
       "type": "Point",
       "coordinates": [
-        -122.35805195748567,
-        47.65589124048194
+        -122.36076863010162,
+        47.66325576380923
       ]
     },
     "neighborhood": "Fremont",
     "propertyType": "manufactured",
-    "status": "sold",
-    "description": "Labore molestiae eius. Sapiente a magnam ducimus sapiente magni asperiores et odio illo.",
-    "beds": 2,
-    "baths": 2,
-    "sqft": 3721,
-    "lotSize": 5164,
-    "yearBuilt": 1950
+    "status": "pending",
+    "description": "Omnis in laboriosam voluptatem dolores atque debitis necessitatibus omnis distinctio. Veniam laborum eligendi laboriosam dolore. Nobis adipisci velit placeat sed inventore quos placeat.",
+    "beds": 4,
+    "baths": 4,
+    "sqft": 1792,
+    "lotSize": 6827,
+    "yearBuilt": 1947
   },
   {
-    "listPrice": 343962,
-    "listedDate": "2023-03-17T20:18:54.055Z",
+    "listPrice": 725062,
+    "listedDate": "2022-11-25T09:08:10.205Z",
     "address": {
-      "line1": "119 North 41st Street",
+      "line1": "130 Northwest Canal Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35875883402508,
+        47.65270535132692
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "condo",
+    "status": "pending",
+    "description": "Et ducimus repudiandae ex excepturi beatae nam maxime. Expedita illum officiis velit sed nisi incidunt. Dolore rerum pariatur.",
+    "beds": 5,
+    "baths": 2,
+    "sqft": 2482,
+    "lotSize": 4121,
+    "yearBuilt": 1923
+  },
+  {
+    "listPrice": 177643,
+    "listedDate": "2022-12-03T10:06:54.899Z",
+    "address": {
+      "line1": "215A North 46th Street",
       "line2": "",
       "city": "Seattle",
       "state": "Washington",
@@ -2415,25 +1335,25 @@
     "geometry": {
       "type": "Point",
       "coordinates": [
-        -122.35624458090312,
-        47.65653624860763
+        -122.35568585352192,
+        47.66219039636136
       ]
     },
-    "neighborhood": "Fremont",
+    "neighborhood": "Northwest Seattle",
     "propertyType": "manufactured",
     "status": "sold",
-    "description": "Vitae facilis modi voluptatem dolores esse alias distinctio adipisci. Excepturi esse consectetur assumenda amet natus minus optio et.",
-    "beds": 2,
-    "baths": 2,
-    "sqft": 2778,
-    "lotSize": 5452,
-    "yearBuilt": 1994
+    "description": "Quisquam facere tempore totam.",
+    "beds": 5,
+    "baths": 4,
+    "sqft": 2888,
+    "lotSize": 6574,
+    "yearBuilt": 1958
   },
   {
-    "listPrice": 573695,
-    "listedDate": "2022-12-20T00:05:11.408Z",
+    "listPrice": 354317,
+    "listedDate": "2023-01-09T05:59:57.826Z",
     "address": {
-      "line1": "3615C Phinney Avenue North",
+      "line1": "132 North Canal Street",
       "line2": "",
       "city": "Seattle",
       "state": "Washington",
@@ -2442,25 +1362,25 @@
     "geometry": {
       "type": "Point",
       "coordinates": [
-        -122.355058209113,
-        47.652815223445096
+        -122.35569172039116,
+        47.651401957491004
       ]
     },
     "neighborhood": "Fremont",
     "propertyType": "land",
-    "status": "pending",
-    "description": "Odio voluptates non dolorem molestias consequatur temporibus corrupti.",
-    "beds": 4,
-    "baths": 2,
-    "sqft": 4099,
-    "lotSize": 3302,
-    "yearBuilt": 1970
+    "status": "sold",
+    "description": "Eligendi quae accusantium fugiat reiciendis ratione quia fugit.",
+    "beds": 2,
+    "baths": 4,
+    "sqft": 3248,
+    "lotSize": 3710,
+    "yearBuilt": 1967
   },
   {
-    "listPrice": 311855,
-    "listedDate": "2023-03-21T02:00:27.983Z",
+    "listPrice": 241313,
+    "listedDate": "2022-12-06T12:42:21.653Z",
     "address": {
-      "line1": "4501 Linden Avenue North",
+      "line1": "3619 Dayton Avenue North",
       "line2": "",
       "city": "Seattle",
       "state": "Washington",
@@ -2469,18 +1389,3339 @@
     "geometry": {
       "type": "Point",
       "coordinates": [
-        -122.34906673809974,
-        47.66141198194349
+        -122.3523988281562,
+        47.652580251424546
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "single-family",
+    "status": "pending",
+    "description": "Nobis a dolore tenetur.",
+    "beds": 3,
+    "baths": 4,
+    "sqft": 1804,
+    "lotSize": 5921,
+    "yearBuilt": 1914
+  },
+  {
+    "listPrice": 198654,
+    "listedDate": "2023-04-11T16:12:06.020Z",
+    "address": {
+      "line1": "808 North 44th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.3481976321413,
+        47.66030790424757
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "townhouse",
+    "status": "sold",
+    "description": "Beatae at autem recusandae voluptatem laudantium.",
+    "beds": 2,
+    "baths": 2,
+    "sqft": 2034,
+    "lotSize": 4642,
+    "yearBuilt": 1918
+  },
+  {
+    "listPrice": 120358,
+    "listedDate": "2022-12-08T15:43:56.988Z",
+    "address": {
+      "line1": "4421 Phinney Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35474890746619,
+        47.660945888319624
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "manufactured",
+    "status": "pending",
+    "description": "Sunt pariatur iusto necessitatibus exercitationem iste magni maxime dolore ratione.",
+    "beds": 5,
+    "baths": 3,
+    "sqft": 1830,
+    "lotSize": 2499,
+    "yearBuilt": 2018
+  },
+  {
+    "listPrice": 483486,
+    "listedDate": "2023-02-25T14:01:44.610Z",
+    "address": {
+      "line1": "4324 Evanston Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35086311281151,
+        47.65997885259721
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "manufactured",
+    "status": "active",
+    "description": "Dolores eius quidem nesciunt ipsum veniam. Unde velit inventore consectetur. Adipisci fugit pariatur doloribus iste praesentium ad laboriosam explicabo sit.",
+    "beds": 5,
+    "baths": 4,
+    "sqft": 4826,
+    "lotSize": 4066,
+    "yearBuilt": 1999
+  },
+  {
+    "listPrice": 727104,
+    "listedDate": "2023-05-17T11:54:44.172Z",
+    "address": {
+      "line1": "4324 Whitman Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.34536911946226,
+        47.66028281318398
+      ]
+    },
+    "neighborhood": "Wallingford",
+    "propertyType": "multi-family",
+    "status": "active",
+    "description": "Quas occaecati a sed impedit totam facilis quod. Asperiores deleniti inventore dignissimos asperiores.",
+    "beds": 3,
+    "baths": 4,
+    "sqft": 1421,
+    "lotSize": 5179,
+    "yearBuilt": 2001
+  },
+  {
+    "listPrice": 243780,
+    "listedDate": "2023-03-21T23:54:43.841Z",
+    "address": {
+      "line1": "207 North Market Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35616817637833,
+        47.66239347051431
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "land",
+    "status": "active",
+    "description": "Corporis saepe possimus molestias officia doloribus. Incidunt veniam dignissimos magni. Illo quam soluta laudantium exercitationem ullam quibusdam laudantium in.",
+    "beds": 5,
+    "baths": 4,
+    "sqft": 2461,
+    "lotSize": 3347,
+    "yearBuilt": 1974
+  },
+  {
+    "listPrice": 275882,
+    "listedDate": "2023-04-26T22:05:20.125Z",
+    "address": {
+      "line1": "4255 4th Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.36278830986036,
+        47.65862296330897
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "single-family",
+    "status": "pending",
+    "description": "Nobis corporis totam ducimus unde sapiente nisi repellendus consequuntur minus. Laborum nihil maiores doloribus quasi numquam nihil vel.",
+    "beds": 3,
+    "baths": 2,
+    "sqft": 4258,
+    "lotSize": 6044,
+    "yearBuilt": 1943
+  },
+  {
+    "listPrice": 507976,
+    "listedDate": "2023-03-30T22:02:10.316Z",
+    "address": {
+      "line1": "4269 Aurora Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.34743425211217,
+        47.65941570285412
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "land",
+    "status": "sold",
+    "description": "Aspernatur velit nostrum officiis ipsam quis soluta iure incidunt. Consectetur laudantium rem aliquam.",
+    "beds": 2,
+    "baths": 2,
+    "sqft": 2954,
+    "lotSize": 4896,
+    "yearBuilt": 1997
+  },
+  {
+    "listPrice": 392419,
+    "listedDate": "2023-04-23T11:30:04.732Z",
+    "address": {
+      "line1": "316 North 39th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35490686818828,
+        47.65448473863229
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "townhouse",
+    "status": "pending",
+    "description": "Debitis saepe et omnis labore placeat reprehenderit. Assumenda ipsa quisquam ea.",
+    "beds": 5,
+    "baths": 3,
+    "sqft": 4133,
+    "lotSize": 1669,
+    "yearBuilt": 1910
+  },
+  {
+    "listPrice": 760077,
+    "listedDate": "2023-05-18T12:25:20.581Z",
+    "address": {
+      "line1": "3918 Dayton Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35266046594589,
+        47.654389234656335
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "manufactured",
+    "status": "active",
+    "description": "Vero accusantium nulla totam quos itaque minima doloribus. Sed reprehenderit ex voluptatibus a ducimus odit. Atque ex nesciunt eaque ipsum ullam cum.",
+    "beds": 2,
+    "baths": 3,
+    "sqft": 2662,
+    "lotSize": 7427,
+    "yearBuilt": 1949
+  },
+  {
+    "listPrice": 435017,
+    "listedDate": "2023-03-23T06:36:02.905Z",
+    "address": {
+      "line1": "1054 North 34th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.34410044673261,
+        47.64888851331022
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "single-family",
+    "status": "pending",
+    "description": "Architecto modi temporibus. Iste commodi beatae amet quos. Nesciunt temporibus molestias dolore.",
+    "beds": 2,
+    "baths": 1,
+    "sqft": 1481,
+    "lotSize": 2671,
+    "yearBuilt": 2023
+  },
+  {
+    "listPrice": 300607,
+    "listedDate": "2022-12-15T06:44:13.327Z",
+    "address": {
+      "line1": "4235 6th Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.36453782998476,
+        47.65885552893165
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "condo",
+    "status": "pending",
+    "description": "Nulla labore laborum optio harum ipsam perspiciatis sequi beatae tempore.",
+    "beds": 4,
+    "baths": 4,
+    "sqft": 2476,
+    "lotSize": 2965,
+    "yearBuilt": 1921
+  },
+  {
+    "listPrice": 528364,
+    "listedDate": "2022-12-20T06:00:03.710Z",
+    "address": {
+      "line1": "130 North Canal Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35664277119994,
+        47.65148975133321
       ]
     },
     "neighborhood": "Fremont",
     "propertyType": "single-family",
     "status": "active",
-    "description": "Laudantium quas fuga tenetur hic sunt consequatur quidem necessitatibus.",
+    "description": "Expedita ipsam consequuntur unde harum. Excepturi alias inventore iure voluptate quo. Voluptates tempore quos ducimus labore consequatur nulla.",
+    "beds": 4,
+    "baths": 4,
+    "sqft": 3338,
+    "lotSize": 5414,
+    "yearBuilt": 1921
+  },
+  {
+    "listPrice": 760820,
+    "listedDate": "2023-03-06T07:15:44.446Z",
+    "address": {
+      "line1": "435 North 34th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35355088443754,
+        47.64929281936132
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "manufactured",
+    "status": "active",
+    "description": "Deserunt reiciendis totam eaque mollitia cupiditate. Exercitationem corporis animi labore ullam totam.",
+    "beds": 5,
+    "baths": 4,
+    "sqft": 4825,
+    "lotSize": 1047,
+    "yearBuilt": 1910
+  },
+  {
+    "listPrice": 539136,
+    "listedDate": "2023-01-24T05:28:17.350Z",
+    "address": {
+      "line1": "1216 North 42nd Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.3429809184491,
+        47.658064573879635
+      ]
+    },
+    "neighborhood": "Wallingford",
+    "propertyType": "condo",
+    "status": "sold",
+    "description": "Perferendis quis quas a.",
     "beds": 3,
     "baths": 3,
-    "sqft": 1926,
-    "lotSize": 1846,
+    "sqft": 4032,
+    "lotSize": 5561,
+    "yearBuilt": 1981
+  },
+  {
+    "listPrice": 330669,
+    "listedDate": "2023-02-27T08:07:54.031Z",
+    "address": {
+      "line1": "4200 Baker Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35920198119207,
+        47.657994704841876
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "townhouse",
+    "status": "pending",
+    "description": "Assumenda minima minus voluptates nobis voluptatibus.",
+    "beds": 5,
+    "baths": 4,
+    "sqft": 1386,
+    "lotSize": 2960,
+    "yearBuilt": 1914
+  },
+  {
+    "listPrice": 157910,
+    "listedDate": "2023-01-12T22:27:32.242Z",
+    "address": {
+      "line1": "309 39th Avenue East",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.36121107180757,
+        47.65407478589291
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "townhouse",
+    "status": "active",
+    "description": "Soluta dignissimos est culpa non adipisci numquam earum. Vero quo doloribus ipsum.",
+    "beds": 4,
+    "baths": 3,
+    "sqft": 2195,
+    "lotSize": 5310,
+    "yearBuilt": 1981
+  },
+  {
+    "listPrice": 687873,
+    "listedDate": "2023-01-28T21:42:22.446Z",
+    "address": {
+      "line1": "4308B Greenwood Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35535915611429,
+        47.65931091103396
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "condo",
+    "status": "sold",
+    "description": "At quidem quasi eaque corporis deserunt autem saepe neque quibusdam.",
+    "beds": 4,
+    "baths": 1,
+    "sqft": 3248,
+    "lotSize": 1780,
+    "yearBuilt": 2019
+  },
+  {
+    "listPrice": 674720,
+    "listedDate": "2023-01-23T04:06:25.417Z",
+    "address": {
+      "line1": "3624 Stone Way North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.34258425081,
+        47.651194099736855
+      ]
+    },
+    "neighborhood": "Wallingford",
+    "propertyType": "manufactured",
+    "status": "pending",
+    "description": "Sapiente impedit a nisi ipsa neque. Hic similique provident iste omnis aperiam sit quidem sunt. Quibusdam ipsam beatae inventore mollitia consequuntur ducimus.",
+    "beds": 5,
+    "baths": 2,
+    "sqft": 1453,
+    "lotSize": 2745,
+    "yearBuilt": 1942
+  },
+  {
+    "listPrice": 152923,
+    "listedDate": "2023-01-06T22:16:00.733Z",
+    "address": {
+      "line1": "456 North 35th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35186197571319,
+        47.65108816886263
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "multi-family",
+    "status": "pending",
+    "description": "Eos ullam blanditiis hic esse fugit. Aliquid enim tempora veritatis alias quis culpa itaque quae possimus. Nam labore ratione odit qui quidem.",
+    "beds": 2,
+    "baths": 3,
+    "sqft": 4523,
+    "lotSize": 4498,
+    "yearBuilt": 1959
+  },
+  {
+    "listPrice": 275023,
+    "listedDate": "2023-04-05T07:07:49.549Z",
+    "address": {
+      "line1": "515 North 41st Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35262032782974,
+        47.65695320416107
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "townhouse",
+    "status": "pending",
+    "description": "Molestias officiis ut nisi iusto. Molestiae cumque adipisci sint magni iste.",
+    "beds": 2,
+    "baths": 1,
+    "sqft": 3628,
+    "lotSize": 4518,
+    "yearBuilt": 1946
+  },
+  {
+    "listPrice": 471296,
+    "listedDate": "2022-12-14T17:03:02.746Z",
+    "address": {
+      "line1": "555 North 36th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35135450071924,
+        47.65155417234524
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "land",
+    "status": "pending",
+    "description": "Molestiae quidem vitae vitae eaque numquam. Iure blanditiis itaque ullam dolorem dignissimos.",
+    "beds": 3,
+    "baths": 3,
+    "sqft": 1698,
+    "lotSize": 4913,
+    "yearBuilt": 1962
+  },
+  {
+    "listPrice": 168292,
+    "listedDate": "2023-01-23T03:29:57.361Z",
+    "address": {
+      "line1": "808 North Motor Place",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.34800858687917,
+        47.658903185057056
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "land",
+    "status": "pending",
+    "description": "Debitis repudiandae impedit temporibus tempora. Asperiores enim est.",
+    "beds": 4,
+    "baths": 3,
+    "sqft": 2022,
+    "lotSize": 3253,
+    "yearBuilt": 1946
+  },
+  {
+    "listPrice": 580283,
+    "listedDate": "2022-12-05T11:14:49.839Z",
+    "address": {
+      "line1": "3905 Bridge Way North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.34327461381251,
+        47.65407444330004
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "condo",
+    "status": "pending",
+    "description": "Quam maiores eius fugit ab eos accusantium ducimus qui. Ratione aperiam rem sit.",
+    "beds": 3,
+    "baths": 2,
+    "sqft": 3596,
+    "lotSize": 4619,
+    "yearBuilt": 2017
+  },
+  {
+    "listPrice": 187327,
+    "listedDate": "2022-11-24T17:12:15.159Z",
+    "address": {
+      "line1": "850 Northwest 41st Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.3649450394622,
+        47.65680536410082
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "manufactured",
+    "status": "pending",
+    "description": "Facilis in expedita.",
+    "beds": 3,
+    "baths": 3,
+    "sqft": 4462,
+    "lotSize": 4779,
+    "yearBuilt": 1922
+  },
+  {
+    "listPrice": 574071,
+    "listedDate": "2023-04-28T00:21:14.555Z",
+    "address": {
+      "line1": "722 North Allen Place",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.34877732413761,
+        47.66085953395157
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "land",
+    "status": "pending",
+    "description": "At officia dolore sapiente molestiae.",
+    "beds": 4,
+    "baths": 1,
+    "sqft": 3028,
+    "lotSize": 4562,
+    "yearBuilt": 1923
+  },
+  {
+    "listPrice": 477220,
+    "listedDate": "2023-04-11T10:52:45.608Z",
+    "address": {
+      "line1": "4024 Dayton Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35266878494731,
+        47.65647506032489
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "manufactured",
+    "status": "pending",
+    "description": "Similique veniam iure facere sed laudantium eius necessitatibus. Sequi voluptatibus pariatur maiores quibusdam vero possimus in.",
+    "beds": 4,
+    "baths": 1,
+    "sqft": 2069,
+    "lotSize": 6469,
+    "yearBuilt": 1975
+  },
+  {
+    "listPrice": 726723,
+    "listedDate": "2023-02-04T01:53:42.327Z",
+    "address": {
+      "line1": "3652 Whitman Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.34558665435952,
+        47.65198321088103
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "single-family",
+    "status": "active",
+    "description": "Molestiae provident iure ex.",
+    "beds": 4,
+    "baths": 2,
+    "sqft": 1352,
+    "lotSize": 3108,
+    "yearBuilt": 1939
+  },
+  {
+    "listPrice": 713239,
+    "listedDate": "2023-03-25T16:23:22.144Z",
+    "address": {
+      "line1": "4136 1st Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35672819730452,
+        47.657647250360704
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "multi-family",
+    "status": "pending",
+    "description": "Fugiat inventore repudiandae perspiciatis quis temporibus earum placeat praesentium unde. Adipisci fugit laborum.",
+    "beds": 3,
+    "baths": 3,
+    "sqft": 3039,
+    "lotSize": 3453,
+    "yearBuilt": 1942
+  },
+  {
+    "listPrice": 428557,
+    "listedDate": "2023-02-21T14:06:24.500Z",
+    "address": {
+      "line1": "417 North 41st Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35428983083627,
+        47.65650619225988
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "multi-family",
+    "status": "sold",
+    "description": "Quis nisi amet iusto sapiente unde omnis aperiam sapiente. Quibusdam eligendi tempora recusandae saepe porro.",
+    "beds": 2,
+    "baths": 3,
+    "sqft": 1368,
+    "lotSize": 5419,
+    "yearBuilt": 1925
+  },
+  {
+    "listPrice": 543123,
+    "listedDate": "2023-02-12T06:21:49.361Z",
+    "address": {
+      "line1": "303 North 43rd Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.3554033266312,
+        47.658583742585186
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "condo",
+    "status": "active",
+    "description": "Eius quae modi odit sequi. Odio beatae saepe repellendus alias ipsum vero temporibus esse.",
+    "beds": 3,
+    "baths": 2,
+    "sqft": 1769,
+    "lotSize": 2933,
+    "yearBuilt": 2015
+  },
+  {
+    "listPrice": 249824,
+    "listedDate": "2023-01-24T11:23:52.032Z",
+    "address": {
+      "line1": "613 North 49th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35068658086867,
+        47.66413892403343
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "townhouse",
+    "status": "pending",
+    "description": "Illo consequatur unde quidem eaque error quisquam.",
+    "beds": 3,
+    "baths": 1,
+    "sqft": 4962,
+    "lotSize": 5813,
     "yearBuilt": 1924
+  },
+  {
+    "listPrice": 224608,
+    "listedDate": "2022-12-07T16:17:31.313Z",
+    "address": {
+      "line1": "417 North 41st Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35407905874901,
+        47.656627978050864
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "land",
+    "status": "sold",
+    "description": "Optio debitis similique iusto assumenda nobis quam.",
+    "beds": 3,
+    "baths": 1,
+    "sqft": 1129,
+    "lotSize": 2704,
+    "yearBuilt": 1940
+  },
+  {
+    "listPrice": 642712,
+    "listedDate": "2022-11-30T04:05:49.083Z",
+    "address": {
+      "line1": "3938 Aurora Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.34735891869562,
+        47.655284396236816
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "townhouse",
+    "status": "active",
+    "description": "Vel inventore reprehenderit illo velit suscipit quam expedita. Quisquam optio rem animi quis molestiae deleniti labore tempore possimus. Veniam harum autem est hic facere vero.",
+    "beds": 2,
+    "baths": 1,
+    "sqft": 1053,
+    "lotSize": 4682,
+    "yearBuilt": 1950
+  },
+  {
+    "listPrice": 512207,
+    "listedDate": "2023-05-06T16:59:11.717Z",
+    "address": {
+      "line1": "4022 Midvale Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.34334288654777,
+        47.65578432652288
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "condo",
+    "status": "sold",
+    "description": "Debitis asperiores deserunt in reiciendis cupiditate porro illo blanditiis totam. Modi maiores nobis accusantium totam nesciunt cupiditate fugit illum.",
+    "beds": 3,
+    "baths": 3,
+    "sqft": 4972,
+    "lotSize": 3573,
+    "yearBuilt": 1920
+  },
+  {
+    "listPrice": 364909,
+    "listedDate": "2023-03-08T21:11:56.186Z",
+    "address": {
+      "line1": "3950 6th Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.36357980702851,
+        47.65518437101165
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "single-family",
+    "status": "pending",
+    "description": "Odio illum praesentium mollitia eos temporibus accusamus.",
+    "beds": 3,
+    "baths": 2,
+    "sqft": 2850,
+    "lotSize": 3436,
+    "yearBuilt": 1923
+  },
+  {
+    "listPrice": 601514,
+    "listedDate": "2022-12-15T00:35:04.026Z",
+    "address": {
+      "line1": "912 North 35th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.34668834201331,
+        47.65018946174865
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "townhouse",
+    "status": "active",
+    "description": "Commodi eius cupiditate iusto. Cum officia optio repellendus soluta facilis voluptatem nisi officiis praesentium. Aut in libero non.",
+    "beds": 4,
+    "baths": 3,
+    "sqft": 2069,
+    "lotSize": 4228,
+    "yearBuilt": 1965
+  },
+  {
+    "listPrice": 685629,
+    "listedDate": "2023-03-08T20:07:15.399Z",
+    "address": {
+      "line1": "4402 3rd Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.36067982116903,
+        47.66055933562212
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "condo",
+    "status": "sold",
+    "description": "Aspernatur maiores iste. Cumque fugiat ratione est accusamus voluptas.",
+    "beds": 4,
+    "baths": 3,
+    "sqft": 2362,
+    "lotSize": 3577,
+    "yearBuilt": 1925
+  },
+  {
+    "listPrice": 571153,
+    "listedDate": "2022-12-08T23:35:29.635Z",
+    "address": {
+      "line1": "901 North Northlake Way",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.34692849434711,
+        47.64804976574187
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "condo",
+    "status": "pending",
+    "description": "Ut tempora quos ipsum ratione ea sapiente neque vero illum. Vitae ratione facilis. Vero deserunt inventore ipsum voluptatem.",
+    "beds": 3,
+    "baths": 3,
+    "sqft": 4575,
+    "lotSize": 2306,
+    "yearBuilt": 1948
+  },
+  {
+    "listPrice": 437882,
+    "listedDate": "2023-03-21T21:06:40.317Z",
+    "address": {
+      "line1": "4723 Phinney Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35476590502776,
+        47.663662760125014
+      ]
+    },
+    "neighborhood": "Northwest Seattle",
+    "propertyType": "single-family",
+    "status": "pending",
+    "description": "Officiis nam aspernatur fuga iure dolorem. Ratione quisquam eligendi saepe deleniti ducimus eligendi amet temporibus. Natus odit fugiat fuga blanditiis quae veritatis in.",
+    "beds": 3,
+    "baths": 4,
+    "sqft": 3064,
+    "lotSize": 2608,
+    "yearBuilt": 1934
+  },
+  {
+    "listPrice": 322936,
+    "listedDate": "2023-01-02T22:36:30.315Z",
+    "address": {
+      "line1": "436 North 34th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35313998475819,
+        47.65096686489882
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "single-family",
+    "status": "active",
+    "description": "Dicta repellat quibusdam praesentium eius tempore suscipit. Velit repellat sunt.",
+    "beds": 2,
+    "baths": 4,
+    "sqft": 1134,
+    "lotSize": 3716,
+    "yearBuilt": 1974
+  },
+  {
+    "listPrice": 374225,
+    "listedDate": "2023-04-12T22:04:51.013Z",
+    "address": {
+      "line1": "516 North 44th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.3512705425516,
+        47.660152486777925
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "townhouse",
+    "status": "active",
+    "description": "Voluptatibus vero accusantium placeat odio esse. Possimus occaecati quia possimus saepe omnis.",
+    "beds": 3,
+    "baths": 2,
+    "sqft": 2661,
+    "lotSize": 1681,
+    "yearBuilt": 1969
+  },
+  {
+    "listPrice": 269582,
+    "listedDate": "2023-02-23T04:41:29.068Z",
+    "address": {
+      "line1": "3957 Fremont Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35024385398337,
+        47.655048236383095
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "multi-family",
+    "status": "sold",
+    "description": "Deserunt aperiam ducimus dolorem. Laborum quas dolorem minima ut aliquid quaerat ex.",
+    "beds": 4,
+    "baths": 1,
+    "sqft": 2994,
+    "lotSize": 2201,
+    "yearBuilt": 2015
+  },
+  {
+    "listPrice": 147034,
+    "listedDate": "2023-04-16T11:42:00.941Z",
+    "address": {
+      "line1": "4022 Fremont Avenue North",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.34940464050747,
+        47.65604620856872
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "manufactured",
+    "status": "pending",
+    "description": "Debitis quam quos vero nihil unde.",
+    "beds": 2,
+    "baths": 1,
+    "sqft": 3255,
+    "lotSize": 6504,
+    "yearBuilt": 1974
+  },
+  {
+    "listPrice": 536597,
+    "listedDate": "2023-02-13T09:56:12.872Z",
+    "address": {
+      "line1": "120 Northwest 49th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.35856218117469,
+        47.65455918490896
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "multi-family",
+    "status": "sold",
+    "description": "Cupiditate quidem nemo. Laudantium eveniet alias ullam at commodi commodi. Aspernatur aperiam minus dignissimos itaque voluptatem.",
+    "beds": 4,
+    "baths": 3,
+    "sqft": 1084,
+    "lotSize": 3425,
+    "yearBuilt": 2007
+  },
+  {
+    "listPrice": 305065,
+    "listedDate": "2023-03-14T14:23:32.704Z",
+    "address": {
+      "line1": "1102 North 35th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.34393343443857,
+        47.649794353059114
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "land",
+    "status": "sold",
+    "description": "Aperiam iusto dolor. Sit sunt sunt necessitatibus eligendi corrupti. Deserunt optio ad nobis aut est eum magnam assumenda suscipit.",
+    "beds": 3,
+    "baths": 2,
+    "sqft": 4079,
+    "lotSize": 2258,
+    "yearBuilt": 1968
+  },
+  {
+    "listPrice": 304342,
+    "listedDate": "2022-12-29T18:53:13.766Z",
+    "address": {
+      "line1": "606 North 41st Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98103"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.36422317655116,
+        47.65737433577068
+      ]
+    },
+    "neighborhood": "Fremont",
+    "propertyType": "townhouse",
+    "status": "sold",
+    "description": "Ipsum qui eligendi at error cum cum optio.",
+    "beds": 4,
+    "baths": 1,
+    "sqft": 2837,
+    "lotSize": 4133,
+    "yearBuilt": 1910
+  },
+  {
+    "listPrice": 126469,
+    "listedDate": "2023-03-09T01:39:03.249Z",
+    "address": {
+      "line1": "4706 Ballard Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.37858842084034,
+        47.663510228507
+      ]
+    },
+    "neighborhood": "Adams",
+    "propertyType": "condo",
+    "status": "active",
+    "description": "Ea ullam eligendi ex aut esse officia. Consectetur maxime molestiae labore quia quae ducimus suscipit nobis.",
+    "beds": 5,
+    "baths": 3,
+    "sqft": 4685,
+    "lotSize": 6619,
+    "yearBuilt": 1935
+  },
+  {
+    "listPrice": 662093,
+    "listedDate": "2023-02-18T07:04:16.927Z",
+    "address": {
+      "line1": "7201 34th Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.40147084595111,
+        47.68075765842348
+      ]
+    },
+    "neighborhood": "Ballard",
+    "propertyType": "manufactured",
+    "status": "sold",
+    "description": "Doloremque voluptates consequuntur. In distinctio rerum pariatur doloribus rerum officiis.",
+    "beds": 3,
+    "baths": 3,
+    "sqft": 1251,
+    "lotSize": 3174,
+    "yearBuilt": 1947
+  },
+  {
+    "listPrice": 701249,
+    "listedDate": "2022-12-23T19:08:16.929Z",
+    "address": {
+      "line1": "1922 Northwest Canoe Place",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.38246201858281,
+        47.680770880581214
+      ]
+    },
+    "neighborhood": "Loyal Heights",
+    "propertyType": "manufactured",
+    "status": "sold",
+    "description": "Perspiciatis est soluta ad ullam eius sequi amet repudiandae.",
+    "beds": 2,
+    "baths": 3,
+    "sqft": 1383,
+    "lotSize": 5661,
+    "yearBuilt": 1988
+  },
+  {
+    "listPrice": 787492,
+    "listedDate": "2022-12-22T08:06:39.959Z",
+    "address": {
+      "line1": "2851 Northwest 60th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.39451064843237,
+        47.67202177668632
+      ]
+    },
+    "neighborhood": "Adams",
+    "propertyType": "manufactured",
+    "status": "sold",
+    "description": "Fuga possimus inventore ratione.",
+    "beds": 2,
+    "baths": 3,
+    "sqft": 1488,
+    "lotSize": 4334,
+    "yearBuilt": 2000
+  },
+  {
+    "listPrice": 165614,
+    "listedDate": "2023-02-02T10:41:01.335Z",
+    "address": {
+      "line1": "6010 15th Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.37614211493374,
+        47.672596815434126
+      ]
+    },
+    "neighborhood": "West Woodland",
+    "propertyType": "townhouse",
+    "status": "active",
+    "description": "Voluptates reprehenderit inventore ullam hic in reiciendis possimus. Voluptate illum magni distinctio maxime aliquid.",
+    "beds": 3,
+    "baths": 3,
+    "sqft": 1088,
+    "lotSize": 3991,
+    "yearBuilt": 1967
+  },
+  {
+    "listPrice": 543491,
+    "listedDate": "2023-02-19T10:40:12.469Z",
+    "address": {
+      "line1": "7000 23rd Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.38575854741646,
+        47.67929322939103
+      ]
+    },
+    "neighborhood": "Loyal Heights",
+    "propertyType": "single-family",
+    "status": "sold",
+    "description": "Consequuntur fuga nemo dolore voluptatum. Nostrum ullam placeat eaque enim quod quidem similique reiciendis. Nemo minus quisquam recusandae.",
+    "beds": 5,
+    "baths": 1,
+    "sqft": 3936,
+    "lotSize": 4197,
+    "yearBuilt": 1911
+  },
+  {
+    "listPrice": 602516,
+    "listedDate": "2023-04-28T01:36:04.594Z",
+    "address": {
+      "line1": "752 Northwest 67th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.36628414892952,
+        47.677954075968714
+      ]
+    },
+    "neighborhood": "Northwest Seattle",
+    "propertyType": "land",
+    "status": "pending",
+    "description": "Dolorum alias laborum doloribus quis commodi asperiores.",
+    "beds": 2,
+    "baths": 2,
+    "sqft": 1334,
+    "lotSize": 4735,
+    "yearBuilt": 2022
+  },
+  {
+    "listPrice": 730209,
+    "listedDate": "2023-02-02T12:02:45.431Z",
+    "address": {
+      "line1": "6841 Seaview Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.40924460462179,
+        47.68036316101002
+      ]
+    },
+    "neighborhood": "Ballard",
+    "propertyType": "land",
+    "status": "pending",
+    "description": "Fuga consequuntur rem occaecati reiciendis natus.",
+    "beds": 2,
+    "baths": 1,
+    "sqft": 3967,
+    "lotSize": 4676,
+    "yearBuilt": 1963
+  },
+  {
+    "listPrice": 294092,
+    "listedDate": "2023-04-03T08:24:50.820Z",
+    "address": {
+      "line1": "806 Northwest 83rd Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.366242187046,
+        47.68926914030603
+      ]
+    },
+    "neighborhood": "Ballard",
+    "propertyType": "condo",
+    "status": "sold",
+    "description": "Repellendus enim consequatur iusto.",
+    "beds": 3,
+    "baths": 4,
+    "sqft": 2157,
+    "lotSize": 5342,
+    "yearBuilt": 1997
+  },
+  {
+    "listPrice": 171930,
+    "listedDate": "2022-12-28T06:51:00.024Z",
+    "address": {
+      "line1": "7750 Seaview Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.40259769570334,
+        47.685027089417765
+      ]
+    },
+    "neighborhood": "Ballard",
+    "propertyType": "condo",
+    "status": "pending",
+    "description": "Harum amet nobis mollitia similique sequi accusamus.",
+    "beds": 2,
+    "baths": 2,
+    "sqft": 1408,
+    "lotSize": 4791,
+    "yearBuilt": 1976
+  },
+  {
+    "listPrice": 419564,
+    "listedDate": "2023-02-16T15:02:33.421Z",
+    "address": {
+      "line1": "8021 32nd Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.39899403543923,
+        47.68812917843101
+      ]
+    },
+    "neighborhood": "Ballard",
+    "propertyType": "land",
+    "status": "sold",
+    "description": "Minima reiciendis sit maiores. Atque atque dolor maiores cumque adipisci dignissimos repudiandae modi.",
+    "beds": 4,
+    "baths": 4,
+    "sqft": 4233,
+    "lotSize": 7157,
+    "yearBuilt": 1950
+  },
+  {
+    "listPrice": 439933,
+    "listedDate": "2023-03-19T20:33:05.108Z",
+    "address": {
+      "line1": "6555 22nd Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.38481641325602,
+        47.67737997144967
+      ]
+    },
+    "neighborhood": "Loyal Heights",
+    "propertyType": "manufactured",
+    "status": "active",
+    "description": "Voluptatem facilis sapiente iure. Nesciunt minus mollitia magni et. Doloribus nobis incidunt minima accusamus nihil.",
+    "beds": 3,
+    "baths": 1,
+    "sqft": 3349,
+    "lotSize": 4264,
+    "yearBuilt": 1955
+  },
+  {
+    "listPrice": 721844,
+    "listedDate": "2023-05-11T20:39:33.137Z",
+    "address": {
+      "line1": "19346 3rd Ave NW",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98177"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.39466393623353,
+        47.66566005757849
+      ]
+    },
+    "neighborhood": "Adams",
+    "propertyType": "manufactured",
+    "status": "pending",
+    "description": "At exercitationem quibusdam itaque error vel molestiae perferendis reiciendis consectetur. Atque mollitia a sequi voluptates. Aut tempora illum sit ipsam quis maiores aperiam.",
+    "beds": 2,
+    "baths": 1,
+    "sqft": 4712,
+    "lotSize": 4817,
+    "yearBuilt": 1961
+  },
+  {
+    "listPrice": 558160,
+    "listedDate": "2023-04-28T11:47:25.755Z",
+    "address": {
+      "line1": "1113 Northwest 62nd Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.37228364186558,
+        47.67356985850583
+      ]
+    },
+    "neighborhood": "West Woodland",
+    "propertyType": "manufactured",
+    "status": "pending",
+    "description": "Impedit tempore sunt suscipit quaerat praesentium sunt adipisci magnam.",
+    "beds": 5,
+    "baths": 4,
+    "sqft": 2557,
+    "lotSize": 3696,
+    "yearBuilt": 1990
+  },
+  {
+    "listPrice": 108332,
+    "listedDate": "2023-03-05T09:51:37.143Z",
+    "address": {
+      "line1": "3439 Northwest 65th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.40281155604917,
+        47.67563390398413
+      ]
+    },
+    "neighborhood": "Ballard",
+    "propertyType": "condo",
+    "status": "pending",
+    "description": "Repellat fuga aliquam eaque quos. Iure voluptates explicabo necessitatibus aliquam exercitationem rem. Deleniti nemo fugiat libero ad.",
+    "beds": 3,
+    "baths": 4,
+    "sqft": 3075,
+    "lotSize": 7080,
+    "yearBuilt": 1941
+  },
+  {
+    "listPrice": 735660,
+    "listedDate": "2023-05-08T15:38:44.240Z",
+    "address": {
+      "line1": "6541 Seaview Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.40876293432196,
+        47.67733118236537
+      ]
+    },
+    "neighborhood": "Ballard",
+    "propertyType": "land",
+    "status": "pending",
+    "description": "Enim reiciendis voluptatibus culpa dicta molestias dicta vel.",
+    "beds": 3,
+    "baths": 2,
+    "sqft": 4499,
+    "lotSize": 3277,
+    "yearBuilt": 1919
+  },
+  {
+    "listPrice": 331237,
+    "listedDate": "2023-01-26T07:30:51.162Z",
+    "address": {
+      "line1": "2631B Northwest 58th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.3914559201302,
+        47.67086067556449
+      ]
+    },
+    "neighborhood": "Adams",
+    "propertyType": "land",
+    "status": "pending",
+    "description": "Harum laudantium eius natus provident harum dolores. Amet magnam delectus eius hic similique nemo.",
+    "beds": 4,
+    "baths": 4,
+    "sqft": 4578,
+    "lotSize": 3032,
+    "yearBuilt": 1917
+  },
+  {
+    "listPrice": 273001,
+    "listedDate": "2023-03-05T02:41:27.490Z",
+    "address": {
+      "line1": "8015 Seaview Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.40212962947403,
+        47.68823278765842
+      ]
+    },
+    "neighborhood": "Ballard",
+    "propertyType": "townhouse",
+    "status": "pending",
+    "description": "Praesentium accusamus exercitationem quos sit.",
+    "beds": 5,
+    "baths": 1,
+    "sqft": 3206,
+    "lotSize": 2443,
+    "yearBuilt": 1987
+  },
+  {
+    "listPrice": 122883,
+    "listedDate": "2023-04-24T14:47:37.896Z",
+    "address": {
+      "line1": "7000 34th Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.40001252869321,
+        47.68494973027446
+      ]
+    },
+    "neighborhood": "Ballard",
+    "propertyType": "land",
+    "status": "pending",
+    "description": "Sequi possimus sit aperiam quod. Vitae perspiciatis odit at enim commodi eveniet ipsum.",
+    "beds": 3,
+    "baths": 4,
+    "sqft": 4366,
+    "lotSize": 1191,
+    "yearBuilt": 1972
+  },
+  {
+    "listPrice": 216294,
+    "listedDate": "2023-01-11T08:44:07.401Z",
+    "address": {
+      "line1": "8700 Golden Gardens Drive Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.40465745464473,
+        47.696972896597806
+      ]
+    },
+    "neighborhood": "North Beach/ Blue Ridge",
+    "propertyType": "townhouse",
+    "status": "active",
+    "description": "Accusantium quibusdam omnis maxime atque reprehenderit sed nobis laborum totam. Esse facere accusantium voluptatibus hic omnis tempore minus in. Perspiciatis blanditiis dolor.",
+    "beds": 2,
+    "baths": 3,
+    "sqft": 2502,
+    "lotSize": 6359,
+    "yearBuilt": 1960
+  },
+  {
+    "listPrice": 311900,
+    "listedDate": "2023-01-07T01:46:02.067Z",
+    "address": {
+      "line1": "3441 Northwest 54th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.40276983796095,
+        47.66797848104677
+      ]
+    },
+    "neighborhood": "Adams",
+    "propertyType": "land",
+    "status": "pending",
+    "description": "Modi possimus aspernatur quasi eius aperiam hic.",
+    "beds": 4,
+    "baths": 1,
+    "sqft": 4985,
+    "lotSize": 5659,
+    "yearBuilt": 1961
+  },
+  {
+    "listPrice": 736366,
+    "listedDate": "2023-03-10T06:36:11.753Z",
+    "address": {
+      "line1": "8021 32nd Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.39974349967622,
+        47.68729288595576
+      ]
+    },
+    "neighborhood": "Ballard",
+    "propertyType": "multi-family",
+    "status": "sold",
+    "description": "Velit quod modi animi eius. Quasi rem asperiores mollitia. Fuga ipsam libero qui enim in.",
+    "beds": 5,
+    "baths": 3,
+    "sqft": 4999,
+    "lotSize": 5705,
+    "yearBuilt": 2001
+  },
+  {
+    "listPrice": 495606,
+    "listedDate": "2023-01-14T09:14:20.538Z",
+    "address": {
+      "line1": "8503 Seaview Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.40438115353754,
+        47.692116438504385
+      ]
+    },
+    "neighborhood": "Ballard",
+    "propertyType": "manufactured",
+    "status": "pending",
+    "description": "Quasi debitis fuga hic inventore ipsam.",
+    "beds": 5,
+    "baths": 1,
+    "sqft": 4055,
+    "lotSize": 3052,
+    "yearBuilt": 1975
+  },
+  {
+    "listPrice": 434707,
+    "listedDate": "2023-03-23T06:59:15.576Z",
+    "address": {
+      "line1": "5417 Shilshole Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.38838447313813,
+        47.66533528751599
+      ]
+    },
+    "neighborhood": "Adams",
+    "propertyType": "land",
+    "status": "sold",
+    "description": "Nostrum vero itaque illum ducimus voluptas in. Dolor blanditiis ut dolorem quos nisi deserunt possimus.",
+    "beds": 3,
+    "baths": 3,
+    "sqft": 1464,
+    "lotSize": 7167,
+    "yearBuilt": 1969
+  },
+  {
+    "listPrice": 375035,
+    "listedDate": "2023-01-17T03:24:55.334Z",
+    "address": {
+      "line1": "1718 Northwest 64th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.37981756350435,
+        47.6754311621475
+      ]
+    },
+    "neighborhood": "Adams",
+    "propertyType": "multi-family",
+    "status": "active",
+    "description": "Ullam laboriosam eos ipsum. Quas eius aut libero sunt eum cumque. Excepturi aliquam adipisci.",
+    "beds": 5,
+    "baths": 4,
+    "sqft": 3891,
+    "lotSize": 1375,
+    "yearBuilt": 1947
+  },
+  {
+    "listPrice": 491215,
+    "listedDate": "2023-03-19T17:38:52.881Z",
+    "address": {
+      "line1": "7545 13th Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.37255915917204,
+        47.68461406803502
+      ]
+    },
+    "neighborhood": "Ballard",
+    "propertyType": "land",
+    "status": "pending",
+    "description": "Perferendis dolorum quos quam enim reiciendis dolorum officiis.",
+    "beds": 3,
+    "baths": 2,
+    "sqft": 3633,
+    "lotSize": 3697,
+    "yearBuilt": 1942
+  },
+  {
+    "listPrice": 688299,
+    "listedDate": "2023-04-16T12:59:18.484Z",
+    "address": {
+      "line1": "6566 Dibble Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.36744923407953,
+        47.677566056385004
+      ]
+    },
+    "neighborhood": "Ballard",
+    "propertyType": "multi-family",
+    "status": "active",
+    "description": "At sit commodi qui iusto soluta nesciunt ipsa dolor. Doloremque velit expedita fugiat. Aliquid reprehenderit aspernatur ipsam.",
+    "beds": 4,
+    "baths": 4,
+    "sqft": 3019,
+    "lotSize": 2264,
+    "yearBuilt": 1972
+  },
+  {
+    "listPrice": 788639,
+    "listedDate": "2023-03-17T05:25:06.838Z",
+    "address": {
+      "line1": "6533 Seaview Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.40990633802699,
+        47.67595583410796
+      ]
+    },
+    "neighborhood": "Ballard",
+    "propertyType": "land",
+    "status": "active",
+    "description": "Esse quod officia reiciendis adipisci quia reiciendis vero.",
+    "beds": 2,
+    "baths": 4,
+    "sqft": 2279,
+    "lotSize": 6965,
+    "yearBuilt": 2012
+  },
+  {
+    "listPrice": 299456,
+    "listedDate": "2023-03-31T21:44:57.415Z",
+    "address": {
+      "line1": "2611 Northwest 65th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.3906221896707,
+        47.67619604999727
+      ]
+    },
+    "neighborhood": "Adams",
+    "propertyType": "manufactured",
+    "status": "sold",
+    "description": "Deleniti maiores nihil alias.",
+    "beds": 2,
+    "baths": 3,
+    "sqft": 2580,
+    "lotSize": 2722,
+    "yearBuilt": 1956
+  },
+  {
+    "listPrice": 286225,
+    "listedDate": "2023-01-23T07:34:15.246Z",
+    "address": {
+      "line1": "8355B 10th Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.36943173565261,
+        47.69008974267997
+      ]
+    },
+    "neighborhood": "Ballard",
+    "propertyType": "townhouse",
+    "status": "sold",
+    "description": "Possimus doloremque corporis. In incidunt porro praesentium rerum. Pariatur laborum quisquam officiis quod soluta ab ut assumenda.",
+    "beds": 4,
+    "baths": 2,
+    "sqft": 4792,
+    "lotSize": 5781,
+    "yearBuilt": 2001
+  },
+  {
+    "listPrice": 160810,
+    "listedDate": "2022-11-26T01:42:15.716Z",
+    "address": {
+      "line1": "7049 13th Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.37241644469002,
+        47.68082271899499
+      ]
+    },
+    "neighborhood": "Ballard",
+    "propertyType": "townhouse",
+    "status": "active",
+    "description": "Exercitationem sed illum facere sapiente doloremque ea nesciunt hic. Quae officia quis aperiam.",
+    "beds": 2,
+    "baths": 1,
+    "sqft": 2386,
+    "lotSize": 7303,
+    "yearBuilt": 1940
+  },
+  {
+    "listPrice": 552175,
+    "listedDate": "2023-03-18T21:12:46.827Z",
+    "address": {
+      "line1": "1538 Northwest 54th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.37784816602614,
+        47.66787965271959
+      ]
+    },
+    "neighborhood": "Adams",
+    "propertyType": "multi-family",
+    "status": "sold",
+    "description": "Eligendi deleniti ipsa tenetur dolorem quibusdam.",
+    "beds": 2,
+    "baths": 3,
+    "sqft": 3236,
+    "lotSize": 5875,
+    "yearBuilt": 2002
+  },
+  {
+    "listPrice": 456852,
+    "listedDate": "2023-04-13T12:06:48.370Z",
+    "address": {
+      "line1": "7023 24th Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.3879624465803,
+        47.68015479272254
+      ]
+    },
+    "neighborhood": "Loyal Heights",
+    "propertyType": "multi-family",
+    "status": "sold",
+    "description": "Voluptas id cum recusandae a.",
+    "beds": 4,
+    "baths": 3,
+    "sqft": 2935,
+    "lotSize": 3747,
+    "yearBuilt": 1915
+  },
+  {
+    "listPrice": 325720,
+    "listedDate": "2023-04-17T02:13:57.231Z",
+    "address": {
+      "line1": "3624 Northwest 65th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.40517863433988,
+        47.67609146045808
+      ]
+    },
+    "neighborhood": "Ballard",
+    "propertyType": "land",
+    "status": "active",
+    "description": "Illum asperiores nesciunt sunt aut vel reprehenderit.",
+    "beds": 4,
+    "baths": 1,
+    "sqft": 3656,
+    "lotSize": 4280,
+    "yearBuilt": 1917
+  },
+  {
+    "listPrice": 439438,
+    "listedDate": "2023-03-04T08:55:37.575Z",
+    "address": {
+      "line1": "2822-1/2 Northwest 66th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.39348883333855,
+        47.67696644944335
+      ]
+    },
+    "neighborhood": "Ballard",
+    "propertyType": "manufactured",
+    "status": "pending",
+    "description": "Officia quasi repudiandae blanditiis provident id et. Numquam rerum optio ipsum illum aspernatur rerum provident.",
+    "beds": 5,
+    "baths": 4,
+    "sqft": 2229,
+    "lotSize": 4171,
+    "yearBuilt": 2012
+  },
+  {
+    "listPrice": 398870,
+    "listedDate": "2023-01-01T12:20:41.073Z",
+    "address": {
+      "line1": "7346 18th Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.37976216678207,
+        47.682251218212535
+      ]
+    },
+    "neighborhood": "Loyal Heights",
+    "propertyType": "manufactured",
+    "status": "pending",
+    "description": "Tempora officiis in ducimus aperiam atque veniam non sed. Explicabo minus pariatur fugit.",
+    "beds": 5,
+    "baths": 1,
+    "sqft": 3954,
+    "lotSize": 4084,
+    "yearBuilt": 2005
+  },
+  {
+    "listPrice": 262003,
+    "listedDate": "2022-12-26T13:37:57.513Z",
+    "address": {
+      "line1": "8503 Seaview Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.4053858814158,
+        47.69027559823244
+      ]
+    },
+    "neighborhood": "Ballard",
+    "propertyType": "townhouse",
+    "status": "pending",
+    "description": "Ipsam corrupti neque debitis quae dolorem. Beatae suscipit harum error blanditiis dolore quibusdam accusamus suscipit harum.",
+    "beds": 3,
+    "baths": 3,
+    "sqft": 4642,
+    "lotSize": 2637,
+    "yearBuilt": 2004
+  },
+  {
+    "listPrice": 283224,
+    "listedDate": "2022-12-09T17:32:51.090Z",
+    "address": {
+      "line1": "7035 15th Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.37729394680113,
+        47.680315640891
+      ]
+    },
+    "neighborhood": "Loyal Heights",
+    "propertyType": "multi-family",
+    "status": "pending",
+    "description": "Incidunt vero cupiditate. Minima labore asperiores.",
+    "beds": 3,
+    "baths": 1,
+    "sqft": 4373,
+    "lotSize": 2740,
+    "yearBuilt": 1928
+  },
+  {
+    "listPrice": 652730,
+    "listedDate": "2023-02-03T14:14:07.921Z",
+    "address": {
+      "line1": "8055 27th Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.39106341926667,
+        47.68841012744604
+      ]
+    },
+    "neighborhood": "Loyal Heights",
+    "propertyType": "condo",
+    "status": "pending",
+    "description": "Porro dolores quo laboriosam soluta reprehenderit eaque.",
+    "beds": 5,
+    "baths": 4,
+    "sqft": 2931,
+    "lotSize": 5192,
+    "yearBuilt": 1986
+  },
+  {
+    "listPrice": 671777,
+    "listedDate": "2023-03-03T14:49:30.628Z",
+    "address": {
+      "line1": "7711 18th Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.3804786483986,
+        47.685464703093004
+      ]
+    },
+    "neighborhood": "Loyal Heights",
+    "propertyType": "manufactured",
+    "status": "pending",
+    "description": "Porro blanditiis assumenda nam ducimus quis eveniet molestias cumque.",
+    "beds": 2,
+    "baths": 2,
+    "sqft": 3018,
+    "lotSize": 4159,
+    "yearBuilt": 2021
+  },
+  {
+    "listPrice": 241170,
+    "listedDate": "2023-02-20T18:22:43.285Z",
+    "address": {
+      "line1": "5300 24th Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.38772220463693,
+        47.667008843847434
+      ]
+    },
+    "neighborhood": "Adams",
+    "propertyType": "multi-family",
+    "status": "pending",
+    "description": "Maxime ipsum rem rem cupiditate quo itaque similique vero. Odio suscipit nisi. Ratione dolorum id harum eos.",
+    "beds": 3,
+    "baths": 4,
+    "sqft": 4126,
+    "lotSize": 1557,
+    "yearBuilt": 1989
+  },
+  {
+    "listPrice": 653988,
+    "listedDate": "2022-12-26T20:48:44.522Z",
+    "address": {
+      "line1": "8354 24th Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.38726187007545,
+        47.689967370939186
+      ]
+    },
+    "neighborhood": "Loyal Heights",
+    "propertyType": "land",
+    "status": "pending",
+    "description": "Rem ea labore suscipit earum itaque eligendi. Pariatur fuga sunt a laborum sit nobis necessitatibus.",
+    "beds": 4,
+    "baths": 1,
+    "sqft": 1554,
+    "lotSize": 5307,
+    "yearBuilt": 2020
+  },
+  {
+    "listPrice": 749534,
+    "listedDate": "2022-12-04T13:44:37.594Z",
+    "address": {
+      "line1": "1706 Northwest 65th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.37898413872175,
+        47.67638417414899
+      ]
+    },
+    "neighborhood": "Loyal Heights",
+    "propertyType": "land",
+    "status": "active",
+    "description": "Facilis rem veritatis in necessitatibus. Quibusdam eius harum quam dicta nulla perferendis unde quos quos.",
+    "beds": 2,
+    "baths": 2,
+    "sqft": 1264,
+    "lotSize": 6751,
+    "yearBuilt": 1911
+  },
+  {
+    "listPrice": 701876,
+    "listedDate": "2023-03-27T09:47:20.522Z",
+    "address": {
+      "line1": "3175 Northwest 70th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.39889951372281,
+        47.67945031933892
+      ]
+    },
+    "neighborhood": "Ballard",
+    "propertyType": "manufactured",
+    "status": "active",
+    "description": "Esse temporibus nemo. Magnam quisquam sit voluptate architecto dignissimos magnam. Explicabo omnis nam vero nulla minus rerum excepturi.",
+    "beds": 4,
+    "baths": 3,
+    "sqft": 2495,
+    "lotSize": 1320,
+    "yearBuilt": 1923
+  },
+  {
+    "listPrice": 574707,
+    "listedDate": "2023-05-03T07:48:07.017Z",
+    "address": {
+      "line1": "7758 9th Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.3680334631655,
+        47.68690079852216
+      ]
+    },
+    "neighborhood": "Ballard",
+    "propertyType": "multi-family",
+    "status": "pending",
+    "description": "Velit delectus vel esse eos.",
+    "beds": 5,
+    "baths": 3,
+    "sqft": 1332,
+    "lotSize": 7176,
+    "yearBuilt": 1998
+  },
+  {
+    "listPrice": 471299,
+    "listedDate": "2023-01-07T03:54:41.205Z",
+    "address": {
+      "line1": "7701 32nd Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.39864145327782,
+        47.6849258809308
+      ]
+    },
+    "neighborhood": "Ballard",
+    "propertyType": "land",
+    "status": "sold",
+    "description": "Minima exercitationem aut vitae sequi. Accusamus rem beatae deserunt aut facere molestiae perferendis. Saepe cum ipsam.",
+    "beds": 2,
+    "baths": 1,
+    "sqft": 2574,
+    "lotSize": 6143,
+    "yearBuilt": 1970
+  },
+  {
+    "listPrice": 344203,
+    "listedDate": "2022-12-05T08:50:40.786Z",
+    "address": {
+      "line1": "1135 Northwest 45th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.37238378002817,
+        47.66075450407378
+      ]
+    },
+    "neighborhood": "West Woodland",
+    "propertyType": "single-family",
+    "status": "pending",
+    "description": "Et sunt laboriosam atque recusandae aspernatur. Distinctio necessitatibus quos dolore eos.",
+    "beds": 2,
+    "baths": 4,
+    "sqft": 1738,
+    "lotSize": 3947,
+    "yearBuilt": 1920
+  },
+  {
+    "listPrice": 140561,
+    "listedDate": "2023-04-27T18:52:32.855Z",
+    "address": {
+      "line1": "8004 Seaview Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.40182446298576,
+        47.68647992565479
+      ]
+    },
+    "neighborhood": "Ballard",
+    "propertyType": "manufactured",
+    "status": "active",
+    "description": "A molestias nobis incidunt ex repudiandae soluta incidunt modi eaque.",
+    "beds": 2,
+    "baths": 1,
+    "sqft": 3157,
+    "lotSize": 1737,
+    "yearBuilt": 1932
+  },
+  {
+    "listPrice": 651675,
+    "listedDate": "2023-02-03T14:03:34.057Z",
+    "address": {
+      "line1": "7722 16th Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.37792189585457,
+        47.68536858481469
+      ]
+    },
+    "neighborhood": "Loyal Heights",
+    "propertyType": "condo",
+    "status": "active",
+    "description": "Dolorum quae ullam tempora recusandae excepturi ut.",
+    "beds": 5,
+    "baths": 3,
+    "sqft": 2430,
+    "lotSize": 1270,
+    "yearBuilt": 1920
+  },
+  {
+    "listPrice": 429258,
+    "listedDate": "2022-12-24T22:51:32.337Z",
+    "address": {
+      "line1": "2875 Northwest 54th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.39576084972632,
+        47.66733001074868
+      ]
+    },
+    "neighborhood": "Adams",
+    "propertyType": "land",
+    "status": "active",
+    "description": "Illum esse vero exercitationem.",
+    "beds": 5,
+    "baths": 4,
+    "sqft": 4308,
+    "lotSize": 2144,
+    "yearBuilt": 1970
+  },
+  {
+    "listPrice": 742103,
+    "listedDate": "2023-03-22T05:06:04.111Z",
+    "address": {
+      "line1": "5400 22nd Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.38452177332242,
+        47.66812570703151
+      ]
+    },
+    "neighborhood": "Adams",
+    "propertyType": "condo",
+    "status": "pending",
+    "description": "A saepe ab ut hic ratione reprehenderit.",
+    "beds": 4,
+    "baths": 3,
+    "sqft": 4702,
+    "lotSize": 4555,
+    "yearBuilt": 2013
+  },
+  {
+    "listPrice": 564910,
+    "listedDate": "2022-12-03T03:15:39.022Z",
+    "address": {
+      "line1": "3051 Northwest 64th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.39785431872873,
+        47.675054007512166
+      ]
+    },
+    "neighborhood": "Adams",
+    "propertyType": "manufactured",
+    "status": "pending",
+    "description": "Incidunt quas minima eum itaque.",
+    "beds": 4,
+    "baths": 3,
+    "sqft": 2987,
+    "lotSize": 4671,
+    "yearBuilt": 1926
+  },
+  {
+    "listPrice": 523971,
+    "listedDate": "2023-02-18T14:01:31.660Z",
+    "address": {
+      "line1": "4712 Shilshole Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.38083515654016,
+        47.66270325519187
+      ]
+    },
+    "neighborhood": "Adams",
+    "propertyType": "single-family",
+    "status": "sold",
+    "description": "Dolore molestias iusto doloremque nemo architecto. Asperiores distinctio eos suscipit ipsum reiciendis suscipit amet officiis ea. Quidem ex ut itaque.",
+    "beds": 3,
+    "baths": 4,
+    "sqft": 2163,
+    "lotSize": 5762,
+    "yearBuilt": 1969
+  },
+  {
+    "listPrice": 140333,
+    "listedDate": "2022-12-25T19:34:34.681Z",
+    "address": {
+      "line1": "1537B Northwest 60th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.37794019710178,
+        47.672108254892194
+      ]
+    },
+    "neighborhood": "Adams",
+    "propertyType": "condo",
+    "status": "pending",
+    "description": "Sequi voluptatibus nemo veritatis. Provident nemo maiores hic magni doloremque.",
+    "beds": 3,
+    "baths": 4,
+    "sqft": 2678,
+    "lotSize": 5430,
+    "yearBuilt": 1920
+  },
+  {
+    "listPrice": 691275,
+    "listedDate": "2023-02-25T19:11:05.498Z",
+    "address": {
+      "line1": "6413 Seaview Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.40898730670257,
+        47.67500492317359
+      ]
+    },
+    "neighborhood": "Ballard",
+    "propertyType": "condo",
+    "status": "sold",
+    "description": "Eveniet enim necessitatibus accusamus atque eligendi delectus consectetur reiciendis praesentium.",
+    "beds": 3,
+    "baths": 1,
+    "sqft": 3904,
+    "lotSize": 4109,
+    "yearBuilt": 1976
+  },
+  {
+    "listPrice": 712577,
+    "listedDate": "2022-12-09T22:00:08.952Z",
+    "address": {
+      "line1": "6527 24th Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.3875415792854,
+        47.67693833436644
+      ]
+    },
+    "neighborhood": "Loyal Heights",
+    "propertyType": "multi-family",
+    "status": "sold",
+    "description": "Quidem consequuntur assumenda veniam porro esse.",
+    "beds": 3,
+    "baths": 3,
+    "sqft": 4960,
+    "lotSize": 4193,
+    "yearBuilt": 1993
+  },
+  {
+    "listPrice": 418428,
+    "listedDate": "2022-12-30T13:12:43.515Z",
+    "address": {
+      "line1": "912 Northwest 73rd Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.36972889209552,
+        47.68153618383382
+      ]
+    },
+    "neighborhood": "Ballard",
+    "propertyType": "single-family",
+    "status": "active",
+    "description": "Minus voluptatum suscipit ullam.",
+    "beds": 3,
+    "baths": 4,
+    "sqft": 4075,
+    "lotSize": 4606,
+    "yearBuilt": 2001
+  },
+  {
+    "listPrice": 417190,
+    "listedDate": "2023-03-03T23:05:13.493Z",
+    "address": {
+      "line1": "2304 Northwest Market Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.38719430885918,
+        47.66900466780953
+      ]
+    },
+    "neighborhood": "Adams",
+    "propertyType": "multi-family",
+    "status": "pending",
+    "description": "Nesciunt veritatis mollitia hic error nisi minima voluptates explicabo minus.",
+    "beds": 3,
+    "baths": 4,
+    "sqft": 2373,
+    "lotSize": 3173,
+    "yearBuilt": 1964
+  },
+  {
+    "listPrice": 687100,
+    "listedDate": "2022-12-08T02:17:21.720Z",
+    "address": {
+      "line1": "1422 Northwest 50th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.37471735096014,
+        47.665376086148655
+      ]
+    },
+    "neighborhood": "West Woodland",
+    "propertyType": "land",
+    "status": "sold",
+    "description": "Similique quos cupiditate quas voluptates. Repellendus accusamus ipsa suscipit consequuntur molestias hic delectus nostrum. Exercitationem beatae deserunt accusantium voluptatum esse adipisci occaecati officia accusamus.",
+    "beds": 5,
+    "baths": 2,
+    "sqft": 4464,
+    "lotSize": 5626,
+    "yearBuilt": 2023
+  },
+  {
+    "listPrice": 570344,
+    "listedDate": "2023-03-02T19:38:14.123Z",
+    "address": {
+      "line1": "1140 Northwest 57th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.37273118472336,
+        47.670674034614066
+      ]
+    },
+    "neighborhood": "West Woodland",
+    "propertyType": "multi-family",
+    "status": "pending",
+    "description": "Nesciunt accusantium vero perspiciatis iure atque optio totam. Praesentium dolorum earum molestias. Repudiandae culpa commodi eum nulla.",
+    "beds": 3,
+    "baths": 1,
+    "sqft": 1248,
+    "lotSize": 6098,
+    "yearBuilt": 1968
+  },
+  {
+    "listPrice": 634199,
+    "listedDate": "2022-11-24T17:47:23.023Z",
+    "address": {
+      "line1": "1460 Northwest 70th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.37531118936968,
+        47.67979394635107
+      ]
+    },
+    "neighborhood": "Ballard",
+    "propertyType": "manufactured",
+    "status": "sold",
+    "description": "Assumenda dolor impedit labore vel nulla. Hic laborum consequatur.",
+    "beds": 5,
+    "baths": 4,
+    "sqft": 3596,
+    "lotSize": 7334,
+    "yearBuilt": 1996
+  },
+  {
+    "listPrice": 530449,
+    "listedDate": "2023-01-02T08:02:57.630Z",
+    "address": {
+      "line1": "7501 Seaview Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.40186286644281,
+        47.68258261729881
+      ]
+    },
+    "neighborhood": "Ballard",
+    "propertyType": "manufactured",
+    "status": "pending",
+    "description": "Ducimus ipsam nobis hic ipsum aspernatur vel aperiam hic.",
+    "beds": 3,
+    "baths": 2,
+    "sqft": 2495,
+    "lotSize": 7190,
+    "yearBuilt": 1977
+  },
+  {
+    "listPrice": 331927,
+    "listedDate": "2023-01-23T22:45:23.090Z",
+    "address": {
+      "line1": "19346 3rd Ave NW",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98177"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.39438291734847,
+        47.666089880133285
+      ]
+    },
+    "neighborhood": "Adams",
+    "propertyType": "multi-family",
+    "status": "active",
+    "description": "Dolor iusto ratione neque ipsa labore unde nulla occaecati. Magni quidem iste omnis expedita fugit officiis occaecati. Quis modi quibusdam dolor ullam.",
+    "beds": 2,
+    "baths": 1,
+    "sqft": 2808,
+    "lotSize": 5176,
+    "yearBuilt": 1995
+  },
+  {
+    "listPrice": 791010,
+    "listedDate": "2023-03-07T22:59:38.623Z",
+    "address": {
+      "line1": "1112 Northwest 67th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.3720038593681,
+        47.678143020126214
+      ]
+    },
+    "neighborhood": "Ballard",
+    "propertyType": "single-family",
+    "status": "sold",
+    "description": "Quod officia neque laboriosam totam numquam minus dicta minima.",
+    "beds": 2,
+    "baths": 3,
+    "sqft": 1642,
+    "lotSize": 5431,
+    "yearBuilt": 1922
+  },
+  {
+    "listPrice": 317056,
+    "listedDate": "2023-02-11T07:19:24.220Z",
+    "address": {
+      "line1": "8001 Seaview Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.40389520080959,
+        47.68680034160195
+      ]
+    },
+    "neighborhood": "Ballard",
+    "propertyType": "townhouse",
+    "status": "pending",
+    "description": "Voluptatibus perspiciatis laborum quae magnam atque excepturi pariatur illum. Dolor laborum dolorum repudiandae laudantium qui. Blanditiis maiores labore minus placeat ratione saepe doloribus quasi.",
+    "beds": 2,
+    "baths": 2,
+    "sqft": 4437,
+    "lotSize": 7307,
+    "yearBuilt": 1936
+  },
+  {
+    "listPrice": 259305,
+    "listedDate": "2023-03-17T11:58:20.547Z",
+    "address": {
+      "line1": "853 Northwest 85th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.36720615284766,
+        47.690313646873435
+      ]
+    },
+    "neighborhood": "Ballard",
+    "propertyType": "condo",
+    "status": "sold",
+    "description": "Qui cumque sapiente. Ipsum voluptatem libero quas assumenda velit porro nihil. Provident veritatis laudantium.",
+    "beds": 5,
+    "baths": 3,
+    "sqft": 2533,
+    "lotSize": 4564,
+    "yearBuilt": 1969
+  },
+  {
+    "listPrice": 796310,
+    "listedDate": "2023-05-01T16:48:14.965Z",
+    "address": {
+      "line1": "8015 Seaview Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.40331559639733,
+        47.68758153985933
+      ]
+    },
+    "neighborhood": "Ballard",
+    "propertyType": "condo",
+    "status": "active",
+    "description": "Optio qui similique deleniti dicta consectetur ea. Dolorem beatae harum iusto expedita assumenda quam officia inventore soluta.",
+    "beds": 2,
+    "baths": 1,
+    "sqft": 4821,
+    "lotSize": 4970,
+    "yearBuilt": 2001
+  },
+  {
+    "listPrice": 328578,
+    "listedDate": "2023-02-24T00:21:37.761Z",
+    "address": {
+      "line1": "1140 Northwest 57th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.37234065220495,
+        47.6703293054641
+      ]
+    },
+    "neighborhood": "West Woodland",
+    "propertyType": "multi-family",
+    "status": "sold",
+    "description": "Facere aliquid facilis ab amet voluptates libero ratione quam qui. Quos cum perspiciatis alias minus harum. Accusantium deleniti voluptatum ea.",
+    "beds": 4,
+    "baths": 3,
+    "sqft": 4456,
+    "lotSize": 3223,
+    "yearBuilt": 1932
+  },
+  {
+    "listPrice": 289858,
+    "listedDate": "2023-05-14T05:00:02.108Z",
+    "address": {
+      "line1": "2813 Northwest Market Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.39362261874885,
+        47.668625964550515
+      ]
+    },
+    "neighborhood": "Adams",
+    "propertyType": "single-family",
+    "status": "sold",
+    "description": "Accusantium quia repellat.",
+    "beds": 2,
+    "baths": 3,
+    "sqft": 3945,
+    "lotSize": 6625,
+    "yearBuilt": 1969
+  },
+  {
+    "listPrice": 687982,
+    "listedDate": "2023-04-03T18:40:38.761Z",
+    "address": {
+      "line1": "7712 30th Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.39534008057356,
+        47.68609673438688
+      ]
+    },
+    "neighborhood": "Ballard",
+    "propertyType": "land",
+    "status": "pending",
+    "description": "Dolores accusantium aperiam nostrum cumque placeat aspernatur nesciunt eius nisi. Ipsam ipsum harum accusantium.",
+    "beds": 5,
+    "baths": 4,
+    "sqft": 2447,
+    "lotSize": 5605,
+    "yearBuilt": 1981
+  },
+  {
+    "listPrice": 333904,
+    "listedDate": "2023-03-30T05:43:42.243Z",
+    "address": {
+      "line1": "1502 Northwest 65th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.37727185774833,
+        47.67616128855988
+      ]
+    },
+    "neighborhood": "Loyal Heights",
+    "propertyType": "single-family",
+    "status": "active",
+    "description": "Nisi quis similique doloremque tenetur quaerat exercitationem vitae.",
+    "beds": 5,
+    "baths": 2,
+    "sqft": 4302,
+    "lotSize": 6697,
+    "yearBuilt": 1919
+  },
+  {
+    "listPrice": 419043,
+    "listedDate": "2022-11-23T05:26:07.666Z",
+    "address": {
+      "line1": "8058 24th Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.38800697427962,
+        47.68827200948597
+      ]
+    },
+    "neighborhood": "Loyal Heights",
+    "propertyType": "townhouse",
+    "status": "active",
+    "description": "Odit unde nostrum dignissimos consequuntur voluptatum corporis commodi.",
+    "beds": 3,
+    "baths": 2,
+    "sqft": 3005,
+    "lotSize": 3827,
+    "yearBuilt": 2019
+  },
+  {
+    "listPrice": 585914,
+    "listedDate": "2023-05-10T23:42:51.038Z",
+    "address": {
+      "line1": "1513 Northwest 49th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.37712640122082,
+        47.66423710067988
+      ]
+    },
+    "neighborhood": "Adams",
+    "propertyType": "townhouse",
+    "status": "active",
+    "description": "Cum culpa at deserunt ut sapiente porro labore autem. Culpa perspiciatis error.",
+    "beds": 3,
+    "baths": 2,
+    "sqft": 4626,
+    "lotSize": 1377,
+    "yearBuilt": 2009
+  },
+  {
+    "listPrice": 229513,
+    "listedDate": "2023-03-19T07:23:12.036Z",
+    "address": {
+      "line1": "7750 Seaview Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.40221096037658,
+        47.683906502358866
+      ]
+    },
+    "neighborhood": "Ballard",
+    "propertyType": "townhouse",
+    "status": "active",
+    "description": "Dolores id dolores ea laboriosam similique.",
+    "beds": 3,
+    "baths": 1,
+    "sqft": 1963,
+    "lotSize": 6053,
+    "yearBuilt": 1997
+  },
+  {
+    "listPrice": 354430,
+    "listedDate": "2023-01-03T19:39:37.997Z",
+    "address": {
+      "line1": "1006 Northwest 65th Street",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98117"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.37063296685055,
+        47.67631134482501
+      ]
+    },
+    "neighborhood": "Ballard",
+    "propertyType": "condo",
+    "status": "active",
+    "description": "Quasi asperiores explicabo quos eius expedita facere cumque hic. At id esse.",
+    "beds": 2,
+    "baths": 2,
+    "sqft": 4435,
+    "lotSize": 3653,
+    "yearBuilt": 2001
+  },
+  {
+    "listPrice": 217713,
+    "listedDate": "2023-05-07T13:46:20.588Z",
+    "address": {
+      "line1": "4515 Shilshole Avenue Northwest",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.37796003774439,
+        47.660630373209706
+      ]
+    },
+    "neighborhood": "Adams",
+    "propertyType": "land",
+    "status": "active",
+    "description": "Pariatur vero ducimus. Libero enim numquam quia. Accusamus laboriosam amet incidunt libero laborum odio odio veritatis aspernatur.",
+    "beds": 5,
+    "baths": 4,
+    "sqft": 1399,
+    "lotSize": 3252,
+    "yearBuilt": 1993
+  },
+  {
+    "listPrice": 757097,
+    "listedDate": "2022-12-26T15:11:30.036Z",
+    "address": {
+      "line1": "2636 Northwest Brygger Place",
+      "line2": "",
+      "city": "Seattle",
+      "state": "Washington",
+      "zip": "98107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -122.39195377348892,
+        47.67173838238445
+      ]
+    },
+    "neighborhood": "Adams",
+    "propertyType": "townhouse",
+    "status": "active",
+    "description": "Consequuntur quia ab inventore.",
+    "beds": 5,
+    "baths": 4,
+    "sqft": 2389,
+    "lotSize": 5627,
+    "yearBuilt": 1959
   }
 ]
