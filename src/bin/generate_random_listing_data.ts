@@ -6,9 +6,19 @@ import { bbox, randomPoint, booleanPointInPolygon } from '@turf/turf'
 import fs from 'fs'
 import path from 'path'
 import { faker } from '@faker-js/faker'
+import yargs from 'yargs'
 import boundary from '../test/test_data/boundary_data/fremont_boundary'
 import { reverseGeocode, addressComponentsToAddress } from '../lib/geocoder'
 import { PropertyTypes, PropertyStatuses } from '../models/listingModel'
+
+const DefaultOutputPath = path.join(
+  __dirname,
+  '..',
+  'test',
+  'test_data',
+  'listing_data',
+  'random_listing_data.json'
+)
 
 const randomPointsWithinPolygon = (
   polygon: Polygon | MultiPolygon,
@@ -98,23 +108,37 @@ const generateListingData = async (
 }
 
 const main = async () => {
+  const argv = await yargs(process.argv.slice(2))
+    .option('number', {
+      type: 'number',
+      alias: 'n',
+      default: 100,
+      describe: 'Number of listings to create for each polygon'
+    })
+    .option('output-path', {
+      type: 'string',
+      alias: 'o',
+      default: DefaultOutputPath,
+      describe: 'Path to save the file to'
+    })
+    .alias('h', 'help')
+    .help('help')
+    .usage(`Usage: $0 [options]`)
+    .argv
+
+  if (argv.help) {
+    yargs.showHelp()
+    process.exit(0)
+  }
+
   const listings = await generateListingData(
     (boundary as IBoundary).geometry,
-    100
+    argv.number
   )
 
-  const outputPath = path.join(
-    __dirname,
-    '..',
-    'test',
-    'test_data',
-    'listing_data',
-    'random_listing_data.json'
-  )
+  fs.writeFileSync(argv.outputPath, JSON.stringify(listings, null, 2))
 
-  fs.writeFileSync(outputPath, JSON.stringify(listings, null, 2))
-
-  console.log(`Random listing data saved to "${outputPath}".`)
+  console.log(`Random listing data saved to "${argv.outputPath}".`)
 }
 
 main()
