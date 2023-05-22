@@ -61,7 +61,15 @@ export const createRandomListingModel = (
     baths: randomNumberInRange(1, 4),
     sqft: randomNumberInRange(1000, 5000),
     lotSize: randomNumberInRange(1000, 7500),
-    yearBuilt: randomNumberInRange(1910, today.getFullYear())
+    yearBuilt: randomNumberInRange(1910, today.getFullYear()),
+    waterfront: faker.datatype.boolean({ probability: 0.3 }),
+    view: faker.datatype.boolean({ probability: 0.5 }),
+    fireplace: faker.datatype.boolean({ probability: 0.7 }),
+    basement: faker.datatype.boolean({ probability: 0.8 }),
+    garage: faker.datatype.boolean({ probability: 0.9 }),
+    newConstruction: faker.datatype.boolean({ probability: 0.4 }),
+    pool: faker.datatype.boolean({ probability: 0.2 }),
+    airConditioning: faker.datatype.boolean({ probability: 0.3 }),
   }
 }
 

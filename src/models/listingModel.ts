@@ -34,6 +34,14 @@ export interface IListing {
   sqft: number
   lotSize: number
   yearBuilt: number
+  waterfront?: boolean
+  view?: boolean
+  fireplace?: boolean
+  basement?: boolean
+  garage?: boolean
+  newConstruction?: boolean
+  pool?: boolean
+  airConditioning?: boolean
 }
 
 export interface IListingDocument extends IListing, Document {}
@@ -126,6 +134,46 @@ const ListingSchema = new Schema<IListingDocument>({
     type: Number,
     required: true,
     index: true
+  },
+  waterfront: {
+    type: Boolean,
+    default: false,
+    index: true,
+  },
+  view: {
+    type: Boolean,
+    default: false,
+    index: true,
+  },
+  fireplace: {
+    type: Boolean,
+    default: false,
+    index: true,
+  },
+  basement: {
+    type: Boolean,
+    default: false,
+    index: true,
+  },
+  garage: {
+    type: Boolean,
+    default: false,
+    index: true,
+  },
+  newConstruction: {
+    type: Boolean,
+    default: false,
+    index: true,
+  },
+  pool: {
+    type: Boolean,
+    default: false,
+    index: true,
+  },
+  airConditioning: {
+    type: Boolean,
+    default: false,
+    index: true,
   }
 })
 

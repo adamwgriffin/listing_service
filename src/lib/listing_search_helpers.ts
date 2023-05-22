@@ -64,7 +64,15 @@ export const buildfilterQueries = (
     year_built_min,
     year_built_max,
     lot_size_min,
-    lot_size_max
+    lot_size_max,
+    waterfront,
+    view,
+    fireplace,
+    basement,
+    garage,
+    new_construction,
+    pool,
+    air_conditioning
   } = params
   const filters = []
   if (property_type) {
@@ -101,6 +109,30 @@ export const buildfilterQueries = (
   }
   if (lot_size_min || lot_size_max) {
     filters.push(numberRangeQuery('lotSize', lot_size_min, lot_size_max))
+  }
+  if (waterfront) {
+    filters.push({ waterfront: waterfront === 'true' })
+  }
+  if (view) {
+    filters.push({ view: view === 'true' })
+  }
+  if (fireplace) {
+    filters.push({ fireplace: fireplace === 'true' })
+  }
+  if (basement) {
+    filters.push({ basement: basement === 'true' })
+  }
+  if (garage) {
+    filters.push({ garage: garage === 'true' })
+  }
+  if (new_construction) {
+    filters.push({ newConstruction: new_construction === 'true' })
+  }
+  if (pool) {
+    filters.push({ pool: pool === 'true' })
+  }
+  if (air_conditioning) {
+    filters.push({ airConditioning: air_conditioning === 'true' })
   }
   return filters
 }

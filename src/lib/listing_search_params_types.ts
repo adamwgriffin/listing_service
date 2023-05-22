@@ -24,16 +24,17 @@ export interface IListingParams {
   lot_size_max: number
   sort_by: SortType
   sort_direction: SortDirection
-  waterfront: boolean
-  view: boolean
-  garage: boolean
-  new_construction: boolean
-  virtual_tour: boolean
-  pool: boolean
-  senior_community: boolean
   sold_days: number
   property_type: string
   status: string
+  waterfront: 'true' | 'false' // koa doesn't parse booleans in the query string
+  view: 'true' | 'false'
+  fireplace: 'true' | 'false'
+  basement: 'true' | 'false'
+  garage: 'true' | 'false'
+  new_construction: 'true' | 'false'
+  pool: 'true' | 'false'
+  air_conditioning: 'true' | 'false'
 }
 
 export interface IBoundsParams {
