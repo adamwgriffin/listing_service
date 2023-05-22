@@ -1,16 +1,46 @@
+import type { IListing } from '../models/listingModel'
+import fs from 'fs'
+import path from 'path'
+import yargs from 'yargs'
 import { connectToDatabase, disconnectDatabase } from '../database'
 import Listing from '../models/listingModel'
 import Boundary from '../models/BoundaryModel'
-import fremontListingData from '../test/test_data/listing_data/fremont_listing_data'
-import ballardListingData from '../test/test_data/listing_data/ballard_listing_data'
 import fremontBoundary from '../test/test_data/boundary_data/fremont_boundary'
 import ballardBoundary from '../test/test_data/boundary_data/ballard_boundary'
 
+const DefaultFilePath = path.join(
+  __dirname,
+  '..',
+  'test',
+  'test_data',
+  'listing_data',
+  'random_listing_data.json'
+)
+
 const main = async (): Promise<void> => {
+
+  const argv = await yargs(process.argv.slice(2))
+    .option('file', {
+      alias: 'f',
+      type: 'string',
+      default: DefaultFilePath,
+      describe: 'Path to the file to use to load listing data'
+    })
+    .alias('h', 'help')
+    .help('help')
+    .usage(`Usage: $0 [options]`)
+    .argv
+
+  if (argv.help) {
+    yargs.showHelp()
+    process.exit(0)
+  }
+  
   try {
     await connectToDatabase()
     console.log("Creating listings...")
-    const listings = await Listing.create(fremontListingData.concat(ballardListingData))
+    const listingData = JSON.parse(fs.readFileSync(argv.file, 'utf-8')) as IListing[]
+    const listings = await Listing.create(listingData)
     console.log(`${listings.length} listings created.`)
     console.log("Creating boundaries...")
     const boundaries = await Boundary.create([fremontBoundary, ballardBoundary])
