@@ -26,6 +26,10 @@ export const randomNumberInRange = (min: number, max: number): number => {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
+export const roundDownToNearest = (num: number, nearest: number): number => {
+  return Math.floor(num / nearest) * nearest
+}
+
 export const addSoldData = (listing: IListing): IListing => {
   const today = new Date()
   const soldDate = faker.date.between({
@@ -34,9 +38,14 @@ export const addSoldData = (listing: IListing): IListing => {
   })
   return {
     ...listing,
-    soldPrice: randomNumberInRange(listing.listPrice - 5000, listing.listPrice + 5000),
+    soldPrice: randomPriceInRange(listing.listPrice - 5000, listing.listPrice + 5000),
     soldDate
   }
+}
+
+const randomPriceInRange = (min: number, max: number): number => {
+  const price = randomNumberInRange(min, max)
+  return roundDownToNearest(price, 1000)
 }
 
 export const createRandomListingModel = (
@@ -45,7 +54,7 @@ export const createRandomListingModel = (
 ): IListing => {
   const today = new Date()
   const listing = {
-    listPrice: randomNumberInRange(100000, 800000),
+    listPrice: randomPriceInRange(100000, 800000),
     listedDate: faker.date.between({
       from: subMonths(today, 6),
       to: today
@@ -64,8 +73,8 @@ export const createRandomListingModel = (
     description: faker.lorem.sentences({ min: 1, max: 3 }),
     beds: randomNumberInRange(2, 5),
     baths: randomNumberInRange(1, 4),
-    sqft: randomNumberInRange(1000, 5000),
-    lotSize: randomNumberInRange(1000, 7500),
+    sqft: roundDownToNearest(randomNumberInRange(1000, 5000), 100),
+    lotSize: roundDownToNearest(randomNumberInRange(1000, 7500), 100),
     yearBuilt: randomNumberInRange(1910, today.getFullYear()),
     waterfront: faker.datatype.boolean({ probability: 0.3 }),
     view: faker.datatype.boolean({ probability: 0.5 }),
