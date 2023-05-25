@@ -6,6 +6,11 @@ import type {
   IGeocodeBoundarySearchParams
 } from './listing_search_params_types'
 import { bboxPolygon, intersect } from '@turf/turf'
+import { differenceInDays } from 'date-fns'
+
+export const daysOnMarket = (listedDate: Date, soldDate: Date | undefined): number => {
+  return differenceInDays(soldDate || new Date(), listedDate)
+}
 
 export const boundsParamsToGeoJSONPolygon = (
   bounds: IBoundsParams

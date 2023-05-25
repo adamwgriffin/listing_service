@@ -13,6 +13,14 @@ export const DefaultListingResultFields = {
   longitude: { $arrayElemAt: ['$geometry.coordinates', 0] }
 }
 
+export const DefaultListingDetailFeilds = {
+  ...DefaultListingResultFields,
+  propertyType: 1,
+  yearBuilt: 1,
+  soldDate: 1,
+  soldPrice: 1
+}
+
 export const DefaultMaxDistance = 1609.34 // 1 mile in meters
 
 export const DefaultPageSize = 20
