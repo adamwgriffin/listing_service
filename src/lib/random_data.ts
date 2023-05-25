@@ -3,6 +3,7 @@ import type { Point, Polygon, MultiPolygon } from '@turf/turf'
 import type { AddressComponentAddress } from '../lib/geocoder'
 import { bbox, randomPoint, booleanPointInPolygon } from '@turf/turf'
 import { faker } from '@faker-js/faker'
+import { subMonths } from 'date-fns'
 import { reverseGeocode, addressComponentsToAddress } from '../lib/geocoder'
 import { PropertyTypes, PropertyStatuses } from '../models/listingModel'
 
@@ -25,15 +26,6 @@ export const randomNumberInRange = (min: number, max: number): number => {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
-export const monthsAgo = (months = 6) => {
-  const today = new Date()
-  return new Date(
-    today.getFullYear(),
-    today.getMonth() - months,
-    today.getDate()
-  )
-}
-
 export const createRandomListingModel = (
   address: AddressComponentAddress,
   point: Point
@@ -42,7 +34,7 @@ export const createRandomListingModel = (
   return {
     listPrice: randomNumberInRange(100000, 800000),
     listedDate: faker.date.between({
-      from: monthsAgo(6),
+      from: subMonths(today, 6),
       to: today
     }),
     address: {
