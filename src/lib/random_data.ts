@@ -26,12 +26,25 @@ export const randomNumberInRange = (min: number, max: number): number => {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
+export const addSoldData = (listing: IListing): IListing => {
+  const today = new Date()
+  const soldDate = faker.date.between({
+    from: listing.listedDate,
+    to: today
+  })
+  return {
+    ...listing,
+    soldPrice: randomNumberInRange(listing.listPrice - 5000, listing.listPrice + 5000),
+    soldDate
+  }
+}
+
 export const createRandomListingModel = (
   address: AddressComponentAddress,
   point: Point
 ): IListing => {
   const today = new Date()
-  return {
+  const listing = {
     listPrice: randomNumberInRange(100000, 800000),
     listedDate: faker.date.between({
       from: subMonths(today, 6),
@@ -63,6 +76,10 @@ export const createRandomListingModel = (
     pool: faker.datatype.boolean({ probability: 0.2 }),
     airConditioning: faker.datatype.boolean({ probability: 0.3 }),
   }
+  if (listing.status === 'sold') {
+    return addSoldData(listing)
+  }
+  return listing
 }
 
 export const createListing = async (point: Point): Promise<IListing> => {

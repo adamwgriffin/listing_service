@@ -22,7 +22,9 @@ export type PropertyStatus = 'active' | 'pending' | 'sold'
 
 export interface IListing {
   listPrice: number
+  soldPrice?: number
   listedDate: Date
+  soldDate?: Date
   address: IListingAddress
   geometry: Point
   neighborhood: string
@@ -63,9 +65,19 @@ const ListingSchema = new Schema<IListingDocument>({
     required: true,
     index: true
   },
+  soldPrice: {
+    type: Number,
+    required: false,
+    index: true
+  },
   listedDate: {
     type: Date,
     required: true,
+    index: true
+  },
+  soldDate: {
+    type: Date,
+    required: false,
     index: true
   },
   address: {
