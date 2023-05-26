@@ -6,7 +6,7 @@ import type {
   IGeocodeBoundarySearchParams
 } from './listing_search_params_types'
 import { bboxPolygon, intersect } from '@turf/turf'
-import { differenceInDays } from 'date-fns'
+import { differenceInDays, subDays } from 'date-fns'
 
 export const daysOnMarket = (listedDate: Date, soldDate: Date | undefined): number => {
   return differenceInDays(soldDate || new Date(), listedDate)
@@ -77,7 +77,8 @@ export const buildfilterQueries = (
     garage,
     new_construction,
     pool,
-    air_conditioning
+    air_conditioning,
+    sold_in_last
   } = params
   const filters = []
   if (property_type) {
@@ -95,6 +96,13 @@ export const buildfilterQueries = (
     })
   } else {
     filters.push({ status: 'active' })
+  }
+  if (sold_in_last) {
+    filters.push({
+      soldDate: {
+        $gte: subDays(new Date(), sold_in_last)
+      }
+    })
   }
   // TODO: make this more DRY
   if (price_min || price_max) {
