@@ -2,6 +2,7 @@
 export const DefaultListingResultFields = {
   status: 1,
   listPrice: 1,
+  soldPrice: 1,
   listedDate: 1,
   beds: 1,
   baths: 1,
@@ -17,8 +18,7 @@ export const DefaultListingDetailFeilds = {
   ...DefaultListingResultFields,
   propertyType: 1,
   yearBuilt: 1,
-  soldDate: 1,
-  soldPrice: 1
+  soldDate: 1
 }
 
 export const DefaultMaxDistance = 1609.34 // 1 mile in meters
