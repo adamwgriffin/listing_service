@@ -18,9 +18,10 @@ export type PropertyType =
   | 'land'
   | 'multi-family'
 
-export type PropertyStatus = 'active' | 'pending' | 'sold'
+export type PropertyStatus = 'active' | 'pending' | 'sold' | 'rented'
 
 export interface IListing {
+  rental?: boolean
   listPrice: number
   soldPrice?: number
   listedDate: Date
@@ -59,7 +60,16 @@ export const PropertyTypes: PropertyType[] = [
 
 export const PropertyStatuses: PropertyStatus[] = ['active', 'pending', 'sold']
 
+export const RentalPropertyStatuses: PropertyStatus[] = ['active', 'rented']
+
+export const AllPropertyStatuses: PropertyStatus[] = ['active', 'pending', 'sold', 'rented']
+
 const ListingSchema = new Schema<IListingDocument>({
+  rental: {
+    type: Boolean,
+    required: false,
+    index: true
+  },
   listPrice: {
     type: Number,
     required: true,
@@ -117,7 +127,7 @@ const ListingSchema = new Schema<IListingDocument>({
   status: {
     type: String,
     required: true,
-    enum: PropertyStatuses,
+    enum: AllPropertyStatuses,
     default: 'active',
     index: true
   },

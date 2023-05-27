@@ -11,7 +11,8 @@ export const DefaultListingResultFields = {
   description: 1,
   address: 1,
   latitude: { $arrayElemAt: ['$geometry.coordinates', 1] },
-  longitude: { $arrayElemAt: ['$geometry.coordinates', 0] }
+  longitude: { $arrayElemAt: ['$geometry.coordinates', 0] },
+  rental: 1
 }
 
 export const DefaultListingDetailFeilds = {

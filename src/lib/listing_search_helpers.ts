@@ -78,6 +78,7 @@ export const buildfilterQueries = (
     new_construction,
     pool,
     air_conditioning,
+    rental,
     sold_in_last
   } = params
   const filters = []
@@ -146,6 +147,9 @@ export const buildfilterQueries = (
   }
   if (air_conditioning) {
     filters.push({ airConditioning: air_conditioning === 'true' })
+  }
+  if (rental) {
+    filters.push({ rental: rental === 'true' })
   }
   return filters
 }

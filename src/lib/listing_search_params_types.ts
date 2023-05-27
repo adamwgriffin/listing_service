@@ -35,6 +35,7 @@ export interface IListingParams {
   new_construction: 'true' | 'false'
   pool: 'true' | 'false'
   air_conditioning: 'true' | 'false'
+  rental:  'true' | 'false'
   sold_in_last: number // days
 }
 
