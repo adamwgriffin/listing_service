@@ -22,12 +22,15 @@ export const randomPointsWithinPolygon = (
   return points
 }
 
-export const randomNumberInRange = (min: number, max: number): number => {
-  return Math.floor(Math.random() * (max - min + 1)) + min
-}
-
 export const roundDownToNearest = (num: number, nearest: number): number => {
   return Math.floor(num / nearest) * nearest
+}
+
+export const randomNumberInRangeRounded = (min: number, max: number, roundTo: number): number => {
+  return roundDownToNearest(
+    faker.number.int({ min, max }),
+    roundTo
+  )
 }
 
 export const addSoldData = (listing: IListing): IListing => {
@@ -38,18 +41,13 @@ export const addSoldData = (listing: IListing): IListing => {
   })
   return {
     ...listing,
-    soldPrice: randomPriceInRange(listing.listPrice - 5000, listing.listPrice + 5000),
+    soldPrice: randomNumberInRangeRounded(listing.listPrice - 5000, listing.listPrice + 5000, 1000),
     soldDate
   }
 }
 
-const randomPriceInRange = (min: number, max: number): number => {
-  const price = randomNumberInRange(min, max)
-  return roundDownToNearest(price, 1000)
-}
-
 const getListPrice = (rental: boolean): number => {
-  return rental ? randomPriceInRange(1000, 5000) : randomPriceInRange(100000, 800000)
+  return rental ? randomNumberInRangeRounded(1000, 5000, 1000) : randomNumberInRangeRounded(100000, 800000, 1000)
 }
 
 const getStatus = (rental: boolean): PropertyStatus => {
@@ -81,11 +79,11 @@ export const createRandomListingModel = (
     propertyType: faker.helpers.arrayElement(PropertyTypes),
     status: getStatus(rental),
     description: faker.lorem.sentences({ min: 1, max: 3 }),
-    beds: randomNumberInRange(2, 5),
-    baths: randomNumberInRange(1, 4),
-    sqft: roundDownToNearest(randomNumberInRange(1000, 5000), 100),
-    lotSize: roundDownToNearest(randomNumberInRange(1000, 7500), 100),
-    yearBuilt: randomNumberInRange(1910, today.getFullYear()),
+    beds: faker.number.int({ min: 2, max: 5 }),
+    baths: faker.number.int({ min: 1, max: 4 }),
+    sqft: randomNumberInRangeRounded(1000, 5000, 100),
+    lotSize: randomNumberInRangeRounded(1000, 7500, 100),
+    yearBuilt: faker.number.int({ min: 1910, max: today.getFullYear() }),
     waterfront: faker.datatype.boolean({ probability: 0.3 }),
     view: faker.datatype.boolean({ probability: 0.5 }),
     fireplace: faker.datatype.boolean({ probability: 0.7 }),
