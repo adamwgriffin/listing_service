@@ -5,7 +5,11 @@ import { bbox, randomPoint, booleanPointInPolygon } from '@turf/turf'
 import { faker } from '@faker-js/faker'
 import { subMonths } from 'date-fns'
 import { reverseGeocode, addressComponentsToAddress } from '../lib/geocoder'
-import { PropertyTypes, PropertyStatuses, RentalPropertyStatuses } from '../models/listingModel'
+import {
+  PropertyTypes,
+  PropertyStatuses,
+  RentalPropertyStatuses
+} from '../models/listingModel'
 
 export const randomPointsWithinPolygon = (
   polygon: Polygon | MultiPolygon,
@@ -26,11 +30,12 @@ export const roundDownToNearest = (num: number, nearest: number): number => {
   return Math.floor(num / nearest) * nearest
 }
 
-export const randomNumberInRangeRounded = (min: number, max: number, roundTo: number): number => {
-  return roundDownToNearest(
-    faker.number.int({ min, max }),
-    roundTo
-  )
+export const randomNumberInRangeRounded = (
+  min: number,
+  max: number,
+  roundTo: number
+): number => {
+  return roundDownToNearest(faker.number.int({ min, max }), roundTo)
 }
 
 export const addSoldData = (listing: IListing): IListing => {
@@ -41,13 +46,19 @@ export const addSoldData = (listing: IListing): IListing => {
   })
   return {
     ...listing,
-    soldPrice: randomNumberInRangeRounded(listing.listPrice - 5000, listing.listPrice + 5000, 1000),
+    soldPrice: randomNumberInRangeRounded(
+      listing.listPrice - 5000,
+      listing.listPrice + 5000,
+      1000
+    ),
     soldDate
   }
 }
 
 const getListPrice = (rental: boolean): number => {
-  return rental ? randomNumberInRangeRounded(1000, 5000, 1000) : randomNumberInRangeRounded(100000, 800000, 1000)
+  return rental
+    ? randomNumberInRangeRounded(1000, 5000, 1000)
+    : randomNumberInRangeRounded(100000, 800000, 1000)
 }
 
 const getStatus = (rental: boolean): PropertyStatus => {
@@ -91,7 +102,7 @@ export const createRandomListingModel = (
     garage: faker.datatype.boolean({ probability: 0.9 }),
     newConstruction: faker.datatype.boolean({ probability: 0.4 }),
     pool: faker.datatype.boolean({ probability: 0.2 }),
-    airConditioning: faker.datatype.boolean({ probability: 0.3 }),
+    airConditioning: faker.datatype.boolean({ probability: 0.3 })
   }
   if (rental) {
     return { ...listing, rental }
