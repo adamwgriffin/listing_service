@@ -21,7 +21,6 @@ export type PropertyType =
 export type PropertyStatus = 'active' | 'pending' | 'sold' | 'rented'
 
 export interface IListing {
-  rental?: boolean
   listPrice: number
   soldPrice?: number
   listedDate: Date
@@ -37,6 +36,7 @@ export interface IListing {
   sqft: number
   lotSize: number
   yearBuilt: number
+  rental?: boolean
   waterfront?: boolean
   view?: boolean
   fireplace?: boolean
@@ -62,14 +62,14 @@ export const PropertyStatuses: PropertyStatus[] = ['active', 'pending', 'sold']
 
 export const RentalPropertyStatuses: PropertyStatus[] = ['active', 'rented']
 
-export const AllPropertyStatuses: PropertyStatus[] = ['active', 'pending', 'sold', 'rented']
+export const AllPropertyStatuses: PropertyStatus[] = [
+  'active',
+  'pending',
+  'sold',
+  'rented'
+]
 
 const ListingSchema = new Schema<IListingDocument>({
-  rental: {
-    type: Boolean,
-    required: false,
-    index: true
-  },
   listPrice: {
     type: Number,
     required: true,
@@ -157,45 +157,50 @@ const ListingSchema = new Schema<IListingDocument>({
     required: true,
     index: true
   },
+  rental: {
+    type: Boolean,
+    required: false,
+    index: true
+  },
   waterfront: {
     type: Boolean,
     default: false,
-    index: true,
+    index: true
   },
   view: {
     type: Boolean,
     default: false,
-    index: true,
+    index: true
   },
   fireplace: {
     type: Boolean,
     default: false,
-    index: true,
+    index: true
   },
   basement: {
     type: Boolean,
     default: false,
-    index: true,
+    index: true
   },
   garage: {
     type: Boolean,
     default: false,
-    index: true,
+    index: true
   },
   newConstruction: {
     type: Boolean,
     default: false,
-    index: true,
+    index: true
   },
   pool: {
     type: Boolean,
     default: false,
-    index: true,
+    index: true
   },
   airConditioning: {
     type: Boolean,
     default: false,
-    index: true,
+    index: true
   }
 })
 
