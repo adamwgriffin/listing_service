@@ -27,6 +27,17 @@ export interface IPhotoGalleryImage {
   caption?: string
 }
 
+export interface PropertDetail {
+  name: string
+  details: string[]
+}
+
+export interface PropertDetailsSection {
+  name: string
+  description?: string
+  details: PropertDetail[]
+}
+
 export interface IListing {
   listPrice: number
   soldPrice?: number
@@ -53,6 +64,7 @@ export interface IListing {
   pool?: boolean
   airConditioning?: boolean
   photoGallery?: IPhotoGalleryImage[]
+  propertyDetails?: PropertDetailsSection[]
 }
 
 export interface IListingDocument extends IListing, Document {}
@@ -219,8 +231,24 @@ const ListingSchema = new Schema<IListingDocument>({
         caption: { type: String }
       }
     ],
-    required: false, // Set required to false to make it optional
-    default: [] // Set default value as an empty array
+    required: false,
+    default: []
+  },
+  propertyDetails: {
+    type: [
+      {
+        name: { type: String, required: true },
+        description: { type: String },
+        details: [
+          {
+            name: { type: String, required: true },
+            details: { type: [String], required: true }
+          }
+        ]
+      }
+    ],
+    required: false,
+    default: []
   }
 })
 

@@ -20,7 +20,8 @@ export const DefaultListingDetailFeilds = {
   ...DefaultListingResultFields,
   propertyType: 1,
   yearBuilt: 1,
-  soldDate: 1
+  soldDate: 1,
+  propertyDetails: 1
 }
 
 export const DefaultMaxDistance = 1609.34 // 1 mile in meters

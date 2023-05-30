@@ -1,4 +1,10 @@
-import type { IListing, IPhotoGalleryImage, PropertyStatus } from '../models/listingModel'
+import type {
+  IListing,
+  IPhotoGalleryImage,
+  PropertDetailsSection,
+  PropertDetail,
+  PropertyStatus
+} from '../models/listingModel'
 import type { Point, Polygon, MultiPolygon } from '@turf/turf'
 import type { AddressComponentAddress } from '../lib/geocoder'
 import { bbox, randomPoint, booleanPointInPolygon } from '@turf/turf'
@@ -71,13 +77,52 @@ const createPhotoGallery = (numberOfImages: number): IPhotoGalleryImage[] => {
   const images = []
   for (let i = 0; i < numberOfImages; i++) {
     images.push({
-      galleryUrl: `https://loremflickr.com/1920/1080/house?lock=${lock+i}`,
-      fullUrl: `https://loremflickr.com/853/480/house?lock=${lock+i}`,
-      smallUrl: `https://loremflickr.com/533/300/house?lock=${lock+i}`,
+      galleryUrl: `https://loremflickr.com/1920/1080/house?lock=${lock + i}`,
+      fullUrl: `https://loremflickr.com/853/480/house?lock=${lock + i}`,
+      smallUrl: `https://loremflickr.com/533/300/house?lock=${lock + i}`,
       caption: faker.lorem.words({ min: 4, max: 10 })
     })
   }
   return images
+}
+
+const randomWordArray = (min: number, max: number): string[] => {
+  const numberOfWords = faker.number.int({ min, max })
+  return Array.from({length: numberOfWords}, () => faker.lorem.word())
+}
+
+const titleCase = (word: string): string => {
+  return word.charAt(0).toUpperCase() + word.slice(1)
+}
+
+const generateRandomTitle = (min: number, max: number): string => {
+  return randomWordArray(min, max).map(w => titleCase(w)).join(' ')
+}
+
+const createPropertyDetail = (): PropertDetail => {
+  return {
+    name: generateRandomTitle(1, 3),
+    details: randomWordArray(1, 6).map(w => titleCase(w))
+  }
+}
+
+const createPropertDetailsSection = (): PropertDetailsSection => {
+  const numberOfDetails = faker.number.int({ min: 2, max: 6 })
+  return {
+    name: generateRandomTitle(1, 3),
+    description: titleCase(faker.lorem.words({ min: 4, max: 6 })),
+    details: Array.from({ length: numberOfDetails }, () => {
+      return createPropertyDetail()
+    })
+  }
+}
+
+const createPropertyDetails = (
+  numberOfSections: number
+): PropertDetailsSection[] => {
+  return Array.from({ length: numberOfSections }, () => {
+    return createPropertDetailsSection()
+  })
 }
 
 export const createRandomListingModel = (
@@ -117,7 +162,8 @@ export const createRandomListingModel = (
     newConstruction: faker.datatype.boolean({ probability: 0.4 }),
     pool: faker.datatype.boolean({ probability: 0.2 }),
     airConditioning: faker.datatype.boolean({ probability: 0.3 }),
-    photoGallery: createPhotoGallery(faker.number.int({ min: 2, max: 5 }))
+    photoGallery: createPhotoGallery(faker.number.int({ min: 2, max: 5 })),
+    propertyDetails: createPropertyDetails(faker.number.int({ min: 4, max: 12 }))
   }
   if (rental) {
     return { ...listing, rental }
