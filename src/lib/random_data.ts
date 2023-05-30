@@ -1,4 +1,4 @@
-import type { IListing, PropertyStatus } from '../models/listingModel'
+import type { IListing, IPhotoGalleryImage, PropertyStatus } from '../models/listingModel'
 import type { Point, Polygon, MultiPolygon } from '@turf/turf'
 import type { AddressComponentAddress } from '../lib/geocoder'
 import { bbox, randomPoint, booleanPointInPolygon } from '@turf/turf'
@@ -66,6 +66,20 @@ const getStatus = (rental: boolean): PropertyStatus => {
   return faker.helpers.arrayElement(statuses)
 }
 
+const createPhotoGallery = (numberOfImages: number): IPhotoGalleryImage[] => {
+  const lock = faker.number.int()
+  const images = []
+  for (let i = 0; i < numberOfImages; i++) {
+    images.push({
+      galleryUrl: `https://loremflickr.com/1920/1080/house?lock=${lock+i}`,
+      fullUrl: `https://loremflickr.com/853/480/house?lock=${lock+i}`,
+      smallUrl: `https://loremflickr.com/533/300/house?lock=${lock+i}`,
+      caption: faker.lorem.words({ min: 4, max: 10 })
+    })
+  }
+  return images
+}
+
 export const createRandomListingModel = (
   address: AddressComponentAddress,
   point: Point
@@ -102,7 +116,8 @@ export const createRandomListingModel = (
     garage: faker.datatype.boolean({ probability: 0.9 }),
     newConstruction: faker.datatype.boolean({ probability: 0.4 }),
     pool: faker.datatype.boolean({ probability: 0.2 }),
-    airConditioning: faker.datatype.boolean({ probability: 0.3 })
+    airConditioning: faker.datatype.boolean({ probability: 0.3 }),
+    photoGallery: createPhotoGallery(faker.number.int({ min: 2, max: 5 }))
   }
   if (rental) {
     return { ...listing, rental }

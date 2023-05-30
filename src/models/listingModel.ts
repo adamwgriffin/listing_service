@@ -20,6 +20,13 @@ export type PropertyType =
 
 export type PropertyStatus = 'active' | 'pending' | 'sold' | 'rented'
 
+export interface IPhotoGalleryImage {
+  galleryUrl: string // 1920x1080 (used for slideshow image)
+  fullUrl: string // 853x480(used for listing detail image)
+  smallUrl: string // 533x300 (used for listing card image)
+  caption?: string
+}
+
 export interface IListing {
   listPrice: number
   soldPrice?: number
@@ -45,6 +52,7 @@ export interface IListing {
   newConstruction?: boolean
   pool?: boolean
   airConditioning?: boolean
+  photoGallery?: IPhotoGalleryImage[]
 }
 
 export interface IListingDocument extends IListing, Document {}
@@ -201,6 +209,18 @@ const ListingSchema = new Schema<IListingDocument>({
     type: Boolean,
     default: false,
     index: true
+  },
+  photoGallery: {
+    type: [
+      {
+        galleryUrl: { type: String, required: true },
+        fullUrl: { type: String, required: true },
+        smallUrl: { type: String, required: true },
+        caption: { type: String }
+      }
+    ],
+    required: false, // Set required to false to make it optional
+    default: [] // Set default value as an empty array
   }
 })
 
