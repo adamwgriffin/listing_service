@@ -35,7 +35,7 @@ export interface IListingParams {
   new_construction: 'true' | 'false'
   pool: 'true' | 'false'
   air_conditioning: 'true' | 'false'
-  rental:  'true' | 'false'
+  rental: 'true' | 'false'
   sold_in_last: number // days
 }
 
@@ -60,10 +60,10 @@ export interface IGeocodeBoundarySearchParams extends Partial<IListingParams> {
   place_id?: string
 }
 
-export interface IGeocodeBoundarySuccessResponse{
+export interface IGeocodeBoundarySuccessResponse {
   listings: Partial<IListing>[]
   boundary: IBoundary
-  geocoderResult: GeocodeResult[],
+  geocoderResult: GeocodeResult[]
   pagination: IPaginationResponse
 }
 

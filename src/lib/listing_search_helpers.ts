@@ -55,6 +55,7 @@ export const numberRangeQuery = (
 export const buildfilterQueries = (
   params: IGeocodeBoundarySearchParams
 ): FilterQuery<IListingDocument>[] => {
+  // TODO: refactor this. the list is way too long.
   const {
     property_type,
     status,

@@ -96,13 +96,15 @@ const titleCase = (word: string): string => {
 }
 
 const generateRandomTitle = (min: number, max: number): string => {
-  return randomWordArray(min, max).map(w => titleCase(w)).join(' ')
+  return randomWordArray(min, max)
+    .map((w) => titleCase(w))
+    .join(' ')
 }
 
 const createPropertyDetail = (): PropertDetail => {
   return {
     name: generateRandomTitle(1, 3),
-    details: randomWordArray(1, 6).map(w => titleCase(w))
+    details: randomWordArray(1, 6).map((w) => titleCase(w))
   }
 }
 
@@ -131,7 +133,7 @@ export const createRandomListingModel = (
 ): IListing => {
   const today = new Date()
   const rental = faker.datatype.boolean({ probability: 0.5 })
-  const listing = {
+  const listing: IListing = {
     listPrice: getListPrice(rental),
     listedDate: faker.date.between({
       from: subMonths(today, 6),
@@ -163,10 +165,13 @@ export const createRandomListingModel = (
     pool: faker.datatype.boolean({ probability: 0.2 }),
     airConditioning: faker.datatype.boolean({ probability: 0.3 }),
     photoGallery: createPhotoGallery(faker.number.int({ min: 2, max: 5 })),
-    propertyDetails: createPropertyDetails(faker.number.int({ min: 4, max: 12 }))
+    propertyDetails: createPropertyDetails(
+      faker.number.int({ min: 4, max: 12 })
+    )
   }
   if (rental) {
-    return { ...listing, rental }
+    listing.rental = true
+    return listing
   }
   if (listing.status === 'sold') {
     return addSoldData(listing)
