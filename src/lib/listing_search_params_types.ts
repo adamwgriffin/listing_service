@@ -37,6 +37,10 @@ export interface IListingParams {
   air_conditioning: 'true' | 'false'
   rental: 'true' | 'false'
   sold_in_last: number // days
+  // can be used together as a date/time range, e.g.,
+  // open_house_after=2023-06-01T04:31:54.365Z - open_house_before=2023-08-28T04:54:39.513Z
+  open_house_after: string
+  open_house_before: string
 }
 
 export interface IBoundsParams {

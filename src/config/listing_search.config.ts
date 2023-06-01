@@ -13,7 +13,8 @@ export const DefaultListingResultFields = {
   latitude: { $arrayElemAt: ['$geometry.coordinates', 1] },
   longitude: { $arrayElemAt: ['$geometry.coordinates', 0] },
   rental: 1,
-  photoGallery: 1
+  photoGallery: 1,
+  openHouses: 1
 }
 
 export const DefaultListingDetailFeilds = {

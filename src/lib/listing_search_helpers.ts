@@ -8,7 +8,10 @@ import type {
 import { bboxPolygon, intersect } from '@turf/turf'
 import { differenceInDays, subDays } from 'date-fns'
 
-export const daysOnMarket = (listedDate: Date, soldDate: Date | undefined): number => {
+export const daysOnMarket = (
+  listedDate: Date,
+  soldDate: Date | undefined
+): number => {
   return differenceInDays(soldDate || new Date(), listedDate)
 }
 
@@ -52,6 +55,24 @@ export const numberRangeQuery = (
   return query
 }
 
+export const openHouseQuery = (
+  open_house_after: string | undefined,
+  open_house_before: string | undefined
+): FilterQuery<IListingDocument> => {
+  const query: { $gte?: Date, $lte?: Date } = {}
+  if (open_house_after) {
+    query.$gte = new Date(open_house_after)
+  }
+  if (open_house_before) {
+    query.$lte = new Date(open_house_before)
+  }
+  return {
+    openHouses: {
+      $elemMatch: { start: query }
+    }
+  }
+}
+
 export const buildfilterQueries = (
   params: IGeocodeBoundarySearchParams
 ): FilterQuery<IListingDocument>[] => {
@@ -80,7 +101,9 @@ export const buildfilterQueries = (
     pool,
     air_conditioning,
     rental,
-    sold_in_last
+    sold_in_last,
+    open_house_after,
+    open_house_before,
   } = params
   const filters = []
   if (property_type) {
@@ -105,6 +128,9 @@ export const buildfilterQueries = (
         $gte: subDays(new Date(), sold_in_last)
       }
     })
+  }
+  if (open_house_after || open_house_before) {
+    filters.push(openHouseQuery(open_house_after, open_house_before))
   }
   // TODO: make this more DRY
   if (price_min || price_max) {

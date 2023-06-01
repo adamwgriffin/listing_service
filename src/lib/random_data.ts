@@ -3,13 +3,14 @@ import type {
   IPhotoGalleryImage,
   PropertDetailsSection,
   PropertDetail,
-  PropertyStatus
+  PropertyStatus,
+  IOpenHouse
 } from '../models/listingModel'
 import type { Point, Polygon, MultiPolygon } from '@turf/turf'
 import type { AddressComponentAddress } from '../lib/geocoder'
 import { bbox, randomPoint, booleanPointInPolygon } from '@turf/turf'
 import { faker } from '@faker-js/faker'
-import { subMonths } from 'date-fns'
+import { subMonths, addHours, addMonths } from 'date-fns'
 import { reverseGeocode, addressComponentsToAddress } from '../lib/geocoder'
 import {
   PropertyTypes,
@@ -88,7 +89,7 @@ const createPhotoGallery = (numberOfImages: number): IPhotoGalleryImage[] => {
 
 const randomWordArray = (min: number, max: number): string[] => {
   const numberOfWords = faker.number.int({ min, max })
-  return Array.from({length: numberOfWords}, () => faker.lorem.word())
+  return Array.from({ length: numberOfWords }, () => faker.lorem.word())
 }
 
 const titleCase = (word: string): string => {
@@ -125,6 +126,30 @@ const createPropertyDetails = (
   return Array.from({ length: numberOfSections }, () => {
     return createPropertDetailsSection()
   })
+}
+
+const createOpenHouse = (listedDate: Date): IOpenHouse => {
+  const start = faker.date.between({
+    from: listedDate,
+    to: addMonths(listedDate, 4)
+  })
+  const hoursToAdd = faker.number.int({ min: 1, max: 6 })
+  const end = addHours(start, hoursToAdd)
+  return {
+    start,
+    end,
+    comments: faker.lorem.sentence()
+  }
+}
+
+const createOpenHouses = (
+  numberOfOpenHouses: number,
+  listedDate: Date
+): IOpenHouse[] => {
+  const openHouses =  Array.from({ length: numberOfOpenHouses }, () => {
+    return createOpenHouse(listedDate)
+  })
+  return openHouses.sort((a, b) => a.start.getTime() - b.start.getTime());
 }
 
 export const createRandomListingModel = (
@@ -175,6 +200,12 @@ export const createRandomListingModel = (
   }
   if (listing.status === 'sold') {
     return addSoldData(listing)
+  }
+  if (listing.status === 'active' && !listing.rental) {
+    listing.openHouses = createOpenHouses(
+      faker.number.int({ min: 1, max: 3 }),
+      listing.listedDate
+    )
   }
   return listing
 }

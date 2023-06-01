@@ -38,6 +38,12 @@ export interface PropertDetailsSection {
   details: PropertDetail[]
 }
 
+export interface IOpenHouse {
+  start: Date;
+  end: Date;
+  comments?: string;
+}
+
 export interface IListing {
   listPrice: number
   soldPrice?: number
@@ -65,6 +71,7 @@ export interface IListing {
   airConditioning?: boolean
   photoGallery?: IPhotoGalleryImage[]
   propertyDetails?: PropertDetailsSection[]
+  openHouses?: IOpenHouse[]
 }
 
 export interface IListingDocument extends IListing, Document {}
@@ -248,9 +255,25 @@ const ListingSchema = new Schema<IListingDocument>({
       }
     ],
     required: false,
-    default: []
+    default: [],
+    index: true
+  },
+  openHouses: {
+    type: [
+      {
+        start: { type: Date, required: true },
+        end: { type: Date, required: true },
+        comments: { type: String },
+      }
+    ],
+    default: [],
+    required: false
   }
 })
+
+// looks like this is how we need to do the index if we plan on querying the fields inside the OpenHouses array.
+ListingSchema.index({ 'openHouses.start': 1 })
+ListingSchema.index({ 'openHouses.end': 1 })
 
 const Listing = model<IListingDocument>('Listing', ListingSchema)
 
