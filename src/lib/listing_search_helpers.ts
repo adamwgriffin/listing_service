@@ -177,6 +177,8 @@ export const buildfilterQueries = (
   }
   if (rental) {
     filters.push({ rental: rental === 'true' })
+  } else {
+    filters.push({ rental: { $exists: false } })
   }
   return filters
 }
