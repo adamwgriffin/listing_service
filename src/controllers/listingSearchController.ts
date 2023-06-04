@@ -23,12 +23,6 @@ export const geocodeBoundarySearch = async (ctx: IGeocodeBoundaryContext) => {
     geocodeParams = { address }
   } else if (place_id) {
     geocodeParams = { place_id }
-  } else {
-    ctx.status = 400
-    ctx.body = {
-      error: 'Either address or placeId query parameter is required'
-    }
-    return
   }
 
   try {
