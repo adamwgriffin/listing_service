@@ -2,9 +2,19 @@ import type { MultiPolygon } from '@turf/turf'
 import { Schema, model } from 'mongoose'
 import MultiPolygonSchema from './MultiPolygonSchema'
 
+export type BoundaryType =
+  | 'neighborhood'
+  | 'city'
+  | 'zip_code'
+  | 'county'
+  | 'state'
+  | 'country'
+  | 'school_district'
+  | 'school'
+
 export interface IBoundary extends Document {
   name: string
-  type: 'neighborhood' | 'city' | 'zipcode' | 'county' | 'state' | 'country'
+  type: BoundaryType
   geometry: MultiPolygon
 }
 
@@ -15,7 +25,16 @@ export const BoundarySchema = new Schema<IBoundary>({
   },
   type: {
     type: String,
-    enum: ['neighborhood', 'city', 'zipcode', 'county', 'state', 'country'],
+    enum: [
+      'neighborhood',
+      'city',
+      'zip_code',
+      'county',
+      'state',
+      'country',
+      'school_district',
+      'school'
+    ],
     required: true
   },
   geometry: {

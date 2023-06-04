@@ -3,7 +3,10 @@ import type {
   GeocodeRequest,
   ReverseGeocodeResponse
 } from '@googlemaps/google-maps-services-js'
+import type { BoundaryType } from '../models/BoundaryModel'
 import { Client, AddressType } from '@googlemaps/google-maps-services-js'
+
+export const GeocodeTimeout = 1000 // milliseconds
 
 export interface AddressComponentAddress {
   streetNumber: string
@@ -14,7 +17,21 @@ export interface AddressComponentAddress {
   neighborhood: string
 }
 
-export const GeocodeTimeout = 1000 // milliseconds
+export const AddressTypeToBoundaryTypeMapping: Map<AddressType, BoundaryType> = new Map([
+  [AddressType.country, 'country'],
+  [AddressType.administrative_area_level_1, 'state'],
+  [AddressType.administrative_area_level_2, 'county'],
+  [AddressType.postal_code, 'zip_code'],
+  [AddressType.locality, 'city'],
+  [AddressType.neighborhood, 'neighborhood']
+])
+
+export const getBoundaryTypeFromGeocoderAddressTypes = (types: AddressType[]): BoundaryType => {
+  if (types.includes(AddressType.school)) {
+    return 'school'
+  }
+  return AddressTypeToBoundaryTypeMapping.get(types[0]) || 'neighborhood'
+}
 
 const googleMapsClient = new Client({})
 

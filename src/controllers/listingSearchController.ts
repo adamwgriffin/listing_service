@@ -7,7 +7,10 @@ import {
   DefaultMaxDistance,
   DefaultPageSize
 } from '../config'
-import { geocode } from '../lib/geocoder'
+import {
+  geocode,
+  getBoundaryTypeFromGeocoderAddressTypes
+} from '../lib/geocoder'
 import {
   boundsParamsToGeoJSONPolygon,
   removePartsOfBoundaryOutsideOfBounds,
@@ -29,17 +32,25 @@ export const geocodeBoundarySearch = async (ctx: IGeocodeBoundaryContext) => {
     // make the request to the geocode service
     const geocoderResult = await geocode(geocodeParams)
     const { lat, lng } = geocoderResult.data.results[0].geometry.location
+    const type = getBoundaryTypeFromGeocoderAddressTypes(geocoderResult.data.results[0].types)
 
     // search for a boundary that matches the geocoder response coordinates
     const boundaries = await Boundary.find({
-      geometry: {
-        $geoIntersects: {
-          $geometry: {
-            type: 'Point',
-            coordinates: [lng, lat]
+      $and: [
+        {
+          geometry: {
+            $geoIntersects: {
+              $geometry: {
+                type: 'Point',
+                coordinates: [lng, lat]
+              }
+            }
           }
+        },
+        {
+          type: type
         }
-      }
+      ]
     })
 
     const page_size = Number(ctx.query.page_size) || DefaultPageSize
