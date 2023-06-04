@@ -13,6 +13,7 @@
     "console": "docker compose run --rm app yarn ts-node",
     "generate_listing_data": "docker compose run --rm app yarn ts-node src/bin/generate_random_listing_data.ts",
     "load_listing_data": "docker compose run --rm app yarn ts-node src/bin/load_listing_data.ts",
+    "load_boundary_data": "docker compose run --rm app yarn ts-node src/bin/load_boundary_data.ts",
     "generate_and_load_listing_data": "yarn generate_listing_data && yarn load_listing_data"
   },
   "dependencies": {
