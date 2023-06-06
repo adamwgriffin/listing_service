@@ -12,13 +12,15 @@ export type BoundaryType =
   | 'school_district'
   | 'school'
 
-export interface IBoundary extends Document {
+export interface IBoundary {
   name: string
   type: BoundaryType
   geometry: MultiPolygon
 }
 
-export const BoundarySchema = new Schema<IBoundary>({
+export interface IBoundaryDocument extends IBoundary, Document {}
+
+export const BoundarySchema = new Schema<IBoundaryDocument>({
   name: {
     type: String,
     required: true
@@ -47,6 +49,6 @@ export const BoundarySchema = new Schema<IBoundary>({
   }
 })
 
-const Boundary = model<IBoundary>('Boundary', BoundarySchema)
+const Boundary = model<IBoundaryDocument>('Boundary', BoundarySchema)
 
 export default Boundary
