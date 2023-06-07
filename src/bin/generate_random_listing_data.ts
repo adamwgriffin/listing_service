@@ -3,8 +3,6 @@ import fs from 'fs'
 import path from 'path'
 import yargs from 'yargs'
 import generateListingData from '../lib/random_data'
-import fremontBoundary from '../test/test_data/boundary_data/fremont_boundary'
-import ballardBoundary from '../test/test_data/boundary_data/ballard_boundary'
 
 const DefaultOutputPath = path.join(
   __dirname,
@@ -15,8 +13,29 @@ const DefaultOutputPath = path.join(
   'random_listing_data.json'
 )
 
+const DefaultFilePath = path.join(
+  __dirname,
+  '..',
+  'test',
+  'test_data',
+  'boundary_data',
+  'seattle_neighborhood_boundaries.json'
+)
+
 const main = async () => {
   const argv = await yargs(process.argv.slice(2))
+    .option('file', {
+      alias: 'f',
+      type: 'string',
+      default: DefaultFilePath,
+      describe: 'Path to the file to use to load boundary data from'
+    })
+    .option('sleep', {
+      alias: 's',
+      type: 'number',
+      default: 0,
+      describe: 'Amount of time to sleep in milliseconds between creating listings for each boundary'
+    })
     .option('number', {
       alias: 'n',
       type: 'number',
@@ -31,22 +50,27 @@ const main = async () => {
     })
     .alias('h', 'help')
     .help('help')
-    .usage(`Usage: $0 [options]`).argv
+    .usage(`Usage: $0 [options]`)
+    .epilogue(
+      'Generate random Listing data within the bounds of an array of Boundaries'
+    ).argv
 
   if (argv.help) {
     yargs.showHelp()
     process.exit(0)
   }
 
+  const boundaries = JSON.parse(
+    fs.readFileSync(argv.file, 'utf-8')
+  ) as IBoundary[]
   const listings = await Promise.all(
-    [fremontBoundary, ballardBoundary].map(async (boundary: IBoundary) => {
-      return await generateListingData(boundary.geometry, argv.number)
+    boundaries.map(async (boundary: IBoundary) => {
+      const listings = await generateListingData(boundary.geometry, argv.number)
+      await new Promise(resolve => setTimeout(resolve, argv.sleep))
+      return listings
     })
   )
-
   fs.writeFileSync(argv.outputPath, JSON.stringify(listings.flat(), null, 2))
-
-  console.log(`Random listing data saved to "${argv.outputPath}".`)
 }
 
 main()
