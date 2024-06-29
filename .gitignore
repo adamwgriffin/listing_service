@@ -2,7 +2,7 @@
 node_modules/
 dist/
 
-# Environment variables
+# Local env files
 .env
 .env.*
 
@@ -19,3 +19,7 @@ yarn-debug.log*
 yarn-error.log*
 
 shape_files/
+
+# Misc
+.DS_Store
+*.pem
