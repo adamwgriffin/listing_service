@@ -68,7 +68,7 @@ export const AddressComponentAddressTemplate = Object.freeze({
 })
 
 export const geocode = async (
-  params: Partial<GeocodeRequest>,
+  params: Omit<GeocodeRequest['params'], 'key'>,
   timeout = GeocodeTimeout
 ) => {
   return googleMapsClient.geocode({
