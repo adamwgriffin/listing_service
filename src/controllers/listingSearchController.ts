@@ -19,18 +19,9 @@ import {
 } from '../lib/listing_search_helpers'
 
 export const geocodeBoundarySearch = async (ctx: IGeocodeBoundaryContext) => {
-  // get and validate the params
-  const { address, place_id } = ctx.query
-  let geocodeParams
-  if (address) {
-    geocodeParams = { address }
-  } else if (place_id) {
-    geocodeParams = { place_id }
-  }
-
   try {
     // make the request to the geocode service
-    const geocoderResult = await geocode(geocodeParams)
+    const geocoderResult = await geocode(ctx.query)
     const { lat, lng } = geocoderResult.data.results[0].geometry.location
     const type = getBoundaryTypeFromGeocoderAddressTypes(geocoderResult.data.results[0].types)
 
