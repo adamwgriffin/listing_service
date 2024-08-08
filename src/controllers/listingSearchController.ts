@@ -23,7 +23,7 @@ export const geocodeBoundarySearch = async (ctx: IGeocodeBoundaryContext) => {
     // make the request to the geocode service
     const geocoderResult = await geocode(ctx.query)
     const { lat, lng } = geocoderResult.data.results[0].geometry.location
-    const type = getBoundaryTypeFromGeocoderAddressTypes(geocoderResult.data.results[0].types)
+    const boundaryType = getBoundaryTypeFromGeocoderAddressTypes(geocoderResult.data.results[0].types)
 
     // search for a boundary that matches the geocoder response coordinates
     const boundaries = await Boundary.find({
@@ -39,7 +39,7 @@ export const geocodeBoundarySearch = async (ctx: IGeocodeBoundaryContext) => {
           }
         },
         {
-          type: type
+          type: boundaryType
         }
       ]
     })
