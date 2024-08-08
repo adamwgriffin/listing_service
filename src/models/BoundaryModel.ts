@@ -1,4 +1,5 @@
 import type { MultiPolygon } from '@turf/turf'
+import type { Document, Model } from 'mongoose'
 import { Schema, model } from 'mongoose'
 import MultiPolygonSchema from './MultiPolygonSchema'
 
@@ -15,15 +16,17 @@ export const BoundaryTypes = [
 
 export type BoundaryType = (typeof BoundaryTypes)[number]
 
-export interface IBoundary {
+export interface IBoundary extends Document {
   name: string
   type: BoundaryType
   geometry: MultiPolygon
 }
 
-export interface IBoundaryDocument extends IBoundary, Document {}
+export interface BoundaryModel extends Model<IBoundary> {
+  findBoundaries(lat: number, lng: number, boundaryType: string): Promise<IBoundary[]>
+}
 
-export const BoundarySchema = new Schema<IBoundaryDocument>({
+export const BoundarySchema: Schema<IBoundary> = new Schema({
   name: {
     type: String,
     required: true
@@ -43,6 +46,30 @@ export const BoundarySchema = new Schema<IBoundaryDocument>({
   }
 })
 
-const Boundary = model<IBoundaryDocument>('Boundary', BoundarySchema)
+BoundarySchema.statics.findBoundaries = async function (
+  lat: number,
+  lng: number,
+  boundaryType: BoundaryType
+) {
+  return this.find({
+    $and: [
+      {
+        geometry: {
+          $geoIntersects: {
+            $geometry: {
+              type: 'Point',
+              coordinates: [lng, lat]
+            }
+          }
+        }
+      },
+      {
+        type: boundaryType
+      }
+    ]
+  })
+}
+
+const Boundary = model<IBoundary, BoundaryModel>('Boundary', BoundarySchema)
 
 export default Boundary

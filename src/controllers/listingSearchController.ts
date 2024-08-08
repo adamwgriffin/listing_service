@@ -26,23 +26,7 @@ export const geocodeBoundarySearch = async (ctx: IGeocodeBoundaryContext) => {
     const boundaryType = getBoundaryTypeFromGeocoderAddressTypes(geocoderResult.data.results[0].types)
 
     // search for a boundary that matches the geocoder response coordinates
-    const boundaries = await Boundary.find({
-      $and: [
-        {
-          geometry: {
-            $geoIntersects: {
-              $geometry: {
-                type: 'Point',
-                coordinates: [lng, lat]
-              }
-            }
-          }
-        },
-        {
-          type: boundaryType
-        }
-      ]
-    })
+    const boundaries = await Boundary.findBoundaries(lat, lng, boundaryType)
 
     const page_size = Number(ctx.query.page_size) || DefaultPageSize
     const page_index = Number(ctx.query.page_index) || 0
