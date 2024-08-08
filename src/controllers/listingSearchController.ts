@@ -46,6 +46,14 @@ export const geocodeBoundarySearch = async (ctx: IGeocodeBoundaryContext) => {
 
     const page_size = Number(ctx.query.page_size) || DefaultPageSize
     const page_index = Number(ctx.query.page_index) || 0
+
+    if (boundaries.length === 0) {
+      ctx.status = 404
+      return ctx.body = {
+        error: "No boundary found for query."
+      }
+    }
+
     const sort_by = ctx.query.sort_by || 'listedDate'
     // 1 == ascending, e.g., 1-10
     // -1 == descending, e.g., 10-1
