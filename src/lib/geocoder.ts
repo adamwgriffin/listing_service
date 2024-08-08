@@ -29,11 +29,11 @@ export const AddressTypeToBoundaryTypeMapping: Map<AddressType, BoundaryType> =
 
 export const getBoundaryTypeFromGeocoderAddressTypes = (
   types: AddressType[]
-): BoundaryType => {
+): BoundaryType | undefined => {
   if (types.includes(AddressType.school)) {
     return 'school'
   }
-  return AddressTypeToBoundaryTypeMapping.get(types[0]) || 'neighborhood'
+  return AddressTypeToBoundaryTypeMapping.get(types[0])
 }
 
 const googleMapsClient = new Client({})
