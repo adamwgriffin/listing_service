@@ -17,16 +17,19 @@ export interface AddressComponentAddress {
   neighborhood: string
 }
 
-export const AddressTypeToBoundaryTypeMapping: Map<AddressType, BoundaryType> = new Map([
-  [AddressType.country, 'country'],
-  [AddressType.administrative_area_level_1, 'state'],
-  [AddressType.administrative_area_level_2, 'county'],
-  [AddressType.postal_code, 'zip_code'],
-  [AddressType.locality, 'city'],
-  [AddressType.neighborhood, 'neighborhood']
-])
+export const AddressTypeToBoundaryTypeMapping: Map<AddressType, BoundaryType> =
+  new Map([
+    [AddressType.country, 'country'],
+    [AddressType.administrative_area_level_1, 'state'],
+    [AddressType.administrative_area_level_2, 'county'],
+    [AddressType.postal_code, 'zip_code'],
+    [AddressType.locality, 'city'],
+    [AddressType.neighborhood, 'neighborhood']
+  ])
 
-export const getBoundaryTypeFromGeocoderAddressTypes = (types: AddressType[]): BoundaryType => {
+export const getBoundaryTypeFromGeocoderAddressTypes = (
+  types: AddressType[]
+): BoundaryType => {
   if (types.includes(AddressType.school)) {
     return 'school'
   }
