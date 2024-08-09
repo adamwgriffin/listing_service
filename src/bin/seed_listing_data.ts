@@ -1,4 +1,4 @@
-import type { IListing } from '../models/listingModel'
+import type { Listing } from '../models/listingModel'
 import fs from 'fs'
 import path from 'path'
 import yargs from 'yargs'
@@ -35,7 +35,7 @@ const main = async (): Promise<void> => {
   try {
     await connectToDatabase()
     console.log("Creating listings...")
-    const listingData = JSON.parse(fs.readFileSync(argv.file, 'utf-8')) as IListing[]
+    const listingData = JSON.parse(fs.readFileSync(argv.file, 'utf-8')) as Listing[]
     const listings = await Listing.create(listingData)
     console.log(`${listings.length} listings created.`)
     await disconnectDatabase()

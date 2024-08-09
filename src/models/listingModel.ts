@@ -44,7 +44,7 @@ export interface IOpenHouse {
   comments?: string;
 }
 
-export interface IListing {
+export interface Listing {
   listPrice: number
   soldPrice?: number
   listedDate: Date
@@ -74,7 +74,7 @@ export interface IListing {
   openHouses?: IOpenHouse[]
 }
 
-export interface IListingDocument extends IListing, Document {}
+export interface ListingModel extends Listing, Document {}
 
 export const PropertyTypes: PropertyType[] = [
   'single-family',
@@ -95,8 +95,7 @@ export const AllPropertyStatuses: PropertyStatus[] = [
   'sold',
   'rented'
 ]
-
-const ListingSchema = new Schema<IListingDocument>({
+const ListingSchema = new Schema<ListingModel>({
   listPrice: {
     type: Number,
     required: true,
@@ -275,6 +274,6 @@ const ListingSchema = new Schema<IListingDocument>({
 ListingSchema.index({ 'openHouses.start': 1 })
 ListingSchema.index({ 'openHouses.end': 1 })
 
-const Listing = model<IListingDocument>('Listing', ListingSchema)
+const Listing = model<ListingModel>('Listing', ListingSchema)
 
 export default Listing

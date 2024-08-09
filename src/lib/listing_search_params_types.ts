@@ -1,5 +1,5 @@
 import type { Context } from 'koa'
-import type { IListing } from '../models/listingModel'
+import type { Listing } from '../models/listingModel'
 import type { IBoundary } from '../models/BoundaryModel'
 import { GeocodeResult } from '@googlemaps/google-maps-services-js'
 
@@ -65,7 +65,7 @@ export interface IGeocodeBoundarySearchParams extends Partial<IListingParams> {
 }
 
 export interface IGeocodeBoundarySuccessResponse {
-  listings: Partial<IListing>[]
+  listings: Partial<Listing>[]
   boundary: IBoundary
   geocoderResult: GeocodeResult[]
   pagination: IPaginationResponse
