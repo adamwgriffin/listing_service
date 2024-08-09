@@ -13,9 +13,7 @@ import {
 } from '../lib/geocoder'
 import {
   boundsParamsToGeoJSONPolygon,
-  removePartsOfBoundaryOutsideOfBounds,
-  buildfilterQueries,
-  buildfilterQueriesObject
+  removePartsOfBoundaryOutsideOfBounds
 } from '../lib/listing_search_helpers'
 import { MultiPolygon, Polygon } from '@turf/turf'
 
@@ -180,47 +178,27 @@ export const radiusSearch = async (ctx: Context) => {
   const sort_direction = ctx.query.sort_direction === 'asc' ? 1 : -1
 
   try {
-    const results = await Listing.aggregate([
-      // $geoNear doesn't go inside of $match like the other queries because it is aggregation pipeline stage, not an
-      // aggregation operator. also, you can only use $geoNear as the first stage of a pipeline.
-      {
-        $geoNear: {
-          near: {
-            type: 'Point',
-            coordinates: [Number(lng), Number(lat)]
-          },
-          maxDistance: Number(max_distance) || DefaultMaxDistance,
-          spherical: true,
-          distanceField: 'distance'
-        }
-      },
-      {
-        $match: buildfilterQueriesObject(ctx.query)
-      },
-      { $sort: { [sort_by]: sort_direction } },
-      {
-        $facet: {
-          metadata: [{ $count: 'numberAvailable' }],
-          data: [
-            { $skip: page_index * page_size },
-            { $limit: page_size },
-            {
-              // "distance" is the fieldname set in the  "distanceField" for the $geoNear query above
-              $project: { ...DefaultListingResultFields, distance: 1 }
-            }
-          ]
-        }
-      }
-    ])
+    // "distance" is the fieldname set in the  "distanceField" for the $geoNear query in the findWithinRadius method
+    const results = await Listing.findWithinRadius(
+      Number(lat),
+      Number(lng),
+      (Number(max_distance) || DefaultMaxDistance),
+      ctx.query,
+      sort_by,
+      sort_direction,
+      page_index,
+      page_size,
+      { ...DefaultListingResultFields, distance: 1 }
+    )
 
-    const r = results[0]
-    const numberAvailable = r.metadata[0]?.numberAvailable || 0
+    const { data, metadata } = results[0]
+    const numberAvailable = metadata[0]?.numberAvailable || 0
     ctx.body = {
-      listings: r.data,
+      listings: data,
       pagination: {
         page: page_index,
         pageSize: page_size,
-        numberReturned: r.data.length,
+        numberReturned: data.length,
         numberAvailable: numberAvailable,
         numberOfPages: Math.ceil(numberAvailable / page_size)
       }

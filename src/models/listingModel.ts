@@ -1,9 +1,12 @@
 import type { MultiPolygon, Point, Polygon } from '@turf/turf'
+import type {
+  IGeocodeBoundarySearchParams,
+  SortType
+} from '../lib/listing_search_params_types'
 import { Model, Document, ProjectionFields, Schema, model } from 'mongoose'
 import PointSchema from './PointSchema'
-import { IGeocodeBoundarySearchParams, SortType } from '../lib/listing_search_params_types'
 import { DefaultListingResultFields } from '../config'
-import { buildfilterQueries } from '../lib/listing_search_helpers'
+import { buildfilterQueries, buildfilterQueriesObject } from '../lib/listing_search_helpers'
 
 export const PropertyTypes = [
   'single-family',
@@ -93,6 +96,18 @@ export interface IListing {
 export interface IListingModel extends Model<IListing> {
   findWithinBounds(
     boundaryGeometry: Polygon | MultiPolygon,
+    query: IGeocodeBoundarySearchParams,
+    sortBy: SortType,
+    SortDirection: 1 | -1,
+    pageIndex: number,
+    pageSize: number,
+    fields?: ProjectionFields<IListing>
+  ): Promise<Document<IListing>>
+
+  findWithinRadius(
+    lat: number,
+    lng: number,
+    maxDistance: number,
     query: IGeocodeBoundarySearchParams,
     sortBy: SortType,
     SortDirection: 1 | -1,
@@ -318,6 +333,50 @@ ListingSchema.statics.findWithinBounds = async function (
           { $skip: pageIndex * pageSize },
           { $limit: pageSize },
           { $project: fields }
+        ]
+      }
+    }
+  ])
+}
+
+ListingSchema.statics.findWithinRadius = async function (
+  lat: number,
+  lng: number,
+  maxDistance: number,
+  query: IGeocodeBoundarySearchParams,
+  sortBy: SortType,
+  sortDirection: 1 | -1,
+  pageIndex: number,
+  pageSize: number,
+  fields: ProjectionFields<IListing> = DefaultListingResultFields
+) {
+  return this.aggregate([
+    // $geoNear doesn't go inside of $match like the other queries because it is aggregation pipeline stage, not an
+    // aggregation operator. also, you can only use $geoNear as the first stage of a pipeline.
+    {
+      $geoNear: {
+        near: {
+          type: 'Point',
+          coordinates: [lng, lat]
+        },
+        maxDistance: maxDistance,
+        spherical: true,
+        distanceField: 'distance'
+      }
+    },
+    {
+      $match: buildfilterQueriesObject(query)
+    },
+    { $sort: { [sortBy]: sortDirection } },
+    {
+      $facet: {
+        metadata: [{ $count: 'numberAvailable' }],
+        data: [
+          { $skip: pageIndex * pageSize },
+          { $limit: pageSize },
+          {
+            $project: fields
+          }
         ]
       }
     }
