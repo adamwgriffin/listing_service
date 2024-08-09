@@ -47,7 +47,7 @@ export interface IOpenHouse {
   comments?: string;
 }
 
-export interface Listing {
+export interface IListing {
   listPrice: number
   soldPrice?: number
   listedDate: Date
@@ -98,7 +98,7 @@ export const AllPropertyStatuses: PropertyStatus[] = [
   'rented'
 ]
 
-export interface ListingModel extends Model<Listing> {
+export interface IListingModel extends Model<IListing> {
   findWithinBounds(
     boundaryGeometry: MultiPolygon,
     query: IGeocodeBoundarySearchParams,
@@ -106,11 +106,11 @@ export interface ListingModel extends Model<Listing> {
     SortDirection: 1 | -1,
     pageIndex: number,
     pageSize: number,
-    fields?: ProjectionFields<Listing>
-  ): Promise<Document<Listing>>
+    fields?: ProjectionFields<IListing>
+  ): Promise<Document<IListing>>
 }
 
-const ListingSchema = new Schema<Listing, ListingModel>({
+const ListingSchema = new Schema<IListing, IListingModel>({
   listPrice: {
     type: Number,
     required: true,
@@ -292,7 +292,7 @@ ListingSchema.statics.findWithinBounds = async function (
   SortDirection: 1 | -1,
   pageIndex: number,
   pageSize: number,
-  fields: ProjectionFields<Listing> = DefaultListingResultFields
+  fields: ProjectionFields<IListing> = DefaultListingResultFields
 ) {
   return this.aggregate([
     {
@@ -336,6 +336,4 @@ ListingSchema.statics.findWithinBounds = async function (
 ListingSchema.index({ 'openHouses.start': 1 })
 ListingSchema.index({ 'openHouses.end': 1 })
 
-const Listing = model<Listing, ListingModel>('Listing', ListingSchema)
-
-export default Listing
+export default model<IListing, IListingModel>('Listing', ListingSchema)

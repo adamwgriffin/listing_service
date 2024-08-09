@@ -1,5 +1,5 @@
 import type {
-  Listing,
+  IListing,
   IPhotoGalleryImage,
   PropertDetailsSection,
   PropertDetail,
@@ -45,7 +45,7 @@ export const randomNumberInRangeRounded = (
   return roundDownToNearest(faker.number.int({ min, max }), roundTo)
 }
 
-export const addSoldData = (listing: Listing): Listing => {
+export const addSoldData = (listing: IListing): IListing => {
   const today = new Date()
   const soldDate = faker.date.between({
     from: listing.listedDate,
@@ -155,11 +155,11 @@ const createOpenHouses = (
 export const createRandomListingModel = (
   address: AddressComponentAddress,
   point: Point,
-  placeId: Listing['placeId'],
-): Listing => {
+  placeId: IListing['placeId'],
+): IListing => {
   const today = new Date()
   const rental = faker.datatype.boolean({ probability: 0.5 })
-  const listing: Listing = {
+  const listing: IListing = {
     listPrice: getListPrice(rental),
     listedDate: faker.date.between({
       from: subMonths(today, 6),
@@ -212,7 +212,7 @@ export const createRandomListingModel = (
   return listing
 }
 
-export const createListing = async (point: Point): Promise<Listing> => {
+export const createListing = async (point: Point): Promise<IListing> => {
   const res = await reverseGeocode(point.coordinates[1], point.coordinates[0])
   if (!res.data.results[0]?.address_components) {
     console.warn(

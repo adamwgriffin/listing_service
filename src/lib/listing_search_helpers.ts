@@ -1,6 +1,6 @@
 import type { Polygon, MultiPolygon } from '@turf/turf'
 import type { FilterQuery } from 'mongoose'
-import type { ListingModel } from '../models/listingModel'
+import type { IListingModel } from '../models/listingModel'
 import type {
   IBoundsParams,
   IGeocodeBoundarySearchParams
@@ -44,8 +44,8 @@ export const numberRangeQuery = (
   field: string,
   min: number | undefined,
   max: number | undefined
-): FilterQuery<ListingModel> => {
-  const query: FilterQuery<ListingModel> = { [field]: {} }
+): FilterQuery<IListingModel> => {
+  const query: FilterQuery<IListingModel> = { [field]: {} }
   if (min) {
     query[field].$gte = Number(min)
   }
@@ -58,7 +58,7 @@ export const numberRangeQuery = (
 export const openHouseQuery = (
   open_house_after: string | undefined,
   open_house_before: string | undefined
-): FilterQuery<ListingModel> => {
+): FilterQuery<IListingModel> => {
   const query: { $gte?: Date, $lte?: Date } = {}
   if (open_house_after) {
     query.$gte = new Date(open_house_after)
@@ -75,7 +75,7 @@ export const openHouseQuery = (
 
 export const buildfilterQueries = (
   params: IGeocodeBoundarySearchParams
-): FilterQuery<ListingModel>[] => {
+): FilterQuery<IListingModel>[] => {
   // TODO: refactor this. the list is way too long.
   const {
     property_type,
@@ -185,6 +185,6 @@ export const buildfilterQueries = (
 
 export const buildfilterQueriesObject = (
   params: IGeocodeBoundarySearchParams
-): FilterQuery<ListingModel> => {
+): FilterQuery<IListingModel> => {
   return buildfilterQueries(params).reduce((q, acc) => ({ ...acc, ...q }), {})
 }
