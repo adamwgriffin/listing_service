@@ -57,9 +57,9 @@ export interface PropertDetailsSection {
 }
 
 export interface IOpenHouse {
-  start: Date;
-  end: Date;
-  comments?: string;
+  start: Date
+  end: Date
+  comments?: string
 }
 
 export interface IListing {
@@ -284,7 +284,7 @@ const ListingSchema = new Schema<IListing, IListingModel>({
       {
         start: { type: Date, required: true },
         end: { type: Date, required: true },
-        comments: { type: String },
+        comments: { type: String }
       }
     ],
     default: [],
@@ -296,7 +296,7 @@ ListingSchema.statics.findWithinBounds = async function (
   boundaryGeometry: Polygon | MultiPolygon,
   query: IGeocodeBoundarySearchParams,
   sortBy: SortType,
-  SortDirection: 1 | -1,
+  sortDirection: 1 | -1,
   pageIndex: number,
   pageSize: number,
   fields: ProjectionFields<IListing> = DefaultListingResultFields
@@ -316,7 +316,7 @@ ListingSchema.statics.findWithinBounds = async function (
         ]
       }
     },
-    { $sort: { [sortBy]: SortDirection } },
+    { $sort: { [sortBy]: sortDirection } },
     // using the aggregation pipline in combination with $facet allows us to get the total number of documents that
     // match the query when using $skip & $limit for pagination. it allows us to count the total results from the
     // $match stage before they go through the $skip/$limit stages that will reduce the number of results returned.
