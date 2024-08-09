@@ -145,42 +145,23 @@ export const boundsSearch = async (ctx: Context) => {
     const sort_by = ctx.query.sort_by || 'listedDate'
     const sort_direction = ctx.query.sort_direction === 'asc' ? 1 : -1
 
-    const results = await Listing.aggregate([
-      {
-        $match: {
-          $and: [
-            {
-              geometry: {
-                $geoWithin: {
-                  $geometry: geoJSONPolygon
-                }
-              }
-            },
-            ...buildfilterQueries(ctx.query)
-          ]
-        }
-      },
-      { $sort: { [sort_by]: sort_direction } },
-      {
-        $facet: {
-          metadata: [{ $count: 'numberAvailable' }],
-          data: [
-            { $skip: page_index * page_size },
-            { $limit: page_size },
-            { $project: DefaultListingResultFields }
-          ]
-        }
-      }
-    ])
+    const results = await Listing.findWithinBounds(
+      geoJSONPolygon,
+      ctx.query,
+      sort_by,
+      sort_direction,
+      page_index,
+      page_size
+    )
 
-    const r = results[0]
-    const numberAvailable = r.metadata[0]?.numberAvailable || 0
+    const { data, metadata } = results[0]
+    const numberAvailable = metadata[0]?.numberAvailable || 0
     ctx.body = {
-      listings: r.data,
+      listings: data,
       pagination: {
         page: page_index,
         pageSize: page_size,
-        numberReturned: r.data.length,
+        numberReturned: data.length,
         numberAvailable: numberAvailable,
         numberOfPages: Math.ceil(numberAvailable / page_size)
       }
