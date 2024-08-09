@@ -1,6 +1,5 @@
 import type { MultiPolygon } from '@turf/turf'
-import type { Document, Model } from 'mongoose'
-import { Schema, model } from 'mongoose'
+import { Model, Schema, model } from 'mongoose'
 import MultiPolygonSchema from './MultiPolygonSchema'
 
 export const BoundaryTypes = [
@@ -16,7 +15,7 @@ export const BoundaryTypes = [
 
 export type BoundaryType = (typeof BoundaryTypes)[number]
 
-export interface IBoundary extends Document {
+export interface IBoundary {
   name: string
   type: BoundaryType
   geometry: MultiPolygon
