@@ -1,6 +1,6 @@
 import type { Polygon, MultiPolygon } from '@turf/turf'
 import type { FilterQuery } from 'mongoose'
-import type { IListingModel } from '../models/listingModel'
+import type { IListingModel } from '../models/ListingModel'
 import type {
   IBoundsParams,
   IGeocodeBoundarySearchParams

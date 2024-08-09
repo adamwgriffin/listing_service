@@ -1,9 +1,9 @@
-import type { IListing } from '../models/listingModel'
+import type { IListing } from '../models/ListingModel'
 import fs from 'fs'
 import path from 'path'
 import yargs from 'yargs'
 import { connectToDatabase, disconnectDatabase } from '../database'
-import Listing from '../models/listingModel'
+import Listing from '../models/ListingModel'
 
 const DefaultFilePath = path.join(
   __dirname,

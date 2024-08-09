@@ -1,5 +1,5 @@
 import { Types } from 'mongoose'
-import Listing from '../models/listingModel'
+import Listing from '../models/ListingModel'
 import { DefaultListingDetailFeilds } from '../config'
 import { daysOnMarket } from '../lib/listing_search_helpers'
 

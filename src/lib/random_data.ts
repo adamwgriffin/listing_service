@@ -5,7 +5,7 @@ import type {
   PropertDetail,
   PropertyStatus,
   IOpenHouse
-} from '../models/listingModel'
+} from '../models/ListingModel'
 import type { Point, Polygon, MultiPolygon } from '@turf/turf'
 import type { AddressComponentAddress } from '../lib/geocoder'
 import { bbox, randomPoint, booleanPointInPolygon } from '@turf/turf'
@@ -16,7 +16,7 @@ import {
   PropertyTypes,
   PropertyStatuses,
   RentalPropertyStatuses
-} from '../models/listingModel'
+} from '../models/ListingModel'
 
 export const randomPointsWithinPolygon = (
   polygon: Polygon | MultiPolygon,

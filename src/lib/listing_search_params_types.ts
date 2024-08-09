@@ -1,5 +1,5 @@
 import type { Context } from 'koa'
-import type { IListing } from '../models/listingModel'
+import type { IListing } from '../models/ListingModel'
 import type { IBoundary } from '../models/BoundaryModel'
 import { GeocodeResult } from '@googlemaps/google-maps-services-js'
 

@@ -1,6 +1,6 @@
 import request from 'supertest'
 import app from '../app'
-import Listing from '../models/listingModel'
+import Listing from '../models/ListingModel'
 
 const listingData = {
   "listPrice": 700000,

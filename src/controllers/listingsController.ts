@@ -1,4 +1,4 @@
-import Listing from '../models/listingModel'
+import Listing from '../models/ListingModel'
 import { DefaultListingResultFields } from '../config'
 
 export const getListingsById = async (ctx) => {
