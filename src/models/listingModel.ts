@@ -54,6 +54,7 @@ export interface Listing {
   soldDate?: Date
   address: IListingAddress
   geometry: Point
+  placeId?: string
   neighborhood: string
   propertyType: PropertyType
   status: PropertyStatus

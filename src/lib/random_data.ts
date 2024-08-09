@@ -154,7 +154,8 @@ const createOpenHouses = (
 
 export const createRandomListingModel = (
   address: AddressComponentAddress,
-  point: Point
+  point: Point,
+  placeId: Listing['placeId'],
 ): Listing => {
   const today = new Date()
   const rental = faker.datatype.boolean({ probability: 0.5 })
@@ -172,6 +173,7 @@ export const createRandomListingModel = (
       zip: address.postalCode
     },
     geometry: point,
+    placeId,
     neighborhood: address?.neighborhood,
     propertyType: faker.helpers.arrayElement(PropertyTypes),
     status: getStatus(rental),
@@ -227,7 +229,7 @@ export const createListing = async (point: Point): Promise<Listing> => {
     )
     return
   }
-  return createRandomListingModel(address, point)
+  return createRandomListingModel(address, point, res.data.results[0].place_id)
 }
 
 const generateListingData = async (
