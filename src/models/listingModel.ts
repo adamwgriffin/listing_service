@@ -5,6 +5,28 @@ import { IGeocodeBoundarySearchParams, SortType } from '../lib/listing_search_pa
 import { DefaultListingResultFields } from '../config'
 import { buildfilterQueries } from '../lib/listing_search_helpers'
 
+export const PropertyTypes = [
+  'single-family',
+  'condo',
+  'townhouse',
+  'manufactured',
+  'land',
+  'multi-family'
+] as const
+
+export type PropertyType = (typeof PropertyTypes)[number]
+
+export const PropertyStatuses = ['active', 'pending', 'sold'] as const
+
+export const RentalPropertyStatuses = ['active', 'rented'] as const
+
+export const AllPropertyStatuses = [
+  ...PropertyStatuses,
+  ...RentalPropertyStatuses
+]
+
+export type PropertyStatus = (typeof AllPropertyStatuses)[number]
+
 export interface IListingAddress {
   line1: string
   line2?: string
@@ -12,16 +34,6 @@ export interface IListingAddress {
   state: string
   zip: string
 }
-
-export type PropertyType =
-  | 'single-family'
-  | 'condo'
-  | 'townhouse'
-  | 'manufactured'
-  | 'land'
-  | 'multi-family'
-
-export type PropertyStatus = 'active' | 'pending' | 'sold' | 'rented'
 
 export interface IPhotoGalleryImage {
   galleryUrl: string // 1920x1080 (used for slideshow image)
@@ -77,26 +89,6 @@ export interface IListing {
   propertyDetails?: PropertDetailsSection[]
   openHouses?: IOpenHouse[]
 }
-
-export const PropertyTypes: PropertyType[] = [
-  'single-family',
-  'condo',
-  'townhouse',
-  'manufactured',
-  'land',
-  'multi-family'
-]
-
-export const PropertyStatuses: PropertyStatus[] = ['active', 'pending', 'sold']
-
-export const RentalPropertyStatuses: PropertyStatus[] = ['active', 'rented']
-
-export const AllPropertyStatuses: PropertyStatus[] = [
-  'active',
-  'pending',
-  'sold',
-  'rented'
-]
 
 export interface IListingModel extends Model<IListing> {
   findWithinBounds(
