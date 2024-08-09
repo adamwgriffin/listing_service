@@ -43,43 +43,14 @@ export const geocodeBoundarySearch = async (ctx: IGeocodeBoundaryContext) => {
     // -1 == descending, e.g., 10-1
     const sort_direction = ctx.query.sort_direction === 'asc' ? 1 : -1
 
-    // search for listings that are inside of the boundary that was found
-    const results = await Listing.aggregate([
-      {
-        $match: {
-          $and: [
-            {
-              geometry: {
-                $geoWithin: {
-                  $geometry: boundaries[0].geometry
-                }
-              }
-            },
-            ...buildfilterQueries(ctx.query)
-          ]
-        }
-      },
-      { $sort: { [sort_by]: sort_direction } },
-      // using the aggregation pipline in combination with $facet allows us to get the total number of documents that
-      // match the query when using $skip & $limit for pagination. it allows us to count the total results from the
-      // $match stage before they go through the $skip/$limit stages that will reduce the number of results returned.
-      {
-        $facet: {
-          metadata: [
-            // this part counts the total. "numberAvailable" is just a name for the field
-            { $count: 'numberAvailable' }
-          ],
-          data: [
-            // $skip allows us to move ahead to each page in the results set by skipping the previous page results we
-            // have already seen, while $limit only returns the amount per page. together they create a slice of the
-            // result set represented as a "page"
-            { $skip: page_index * page_size },
-            { $limit: page_size },
-            { $project: DefaultListingResultFields }
-          ]
-        }
-      }
-    ])
+    const results = await Listing.findWithinBounds(
+      boundaries[0].geometry,
+      ctx.query,
+      sort_by,
+      sort_direction,
+      page_index,
+      page_size
+    )
 
     const r = results[0]
     const numberAvailable = r.metadata[0]?.numberAvailable || 0

@@ -1,6 +1,9 @@
-import type { Point } from '@turf/turf'
-import { Schema, model } from 'mongoose'
+import type { MultiPolygon, Point } from '@turf/turf'
+import { Model, Document, ProjectionFields, Schema, model } from 'mongoose'
 import PointSchema from './PointSchema'
+import { IGeocodeBoundarySearchParams, SortType } from '../lib/listing_search_params_types'
+import { DefaultListingResultFields } from '../config'
+import { buildfilterQueries } from '../lib/listing_search_helpers'
 
 export interface IListingAddress {
   line1: string
@@ -74,8 +77,6 @@ export interface Listing {
   openHouses?: IOpenHouse[]
 }
 
-export interface ListingModel extends Listing, Document {}
-
 export const PropertyTypes: PropertyType[] = [
   'single-family',
   'condo',
@@ -95,7 +96,20 @@ export const AllPropertyStatuses: PropertyStatus[] = [
   'sold',
   'rented'
 ]
-const ListingSchema = new Schema<ListingModel>({
+
+export interface ListingModel extends Model<Listing> {
+  findWithinBounds(
+    boundaryGeometry: MultiPolygon,
+    query: IGeocodeBoundarySearchParams,
+    sortBy: SortType,
+    SortDirection: 1 | -1,
+    pageIndex: number,
+    pageSize: number,
+    fields?: ProjectionFields<Listing>
+  ): Promise<Document<Listing>>
+}
+
+const ListingSchema = new Schema<Listing, ListingModel>({
   listPrice: {
     type: Number,
     required: true,
@@ -270,10 +284,57 @@ const ListingSchema = new Schema<ListingModel>({
   }
 })
 
+ListingSchema.statics.findWithinBounds = async function (
+  boundaryGeometry: MultiPolygon,
+  query: IGeocodeBoundarySearchParams,
+  sortBy: SortType,
+  SortDirection: 1 | -1,
+  pageIndex: number,
+  pageSize: number,
+  fields: ProjectionFields<Listing> = DefaultListingResultFields
+) {
+  return this.aggregate([
+    {
+      $match: {
+        $and: [
+          {
+            geometry: {
+              $geoWithin: {
+                $geometry: boundaryGeometry
+              }
+            }
+          },
+          ...buildfilterQueries(query)
+        ]
+      }
+    },
+    { $sort: { [sortBy]: SortDirection } },
+    // using the aggregation pipline in combination with $facet allows us to get the total number of documents that
+    // match the query when using $skip & $limit for pagination. it allows us to count the total results from the
+    // $match stage before they go through the $skip/$limit stages that will reduce the number of results returned.
+    {
+      $facet: {
+        metadata: [
+          // this part counts the total. "numberAvailable" is just a name for the field
+          { $count: 'numberAvailable' }
+        ],
+        data: [
+          // $skip allows us to move ahead to each page in the results set by skipping the previous page results we
+          // have already seen, while $limit only returns the amount per page. together they create a slice of the
+          // result set represented as a "page"
+          { $skip: pageIndex * pageSize },
+          { $limit: pageSize },
+          { $project: fields }
+        ]
+      }
+    }
+  ])
+}
+
 // looks like this is how we need to do the index if we plan on querying the fields inside the OpenHouses array.
 ListingSchema.index({ 'openHouses.start': 1 })
 ListingSchema.index({ 'openHouses.end': 1 })
 
-const Listing = model<ListingModel>('Listing', ListingSchema)
+const Listing = model<Listing, ListingModel>('Listing', ListingSchema)
 
 export default Listing
