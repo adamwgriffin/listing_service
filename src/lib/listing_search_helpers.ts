@@ -26,7 +26,7 @@ export const boundsParamsToGeoJSONPolygon = (
 export const removePartsOfBoundaryOutsideOfBounds = (
   bounds: IBoundsParams,
   boundary: Polygon | MultiPolygon
-): Polygon | MultiPolygon => {
+) => {
   const boundsPolygon = boundsParamsToGeoJSONPolygon(bounds)
   return intersect(boundsPolygon, boundary).geometry
 }

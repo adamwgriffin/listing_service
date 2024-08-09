@@ -1,4 +1,4 @@
-import type { MultiPolygon, Point } from '@turf/turf'
+import type { MultiPolygon, Point, Polygon } from '@turf/turf'
 import { Model, Document, ProjectionFields, Schema, model } from 'mongoose'
 import PointSchema from './PointSchema'
 import { IGeocodeBoundarySearchParams, SortType } from '../lib/listing_search_params_types'
@@ -92,7 +92,7 @@ export interface IListing {
 
 export interface IListingModel extends Model<IListing> {
   findWithinBounds(
-    boundaryGeometry: MultiPolygon,
+    boundaryGeometry: Polygon | MultiPolygon,
     query: IGeocodeBoundarySearchParams,
     sortBy: SortType,
     SortDirection: 1 | -1,
@@ -278,7 +278,7 @@ const ListingSchema = new Schema<IListing, IListingModel>({
 })
 
 ListingSchema.statics.findWithinBounds = async function (
-  boundaryGeometry: MultiPolygon,
+  boundaryGeometry: Polygon | MultiPolygon,
   query: IGeocodeBoundarySearchParams,
   sortBy: SortType,
   SortDirection: 1 | -1,

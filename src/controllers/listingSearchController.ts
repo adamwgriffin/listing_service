@@ -17,6 +17,7 @@ import {
   buildfilterQueries,
   buildfilterQueriesObject
 } from '../lib/listing_search_helpers'
+import { MultiPolygon, Polygon } from '@turf/turf'
 
 export const geocodeBoundarySearch = async (ctx: IGeocodeBoundaryContext) => {
   try {
@@ -52,16 +53,16 @@ export const geocodeBoundarySearch = async (ctx: IGeocodeBoundaryContext) => {
       page_size
     )
 
-    const r = results[0]
-    const numberAvailable = r.metadata[0]?.numberAvailable || 0
+    const { data, metadata } = results[0]
+    const numberAvailable = metadata[0]?.numberAvailable || 0
     ctx.body = {
-      listings: r.data,
+      listings: data,
       boundary: boundaries[0],
       geocoderResult: geocoderResult.data.results,
       pagination: {
         page: page_index,
         pageSize: page_size,
-        numberReturned: r.data.length,
+        numberReturned: data.length,
         numberAvailable: numberAvailable,
         numberOfPages: Math.ceil(numberAvailable / page_size)
       }
@@ -77,7 +78,14 @@ export const boundarySearch = async (ctx: Context) => {
   try {
     const boundary = await Boundary.findById(id)
 
-    let boundaryGeometry
+    if (!boundary) {
+      ctx.status = 404
+      return ctx.body = {
+        error: `No boundary found for boundary id ${id}.`
+      }
+    }
+
+    let boundaryGeometry: Polygon | MultiPolygon
     const { bounds_north, bounds_east, bounds_south, bounds_west } = ctx.query
     // if bounds params are present, we want to modify the boundary so that any parts that are outside of the bounds
     // will be removed. this way the search will only return results that are within both the boundary & the bounds
@@ -96,42 +104,23 @@ export const boundarySearch = async (ctx: Context) => {
     const sort_by = ctx.query.sort_by || 'listedDate'
     const sort_direction = ctx.query.sort_direction === 'asc' ? 1 : -1
 
-    const results = await Listing.aggregate([
-      {
-        $match: {
-          $and: [
-            {
-              geometry: {
-                $geoWithin: {
-                  $geometry: boundaryGeometry
-                }
-              }
-            },
-            ...buildfilterQueries(ctx.query)
-          ]
-        }
-      },
-      { $sort: { [sort_by]: sort_direction } },
-      {
-        $facet: {
-          metadata: [{ $count: 'numberAvailable' }],
-          data: [
-            { $skip: page_index * page_size },
-            { $limit: page_size },
-            { $project: DefaultListingResultFields }
-          ]
-        }
-      }
-    ])
+    const results = await Listing.findWithinBounds(
+      boundaryGeometry,
+      ctx.query,
+      sort_by,
+      sort_direction,
+      page_index,
+      page_size
+    )
 
-    const r = results[0]
-    const numberAvailable = r.metadata[0]?.numberAvailable || 0
+    const { data, metadata } = results[0]
+    const numberAvailable = metadata[0]?.numberAvailable || 0
     ctx.body = {
-      listings: r.data,
+      listings: data,
       pagination: {
         page: page_index,
         pageSize: page_size,
-        numberReturned: r.data.length,
+        numberReturned: data.length,
         numberAvailable: numberAvailable,
         numberOfPages: Math.ceil(numberAvailable / page_size)
       }
