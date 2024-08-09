@@ -27,6 +27,9 @@ export const AddressTypeToBoundaryTypeMapping: Map<AddressType, BoundaryType> =
     [AddressType.neighborhood, 'neighborhood']
   ])
 
+/**
+ * Converts a geocoder a result type name into the name we use internally for the type field in a Boundary record
+ */
 export const getBoundaryTypeFromGeocoderAddressTypes = (
   types: AddressType[]
 ): BoundaryType | undefined => {
@@ -36,9 +39,10 @@ export const getBoundaryTypeFromGeocoderAddressTypes = (
   return AddressTypeToBoundaryTypeMapping.get(types[0])
 }
 
-const googleMapsClient = new Client({})
-
-// maps all the different types in an AddressComponent.types array to a specific address field
+/**
+ * Maps all the different types in an AddressComponent.types array to a specific address field that we use for a Listing
+ * record.
+ */
 const AddressComponentMapping = {
   streetNumber: ['street_number'],
   streetAddress: ['street_address', 'route'],
@@ -60,6 +64,8 @@ const AddressComponentMapping = {
   postalCode: ['postal_code'],
   neighborhood: ['neighborhood']
 }
+
+const googleMapsClient = new Client({})
 
 export const AddressComponentAddressTemplate = Object.freeze({
   streetNumber: '',
@@ -99,6 +105,9 @@ export const reverseGeocode = async (
   return response
 }
 
+/**
+ * Convert the address fields from a geocode result into the fields we use for a Listing address in the database
+ */
 export const addressComponentsToAddress = (
   address_components: AddressComponent[]
 ): AddressComponentAddress => {
