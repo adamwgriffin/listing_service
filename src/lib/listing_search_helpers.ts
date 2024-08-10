@@ -1,12 +1,33 @@
 import type { Polygon, MultiPolygon } from '@turf/turf'
 import type { FilterQuery } from 'mongoose'
 import type { IListingModel } from '../models/ListingModel'
+import type { IBoundary } from '../models/BoundaryModel'
 import type {
   IBoundsParams,
-  IGeocodeBoundarySearchParams
+  IGeocodeBoundarySearchParams,
+  IListingParams
 } from '../types/listing_search_params_types'
 import { bboxPolygon, intersect } from '@turf/turf'
 import { differenceInDays, subDays } from 'date-fns'
+
+/**
+ * Create a MongoDB $sort query
+ *
+ * 1 == ascending, e.g., 1-10
+ *
+ * -1 == descending, e.g., 10-1
+ *
+ * @example
+ * listingSortQuery({ "sort_by": "listedDate", "sort_direction": "asc" })
+ * // { "listedDate": 1 }
+ */
+export const listingSortQuery = (
+  query: Partial<IListingParams>
+): FilterQuery<IListingModel> => {
+  const sortBy = query.sort_by || 'listedDate'
+  const sortDirection = query.sort_direction === 'asc' ? 1 : -1
+  return { [sortBy]: sortDirection }
+}
 
 export const daysOnMarket = (
   listedDate: Date,
@@ -40,8 +61,25 @@ export const removePartsOfBoundaryOutsideOfBounds = (
 }
 
 /**
+ * If bounds params are present, modify the boundary so that any parts that are outside of the bounds will be
+ * removed. This way the search will only return results that are within both the boundary + the bounds.
+ */
+export const getBoundaryGeometryWithBounds = (
+  boundary: IBoundary,
+  query: Partial<IBoundsParams>
+): Polygon | MultiPolygon => {
+  const { bounds_north, bounds_east, bounds_south, bounds_west } = query
+  if (bounds_north && bounds_east && bounds_south && bounds_west) {
+    const bounds = { bounds_north, bounds_east, bounds_south, bounds_west }
+    return removePartsOfBoundaryOutsideOfBounds(bounds, boundary.geometry)
+  } else {
+    return boundary.geometry
+  }
+}
+
+/**
  * Generates a MongoDB query object that searches within a min/max range for the given field.
- * 
+ *
  * @example
  * numberRangeQuery('listPrice', 100000, 200000)
  * // Returns { "listPrice": { $gte: 100000, $lte: 200000 } }
@@ -65,7 +103,7 @@ export const openHouseQuery = (
   open_house_after: string | undefined,
   open_house_before: string | undefined
 ): FilterQuery<IListingModel> => {
-  const query: { $gte?: Date, $lte?: Date } = {}
+  const query: { $gte?: Date; $lte?: Date } = {}
   if (open_house_after) {
     query.$gte = new Date(open_house_after)
   }
@@ -81,7 +119,7 @@ export const openHouseQuery = (
 
 /**
  * Convert listing search filter params into an array of MongoDB queries for each filter.
- * 
+ *
  * @example
  * buildfilterQueries({ "price_min": 100000, "waterfornt": "true" })
  * // Returns [{ "listPrice": { $gte: 100000} }, { "waterfornt": true }]
@@ -116,7 +154,7 @@ export const buildfilterQueries = (
     rental,
     sold_in_last,
     open_house_after,
-    open_house_before,
+    open_house_before
   } = params
   const filters = []
   if (property_type) {
@@ -198,8 +236,8 @@ export const buildfilterQueries = (
 
 /**
  * Convert listing search filter params into an object with MongoDB queries for each filter. Same as buildfilterQueries
- * only the query is one object rather than an array of objects. 
- * 
+ * only the query is one object rather than an array of objects.
+ *
  * @example
  * buildfilterQueriesObject({ "price_min": 100000, "waterfornt": "true" })
  * // Returns { "listPrice": { $gte: 100000} }, "waterfornt": true }

@@ -2,53 +2,42 @@ import type { Context } from 'koa'
 import type { IGeocodeBoundaryContext } from '../types/listing_search_params_types'
 import Listing from '../models/ListingModel'
 import Boundary from '../models/BoundaryModel'
-import {
-  DefaultListingResultFields,
-  DefaultMaxDistance,
-  DefaultPageSize
-} from '../config'
+import { DefaultListingResultFields, DefaultMaxDistance } from '../config'
 import {
   geocode,
   getBoundaryTypeFromGeocoderAddressTypes
 } from '../lib/geocoder'
 import {
   boundsParamsToGeoJSONPolygon,
-  removePartsOfBoundaryOutsideOfBounds
+  getBoundaryGeometryWithBounds
 } from '../lib/listing_search_helpers'
-import { MultiPolygon, Polygon } from '@turf/turf'
+import { getPaginationParams } from '../lib'
 
 export const geocodeBoundarySearch = async (ctx: IGeocodeBoundaryContext) => {
   try {
     // make the request to the geocode service
     const geocoderResult = await geocode(ctx.query)
     const { lat, lng } = geocoderResult.data.results[0].geometry.location
-    const boundaryType = getBoundaryTypeFromGeocoderAddressTypes(geocoderResult.data.results[0].types)
+    const boundaryType = getBoundaryTypeFromGeocoderAddressTypes(
+      geocoderResult.data.results[0].types
+    )
 
     // search for a boundary that matches the geocoder response coordinates
     const boundaries = await Boundary.findBoundaries(lat, lng, boundaryType)
 
-    const page_size = Number(ctx.query.page_size) || DefaultPageSize
-    const page_index = Number(ctx.query.page_index) || 0
+    const pagination = getPaginationParams(ctx.query)
 
     if (boundaries.length === 0) {
       ctx.status = 404
-      return ctx.body = {
-        error: "No boundary found for query."
-      }
+      return (ctx.body = {
+        error: 'No boundary found for query.'
+      })
     }
-
-    const sort_by = ctx.query.sort_by || 'listedDate'
-    // 1 == ascending, e.g., 1-10
-    // -1 == descending, e.g., 10-1
-    const sort_direction = ctx.query.sort_direction === 'asc' ? 1 : -1
 
     const results = await Listing.findWithinBounds(
       boundaries[0].geometry,
       ctx.query,
-      sort_by,
-      sort_direction,
-      page_index,
-      page_size
+      pagination
     )
 
     const { data, metadata } = results[0]
@@ -58,11 +47,11 @@ export const geocodeBoundarySearch = async (ctx: IGeocodeBoundaryContext) => {
       boundary: boundaries[0],
       geocoderResult: geocoderResult.data.results,
       pagination: {
-        page: page_index,
-        pageSize: page_size,
+        page: pagination.page_index,
+        pageSize: pagination.page_size,
         numberReturned: data.length,
         numberAvailable: numberAvailable,
-        numberOfPages: Math.ceil(numberAvailable / page_size)
+        numberOfPages: Math.ceil(numberAvailable / pagination.page_size)
       }
     }
   } catch (error) {
@@ -78,37 +67,17 @@ export const boundarySearch = async (ctx: Context) => {
 
     if (!boundary) {
       ctx.status = 404
-      return ctx.body = {
+      return (ctx.body = {
         error: `No boundary found for boundary id ${id}.`
-      }
+      })
     }
 
-    let boundaryGeometry: Polygon | MultiPolygon
-    const { bounds_north, bounds_east, bounds_south, bounds_west } = ctx.query
-    // if bounds params are present, we want to modify the boundary so that any parts that are outside of the bounds
-    // will be removed. this way the search will only return results that are within both the boundary & the bounds
-    if (bounds_north && bounds_east && bounds_south && bounds_west) {
-      const bounds = { bounds_north, bounds_east, bounds_south, bounds_west }
-      boundaryGeometry = removePartsOfBoundaryOutsideOfBounds(
-        bounds,
-        boundary.geometry
-      )
-    } else {
-      boundaryGeometry = boundary.geometry
-    }
-
-    const page_size = Number(ctx.query.page_size) || DefaultPageSize
-    const page_index = Number(ctx.query.page_index) || 0
-    const sort_by = ctx.query.sort_by || 'listedDate'
-    const sort_direction = ctx.query.sort_direction === 'asc' ? 1 : -1
+    const pagination = getPaginationParams(ctx.query)
 
     const results = await Listing.findWithinBounds(
-      boundaryGeometry,
+      getBoundaryGeometryWithBounds(boundary, ctx.query),
       ctx.query,
-      sort_by,
-      sort_direction,
-      page_index,
-      page_size
+      pagination
     )
 
     const { data, metadata } = results[0]
@@ -116,11 +85,11 @@ export const boundarySearch = async (ctx: Context) => {
     ctx.body = {
       listings: data,
       pagination: {
-        page: page_index,
-        pageSize: page_size,
+        page: pagination.page_index,
+        pageSize: pagination.page_size,
         numberReturned: data.length,
         numberAvailable: numberAvailable,
-        numberOfPages: Math.ceil(numberAvailable / page_size)
+        numberOfPages: Math.ceil(numberAvailable / pagination.page_size)
       }
     }
   } catch (error) {
@@ -138,18 +107,12 @@ export const boundsSearch = async (ctx: Context) => {
     bounds_west
   })
   try {
-    const page_size = Number(ctx.query.page_size) || DefaultPageSize
-    const page_index = Number(ctx.query.page_index) || 0
-    const sort_by = ctx.query.sort_by || 'listedDate'
-    const sort_direction = ctx.query.sort_direction === 'asc' ? 1 : -1
+    const pagination = getPaginationParams(ctx.query)
 
     const results = await Listing.findWithinBounds(
       geoJSONPolygon,
       ctx.query,
-      sort_by,
-      sort_direction,
-      page_index,
-      page_size
+      pagination
     )
 
     const { data, metadata } = results[0]
@@ -157,11 +120,11 @@ export const boundsSearch = async (ctx: Context) => {
     ctx.body = {
       listings: data,
       pagination: {
-        page: page_index,
-        pageSize: page_size,
+        page: pagination.page_index,
+        pageSize: pagination.page_size,
         numberReturned: data.length,
         numberAvailable: numberAvailable,
-        numberOfPages: Math.ceil(numberAvailable / page_size)
+        numberOfPages: Math.ceil(numberAvailable / pagination.page_size)
       }
     }
   } catch (error) {
@@ -172,22 +135,16 @@ export const boundsSearch = async (ctx: Context) => {
 
 export const radiusSearch = async (ctx: Context) => {
   const { lat, lng, max_distance } = ctx.query
-  const page_size = Number(ctx.query.page_size) || DefaultPageSize
-  const page_index = Number(ctx.query.page_index) || 0
-  const sort_by = ctx.query.sort_by || 'listedDate'
-  const sort_direction = ctx.query.sort_direction === 'asc' ? 1 : -1
+  const pagination = getPaginationParams(ctx.query)
 
   try {
     // "distance" is the fieldname set in the  "distanceField" for the $geoNear query in the findWithinRadius method
     const results = await Listing.findWithinRadius(
       Number(lat),
       Number(lng),
-      (Number(max_distance) || DefaultMaxDistance),
+      Number(max_distance) || DefaultMaxDistance,
       ctx.query,
-      sort_by,
-      sort_direction,
-      page_index,
-      page_size,
+      pagination,
       { ...DefaultListingResultFields, distance: 1 }
     )
 
@@ -196,11 +153,11 @@ export const radiusSearch = async (ctx: Context) => {
     ctx.body = {
       listings: data,
       pagination: {
-        page: page_index,
-        pageSize: page_size,
+        page: pagination.page_index,
+        pageSize: pagination.page_size,
         numberReturned: data.length,
         numberAvailable: numberAvailable,
-        numberOfPages: Math.ceil(numberAvailable / page_size)
+        numberOfPages: Math.ceil(numberAvailable / pagination.page_size)
       }
     }
   } catch (error) {

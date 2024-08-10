@@ -7,9 +7,12 @@ export type SortType = 'listedDate' | 'listPrice' | 'beds' | 'baths' | 'sqft'
 
 export type SortDirection = 'asc' | 'desc'
 
-export interface IListingParams {
+export interface PaginationParams {
   page_index: number
   page_size: number
+}
+
+export interface IListingParams extends PaginationParams {
   price_min: number
   price_max: number
   beds_min: number

@@ -1,12 +1,14 @@
 import type { MultiPolygon, Point, Polygon } from '@turf/turf'
-import type {
-  IGeocodeBoundarySearchParams,
-  SortType
-} from '../types/listing_search_params_types'
+import type { IGeocodeBoundarySearchParams } from '../types/listing_search_params_types'
+import type { PaginationParams } from '../types/listing_search_params_types'
 import { Model, Document, ProjectionFields, Schema, model } from 'mongoose'
 import PointSchema from './PointSchema'
 import { DefaultListingResultFields } from '../config'
-import { buildfilterQueries, buildfilterQueriesObject } from '../lib/listing_search_helpers'
+import {
+  buildfilterQueries,
+  buildfilterQueriesObject,
+  listingSortQuery
+} from '../lib/listing_search_helpers'
 
 export const PropertyTypes = [
   'single-family',
@@ -97,10 +99,7 @@ export interface IListingModel extends Model<IListing> {
   findWithinBounds(
     boundaryGeometry: Polygon | MultiPolygon,
     query: IGeocodeBoundarySearchParams,
-    sortBy: SortType,
-    SortDirection: 1 | -1,
-    pageIndex: number,
-    pageSize: number,
+    pagination: PaginationParams,
     fields?: ProjectionFields<IListing>
   ): Promise<Document<IListing>>
 
@@ -109,10 +108,7 @@ export interface IListingModel extends Model<IListing> {
     lng: number,
     maxDistance: number,
     query: IGeocodeBoundarySearchParams,
-    sortBy: SortType,
-    SortDirection: 1 | -1,
-    pageIndex: number,
-    pageSize: number,
+    pagination: PaginationParams,
     fields?: ProjectionFields<IListing>
   ): Promise<Document<IListing>>
 }
@@ -295,10 +291,7 @@ const ListingSchema = new Schema<IListing, IListingModel>({
 ListingSchema.statics.findWithinBounds = async function (
   boundaryGeometry: Polygon | MultiPolygon,
   query: IGeocodeBoundarySearchParams,
-  sortBy: SortType,
-  sortDirection: 1 | -1,
-  pageIndex: number,
-  pageSize: number,
+  { page_size, page_index }: PaginationParams,
   fields: ProjectionFields<IListing> = DefaultListingResultFields
 ) {
   return this.aggregate([
@@ -316,7 +309,7 @@ ListingSchema.statics.findWithinBounds = async function (
         ]
       }
     },
-    { $sort: { [sortBy]: sortDirection } },
+    { $sort: listingSortQuery(query) },
     // using the aggregation pipline in combination with $facet allows us to get the total number of documents that
     // match the query when using $skip & $limit for pagination. it allows us to count the total results from the
     // $match stage before they go through the $skip/$limit stages that will reduce the number of results returned.
@@ -330,8 +323,8 @@ ListingSchema.statics.findWithinBounds = async function (
           // $skip allows us to move ahead to each page in the results set by skipping the previous page results we
           // have already seen, while $limit only returns the amount per page. together they create a slice of the
           // result set represented as a "page"
-          { $skip: pageIndex * pageSize },
-          { $limit: pageSize },
+          { $skip: page_index * page_size },
+          { $limit: page_size },
           { $project: fields }
         ]
       }
@@ -344,10 +337,7 @@ ListingSchema.statics.findWithinRadius = async function (
   lng: number,
   maxDistance: number,
   query: IGeocodeBoundarySearchParams,
-  sortBy: SortType,
-  sortDirection: 1 | -1,
-  pageIndex: number,
-  pageSize: number,
+  { page_size, page_index }: PaginationParams,
   fields: ProjectionFields<IListing> = DefaultListingResultFields
 ) {
   return this.aggregate([
@@ -367,13 +357,13 @@ ListingSchema.statics.findWithinRadius = async function (
     {
       $match: buildfilterQueriesObject(query)
     },
-    { $sort: { [sortBy]: sortDirection } },
+    { $sort: listingSortQuery(query) },
     {
       $facet: {
         metadata: [{ $count: 'numberAvailable' }],
         data: [
-          { $skip: pageIndex * pageSize },
-          { $limit: pageSize },
+          { $skip: page_index * page_size },
+          { $limit: page_size },
           {
             $project: fields
           }
