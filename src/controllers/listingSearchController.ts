@@ -1,5 +1,5 @@
 import type { Context } from 'koa'
-import type { IGeocodeBoundaryContext } from '../lib/listing_search_params_types'
+import type { IGeocodeBoundaryContext } from '../types/listing_search_params_types'
 import Listing from '../models/ListingModel'
 import Boundary from '../models/BoundaryModel'
 import {

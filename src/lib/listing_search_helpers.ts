@@ -4,7 +4,7 @@ import type { IListingModel } from '../models/ListingModel'
 import type {
   IBoundsParams,
   IGeocodeBoundarySearchParams
-} from './listing_search_params_types'
+} from '../types/listing_search_params_types'
 import { bboxPolygon, intersect } from '@turf/turf'
 import { differenceInDays, subDays } from 'date-fns'
 

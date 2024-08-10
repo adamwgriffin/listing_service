@@ -2,7 +2,7 @@ import type { MultiPolygon, Point, Polygon } from '@turf/turf'
 import type {
   IGeocodeBoundarySearchParams,
   SortType
-} from '../lib/listing_search_params_types'
+} from '../types/listing_search_params_types'
 import { Model, Document, ProjectionFields, Schema, model } from 'mongoose'
 import PointSchema from './PointSchema'
 import { DefaultListingResultFields } from '../config'
