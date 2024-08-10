@@ -15,6 +15,9 @@ export const daysOnMarket = (
   return differenceInDays(soldDate || new Date(), listedDate)
 }
 
+/**
+ * Converts a set of north/east/south/west coordinates into a rectangular polygon
+ */
 export const boundsParamsToGeoJSONPolygon = (
   bounds: IBoundsParams
 ): Polygon => {
@@ -23,6 +26,11 @@ export const boundsParamsToGeoJSONPolygon = (
     .geometry
 }
 
+/**
+ * Remove any parts of a boundary that are outside of a set of bounds. These bounds typically represent the viewport of
+ * a map. The purpose of doing this is adjust a geospatial boundary in order to avoid returning listings that are
+ * outside the map viewport.
+ */
 export const removePartsOfBoundaryOutsideOfBounds = (
   bounds: IBoundsParams,
   boundary: Polygon | MultiPolygon
@@ -31,15 +39,13 @@ export const removePartsOfBoundaryOutsideOfBounds = (
   return intersect(boundsPolygon, boundary).geometry
 }
 
-/*
-example return value:
-{
-  fieldName: {
-    $gte: min,
-    $lte: max
-  }
-}
-*/
+/**
+ * Generates a MongoDB query object that searches within a min/max range for the given field.
+ * 
+ * @example
+ * numberRangeQuery('listPrice', 100000, 200000)
+ * // Returns { "listPrice": { $gte: 100000, $lte: 200000 } }
+ */
 export const numberRangeQuery = (
   field: string,
   min: number | undefined,
@@ -73,6 +79,13 @@ export const openHouseQuery = (
   }
 }
 
+/**
+ * Convert listing search filter params into an array of MongoDB queries for each filter.
+ * 
+ * @example
+ * buildfilterQueries({ "price_min": 100000, "waterfornt": "true" })
+ * // Returns [{ "listPrice": { $gte: 100000} }, { "waterfornt": true }]
+ */
 export const buildfilterQueries = (
   params: IGeocodeBoundarySearchParams
 ): FilterQuery<IListingModel>[] => {
@@ -183,6 +196,14 @@ export const buildfilterQueries = (
   return filters
 }
 
+/**
+ * Convert listing search filter params into an object with MongoDB queries for each filter. Same as buildfilterQueries
+ * only the query is one object rather than an array of objects. 
+ * 
+ * @example
+ * buildfilterQueriesObject({ "price_min": 100000, "waterfornt": "true" })
+ * // Returns { "listPrice": { $gte: 100000} }, "waterfornt": true }
+ */
 export const buildfilterQueriesObject = (
   params: IGeocodeBoundarySearchParams
 ): FilterQuery<IListingModel> => {
