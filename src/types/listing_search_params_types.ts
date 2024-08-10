@@ -67,11 +67,15 @@ export interface IGeocodeBoundarySearchParams extends Partial<IListingParams> {
   place_id?: string
 }
 
-export interface IGeocodeBoundarySuccessResponse {
+export interface IListingSearchResponse {
   listings: Partial<IListing>[]
+  pagination: IPaginationResponse
+}
+
+export interface IGeocodeBoundaryListingSearchResponse
+  extends IListingSearchResponse {
   boundary: IBoundary
   geocoderResult: GeocodeResult[]
-  pagination: IPaginationResponse
 }
 
 export interface IErrorResponse {
@@ -81,5 +85,5 @@ export interface IErrorResponse {
 export interface IGeocodeBoundaryContext extends Context {
   query: IGeocodeBoundarySearchParams
   status: number
-  body: IGeocodeBoundarySuccessResponse | IErrorResponse
+  body: IGeocodeBoundaryListingSearchResponse | IErrorResponse
 }

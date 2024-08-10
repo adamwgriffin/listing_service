@@ -12,6 +12,9 @@ import {
   getBoundaryGeometryWithBounds
 } from '../lib/listing_search_helpers'
 import { getPaginationParams } from '../lib'
+import listingSearchResponse from '../views/listing_search_view'
+import listingSearchGeocodeResponse from '../views/listing_search_geocode_view'
+import errorResponse from '../views/error_view'
 
 export const geocodeBoundarySearch = async (ctx: IGeocodeBoundaryContext) => {
   try {
@@ -40,23 +43,15 @@ export const geocodeBoundarySearch = async (ctx: IGeocodeBoundaryContext) => {
       pagination
     )
 
-    const { data, metadata } = results[0]
-    const numberAvailable = metadata[0]?.numberAvailable || 0
-    ctx.body = {
-      listings: data,
-      boundary: boundaries[0],
-      geocoderResult: geocoderResult.data.results,
-      pagination: {
-        page: pagination.page_index,
-        pageSize: pagination.page_size,
-        numberReturned: data.length,
-        numberAvailable: numberAvailable,
-        numberOfPages: Math.ceil(numberAvailable / pagination.page_size)
-      }
-    }
+    ctx.body = listingSearchGeocodeResponse(
+      boundaries,
+      geocoderResult,
+      results,
+      pagination
+    )
   } catch (error) {
     ctx.status = error?.response?.status || 500
-    ctx.body = { error: error.message }
+    ctx.body = errorResponse(error)
   }
 }
 
@@ -80,21 +75,10 @@ export const boundarySearch = async (ctx: Context) => {
       pagination
     )
 
-    const { data, metadata } = results[0]
-    const numberAvailable = metadata[0]?.numberAvailable || 0
-    ctx.body = {
-      listings: data,
-      pagination: {
-        page: pagination.page_index,
-        pageSize: pagination.page_size,
-        numberReturned: data.length,
-        numberAvailable: numberAvailable,
-        numberOfPages: Math.ceil(numberAvailable / pagination.page_size)
-      }
-    }
+    ctx.body = listingSearchResponse(results, pagination)
   } catch (error) {
     ctx.status = 500
-    ctx.body = { message: error.message }
+    ctx.body = errorResponse(error)
   }
 }
 
@@ -108,28 +92,15 @@ export const boundsSearch = async (ctx: Context) => {
   })
   try {
     const pagination = getPaginationParams(ctx.query)
-
     const results = await Listing.findWithinBounds(
       geoJSONPolygon,
       ctx.query,
       pagination
     )
-
-    const { data, metadata } = results[0]
-    const numberAvailable = metadata[0]?.numberAvailable || 0
-    ctx.body = {
-      listings: data,
-      pagination: {
-        page: pagination.page_index,
-        pageSize: pagination.page_size,
-        numberReturned: data.length,
-        numberAvailable: numberAvailable,
-        numberOfPages: Math.ceil(numberAvailable / pagination.page_size)
-      }
-    }
+    ctx.body = listingSearchResponse(results, pagination)
   } catch (error) {
     ctx.status = 500
-    ctx.body = { message: error.message }
+    ctx.body = errorResponse(error)
   }
 }
 
@@ -147,21 +118,9 @@ export const radiusSearch = async (ctx: Context) => {
       pagination,
       { ...DefaultListingResultFields, distance: 1 }
     )
-
-    const { data, metadata } = results[0]
-    const numberAvailable = metadata[0]?.numberAvailable || 0
-    ctx.body = {
-      listings: data,
-      pagination: {
-        page: pagination.page_index,
-        pageSize: pagination.page_size,
-        numberReturned: data.length,
-        numberAvailable: numberAvailable,
-        numberOfPages: Math.ceil(numberAvailable / pagination.page_size)
-      }
-    }
+    ctx.body = listingSearchResponse(results, pagination)
   } catch (error) {
     ctx.status = 500
-    ctx.body = { message: error.message }
+    ctx.body = errorResponse(error)
   }
 }
