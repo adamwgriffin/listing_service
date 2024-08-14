@@ -12,9 +12,10 @@ import {
   getBoundaryGeometryWithBounds
 } from '../lib/listing_search_helpers'
 import { getPaginationParams } from '../lib'
-import listingSearchResponse from '../views/listing_search_view'
-import listingSearchGeocodeResponse from '../views/listing_search_geocode_view'
-import errorResponse from '../views/error_view'
+import listingSearchView from '../views/listingSearchView'
+import listingSearchGeocodeView from '../views/listingSearchGeocodeView'
+import listingSearchGeocodeNoBoundaryView from '../views/listingSearchGeocodeNoBoundaryView'
+import errorView from '../views/errorView'
 
 export const geocodeBoundarySearch = async (ctx: IGeocodeBoundaryContext) => {
   try {
@@ -43,7 +44,7 @@ export const geocodeBoundarySearch = async (ctx: IGeocodeBoundaryContext) => {
       pagination
     )
 
-    ctx.body = listingSearchGeocodeResponse(
+    ctx.body = listingSearchGeocodeView(
       boundaries,
       geocoderResult,
       results,
@@ -51,7 +52,7 @@ export const geocodeBoundarySearch = async (ctx: IGeocodeBoundaryContext) => {
     )
   } catch (error) {
     ctx.status = error?.response?.status || 500
-    ctx.body = errorResponse(error)
+    ctx.body = errorView(error)
   }
 }
 
@@ -75,10 +76,10 @@ export const boundarySearch = async (ctx: Context) => {
       pagination
     )
 
-    ctx.body = listingSearchResponse(results, pagination)
+    ctx.body = listingSearchView(results, pagination)
   } catch (error) {
     ctx.status = 500
-    ctx.body = errorResponse(error)
+    ctx.body = errorView(error)
   }
 }
 
@@ -97,10 +98,10 @@ export const boundsSearch = async (ctx: Context) => {
       ctx.query,
       pagination
     )
-    ctx.body = listingSearchResponse(results, pagination)
+    ctx.body = listingSearchView(results, pagination)
   } catch (error) {
     ctx.status = 500
-    ctx.body = errorResponse(error)
+    ctx.body = errorView(error)
   }
 }
 
@@ -118,9 +119,9 @@ export const radiusSearch = async (ctx: Context) => {
       pagination,
       { ...DefaultListingResultFields, distance: 1 }
     )
-    ctx.body = listingSearchResponse(results, pagination)
+    ctx.body = listingSearchView(results, pagination)
   } catch (error) {
     ctx.status = 500
-    ctx.body = errorResponse(error)
+    ctx.body = errorView(error)
   }
 }
