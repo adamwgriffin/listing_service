@@ -2,7 +2,11 @@ import type { Context } from 'koa'
 import type { IGeocodeBoundaryContext } from '../types/listing_search_params_types'
 import Listing from '../models/ListingModel'
 import Boundary from '../models/BoundaryModel'
-import { DefaultListingResultFields, DefaultMaxDistance } from '../config'
+import {
+  DefaultListingDetailResultFields,
+  DefaultListingResultFields,
+  DefaultMaxDistance
+} from '../config'
 import {
   geocode,
   getBoundaryTypeFromGeocoderAddressTypes
@@ -26,16 +30,29 @@ export const geocodeBoundarySearch = async (ctx: IGeocodeBoundaryContext) => {
       geocoderResult.data.results[0].types
     )
 
+    const pagination = getPaginationParams(ctx.query)
+
+    // if we can't find a boundary type in the response then we assume that the geocoderResult was an address.
+    if (!boundaryType) {
+      const listing = await Listing.findOne(
+        { placeId: geocoderResult.data.results[0].place_id },
+        DefaultListingDetailResultFields
+      )
+      return ctx.body = listingSearchGeocodeNoBoundaryView(
+        geocoderResult,
+        pagination,
+        listing
+      )
+    }
+
     // search for a boundary that matches the geocoder response coordinates
     const boundaries = await Boundary.findBoundaries(lat, lng, boundaryType)
 
-    const pagination = getPaginationParams(ctx.query)
-
     if (boundaries.length === 0) {
-      ctx.status = 404
-      return (ctx.body = {
-        error: 'No boundary found for query.'
-      })
+      return ctx.body = listingSearchGeocodeNoBoundaryView(
+        geocoderResult,
+        pagination
+      )
     }
 
     const results = await Listing.findWithinBounds(

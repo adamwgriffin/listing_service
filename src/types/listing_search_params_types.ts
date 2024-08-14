@@ -74,8 +74,9 @@ export interface IListingSearchResponse {
 
 export interface IGeocodeBoundaryListingSearchResponse
   extends IListingSearchResponse {
-  boundary: IBoundary
+  boundary: IBoundary | null
   geocoderResult: GeocodeResult[]
+  listingDetail?: Partial<IListing>
 }
 
 export interface IErrorResponse {

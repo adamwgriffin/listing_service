@@ -158,6 +158,10 @@ const ListingSchema = new Schema<IListing, IListingModel>({
     index: '2dsphere',
     required: true
   },
+  placeId: {
+    type: String,
+    index: true
+  },
   neighborhood: {
     type: String,
     required: true
