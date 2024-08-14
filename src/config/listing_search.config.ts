@@ -18,7 +18,7 @@ export const DefaultListingResultFields = {
   placeId: 1
 }
 
-export const DefaultListingDetailFeilds = {
+export const DefaultListingDetailResultFields = {
   ...DefaultListingResultFields,
   propertyType: 1,
   yearBuilt: 1,
