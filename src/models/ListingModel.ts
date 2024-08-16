@@ -1,9 +1,16 @@
 import type { MultiPolygon, Point, Polygon } from '@turf/turf'
 import type { IGeocodeBoundarySearchParams } from '../types/listing_search_params_types'
+import type {
+  ListingResultWithSelectedFields,
+  ListingRadiusResultWithSelectedFields
+} from '../types/listing_search_response_types'
 import type { PaginationParams } from '../types/listing_search_params_types'
-import { Model, Document, ProjectionFields, Schema, model } from 'mongoose'
+import { Model, ProjectionFields, Schema, model } from 'mongoose'
 import PointSchema from './PointSchema'
-import { DefaultListingResultFields } from '../config'
+import {
+  DefaultListingResultFields,
+  DefaultRadiusListingResultFields
+} from '../config'
 import {
   buildfilterQueries,
   buildfilterQueriesObject,
@@ -96,22 +103,27 @@ export interface IListing {
 }
 
 export interface IListingModel extends Model<IListing> {
-  findWithinBounds(
+  findWithinBounds<T = ListingResultWithSelectedFields>(
     boundaryGeometry: Polygon | MultiPolygon,
     query: IGeocodeBoundarySearchParams,
     pagination: PaginationParams,
-    fields?: ProjectionFields<IListing>
-  ): Promise<Document<IListing>>
+    fields?: ProjectionFields<T>
+  ): Promise<ListingSearchAggregateResult<T>>
 
-  findWithinRadius(
+  findWithinRadius<T = ListingRadiusResultWithSelectedFields>(
     lat: number,
     lng: number,
     maxDistance: number,
     query: IGeocodeBoundarySearchParams,
     pagination: PaginationParams,
-    fields?: ProjectionFields<IListing>
-  ): Promise<Document<IListing>>
+    fields?: ProjectionFields<T>
+  ): Promise<ListingSearchAggregateResult<T>>
 }
+
+export type ListingSearchAggregateResult<T> = {
+  metadata: { numberAvailable: number }[]
+  listings: Array<T>
+}[]
 
 const ListingSchema = new Schema<IListing, IListingModel>({
   listPrice: {
@@ -292,12 +304,14 @@ const ListingSchema = new Schema<IListing, IListingModel>({
   }
 })
 
-ListingSchema.statics.findWithinBounds = async function (
+ListingSchema.statics.findWithinBounds = async function <
+  T = ListingResultWithSelectedFields
+>(
   boundaryGeometry: Polygon | MultiPolygon,
   query: IGeocodeBoundarySearchParams,
   { page_size, page_index }: PaginationParams,
-  fields: ProjectionFields<IListing> = DefaultListingResultFields
-) {
+  fields: ProjectionFields<T> = DefaultListingResultFields
+): Promise<ListingSearchAggregateResult<T>> {
   return this.aggregate([
     {
       $match: {
@@ -323,7 +337,7 @@ ListingSchema.statics.findWithinBounds = async function (
           // this part counts the total. "numberAvailable" is just a name for the field
           { $count: 'numberAvailable' }
         ],
-        data: [
+        listings: [
           // $skip allows us to move ahead to each page in the results set by skipping the previous page results we
           // have already seen, while $limit only returns the amount per page. together they create a slice of the
           // result set represented as a "page"
@@ -336,14 +350,16 @@ ListingSchema.statics.findWithinBounds = async function (
   ])
 }
 
-ListingSchema.statics.findWithinRadius = async function (
+ListingSchema.statics.findWithinRadius = async function <
+  T = ListingRadiusResultWithSelectedFields
+>(
   lat: number,
   lng: number,
   maxDistance: number,
   query: IGeocodeBoundarySearchParams,
   { page_size, page_index }: PaginationParams,
-  fields: ProjectionFields<IListing> = DefaultListingResultFields
-) {
+  fields: ProjectionFields<T> = DefaultRadiusListingResultFields
+): Promise<ListingSearchAggregateResult<T>> {
   return this.aggregate([
     // $geoNear doesn't go inside of $match like the other queries because it is aggregation pipeline stage, not an
     // aggregation operator. also, you can only use $geoNear as the first stage of a pipeline.
@@ -365,7 +381,7 @@ ListingSchema.statics.findWithinRadius = async function (
     {
       $facet: {
         metadata: [{ $count: 'numberAvailable' }],
-        data: [
+        listings: [
           { $skip: page_index * page_size },
           { $limit: page_size },
           {

@@ -1,12 +1,14 @@
 import type { Context } from 'koa'
-import type { IGeocodeBoundaryContext } from '../types/listing_search_params_types'
+import type { IGeocodeBoundarySearchParams } from '../types/listing_search_params_types'
+import type {
+  ErrorResponse,
+  GeocodeBoundaryListingSearchResponse,
+  ListingDetailResultWithSelectedFields,
+  ListingRadiusResultWithSelectedFields
+} from '../types/listing_search_response_types'
 import Listing from '../models/ListingModel'
 import Boundary from '../models/BoundaryModel'
-import {
-  DefaultListingDetailResultFields,
-  DefaultListingResultFields,
-  DefaultMaxDistance
-} from '../config'
+import { DefaultListingDetailResultFields, DefaultMaxDistance } from '../config'
 import {
   geocode,
   getBoundaryTypeFromGeocoderAddressTypes
@@ -21,6 +23,12 @@ import listingSearchGeocodeView from '../views/listingSearchGeocodeView'
 import listingSearchGeocodeNoBoundaryView from '../views/listingSearchGeocodeNoBoundaryView'
 import errorView from '../views/errorView'
 
+export interface IGeocodeBoundaryContext extends Context {
+  query: IGeocodeBoundarySearchParams
+  status: number
+  body: GeocodeBoundaryListingSearchResponse | ErrorResponse
+}
+
 export const geocodeBoundarySearch = async (ctx: IGeocodeBoundaryContext) => {
   try {
     // make the request to the geocode service
@@ -34,25 +42,26 @@ export const geocodeBoundarySearch = async (ctx: IGeocodeBoundaryContext) => {
 
     // if we can't find a boundary type in the response then we assume that the geocoderResult was an address.
     if (!boundaryType) {
-      const listing = await Listing.findOne(
-        { placeId: geocoderResult.data.results[0].place_id },
-        DefaultListingDetailResultFields
-      )
-      return ctx.body = listingSearchGeocodeNoBoundaryView(
+      const listing =
+        await Listing.findOne<ListingDetailResultWithSelectedFields>(
+          { placeId: geocoderResult.data.results[0].place_id },
+          DefaultListingDetailResultFields
+        )
+      return (ctx.body = listingSearchGeocodeNoBoundaryView(
         geocoderResult,
         pagination,
         listing
-      )
+      ))
     }
 
     // search for a boundary that matches the geocoder response coordinates
     const boundaries = await Boundary.findBoundaries(lat, lng, boundaryType)
 
     if (boundaries.length === 0) {
-      return ctx.body = listingSearchGeocodeNoBoundaryView(
+      return (ctx.body = listingSearchGeocodeNoBoundaryView(
         geocoderResult,
         pagination
-      )
+      ))
     }
 
     const results = await Listing.findWithinBounds(
@@ -127,16 +136,18 @@ export const radiusSearch = async (ctx: Context) => {
   const pagination = getPaginationParams(ctx.query)
 
   try {
-    // "distance" is the fieldname set in the  "distanceField" for the $geoNear query in the findWithinRadius method
-    const results = await Listing.findWithinRadius(
-      Number(lat),
-      Number(lng),
-      Number(max_distance) || DefaultMaxDistance,
-      ctx.query,
-      pagination,
-      { ...DefaultListingResultFields, distance: 1 }
+    const results =
+      await Listing.findWithinRadius<ListingRadiusResultWithSelectedFields>(
+        Number(lat),
+        Number(lng),
+        Number(max_distance) || DefaultMaxDistance,
+        ctx.query,
+        pagination
+      )
+    ctx.body = listingSearchView<ListingRadiusResultWithSelectedFields>(
+      results,
+      pagination
     )
-    ctx.body = listingSearchView(results, pagination)
   } catch (error) {
     ctx.status = 500
     ctx.body = errorView(error)

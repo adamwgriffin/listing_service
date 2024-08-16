@@ -1,15 +1,15 @@
-import type { Document } from 'mongoose'
-import type { IListing } from '../models/ListingModel'
+import type { ListingSearchAggregateResult } from '../models/ListingModel'
+import type { PaginationParams } from '../types/listing_search_params_types'
 import type {
-  PaginationParams,
-  IListingSearchResponse
-} from '../types/listing_search_params_types'
+  ListingResultWithSelectedFields,
+  ListingSearchResponse
+} from '../types/listing_search_response_types'
 
-export default (
-  results: Document<IListing>,
+export default <T = ListingResultWithSelectedFields>(
+  results: ListingSearchAggregateResult<T>,
   pagination: PaginationParams
-): IListingSearchResponse => {
-  const { data: listings, metadata } = results[0]
+): ListingSearchResponse<T> => {
+  const { listings, metadata } = results[0]
   const numberAvailable = metadata[0]?.numberAvailable || 0
   return {
     listings: listings,

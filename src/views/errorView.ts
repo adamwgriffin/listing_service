@@ -1,3 +1,3 @@
-import type { IErrorResponse } from '../types/listing_search_params_types'
+import type { ErrorResponse } from '../types/listing_search_response_types'
 
-export default (error): IErrorResponse => ({ error: error.message })
+export default (error): ErrorResponse => ({ error: error.message })

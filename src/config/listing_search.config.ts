@@ -18,6 +18,13 @@ export const DefaultListingResultFields = {
   placeId: 1
 }
 
+// "distance" refers to the fieldname set in the  "distanceField" for the $geoNear query used in the findWithinRadius
+// method
+export const DefaultRadiusListingResultFields = {
+  ...DefaultListingResultFields,
+  distance: 1
+}
+
 export const DefaultListingDetailResultFields = {
   ...DefaultListingResultFields,
   propertyType: 1,

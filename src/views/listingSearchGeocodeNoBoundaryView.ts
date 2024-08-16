@@ -1,13 +1,14 @@
-import type { IListing } from '../models/ListingModel'
-import { IGeocodeBoundaryListingSearchResponse, PaginationParams } from '../types/listing_search_params_types'
+import type { PaginationParams } from '../types/listing_search_params_types'
+import type { GeocodeBoundaryListingSearchResponse } from '../types/listing_search_response_types'
+import type { ListingDetailResultWithSelectedFields } from '../types/listing_search_response_types'
 import { GeocodeResponse } from '@googlemaps/google-maps-services-js'
 
 export default (
   geocoderResult: GeocodeResponse,
   pagination: PaginationParams,
-  listingDetail: Partial<IListing> | null | undefined = null
+  listingDetail: ListingDetailResultWithSelectedFields | null | undefined = null
 ) => {
-  const response: IGeocodeBoundaryListingSearchResponse = {
+  const response: GeocodeBoundaryListingSearchResponse = {
     boundary: null,
     geocoderResult: geocoderResult.data.results,
     listings: [],

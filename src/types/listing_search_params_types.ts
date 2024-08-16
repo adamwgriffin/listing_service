@@ -1,8 +1,3 @@
-import type { Context } from 'koa'
-import type { IListing } from '../models/ListingModel'
-import type { IBoundary } from '../models/BoundaryModel'
-import { GeocodeResult } from '@googlemaps/google-maps-services-js'
-
 export type SortType = 'listedDate' | 'listPrice' | 'beds' | 'baths' | 'sqft'
 
 export type SortDirection = 'asc' | 'desc'
@@ -53,38 +48,7 @@ export interface IBoundsParams {
   bounds_west: number
 }
 
-// TODO: not 100% on what really needs to be returned here
-export interface IPaginationResponse {
-  page: number
-  pageSize: number
-  numberReturned: number
-  numberAvailable: number
-  numberOfPages: number
-}
-
 export interface IGeocodeBoundarySearchParams extends Partial<IListingParams> {
   address?: string
   place_id?: string
-}
-
-export interface IListingSearchResponse {
-  listings: Partial<IListing>[]
-  pagination: IPaginationResponse
-}
-
-export interface IGeocodeBoundaryListingSearchResponse
-  extends IListingSearchResponse {
-  boundary: IBoundary | null
-  geocoderResult: GeocodeResult[]
-  listingDetail?: Partial<IListing>
-}
-
-export interface IErrorResponse {
-  error: string
-}
-
-export interface IGeocodeBoundaryContext extends Context {
-  query: IGeocodeBoundarySearchParams
-  status: number
-  body: IGeocodeBoundaryListingSearchResponse | IErrorResponse
 }
