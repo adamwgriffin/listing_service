@@ -3,9 +3,9 @@ import type { FilterQuery } from 'mongoose'
 import type { IListingModel } from '../models/ListingModel'
 import type { IBoundary } from '../models/BoundaryModel'
 import type {
-  IBoundsParams,
-  IGeocodeBoundarySearchParams,
-  IListingParams
+  BoundsParams,
+  GeocodeBoundarySearchParams,
+  ListingFilterParams
 } from '../types/listing_search_params_types'
 import { bboxPolygon, intersect } from '@turf/turf'
 import { differenceInDays, subDays } from 'date-fns'
@@ -22,7 +22,7 @@ import { differenceInDays, subDays } from 'date-fns'
  * // { "listedDate": 1 }
  */
 export const listingSortQuery = (
-  query: Partial<IListingParams>
+  query: Partial<ListingFilterParams>
 ): FilterQuery<IListingModel> => {
   const sortBy = query.sort_by || 'listedDate'
   const sortDirection = query.sort_direction === 'asc' ? 1 : -1
@@ -40,7 +40,7 @@ export const daysOnMarket = (
  * Converts a set of north/east/south/west coordinates into a rectangular polygon
  */
 export const boundsParamsToGeoJSONPolygon = (
-  bounds: IBoundsParams
+  bounds: BoundsParams
 ): Polygon => {
   const { bounds_north, bounds_east, bounds_south, bounds_west } = bounds
   return bboxPolygon([bounds_west, bounds_south, bounds_east, bounds_north])
@@ -53,7 +53,7 @@ export const boundsParamsToGeoJSONPolygon = (
  * outside the map viewport.
  */
 export const removePartsOfBoundaryOutsideOfBounds = (
-  bounds: IBoundsParams,
+  bounds: BoundsParams,
   boundary: Polygon | MultiPolygon
 ) => {
   const boundsPolygon = boundsParamsToGeoJSONPolygon(bounds)
@@ -66,7 +66,7 @@ export const removePartsOfBoundaryOutsideOfBounds = (
  */
 export const getBoundaryGeometryWithBounds = (
   boundary: IBoundary,
-  query: Partial<IBoundsParams>
+  query: BoundsParams
 ): Polygon | MultiPolygon => {
   const { bounds_north, bounds_east, bounds_south, bounds_west } = query
   if (bounds_north && bounds_east && bounds_south && bounds_west) {
@@ -125,7 +125,7 @@ export const openHouseQuery = (
  * // Returns [{ "listPrice": { $gte: 100000} }, { "waterfornt": true }]
  */
 export const buildfilterQueries = (
-  params: IGeocodeBoundarySearchParams
+  params: GeocodeBoundarySearchParams
 ): FilterQuery<IListingModel>[] => {
   // TODO: refactor this. the list is way too long.
   const {
@@ -243,7 +243,7 @@ export const buildfilterQueries = (
  * // Returns { "listPrice": { $gte: 100000} }, "waterfornt": true }
  */
 export const buildfilterQueriesObject = (
-  params: IGeocodeBoundarySearchParams
+  params: GeocodeBoundarySearchParams
 ): FilterQuery<IListingModel> => {
   return buildfilterQueries(params).reduce((q, acc) => ({ ...acc, ...q }), {})
 }

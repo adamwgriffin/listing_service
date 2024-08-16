@@ -1,10 +1,15 @@
 import type { Context } from 'koa'
-import type { IGeocodeBoundarySearchParams } from '../types/listing_search_params_types'
+import type {
+  BoundarySearchParams,
+  GeocodeBoundarySearchParams,
+  RadiusSearchParams
+} from '../types/listing_search_params_types'
 import type {
   ErrorResponse,
-  GeocodeBoundaryListingSearchResponse,
+  GeocodeBoundarySearchResponse,
   ListingDetailResultWithSelectedFields,
-  ListingRadiusResultWithSelectedFields
+  ListingRadiusResultWithSelectedFields,
+  ListingSearchResponse
 } from '../types/listing_search_response_types'
 import Listing from '../models/ListingModel'
 import Boundary from '../models/BoundaryModel'
@@ -23,13 +28,36 @@ import listingSearchGeocodeView from '../views/listingSearchGeocodeView'
 import listingSearchGeocodeNoBoundaryView from '../views/listingSearchGeocodeNoBoundaryView'
 import errorView from '../views/errorView'
 
-export interface IGeocodeBoundaryContext extends Context {
-  query: IGeocodeBoundarySearchParams
+export interface GeocodeBoundaryContext extends Context {
+  query: GeocodeBoundarySearchParams
   status: number
-  body: GeocodeBoundaryListingSearchResponse | ErrorResponse
+  body: GeocodeBoundarySearchResponse | ErrorResponse
 }
 
-export const geocodeBoundarySearch = async (ctx: IGeocodeBoundaryContext) => {
+export interface BoundarySearchContext extends Context {
+  params: {
+    id: string
+  }
+  query: BoundarySearchParams
+  status: number
+  body: ListingSearchResponse | ErrorResponse
+}
+
+export interface BoundsSearchContext extends Context {
+  query: BoundarySearchParams
+  status: number
+  body: ListingSearchResponse | ErrorResponse
+}
+
+export interface RadiusSearchContext extends Context {
+  query: RadiusSearchParams
+  status: number
+  body:
+    | ListingSearchResponse<ListingRadiusResultWithSelectedFields>
+    | ErrorResponse
+}
+
+export const geocodeBoundarySearch = async (ctx: GeocodeBoundaryContext) => {
   try {
     // make the request to the geocode service
     const geocoderResult = await geocode(ctx.query)
@@ -82,7 +110,7 @@ export const geocodeBoundarySearch = async (ctx: IGeocodeBoundaryContext) => {
   }
 }
 
-export const boundarySearch = async (ctx: Context) => {
+export const boundarySearch = async (ctx: BoundarySearchContext) => {
   const { id } = ctx.params
   try {
     const boundary = await Boundary.findById(id)
@@ -109,7 +137,7 @@ export const boundarySearch = async (ctx: Context) => {
   }
 }
 
-export const boundsSearch = async (ctx: Context) => {
+export const boundsSearch = async (ctx: BoundsSearchContext) => {
   const { bounds_north, bounds_east, bounds_south, bounds_west } = ctx.query
   const geoJSONPolygon = boundsParamsToGeoJSONPolygon({
     bounds_north,
@@ -131,7 +159,7 @@ export const boundsSearch = async (ctx: Context) => {
   }
 }
 
-export const radiusSearch = async (ctx: Context) => {
+export const radiusSearch = async (ctx: RadiusSearchContext) => {
   const { lat, lng, max_distance } = ctx.query
   const pagination = getPaginationParams(ctx.query)
 

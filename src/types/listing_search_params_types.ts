@@ -7,7 +7,7 @@ export interface PaginationParams {
   page_size: number
 }
 
-export interface IListingParams extends PaginationParams {
+export interface ListingFilterParams extends PaginationParams {
   price_min: number
   price_max: number
   beds_min: number
@@ -41,14 +41,25 @@ export interface IListingParams extends PaginationParams {
   open_house_before: string
 }
 
-export interface IBoundsParams {
+export interface BoundsParams {
   bounds_north: number
   bounds_east: number
   bounds_south: number
   bounds_west: number
 }
 
-export interface IGeocodeBoundarySearchParams extends Partial<IListingParams> {
+export interface GeocodeBoundarySearchParams
+  extends Partial<ListingFilterParams> {
   address?: string
   place_id?: string
+}
+
+export interface BoundarySearchParams
+  extends BoundsParams,
+    Partial<ListingFilterParams> {}
+
+export interface RadiusSearchParams extends Partial<ListingFilterParams> {
+  lat: number
+  lng: number
+  max_distance?: number
 }
