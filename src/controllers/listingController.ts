@@ -1,6 +1,6 @@
 import { Types } from 'mongoose'
 import Listing from '../models/ListingModel'
-import { DefaultListingDetailResultFields } from '../config'
+import { ListingDetailResultProjectionFields } from '../config'
 import { daysOnMarket } from '../lib/listing_search_helpers'
 
 export const createListing = async (ctx) => {
@@ -22,7 +22,7 @@ export const readListing = async (ctx) => {
       ctx.body = { message: `Invalid ID ${id}` }
       return
     }
-    const listing = await Listing.findById(id, DefaultListingDetailResultFields)
+    const listing = await Listing.findById(id, ListingDetailResultProjectionFields)
     if (!listing) {
       ctx.status = 404
       ctx.body = { message: `Listing not found with ID ${id}` }

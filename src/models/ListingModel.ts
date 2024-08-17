@@ -8,8 +8,8 @@ import type { PaginationParams } from '../types/listing_search_params_types'
 import { Model, ProjectionFields, Schema, model } from 'mongoose'
 import PointSchema from './PointSchema'
 import {
-  DefaultListingResultFields,
-  DefaultRadiusListingResultFields
+  ListingResultProjectionFields,
+  ListingRadiusResultProjectionFields
 } from '../config'
 import {
   buildfilterQueries,
@@ -310,7 +310,7 @@ ListingSchema.statics.findWithinBounds = async function <
   boundaryGeometry: Polygon | MultiPolygon,
   query: GeocodeBoundarySearchParams,
   { page_size, page_index }: PaginationParams,
-  fields: ProjectionFields<T> = DefaultListingResultFields
+  fields: ProjectionFields<T> = ListingResultProjectionFields
 ): Promise<ListingSearchAggregateResult<T>> {
   return this.aggregate([
     {
@@ -358,7 +358,7 @@ ListingSchema.statics.findWithinRadius = async function <
   maxDistance: number,
   query: GeocodeBoundarySearchParams,
   { page_size, page_index }: PaginationParams,
-  fields: ProjectionFields<T> = DefaultRadiusListingResultFields
+  fields: ProjectionFields<T> = ListingRadiusResultProjectionFields
 ): Promise<ListingSearchAggregateResult<T>> {
   return this.aggregate([
     // $geoNear doesn't go inside of $match like the other queries because it is aggregation pipeline stage, not an

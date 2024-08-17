@@ -1,5 +1,5 @@
 // used for mongodb's $project section to select the fields we want to return in the response
-export const DefaultListingResultFields = {
+export const ListingResultProjectionFields = {
   status: 1,
   listPrice: 1,
   soldPrice: 1,
@@ -20,13 +20,13 @@ export const DefaultListingResultFields = {
 
 // "distance" refers to the fieldname set in the  "distanceField" for the $geoNear query used in the findWithinRadius
 // method
-export const DefaultRadiusListingResultFields = {
-  ...DefaultListingResultFields,
+export const ListingRadiusResultProjectionFields = {
+  ...ListingResultProjectionFields,
   distance: 1
 }
 
-export const DefaultListingDetailResultFields = {
-  ...DefaultListingResultFields,
+export const ListingDetailResultProjectionFields = {
+  ...ListingResultProjectionFields,
   propertyType: 1,
   yearBuilt: 1,
   soldDate: 1,

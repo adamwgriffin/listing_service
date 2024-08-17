@@ -2,8 +2,8 @@ import type { Types } from 'mongoose'
 import type { IListing } from '../models/ListingModel'
 import type { IBoundary } from '../models/BoundaryModel'
 import {
-  DefaultListingResultFields,
-  DefaultListingDetailResultFields
+  ListingResultProjectionFields,
+  ListingDetailResultProjectionFields
 } from '../config'
 import { GeocodeResult } from '@googlemaps/google-maps-services-js'
 
@@ -15,7 +15,7 @@ export type AdditionalListingResultFields = {
 
 export type ListingResultWithSelectedFields = Pick<
   IListing,
-  Exclude<keyof typeof DefaultListingResultFields, 'latitude' | 'longitude'>
+  Exclude<keyof typeof ListingResultProjectionFields, 'latitude' | 'longitude'>
 > &
   AdditionalListingResultFields
 
@@ -25,7 +25,7 @@ export type ListingRadiusResultWithSelectedFields =
 export type ListingDetailResultWithSelectedFields = Pick<
   IListing,
   Exclude<
-    keyof typeof DefaultListingDetailResultFields,
+    keyof typeof ListingDetailResultProjectionFields,
     'latitude' | 'longitude'
   >
 > &

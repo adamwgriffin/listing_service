@@ -13,7 +13,7 @@ import type {
 } from '../types/listing_search_response_types'
 import Listing from '../models/ListingModel'
 import Boundary from '../models/BoundaryModel'
-import { DefaultListingDetailResultFields, DefaultMaxDistance } from '../config'
+import { ListingDetailResultProjectionFields, DefaultMaxDistance } from '../config'
 import {
   geocode,
   getBoundaryTypeFromGeocoderAddressTypes
@@ -73,7 +73,7 @@ export const geocodeBoundarySearch = async (ctx: GeocodeBoundaryContext) => {
       const listing =
         await Listing.findOne<ListingDetailResultWithSelectedFields>(
           { placeId: geocoderResult.data.results[0].place_id },
-          DefaultListingDetailResultFields
+          ListingDetailResultProjectionFields
         )
       return (ctx.body = listingSearchGeocodeNoBoundaryView(
         geocoderResult,
