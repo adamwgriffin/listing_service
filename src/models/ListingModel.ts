@@ -149,20 +149,24 @@ const ListingSchema = new Schema<IListing, IListingModel>({
   address: {
     line1: {
       type: String,
-      required: true
+      required: true,
+      minlength: 1
     },
     line2: String,
     city: {
       type: String,
-      required: true
+      required: true,
+      minlength: 1
     },
     state: {
       type: String,
-      required: true
+      required: true,
+      minlength: 1
     },
     zip: {
       type: String,
-      required: true
+      required: true,
+      minlength: 1
     }
   },
   geometry: {
