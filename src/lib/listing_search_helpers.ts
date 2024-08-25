@@ -1,6 +1,6 @@
 import type { Polygon, MultiPolygon } from '@turf/turf'
 import type { FilterQuery } from 'mongoose'
-import type { IListingModel } from '../models/ListingModel'
+import type { IListingAddress, IListingModel } from '../models/ListingModel'
 import type { IBoundary } from '../models/BoundaryModel'
 import type {
   BoundsParams,
@@ -9,6 +9,11 @@ import type {
 } from '../types/listing_search_params_types'
 import { bboxPolygon, intersect } from '@turf/turf'
 import { differenceInDays, subDays } from 'date-fns'
+import { addressComponentsToListingAddress } from './geocoder'
+import { GeocodeResult } from '@googlemaps/google-maps-services-js'
+import Listing, { RequiredListingAddressFields } from '../models/ListingModel'
+import { ListingDetailResultWithSelectedFields } from '../types/listing_search_response_types'
+import { ListingDetailResultProjectionFields } from '../config'
 
 /**
  * Create a MongoDB $sort query
@@ -39,9 +44,7 @@ export const daysOnMarket = (
 /**
  * Converts a set of north/east/south/west coordinates into a rectangular polygon
  */
-export const boundsParamsToGeoJSONPolygon = (
-  bounds: BoundsParams
-): Polygon => {
+export const boundsParamsToGeoJSONPolygon = (bounds: BoundsParams): Polygon => {
   const { bounds_north, bounds_east, bounds_south, bounds_west } = bounds
   return bboxPolygon([bounds_west, bounds_south, bounds_east, bounds_north])
     .geometry
@@ -246,4 +249,26 @@ export const buildfilterQueriesObject = (
   params: GeocodeBoundarySearchParams
 ): FilterQuery<IListingModel> => {
   return buildfilterQueries(params).reduce((q, acc) => ({ ...acc, ...q }), {})
+}
+
+export const listingAddressHasRequiredFields = (
+  listingAddress: Partial<IListingAddress>
+) =>
+  RequiredListingAddressFields.every(
+    (field) => listingAddress[field]?.length > 0
+  )
+
+export const getListingForAddressSearch = async ({
+  address_components,
+  place_id
+}: GeocodeResult) => {
+  const listingAddress = addressComponentsToListingAddress(address_components)
+  if (listingAddressHasRequiredFields(listingAddress)) {
+    return Listing.findByPlaceIdOrAddress(place_id, listingAddress)
+  } else {
+    return Listing.findOne<ListingDetailResultWithSelectedFields>(
+      { placeId: place_id },
+      ListingDetailResultProjectionFields
+    )
+  }
 }

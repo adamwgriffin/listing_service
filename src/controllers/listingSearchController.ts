@@ -7,20 +7,21 @@ import type {
 import type {
   ErrorResponse,
   GeocodeBoundarySearchResponse,
-  ListingDetailResultWithSelectedFields,
   ListingRadiusResultWithSelectedFields,
   ListingSearchResponse
 } from '../types/listing_search_response_types'
 import Listing from '../models/ListingModel'
 import Boundary from '../models/BoundaryModel'
-import { ListingDetailResultProjectionFields, DefaultMaxDistance } from '../config'
+import { DefaultMaxDistance } from '../config'
 import {
   geocode,
-  getBoundaryTypeFromGeocoderAddressTypes
+  getBoundaryTypeFromGeocoderAddressTypes,
+  isListingAddressType
 } from '../lib/geocoder'
 import {
   boundsParamsToGeoJSONPolygon,
-  getBoundaryGeometryWithBounds
+  getBoundaryGeometryWithBounds,
+  getListingForAddressSearch
 } from '../lib/listing_search_helpers'
 import { getPaginationParams } from '../lib'
 import listingSearchView from '../views/listingSearchView'
@@ -68,13 +69,13 @@ export const geocodeBoundarySearch = async (ctx: GeocodeBoundaryContext) => {
 
     const pagination = getPaginationParams(ctx.query)
 
-    // if we can't find a boundary type in the response then we assume that the geocoderResult was an address.
+    // Handle situation where request was for an address, or we simply don't have the boundary for the location
     if (!boundaryType) {
-      const listing =
-        await Listing.findOne<ListingDetailResultWithSelectedFields>(
-          { placeId: geocoderResult.data.results[0].place_id },
-          ListingDetailResultProjectionFields
-        )
+      const listing = isListingAddressType(
+        geocoderResult.data.results[0].types[0]
+      )
+        ? await getListingForAddressSearch(geocoderResult.data.results[0])
+        : null
       return (ctx.body = listingSearchGeocodeNoBoundaryView(
         geocoderResult,
         pagination,

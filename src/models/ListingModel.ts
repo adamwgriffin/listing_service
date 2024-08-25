@@ -2,20 +2,29 @@ import type { MultiPolygon, Point, Polygon } from '@turf/turf'
 import type { GeocodeBoundarySearchParams } from '../types/listing_search_params_types'
 import type {
   ListingResultWithSelectedFields,
-  ListingRadiusResultWithSelectedFields
+  ListingRadiusResultWithSelectedFields,
+  ListingDetailResultWithSelectedFields
 } from '../types/listing_search_response_types'
 import type { PaginationParams } from '../types/listing_search_params_types'
 import { Model, ProjectionFields, Schema, model } from 'mongoose'
 import PointSchema from './PointSchema'
 import {
   ListingResultProjectionFields,
-  ListingRadiusResultProjectionFields
+  ListingRadiusResultProjectionFields,
+  ListingDetailResultProjectionFields
 } from '../config'
 import {
   buildfilterQueries,
   buildfilterQueriesObject,
   listingSortQuery
 } from '../lib/listing_search_helpers'
+
+export const RequiredListingAddressFields = Object.freeze([
+  'line1',
+  'city',
+  'state',
+  'zip'
+])
 
 export const PropertyTypes = [
   'single-family',
@@ -26,8 +35,6 @@ export const PropertyTypes = [
   'multi-family'
 ] as const
 
-export type PropertyType = (typeof PropertyTypes)[number]
-
 export const PropertyStatuses = ['active', 'pending', 'sold'] as const
 
 export const RentalPropertyStatuses = ['active', 'rented'] as const
@@ -36,6 +43,8 @@ export const AllPropertyStatuses = [
   ...PropertyStatuses,
   ...RentalPropertyStatuses
 ]
+
+export type PropertyType = (typeof PropertyTypes)[number]
 
 export type PropertyStatus = (typeof AllPropertyStatuses)[number]
 
@@ -118,6 +127,12 @@ export interface IListingModel extends Model<IListing> {
     pagination: PaginationParams,
     fields?: ProjectionFields<T>
   ): Promise<ListingSearchAggregateResult<T>>
+
+  findByPlaceIdOrAddress<T = ListingDetailResultWithSelectedFields>(
+    placeId: string,
+    address: Partial<IListingAddress>,
+    fields?: ProjectionFields<T>
+  ): Promise<T>
 }
 
 export type ListingSearchAggregateResult<T> = {
@@ -308,9 +323,28 @@ const ListingSchema = new Schema<IListing, IListingModel>({
   }
 })
 
+/**
+ * Find a listing by placeId first. If that fails, try address instead.
+ */
+ListingSchema.statics.findByPlaceIdOrAddress = async function <
+  T = ListingDetailResultWithSelectedFields
+>(
+  this: IListingModel,
+  placeId: IListing['placeId'],
+  address: IListingAddress,
+  fields: ProjectionFields<T> = ListingDetailResultProjectionFields
+): Promise<T> {
+  const addressQuery = {}
+  for (const k in address) {
+    addressQuery[`address.${k}`] = address[k]
+  }
+  return this.findOne<T>({ $or: [{ placeId }, addressQuery] }, fields)
+}
+
 ListingSchema.statics.findWithinBounds = async function <
   T = ListingResultWithSelectedFields
 >(
+  this: IListingModel,
   boundaryGeometry: Polygon | MultiPolygon,
   query: GeocodeBoundarySearchParams,
   { page_size, page_index }: PaginationParams,
@@ -357,6 +391,7 @@ ListingSchema.statics.findWithinBounds = async function <
 ListingSchema.statics.findWithinRadius = async function <
   T = ListingRadiusResultWithSelectedFields
 >(
+  this: IListingModel,
   lat: number,
   lng: number,
   maxDistance: number,

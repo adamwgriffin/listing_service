@@ -4,18 +4,10 @@ import type {
   ReverseGeocodeResponse
 } from '@googlemaps/google-maps-services-js'
 import type { BoundaryType } from '../models/BoundaryModel'
+import type { IListingAddress } from '../models/ListingModel'
 import { Client, AddressType } from '@googlemaps/google-maps-services-js'
 
 export const GeocodeTimeout = 1000 // milliseconds
-
-export interface AddressComponentAddress {
-  streetNumber: string
-  streetAddress: string
-  city: string
-  state: string
-  postalCode: string
-  neighborhood: string
-}
 
 export const AddressTypeToBoundaryTypeMapping: Map<AddressType, BoundaryType> =
   new Map([
@@ -25,6 +17,16 @@ export const AddressTypeToBoundaryTypeMapping: Map<AddressType, BoundaryType> =
     [AddressType.postal_code, 'zip_code'],
     [AddressType.locality, 'city'],
     [AddressType.neighborhood, 'neighborhood']
+  ])
+
+/**
+ * Address types that usually belong to a residence, as opposed to city/state/zip types
+ */
+export const GeocodeResultListingAddressTypes: readonly AddressType[] =
+  Object.freeze([
+    AddressType.street_address,
+    AddressType.premise,
+    AddressType.subpremise
   ])
 
 /**
@@ -43,9 +45,9 @@ export const getBoundaryTypeFromGeocoderAddressTypes = (
  * Maps all the different types in an AddressComponent.types array to a specific address field that we use for a Listing
  * record.
  */
-const AddressComponentMapping = {
-  streetNumber: ['street_number'],
-  streetAddress: ['street_address', 'route'],
+const AddressComponentMapping = Object.freeze({
+  street_number: ['street_number'],
+  street_address: ['street_address', 'route'],
   city: [
     'locality',
     'sublocality',
@@ -61,20 +63,10 @@ const AddressComponentMapping = {
     'administrative_area_level_4',
     'administrative_area_level_5'
   ],
-  postalCode: ['postal_code'],
-  neighborhood: ['neighborhood']
-}
+  zip: ['postal_code']
+})
 
 const googleMapsClient = new Client({})
-
-export const AddressComponentAddressTemplate = Object.freeze({
-  streetNumber: '',
-  streetAddress: '',
-  city: '',
-  state: '',
-  postalCode: '',
-  neighborhood: ''
-})
 
 export const geocode = async (
   params: Omit<GeocodeRequest['params'], 'key'>,
@@ -108,20 +100,40 @@ export const reverseGeocode = async (
 /**
  * Convert the address fields from a geocode result into the fields we use for a Listing address in the database
  */
-export const addressComponentsToAddress = (
-  address_components: AddressComponent[]
-): AddressComponentAddress => {
-  const address = { ...AddressComponentAddressTemplate }
+export const addressComponentsToListingAddress = (
+  addressComponents: AddressComponent[]
+): Partial<IListingAddress> => {
+  const address: Partial<IListingAddress> = {}
+  let street_number = ''
+  let street_address = ''
 
-  address_components.forEach((component) => {
-    for (const addressComponent in AddressComponentMapping) {
-      if (
-        AddressComponentMapping[addressComponent].includes(component.types[0])
-      ) {
-        address[addressComponent] = component.long_name
+  addressComponents.forEach((component) => {
+    for (const field in AddressComponentMapping) {
+      if (!AddressComponentMapping[field].includes(component.types[0])) {
+        continue
+      }
+      if (field === 'street_number') {
+        street_number = component.long_name
+      } else if (field === 'street_address') {
+        street_address = component.long_name
+      } else {
+        address[field] = component.long_name
       }
     }
   })
 
+  address.line1 = [street_number, street_address].join(' ').trim()
+
   return address
 }
+
+export const getNeighborhoodFromAddressComponents = (
+  addressComponents: AddressComponent[]
+) => {
+  return addressComponents.find((component) =>
+    component.types.includes(AddressType.neighborhood)
+  )?.long_name
+}
+
+export const isListingAddressType = (type: AddressType) =>
+  GeocodeResultListingAddressTypes.includes(type)

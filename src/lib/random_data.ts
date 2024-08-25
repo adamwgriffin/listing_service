@@ -4,19 +4,32 @@ import type {
   PropertDetailsSection,
   PropertDetail,
   PropertyStatus,
-  IOpenHouse
+  IOpenHouse,
+  IListingAddress
 } from '../models/ListingModel'
 import type { Point, Polygon, MultiPolygon } from '@turf/turf'
-import type { AddressComponentAddress } from '../lib/geocoder'
 import { bbox, randomPoint, booleanPointInPolygon } from '@turf/turf'
 import { faker } from '@faker-js/faker'
 import { subMonths, addHours, addMonths } from 'date-fns'
-import { reverseGeocode, addressComponentsToAddress } from '../lib/geocoder'
+import {
+  reverseGeocode,
+  addressComponentsToListingAddress,
+  getNeighborhoodFromAddressComponents
+} from '../lib/geocoder'
 import {
   PropertyTypes,
   PropertyStatuses,
   RentalPropertyStatuses
 } from '../models/ListingModel'
+import { listingAddressHasRequiredFields } from './listing_search_helpers'
+
+export const AddressComponentAddressTemplate: IListingAddress = Object.freeze({
+  line1: '',
+  line2: '',
+  city: '',
+  state: '',
+  zip: ''
+})
 
 export const randomPointsWithinPolygon = (
   polygon: Polygon | MultiPolygon,
@@ -153,9 +166,10 @@ const createOpenHouses = (
 }
 
 export const createRandomListingModel = (
-  address: AddressComponentAddress,
+  address: Partial<IListingAddress>,
+  neighborhood: string,
   point: Point,
-  placeId: IListing['placeId'],
+  placeId: IListing['placeId']
 ): IListing => {
   const today = new Date()
   const rental = faker.datatype.boolean({ probability: 0.5 })
@@ -165,16 +179,10 @@ export const createRandomListingModel = (
       from: subMonths(today, 6),
       to: today
     }),
-    address: {
-      line1: [address?.streetNumber, address?.streetAddress].join(' ').trim(),
-      line2: '',
-      city: address.city,
-      state: address.state,
-      zip: address.postalCode
-    },
+    address: { ...AddressComponentAddressTemplate, ...address },
     geometry: point,
     placeId,
-    neighborhood: address?.neighborhood,
+    neighborhood: neighborhood,
     propertyType: faker.helpers.arrayElement(PropertyTypes),
     status: getStatus(rental),
     description: faker.lorem.sentences({ min: 1, max: 3 }),
@@ -214,22 +222,35 @@ export const createRandomListingModel = (
 
 export const createListing = async (point: Point): Promise<IListing> => {
   const res = await reverseGeocode(point.coordinates[1], point.coordinates[0])
-  if (!res.data.results[0]?.address_components) {
+  const geocoderResult = res.data.results[0]
+  if (!geocoderResult?.address_components) {
     console.warn(
       `No address_components found for reverseGeocode of ${point.coordinates}. No model created.`
     )
     return
   }
-  const address = addressComponentsToAddress(
-    res.data.results[0].address_components
+  const neighborhood = getNeighborhoodFromAddressComponents(
+    geocoderResult.address_components
   )
-  if (address.neighborhood == '') {
+  if (neighborhood == '') {
     console.warn(
       `No neighborhood found for reverseGeocode of ${point.coordinates}. No model created.`
     )
     return
   }
-  return createRandomListingModel(address, point, res.data.results[0].place_id)
+  const address = addressComponentsToListingAddress(
+    geocoderResult.address_components
+  )
+  if (!listingAddressHasRequiredFields(address)) {
+    console.warn(`All required address fields are not present. No model created.`)
+    return
+  }
+  return createRandomListingModel(
+    address,
+    neighborhood,
+    point,
+    geocoderResult.place_id
+  )
 }
 
 const generateListingData = async (
