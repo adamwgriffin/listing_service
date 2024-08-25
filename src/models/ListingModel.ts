@@ -48,7 +48,7 @@ export type PropertyType = (typeof PropertyTypes)[number]
 
 export type PropertyStatus = (typeof AllPropertyStatuses)[number]
 
-export interface IListingAddress {
+export interface ListingAddress {
   line1: string
   line2?: string
   city: string
@@ -56,7 +56,7 @@ export interface IListingAddress {
   zip: string
 }
 
-export interface IPhotoGalleryImage {
+export interface PhotoGalleryImage {
   galleryUrl: string // 1920x1080 (used for slideshow image)
   fullUrl: string // 853x480(used for listing detail image)
   smallUrl: string // 533x300 (used for listing card image)
@@ -74,7 +74,7 @@ export interface PropertDetailsSection {
   details: PropertDetail[]
 }
 
-export interface IOpenHouse {
+export interface OpenHouse {
   start: Date
   end: Date
   comments?: string
@@ -85,7 +85,7 @@ export interface IListing {
   soldPrice?: number
   listedDate: Date
   soldDate?: Date
-  address: IListingAddress
+  address: ListingAddress
   geometry: Point
   placeId?: string
   neighborhood: string
@@ -106,9 +106,9 @@ export interface IListing {
   newConstruction?: boolean
   pool?: boolean
   airConditioning?: boolean
-  photoGallery?: IPhotoGalleryImage[]
+  photoGallery?: PhotoGalleryImage[]
   propertyDetails?: PropertDetailsSection[]
-  openHouses?: IOpenHouse[]
+  openHouses?: OpenHouse[]
 }
 
 export interface IListingModel extends Model<IListing> {
@@ -130,7 +130,7 @@ export interface IListingModel extends Model<IListing> {
 
   findByPlaceIdOrAddress<T = ListingDetailResultWithSelectedFields>(
     placeId: string,
-    address: Partial<IListingAddress>,
+    address: Partial<ListingAddress>,
     fields?: ProjectionFields<T>
   ): Promise<T>
 }
@@ -331,7 +331,7 @@ ListingSchema.statics.findByPlaceIdOrAddress = async function <
 >(
   this: IListingModel,
   placeId: IListing['placeId'],
-  address: IListingAddress,
+  address: ListingAddress,
   fields: ProjectionFields<T> = ListingDetailResultProjectionFields
 ): Promise<T> {
   const addressQuery = {}

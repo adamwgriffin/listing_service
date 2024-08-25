@@ -4,7 +4,7 @@ import type {
   ReverseGeocodeResponse
 } from '@googlemaps/google-maps-services-js'
 import type { BoundaryType } from '../models/BoundaryModel'
-import type { IListingAddress } from '../models/ListingModel'
+import type { ListingAddress } from '../models/ListingModel'
 import { Client, AddressType } from '@googlemaps/google-maps-services-js'
 
 export const GeocodeTimeout = 1000 // milliseconds
@@ -102,8 +102,8 @@ export const reverseGeocode = async (
  */
 export const addressComponentsToListingAddress = (
   addressComponents: AddressComponent[]
-): Partial<IListingAddress> => {
-  const address: Partial<IListingAddress> = {}
+): Partial<ListingAddress> => {
+  const address: Partial<ListingAddress> = {}
   let street_number = ''
   let street_address = ''
 

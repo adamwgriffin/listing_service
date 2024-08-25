@@ -1,11 +1,11 @@
 import type {
   IListing,
-  IPhotoGalleryImage,
+  PhotoGalleryImage,
   PropertDetailsSection,
   PropertDetail,
   PropertyStatus,
-  IOpenHouse,
-  IListingAddress
+  OpenHouse,
+  ListingAddress
 } from '../models/ListingModel'
 import type { Point, Polygon, MultiPolygon } from '@turf/turf'
 import { bbox, randomPoint, booleanPointInPolygon } from '@turf/turf'
@@ -23,7 +23,7 @@ import {
 } from '../models/ListingModel'
 import { listingAddressHasRequiredFields } from './listing_search_helpers'
 
-export const AddressComponentAddressTemplate: IListingAddress = Object.freeze({
+export const AddressComponentAddressTemplate: ListingAddress = Object.freeze({
   line1: '',
   line2: '',
   city: '',
@@ -86,7 +86,7 @@ const getStatus = (rental: boolean): PropertyStatus => {
   return faker.helpers.arrayElement(statuses)
 }
 
-const createPhotoGallery = (numberOfImages: number): IPhotoGalleryImage[] => {
+const createPhotoGallery = (numberOfImages: number): PhotoGalleryImage[] => {
   const lock = faker.number.int()
   const images = []
   for (let i = 0; i < numberOfImages; i++) {
@@ -141,7 +141,7 @@ const createPropertyDetails = (
   })
 }
 
-const createOpenHouse = (listedDate: Date): IOpenHouse => {
+const createOpenHouse = (listedDate: Date): OpenHouse => {
   const start = faker.date.between({
     from: listedDate,
     to: addMonths(listedDate, 4)
@@ -158,7 +158,7 @@ const createOpenHouse = (listedDate: Date): IOpenHouse => {
 const createOpenHouses = (
   numberOfOpenHouses: number,
   listedDate: Date
-): IOpenHouse[] => {
+): OpenHouse[] => {
   const openHouses = Array.from({ length: numberOfOpenHouses }, () => {
     return createOpenHouse(listedDate)
   })
@@ -166,7 +166,7 @@ const createOpenHouses = (
 }
 
 export const createRandomListingModel = (
-  address: Partial<IListingAddress>,
+  address: Partial<ListingAddress>,
   neighborhood: string,
   point: Point,
   placeId: IListing['placeId']

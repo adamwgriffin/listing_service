@@ -1,6 +1,6 @@
 import type { Polygon, MultiPolygon } from '@turf/turf'
 import type { FilterQuery } from 'mongoose'
-import type { IListingAddress, IListingModel } from '../models/ListingModel'
+import type { ListingAddress, IListingModel } from '../models/ListingModel'
 import type { IBoundary } from '../models/BoundaryModel'
 import type {
   BoundsParams,
@@ -252,7 +252,7 @@ export const buildfilterQueriesObject = (
 }
 
 export const listingAddressHasRequiredFields = (
-  listingAddress: Partial<IListingAddress>
+  listingAddress: Partial<ListingAddress>
 ) =>
   RequiredListingAddressFields.every(
     (field) => listingAddress[field]?.length > 0
