@@ -60,37 +60,39 @@ export interface RadiusSearchContext extends Context {
 
 export const geocodeBoundarySearch = async (ctx: GeocodeBoundaryContext) => {
   try {
-    // make the request to the geocode service
-    const geocoderResult = await geocode(ctx.query)
-    const { lat, lng } = geocoderResult.data.results[0].geometry.location
-    const boundaryType = getBoundaryTypeFromGeocoderAddressTypes(
-      geocoderResult.data.results[0].types
-    )
+    // Make the request to the geocode service
+    const geocodeResponse = await geocode(ctx.query)
+    const geocodeResult = geocodeResponse.data.results[0]
 
     const pagination = getPaginationParams(ctx.query)
 
-    // Handle situation where request was for an address, or we simply don't have the boundary for the location
-    if (!boundaryType) {
-      const listing = isListingAddressType(
-        geocoderResult.data.results[0].types[0]
-      )
-        ? await getListingForAddressSearch(geocoderResult.data.results[0])
-        : null
-      return (ctx.body = listingSearchGeocodeNoBoundaryView(
-        geocoderResult,
+    if (isListingAddressType(geocodeResult.types[0])) {
+      const listing = await getListingForAddressSearch(geocodeResult)
+      ctx.body = listingSearchGeocodeNoBoundaryView(
+        geocodeResponse,
         pagination,
         listing
-      ))
+      )
+      return
     }
 
-    // search for a boundary that matches the geocoder response coordinates
+    const boundaryType = getBoundaryTypeFromGeocoderAddressTypes(
+      geocodeResult.types
+    )
+
+    // The geocode result type is not a type that we support for boundaries
+    if (!boundaryType) {
+      ctx.body = listingSearchGeocodeNoBoundaryView(geocodeResponse, pagination)
+      return
+    }
+
+    // Search for a boundary that matches the geocode response coordinates
+    const { lat, lng } = geocodeResult.geometry.location
     const boundaries = await Boundary.findBoundaries(lat, lng, boundaryType)
 
     if (boundaries.length === 0) {
-      return (ctx.body = listingSearchGeocodeNoBoundaryView(
-        geocoderResult,
-        pagination
-      ))
+      ctx.body = listingSearchGeocodeNoBoundaryView(geocodeResponse, pagination)
+      return
     }
 
     const results = await Listing.findWithinBounds(
@@ -101,7 +103,7 @@ export const geocodeBoundarySearch = async (ctx: GeocodeBoundaryContext) => {
 
     ctx.body = listingSearchGeocodeView(
       boundaries,
-      geocoderResult,
+      geocodeResponse,
       results,
       pagination
     )
