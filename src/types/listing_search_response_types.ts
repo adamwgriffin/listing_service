@@ -5,7 +5,7 @@ import {
   ListingResultProjectionFields,
   ListingDetailResultProjectionFields
 } from '../config'
-import { GeocodeResult } from '@googlemaps/google-maps-services-js'
+import { LatLngBounds } from '@googlemaps/google-maps-services-js'
 
 export type AdditionalListingResultFields = {
   _id: Types.ObjectId
@@ -45,8 +45,8 @@ export type ListingSearchResponse<T = ListingResultWithSelectedFields> = {
 }
 
 export type GeocodeBoundarySearchResponse = ListingSearchResponse & {
-  boundary: IBoundary | null
-  geocoderResult: GeocodeResult[]
+  boundary?: IBoundary
+  viewport?: LatLngBounds
   listingDetail?: ListingDetailResultWithSelectedFields
 }
 

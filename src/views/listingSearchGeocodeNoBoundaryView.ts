@@ -1,16 +1,15 @@
 import type { PaginationParams } from '../types/listing_search_params_types'
 import type { GeocodeBoundarySearchResponse } from '../types/listing_search_response_types'
 import type { ListingDetailResultWithSelectedFields } from '../types/listing_search_response_types'
-import { GeocodeResponse } from '@googlemaps/google-maps-services-js'
+import { GeocodeResult } from '@googlemaps/google-maps-services-js'
 
 export default (
-  geocoderResult: GeocodeResponse,
+  geocoderResult: GeocodeResult,
   pagination: PaginationParams,
   listingDetail: ListingDetailResultWithSelectedFields | null | undefined = null
 ) => {
   const response: GeocodeBoundarySearchResponse = {
-    boundary: null,
-    geocoderResult: geocoderResult.data.results,
+    viewport: geocoderResult.geometry.viewport,
     listings: [],
     pagination: {
       page: pagination.page_index,

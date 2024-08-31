@@ -69,7 +69,7 @@ export const geocodeBoundarySearch = async (ctx: GeocodeBoundaryContext) => {
     if (isListingAddressType(geocodeResult.types[0])) {
       const listing = await getListingForAddressSearch(geocodeResult)
       ctx.body = listingSearchGeocodeNoBoundaryView(
-        geocodeResponse,
+        geocodeResult,
         pagination,
         listing
       )
@@ -82,7 +82,7 @@ export const geocodeBoundarySearch = async (ctx: GeocodeBoundaryContext) => {
 
     // The geocode result type is not a type that we support for boundaries
     if (!boundaryType) {
-      ctx.body = listingSearchGeocodeNoBoundaryView(geocodeResponse, pagination)
+      ctx.body = listingSearchGeocodeNoBoundaryView(geocodeResult, pagination)
       return
     }
 
@@ -91,7 +91,7 @@ export const geocodeBoundarySearch = async (ctx: GeocodeBoundaryContext) => {
     const boundaries = await Boundary.findBoundaries(lat, lng, boundaryType)
 
     if (boundaries.length === 0) {
-      ctx.body = listingSearchGeocodeNoBoundaryView(geocodeResponse, pagination)
+      ctx.body = listingSearchGeocodeNoBoundaryView(geocodeResult, pagination)
       return
     }
 
@@ -103,7 +103,6 @@ export const geocodeBoundarySearch = async (ctx: GeocodeBoundaryContext) => {
 
     ctx.body = listingSearchGeocodeView(
       boundaries,
-      geocodeResponse,
       results,
       pagination
     )
