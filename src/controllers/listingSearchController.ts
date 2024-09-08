@@ -16,6 +16,7 @@ import { DefaultMaxDistance } from '../config'
 import {
   geocode,
   getBoundaryTypeFromGeocoderAddressTypes,
+  getGeocodeParamsFromQuery,
   isListingAddressType
 } from '../lib/geocoder'
 import {
@@ -61,44 +62,43 @@ export interface RadiusSearchContext extends Context {
 export const geocodeBoundarySearch = async (ctx: GeocodeBoundaryContext) => {
   try {
     // Make the request to the geocode service
-    const geocodeResponse = await geocode(ctx.query)
-    const geocodeResult = geocodeResponse.data.results[0]
+    const { types, address_components, place_id, geometry } = (
+      await geocode(getGeocodeParamsFromQuery(ctx.query))
+    ).data.results[0]
 
     const pagination = getPaginationParams(ctx.query)
 
-    if (isListingAddressType(geocodeResult.types[0])) {
+    if (isListingAddressType(types[0])) {
       const listing = await getListingForAddressSearch(
-        geocodeResult.address_components,
-        geocodeResult.place_id
+        address_components,
+        place_id
       )
       ctx.body = listingSearchGeocodeNoBoundaryView(
-        geocodeResult.geometry.viewport,
+        geometry.viewport,
         pagination,
         listing
       )
       return
     }
 
-    const boundaryType = getBoundaryTypeFromGeocoderAddressTypes(
-      geocodeResult.types
-    )
+    const boundaryType = getBoundaryTypeFromGeocoderAddressTypes(types)
 
     // The geocode result type is not a type that we support for boundaries
     if (!boundaryType) {
       ctx.body = listingSearchGeocodeNoBoundaryView(
-        geocodeResult.geometry.viewport,
+        geometry.viewport,
         pagination
       )
       return
     }
 
     // Search for a boundary that matches the geocode response coordinates
-    const { lat, lng } = geocodeResult.geometry.location
+    const { lat, lng } = geometry.location
     const boundaries = await Boundary.findBoundaries(lat, lng, boundaryType)
 
     if (boundaries.length === 0) {
       ctx.body = listingSearchGeocodeNoBoundaryView(
-        geocodeResult.geometry.viewport,
+        geometry.viewport,
         pagination
       )
       return

@@ -7,6 +7,8 @@ import type { BoundaryType } from '../models/BoundaryModel'
 import type { ListingAddress } from '../models/ListingModel'
 import { Client, AddressType } from '@googlemaps/google-maps-services-js'
 
+export type GeocodeRequestParams = Omit<GeocodeRequest['params'], 'key'>
+
 export const AddressTypeToBoundaryTypeMapping: Map<AddressType, BoundaryType> =
   new Map([
     [AddressType.country, 'country'],
@@ -66,9 +68,7 @@ const AddressComponentMapping = Object.freeze({
 
 const googleMapsClient = new Client({})
 
-export const geocode = async (
-  params: Omit<GeocodeRequest['params'], 'key'>
-) => {
+export const geocode = async (params: GeocodeRequestParams) => {
   return googleMapsClient.geocode({
     params: { ...params, key: process.env.GOOGLE_MAPS_API_KEY }
   })
@@ -132,3 +132,8 @@ export const getNeighborhoodFromAddressComponents = (
 
 export const isListingAddressType = (type: AddressType) =>
   GeocodeResultListingAddressTypes.includes(type)
+
+export const getGeocodeParamsFromQuery = ({
+  place_id,
+  address
+}: GeocodeRequestParams) => (place_id ? { place_id } : { address })
