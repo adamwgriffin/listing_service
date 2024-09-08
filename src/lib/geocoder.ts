@@ -7,8 +7,6 @@ import type { BoundaryType } from '../models/BoundaryModel'
 import type { ListingAddress } from '../models/ListingModel'
 import { Client, AddressType } from '@googlemaps/google-maps-services-js'
 
-export const GeocodeTimeout = 1000 // milliseconds
-
 export const AddressTypeToBoundaryTypeMapping: Map<AddressType, BoundaryType> =
   new Map([
     [AddressType.country, 'country'],
@@ -69,12 +67,10 @@ const AddressComponentMapping = Object.freeze({
 const googleMapsClient = new Client({})
 
 export const geocode = async (
-  params: Omit<GeocodeRequest['params'], 'key'>,
-  timeout = GeocodeTimeout
+  params: Omit<GeocodeRequest['params'], 'key'>
 ) => {
   return googleMapsClient.geocode({
-    params: { ...params, key: process.env.GOOGLE_MAPS_API_KEY },
-    timeout
+    params: { ...params, key: process.env.GOOGLE_MAPS_API_KEY }
   })
 }
 
@@ -88,8 +84,7 @@ export const reverseGeocode = async (
       latlng: `${lat},${lng}`,
       result_type,
       key: process.env.GOOGLE_MAPS_API_KEY
-    },
-    timeout: GeocodeTimeout
+    }
   })
   if (response.status < 200 || response.status > 299) {
     throw new Error('Failed to fetch address')
