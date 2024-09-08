@@ -10,7 +10,7 @@ import type {
 import { bboxPolygon, intersect } from '@turf/turf'
 import { differenceInDays, subDays } from 'date-fns'
 import { addressComponentsToListingAddress } from './geocoder'
-import { GeocodeResult } from '@googlemaps/google-maps-services-js'
+import { AddressComponent } from '@googlemaps/google-maps-services-js'
 import Listing, { RequiredListingAddressFields } from '../models/ListingModel'
 import { ListingDetailResultWithSelectedFields } from '../types/listing_search_response_types'
 import { ListingDetailResultProjectionFields } from '../config'
@@ -258,10 +258,10 @@ export const listingAddressHasRequiredFields = (
     (field) => listingAddress[field]?.length > 0
   )
 
-export const getListingForAddressSearch = async ({
-  address_components,
-  place_id
-}: GeocodeResult) => {
+export const getListingForAddressSearch = async (
+  address_components: AddressComponent[],
+  place_id: string
+) => {
   const listingAddress = addressComponentsToListingAddress(address_components)
   if (listingAddressHasRequiredFields(listingAddress)) {
     return Listing.findByPlaceIdOrAddress(place_id, listingAddress)

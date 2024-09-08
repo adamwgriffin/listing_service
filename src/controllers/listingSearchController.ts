@@ -67,7 +67,10 @@ export const geocodeBoundarySearch = async (ctx: GeocodeBoundaryContext) => {
     const pagination = getPaginationParams(ctx.query)
 
     if (isListingAddressType(geocodeResult.types[0])) {
-      const listing = await getListingForAddressSearch(geocodeResult)
+      const listing = await getListingForAddressSearch(
+        geocodeResult.address_components,
+        geocodeResult.place_id
+      )
       ctx.body = listingSearchGeocodeNoBoundaryView(
         geocodeResult,
         pagination,
