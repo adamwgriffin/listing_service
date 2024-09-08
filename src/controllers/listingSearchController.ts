@@ -72,7 +72,7 @@ export const geocodeBoundarySearch = async (ctx: GeocodeBoundaryContext) => {
         geocodeResult.place_id
       )
       ctx.body = listingSearchGeocodeNoBoundaryView(
-        geocodeResult,
+        geocodeResult.geometry.viewport,
         pagination,
         listing
       )
@@ -85,7 +85,10 @@ export const geocodeBoundarySearch = async (ctx: GeocodeBoundaryContext) => {
 
     // The geocode result type is not a type that we support for boundaries
     if (!boundaryType) {
-      ctx.body = listingSearchGeocodeNoBoundaryView(geocodeResult, pagination)
+      ctx.body = listingSearchGeocodeNoBoundaryView(
+        geocodeResult.geometry.viewport,
+        pagination
+      )
       return
     }
 
@@ -94,7 +97,10 @@ export const geocodeBoundarySearch = async (ctx: GeocodeBoundaryContext) => {
     const boundaries = await Boundary.findBoundaries(lat, lng, boundaryType)
 
     if (boundaries.length === 0) {
-      ctx.body = listingSearchGeocodeNoBoundaryView(geocodeResult, pagination)
+      ctx.body = listingSearchGeocodeNoBoundaryView(
+        geocodeResult.geometry.viewport,
+        pagination
+      )
       return
     }
 
@@ -104,11 +110,7 @@ export const geocodeBoundarySearch = async (ctx: GeocodeBoundaryContext) => {
       pagination
     )
 
-    ctx.body = listingSearchGeocodeView(
-      boundaries,
-      results,
-      pagination
-    )
+    ctx.body = listingSearchGeocodeView(boundaries, results, pagination)
   } catch (error) {
     ctx.status = error?.response?.status || 500
     ctx.body = errorView(error)
