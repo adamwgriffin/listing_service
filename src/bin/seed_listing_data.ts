@@ -14,28 +14,36 @@ const DefaultFilePath = path.join(
   'random_listing_data.json'
 )
 
-const main = async (): Promise<void> => {
+const processArgv = async () => {
   const argv = await yargs(process.argv.slice(2))
     .option('file', {
       alias: 'f',
       type: 'string',
       default: DefaultFilePath,
-      describe: 'Path to the file to use to load listing data'
+      describe:
+        'Path to the file to use to load listing data, e.g., /app/src/my_file.json'
     })
     .alias('h', 'help')
     .help('help')
-    .usage(`Usage: $0 [options]`)
-    .argv
+    .usage(`Usage: $0 [options]`).argv
 
   if (argv.help) {
     yargs.showHelp()
     process.exit(0)
   }
-  
+
+  return argv
+}
+
+const main = async (): Promise<void> => {
+  const argv = await processArgv()
+
   try {
     await connectToDatabase()
-    console.log("Creating listings...")
-    const listingData = JSON.parse(fs.readFileSync(argv.file, 'utf-8')) as IListing[]
+    console.log('Creating listings...')
+    const listingData = JSON.parse(
+      fs.readFileSync(argv.file, 'utf-8')
+    ) as IListing[]
     const listings = await Listing.create(listingData)
     console.log(`${listings.length} listings created.`)
     await disconnectDatabase()

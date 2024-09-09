@@ -22,7 +22,7 @@ const DefaultFilePath = path.join(
   'seattle_neighborhood_boundaries.json'
 )
 
-const main = async () => {
+const processArgv = async () => {
   const argv = await yargs(process.argv.slice(2))
     .option('file', {
       alias: 'f',
@@ -34,7 +34,8 @@ const main = async () => {
       alias: 's',
       type: 'number',
       default: 0,
-      describe: 'Amount of time to sleep in milliseconds between creating listings for each boundary'
+      describe:
+        'Amount of time to sleep in milliseconds between creating listings for each boundary'
     })
     .option('number', {
       alias: 'n',
@@ -60,13 +61,21 @@ const main = async () => {
     process.exit(0)
   }
 
+  return argv
+}
+
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
+
+const main = async () => {
+  const argv = await processArgv()
+
   const boundaries = JSON.parse(
     fs.readFileSync(argv.file, 'utf-8')
   ) as IBoundary[]
   const listings = await Promise.all(
     boundaries.map(async (boundary: IBoundary) => {
       const listings = await generateListingData(boundary.geometry, argv.number)
-      await new Promise(resolve => setTimeout(resolve, argv.sleep))
+      await sleep(argv.sleep)
       return listings
     })
   )

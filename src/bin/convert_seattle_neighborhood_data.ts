@@ -26,6 +26,31 @@ const DefaultOutputPath = path.join(
   'seattle_neighborhood_boundaries.json'
 )
 
+const processArgv = async () => {
+  const argv = await yargs(process.argv.slice(2))
+    .option('file', {
+      alias: 'f',
+      type: 'string',
+      default: DefaultFilePath,
+      describe:
+        'Path to the file to use to load boundary data, e.g., /app/src/my_file.json'
+    })
+    .alias('h', 'help')
+    .help('help')
+    .usage(`Usage: $0 [options]`)
+    .epilogue(
+      'Convert City of Seattle Neighborhood Map Atlas Neighborhoods' +
+        'FeatureCollection into an array of JSON Boundary objects'
+    ).argv
+
+  if (argv.help) {
+    yargs.showHelp()
+    process.exit(0)
+  }
+
+  return argv
+}
+
 const convertNeighborhoodFeatureToBoundary = (
   feature: Feature<Polygon> | Feature<MultiPolygon>
 ): IBoundary => {
@@ -45,25 +70,7 @@ const convertNeighborhoodFeatureToBoundary = (
 }
 
 const main = async (): Promise<void> => {
-  const argv = await yargs(process.argv.slice(2))
-    .option('file', {
-      alias: 'f',
-      type: 'string',
-      default: DefaultFilePath,
-      describe: 'Path to the file to use to load boundary data'
-    })
-    .alias('h', 'help')
-    .help('help')
-    .usage(`Usage: yarn ts-node $0 [options]`)
-    .epilogue(
-      'Convert City of Seattle Neighborhood Map Atlas Neighborhoods'+
-      'FeatureCollection into an array of JSON Boundary objects'
-    ).argv
-
-  if (argv.help) {
-    yargs.showHelp()
-    process.exit(0)
-  }
+  const argv = await processArgv()
 
   try {
     console.log('Convertring FeatureCollection file to boundaries...')
