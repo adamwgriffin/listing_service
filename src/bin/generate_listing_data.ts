@@ -7,19 +7,21 @@ import generateListingData from '../lib/random_data'
 const DefaultOutputPath = path.join(
   __dirname,
   '..',
-  'test',
-  'test_data',
-  'listing_data',
-  'random_listing_data.json'
+  '..',
+  'data',
+  'seed_data',
+  'development',
+  'dev_listings.json'
 )
 
 const DefaultFilePath = path.join(
   __dirname,
   '..',
-  'test',
-  'test_data',
-  'boundary_data',
-  'seattle_neighborhood_boundaries.json'
+  '..',
+  'data',
+  'seed_data',
+  'development',
+  'dev_boundaries.json'
 )
 
 const processArgv = async () => {
@@ -28,7 +30,8 @@ const processArgv = async () => {
       alias: 'f',
       type: 'string',
       default: DefaultFilePath,
-      describe: 'Path to the file to use to load boundary data from'
+      describe:
+        'Path to the file to use to load boundary data from, e.g., /app/data/my_file.json'
     })
     .option('sleep', {
       alias: 's',

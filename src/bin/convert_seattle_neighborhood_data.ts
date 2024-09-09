@@ -4,7 +4,7 @@ import type {
   Polygon,
   MultiPolygon
 } from '@turf/turf'
-import type { IBoundary } from '../models/BoundaryModel'
+import type { IBoundary } from '../../src/models/BoundaryModel'
 import fs from 'fs'
 import path from 'path'
 import yargs from 'yargs'
@@ -13,17 +13,19 @@ const DefaultFilePath = path.join(
   __dirname,
   '..',
   '..',
-  'shape_files',
-  'seattle_neighborhoods.geojson'
+  'data',
+  'boundary_data',
+  'seattle_neighborhood_boundaries.geojson'
 )
 
 const DefaultOutputPath = path.join(
   __dirname,
   '..',
-  'test',
-  'test_data',
-  'boundary_data',
-  'seattle_neighborhood_boundaries.json'
+  '..',
+  'data',
+  'seed_data',
+  'development',
+  'seattle_neighborhood_boundaries_ouptut.json'
 )
 
 const processArgv = async () => {
@@ -33,7 +35,7 @@ const processArgv = async () => {
       type: 'string',
       default: DefaultFilePath,
       describe:
-        'Path to the file to use to load boundary data, e.g., /app/src/my_file.json'
+        'Path to the file to use to load boundary data, e.g., /app/data/my_file.json'
     })
     .alias('h', 'help')
     .help('help')

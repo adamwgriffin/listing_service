@@ -6,20 +6,22 @@ import { geocode } from '../lib/geocoder'
 
 const DefaultOutputPath = path.join(
   __dirname,
-'..',
-  'test',
-  'test_data',
-  'boundary_data',
-  'boundaries_with_place_ids.json'
+  '..',
+  '..',
+  'data',
+  'seed_data',
+  'development',
+  'dev_boundaries_with_place_ids.json'
 )
 
 const DefaultFilePath = path.join(
   __dirname,
   '..',
-  'test',
-  'test_data',
-  'boundary_data',
-  'boundaries.json'
+  '..',
+  'data',
+  'seed_data',
+  'development',
+  'dev_boundaries.json'
 )
 
 const processArgv = async () => {
@@ -29,7 +31,7 @@ const processArgv = async () => {
       type: 'string',
       default: DefaultFilePath,
       describe:
-        'Path to the file to use to load listing data, e.g., /app/src/my_file.json'
+        'Path to the file to use to load listing data, e.g., /app/data/my_file.json'
     })
     .option('number', {
       alias: 'n',
@@ -65,11 +67,10 @@ const processArgv = async () => {
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 const addPlaceIdToBoundary = async (boundary: IBoundary) => {
-  const geocoderResult = (await geocode({ address: boundary.name })).data.results[0]
+  const geocoderResult = (await geocode({ address: boundary.name })).data
+    .results[0]
   if (!geocoderResult?.place_id) {
-    console.warn(
-      `No place_id found for ${boundary.name}. Nothing updated.`
-    )
+    console.warn(`No place_id found for ${boundary.name}. Nothing updated.`)
     return boundary
   }
   boundary.placeId = geocoderResult.place_id
@@ -99,7 +100,10 @@ const main = async (): Promise<void> => {
       console.log(`Sleeping ${argv.sleep} ms between batches`)
       await sleep(argv.sleep)
     }
-    fs.writeFileSync(argv.outputPath, JSON.stringify(updatedBoundaries, null, 2))
+    fs.writeFileSync(
+      argv.outputPath,
+      JSON.stringify(updatedBoundaries, null, 2)
+    )
     console.log('Boundary update complete')
     process.exit(0)
   } catch (err) {

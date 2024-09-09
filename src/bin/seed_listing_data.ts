@@ -8,10 +8,10 @@ import Listing from '../models/ListingModel'
 const DefaultFilePath = path.join(
   __dirname,
   '..',
-  'test',
-  'test_data',
-  'listing_data',
-  'random_listing_data.json'
+  'data',
+  'seed_data',
+  'development',
+  'dev_listings.json'
 )
 
 const processArgv = async () => {
@@ -21,7 +21,7 @@ const processArgv = async () => {
       type: 'string',
       default: DefaultFilePath,
       describe:
-        'Path to the file to use to load listing data, e.g., /app/src/my_file.json'
+        'Path to the file to use to load listing data, e.g., /app/data/my_file.json'
     })
     .alias('h', 'help')
     .help('help')
