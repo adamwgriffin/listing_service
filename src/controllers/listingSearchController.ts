@@ -15,7 +15,6 @@ import Boundary from '../models/BoundaryModel'
 import { DefaultMaxDistance } from '../config'
 import {
   geocode,
-  getBoundaryTypeFromGeocoderAddressTypes,
   getGeocodeParamsFromQuery,
   isListingAddressType
 } from '../lib/geocoder'
@@ -81,22 +80,9 @@ export const geocodeBoundarySearch = async (ctx: GeocodeBoundaryContext) => {
       return
     }
 
-    const boundaryType = getBoundaryTypeFromGeocoderAddressTypes(types)
+    const boundary = await Boundary.findOne({ placeId: place_id })
 
-    // The geocode result type is not a type that we support for boundaries
-    if (!boundaryType) {
-      ctx.body = listingSearchGeocodeNoBoundaryView(
-        geometry.viewport,
-        pagination
-      )
-      return
-    }
-
-    // Search for a boundary that matches the geocode response coordinates
-    const { lat, lng } = geometry.location
-    const boundaries = await Boundary.findBoundaries(lat, lng, boundaryType)
-
-    if (boundaries.length === 0) {
+    if (!boundary) {
       ctx.body = listingSearchGeocodeNoBoundaryView(
         geometry.viewport,
         pagination
@@ -105,12 +91,12 @@ export const geocodeBoundarySearch = async (ctx: GeocodeBoundaryContext) => {
     }
 
     const results = await Listing.findWithinBounds(
-      boundaries[0].geometry,
+      boundary.geometry,
       ctx.query,
       pagination
     )
 
-    ctx.body = listingSearchGeocodeView(boundaries, results, pagination)
+    ctx.body = listingSearchGeocodeView(boundary, results, pagination)
   } catch (error) {
     ctx.status = error?.response?.status || 500
     ctx.body = errorView(error)

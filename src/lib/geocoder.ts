@@ -30,7 +30,7 @@ export const GeocodeResultListingAddressTypes: readonly AddressType[] =
   ])
 
 /**
- * Converts a geocoder a result type name into the name we use internally for the type field in a Boundary record
+ * Converts a geocoder result type name into the name we use internally for the type field in a Boundary record
  */
 export const getBoundaryTypeFromGeocoderAddressTypes = (
   types: AddressType[]

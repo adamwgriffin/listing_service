@@ -6,12 +6,12 @@ import type { ListingResultWithSelectedFields } from '../types/listing_search_re
 import listingSearchView from './listingSearchView'
 
 export default (
-  boundaries: IBoundary[],
+  boundary: IBoundary,
   results: ListingSearchAggregateResult<ListingResultWithSelectedFields>,
   pagination: PaginationParams
 ): GeocodeBoundarySearchResponse => {
   return {
-    boundary: boundaries[0],
+    boundary,
     ...listingSearchView(results, pagination)
   }
 }
