@@ -3,6 +3,7 @@ import fs from 'fs'
 import path from 'path'
 import yargs from 'yargs'
 import { reverseGeocode } from '../lib/geocoder'
+import { sleep } from '../lib'
 
 const DefaultOutputPath = path.join(
   __dirname,
@@ -63,8 +64,6 @@ const processArgv = async () => {
 
   return argv
 }
-
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 const addPlaceIdToListing = async (listing: IListing) => {
   // lat/lng are stored backwards like lng/lat inside a geojson Point

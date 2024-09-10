@@ -3,6 +3,7 @@ import fs from 'fs'
 import path from 'path'
 import yargs from 'yargs'
 import generateListingData from '../lib/random_data'
+import { sleep } from '../lib'
 
 const DefaultOutputPath = path.join(
   __dirname,
@@ -66,8 +67,6 @@ const processArgv = async () => {
 
   return argv
 }
-
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 const main = async () => {
   const argv = await processArgv()

@@ -3,6 +3,7 @@ import fs from 'fs'
 import path from 'path'
 import yargs from 'yargs'
 import { geocode } from '../lib/geocoder'
+import { sleep } from '../lib'
 
 const DefaultOutputPath = path.join(
   __dirname,
@@ -63,8 +64,6 @@ const processArgv = async () => {
 
   return argv
 }
-
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 const addPlaceIdToBoundary = async (boundary: IBoundary) => {
   const geocoderResult = (await geocode({ address: boundary.name })).data

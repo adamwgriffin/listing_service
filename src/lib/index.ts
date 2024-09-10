@@ -9,3 +9,6 @@ export const getPaginationParams = (
     page_index: Number(query.page_index) || 0
   }
 }
+
+export const sleep = (ms: number) =>
+  new Promise((resolve) => setTimeout(resolve, ms))
