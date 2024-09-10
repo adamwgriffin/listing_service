@@ -8,6 +8,7 @@ import Listing from '../models/ListingModel'
 const DefaultFilePath = path.join(
   __dirname,
   '..',
+  '..',
   'data',
   'seed_data',
   'development',

@@ -8,6 +8,7 @@ import Boundary from '../models/BoundaryModel'
 const DefaultFilePath = path.join(
   __dirname,
   '..',
+  '..',
   'data',
   'seed_data',
   'development',
