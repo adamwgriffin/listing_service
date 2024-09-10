@@ -5,16 +5,6 @@ import yargs from 'yargs'
 import { reverseGeocode } from '../lib/geocoder'
 import { sleep } from '../lib'
 
-const DefaultOutputPath = path.join(
-  __dirname,
-  '..',
-  '..',
-  'data',
-  'seed_data',
-  'development',
-  'dev_listings_with_place_ids.json'
-)
-
 const DefaultFilePath = path.join(
   __dirname,
   '..',
@@ -23,6 +13,16 @@ const DefaultFilePath = path.join(
   'seed_data',
   'development',
   'dev_listings.json'
+)
+
+const DefaultOutputPath = path.join(
+  __dirname,
+  '..',
+  '..',
+  'data',
+  'seed_data',
+  'development',
+  'dev_listings_with_place_ids.json'
 )
 
 const processArgv = async () => {
