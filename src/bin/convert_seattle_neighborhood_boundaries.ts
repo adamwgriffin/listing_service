@@ -11,9 +11,12 @@ import yargs from 'yargs'
 import { geocode } from '../lib/geocoder'
 import { sleep } from '../lib'
 
-type SeattleBoundaryFeature = Feature<Polygon> | Feature<MultiPolygon>
+type PolyOrMultiPolyFeature = Feature<Polygon> | Feature<MultiPolygon>
+type PolyOrMultiPolyCollection =
+  | FeatureCollection<Polygon>
+  | FeatureCollection<MultiPolygon>
 
-const DefaultFilePath = path.join(
+const DefaultNeighborhoodFilePath = path.join(
   __dirname,
   '..',
   '..',
@@ -24,6 +27,17 @@ const DefaultFilePath = path.join(
   'seattle_neighborhood_boundaries.geojson'
 )
 
+const DefaultDistrictFilePath = path.join(
+  __dirname,
+  '..',
+  '..',
+  'data',
+  'boundary_data',
+  'seattle',
+  'original_data',
+  'seattle_district_boundaries.geojson'
+)
+
 const DefaultOutputPath = path.join(
   __dirname,
   '..',
@@ -32,27 +46,25 @@ const DefaultOutputPath = path.join(
   'boundary_data',
   'seattle',
   'transformed',
-  'seattle_neighborhood_boundaries_output.json'
+  'seattle_neighborhood_boundaries-converted.json'
 )
 
-let nameAttribute = 'S_HOOD'
+const NeighborhoodNameAttribute = 'S_HOOD'
+const DistrictNameAttribute = 'L_HOOD'
 
 const processArgv = async () => {
   const argv = await yargs(process.argv.slice(2))
-    .option('name-attribute', {
-      alias: 'a',
-      type: 'string',
-      default: 'S_HOOD',
-      describe:
-        'Which GeoJSON attribute has the neighborhood name. Neighborhood boundaries use the default of ' +
-        'S_HOOD, district boundaries use L_HOOD'
-    })
-    .option('file', {
+    .option('neighborhood-file', {
       alias: 'f',
       type: 'string',
-      default: DefaultFilePath,
-      describe:
-        'Path to the file to use to load the input data, e.g., /app/data/my_file.json'
+      default: DefaultNeighborhoodFilePath,
+      describe: 'Path to the neighborhood file, e.g., /app/data/my_file.json'
+    })
+    .option('district-file', {
+      alias: 'd',
+      type: 'string',
+      default: DefaultDistrictFilePath,
+      describe: 'Path to the district file, e.g., /app/data/my_file.json'
     })
     .option('output-path', {
       alias: 'o',
@@ -85,30 +97,72 @@ const processArgv = async () => {
     process.exit(0)
   }
 
-  nameAttribute = argv.nameAttribute
-
   return argv
 }
 
-const getName = (feature: SeattleBoundaryFeature) =>
-  `${feature.properties[nameAttribute]}, Seattle, WA, USA`
-
-const getPlaceId = async (name: string) => {
-  const placeId = (await geocode({ address: name })).data.results[0].place_id
-  if (!placeId || placeId.trim() === '') {
-    console.warn(`No place_id found for ${name}`)
-  }
-  return placeId
+// The same name is used for some features in the neighborhood file as is used in the "district" file. In general, it
+// seems that what the city refers to as a "district" is actually what most people would consider to be the neighborhood
+// boundary, so we are removing the neighborhood bounadry in favor of using the so called "district" version in the
+// other file. The S_HOOD attribute being the same as L_HOOD seems to always indicate that this is a duplicate of a
+// district bounadry. The district file only uses L_HOOD for it's names, so I guess we can surmise that L_HOOD is the
+// same as district for all intents and purposes.
+const removeDuplicateNeighborhoodNames = (
+  neighborhoodFeatures: PolyOrMultiPolyFeature[]
+) => {
+  return neighborhoodFeatures.filter(
+    (feature) => feature.properties.S_HOOD !== feature.properties.L_HOOD
+  )
 }
 
+const fixNeighborhoodProperties = (
+  neighborhoodFeatures: PolyOrMultiPolyFeature[]
+) => {
+  for (const feature of neighborhoodFeatures) {
+    // This boundary seems to actually be for a neighborhood called "Adams" that I've never heard of but which appears
+    // on the map inside of Ballard
+    if (
+      feature.properties.S_HOOD === 'Ballard' &&
+      feature.properties.S_HOOD_ALT_NAMES === 'Adams'
+    ) {
+      feature.properties.S_HOOD = 'Adams'
+      feature.properties.S_HOOD_ALT_NAMES = null
+    }
+  }
+  return neighborhoodFeatures
+}
+
+const cleanUpNeighborhoodFile = (
+  neighborhoodCollection: PolyOrMultiPolyCollection
+) => {
+  const neighborhoodFeaturesFixed = fixNeighborhoodProperties(
+    neighborhoodCollection.features
+  )
+  return removeDuplicateNeighborhoodNames(neighborhoodFeaturesFixed)
+}
+
+const getName = (feature: PolyOrMultiPolyFeature) => {
+  const nameAttribute = Object.prototype.hasOwnProperty.call(
+    feature.properties,
+    NeighborhoodNameAttribute
+  )
+    ? NeighborhoodNameAttribute
+    : DistrictNameAttribute
+  return `${feature.properties[nameAttribute]}, Seattle, WA, USA`
+}
+
+const getPlaceId = async (name: string) =>
+  (await geocode({ address: name })).data.results[0].place_id
+
 // We want all our own boundaries to be MultiPolygon for the sake of simplicity, so adding an extra [] for this
-const getCoordinates = (feature: SeattleBoundaryFeature) =>
+const getCoordinates = (
+  feature: PolyOrMultiPolyFeature
+): MultiPolygon['coordinates'] =>
   feature.geometry.type === 'MultiPolygon'
     ? feature.geometry.coordinates
     : [feature.geometry.coordinates]
 
-const convertNeighborhoodFeatureToBoundary = async (
-  feature: SeattleBoundaryFeature
+const convertFeatureToBoundary = async (
+  feature: PolyOrMultiPolyFeature
 ): Promise<IBoundary> => {
   const name = getName(feature)
   const placeId = await getPlaceId(name)
@@ -124,16 +178,14 @@ const convertNeighborhoodFeatureToBoundary = async (
   }
 }
 
-const createBoundaries = async (boundaries: SeattleBoundaryFeature[]) => {
+const createBoundaries = async (features: PolyOrMultiPolyFeature[]) => {
   return await Promise.all(
-    boundaries.map(
-      async (boundary) => await convertNeighborhoodFeatureToBoundary(boundary)
-    )
+    features.map(async (feature) => await convertFeatureToBoundary(feature))
   )
 }
 
 const createBoundariesInBatches = async (
-  features: SeattleBoundaryFeature[],
+  features: PolyOrMultiPolyFeature[],
   sleepTime: number,
   number: number
 ) => {
@@ -152,19 +204,22 @@ const main = async () => {
   const argv = await processArgv()
 
   try {
-    console.log('Convertring FeatureCollection file to boundaries...')
-    const featureCollection:
-      | FeatureCollection<Polygon>
-      | FeatureCollection<MultiPolygon> = JSON.parse(
-      fs.readFileSync(argv.file, 'utf-8')
-    )
+    const neighborhoodCollection: PolyOrMultiPolyCollection =
+      JSON.parse(fs.readFileSync(argv.neighborhoodFile, 'utf-8'))
+
+    console.log('Cleaning up neighborhood file')
+    const neighborhoodFeatures = cleanUpNeighborhoodFile(neighborhoodCollection)
+
+    console.log('Converting FeatureCollection files to boundaries...')
+    const districtCollection: PolyOrMultiPolyCollection =
+      JSON.parse(fs.readFileSync(argv.districtFile, 'utf-8'))
     const boundaries = await createBoundariesInBatches(
-      featureCollection.features,
+      [...neighborhoodFeatures, ...districtCollection.features],
       argv.sleep,
       argv.number
     )
     fs.writeFileSync(argv.outputPath, JSON.stringify(boundaries, null, 2))
-    console.log(`Successfully wrote output to file at "${DefaultOutputPath}".`)
+    console.log(`Successfully wrote output file to "${DefaultOutputPath}".`)
 
     process.exit(0)
   } catch (err) {
