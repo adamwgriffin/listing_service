@@ -1,11 +1,12 @@
 import type {
   AddressComponent,
   GeocodeRequest,
+  PlaceDetailsRequest,
   ReverseGeocodeResponse
 } from '@googlemaps/google-maps-services-js'
+import { Client, AddressType } from '@googlemaps/google-maps-services-js'
 import type { BoundaryType } from '../models/BoundaryModel'
 import type { ListingAddress } from '../models/ListingModel'
-import { Client, AddressType } from '@googlemaps/google-maps-services-js'
 
 export type GeocodeRequestParams = Omit<GeocodeRequest['params'], 'key'>
 
@@ -92,6 +93,14 @@ export const reverseGeocode = async (
   return response
 }
 
+export const getPlaceDetails = async (
+  params: Omit<PlaceDetailsRequest['params'], 'key'>
+) => {
+  return googleMapsClient.placeDetails({
+    params: { ...params, key: process.env.GOOGLE_MAPS_API_KEY }
+  })
+}
+
 /**
  * Convert the address fields from a geocode result into the fields we use for a Listing address in the database
  */
@@ -130,8 +139,8 @@ export const getNeighborhoodFromAddressComponents = (
   )?.long_name
 }
 
-export const isListingAddressType = (type: AddressType) =>
-  GeocodeResultListingAddressTypes.includes(type)
+export const isListingAddressType = (types: AddressType[]) =>
+  GeocodeResultListingAddressTypes.some((t) => types.includes(t))
 
 export const getGeocodeParamsFromQuery = ({
   place_id,

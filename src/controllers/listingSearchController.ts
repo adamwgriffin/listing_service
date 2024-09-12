@@ -21,12 +21,12 @@ import {
 import {
   boundsParamsToGeoJSONPolygon,
   getBoundaryGeometryWithBounds,
-  getListingForAddressSearch
+  getResponseForBoundary,
+  getResponseForListingAddress,
+  getResponseForPlaceId
 } from '../lib/listing_search_helpers'
 import { getPaginationParams } from '../lib'
 import listingSearchView from '../views/listingSearchView'
-import listingSearchGeocodeView from '../views/listingSearchGeocodeView'
-import listingSearchGeocodeNoBoundaryView from '../views/listingSearchGeocodeNoBoundaryView'
 import errorView from '../views/errorView'
 
 export interface GeocodeBoundaryContext extends Context {
@@ -60,43 +60,22 @@ export interface RadiusSearchContext extends Context {
 
 export const geocodeBoundarySearch = async (ctx: GeocodeBoundaryContext) => {
   try {
-    // Make the request to the geocode service
-    const { types, address_components, place_id, geometry } = (
-      await geocode(getGeocodeParamsFromQuery(ctx.query))
-    ).data.results[0]
-
-    const pagination = getPaginationParams(ctx.query)
-
-    if (isListingAddressType(types[0])) {
-      const listing = await getListingForAddressSearch(
-        address_components,
-        place_id
-      )
-      ctx.body = listingSearchGeocodeNoBoundaryView(
-        geometry.viewport,
-        pagination,
-        listing
-      )
+    // If we have a place_id then we may not need to make an additional request to the geocode service
+    const placeIdRes = await getResponseForPlaceId(ctx.query)
+    if (placeIdRes) {
+      ctx.body = placeIdRes
       return
     }
 
-    const boundary = await Boundary.findOne({ placeId: place_id })
+    const geocodeResult = (await geocode(getGeocodeParamsFromQuery(ctx.query)))
+      .data.results[0]
 
-    if (!boundary) {
-      ctx.body = listingSearchGeocodeNoBoundaryView(
-        geometry.viewport,
-        pagination
-      )
+    if (isListingAddressType(geocodeResult.types)) {
+      ctx.body = await getResponseForListingAddress(geocodeResult, ctx.query)
       return
     }
 
-    const results = await Listing.findWithinBounds(
-      boundary.geometry,
-      ctx.query,
-      pagination
-    )
-
-    ctx.body = listingSearchGeocodeView(boundary, results, pagination)
+    ctx.body = await getResponseForBoundary(geocodeResult, ctx.query)
   } catch (error) {
     ctx.status = error?.response?.status || 500
     ctx.body = errorView(error)

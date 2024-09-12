@@ -9,11 +9,23 @@ import type {
 } from '../types/listing_search_params_types'
 import { bboxPolygon, intersect } from '@turf/turf'
 import { differenceInDays, subDays } from 'date-fns'
-import { addressComponentsToListingAddress } from './geocoder'
-import { AddressComponent } from '@googlemaps/google-maps-services-js'
+import {
+  addressComponentsToListingAddress,
+  getPlaceDetails,
+  isListingAddressType
+} from './geocoder'
+import {
+  AddressComponent,
+  AddressType,
+  GeocodeResult
+} from '@googlemaps/google-maps-services-js'
 import Listing, { RequiredListingAddressFields } from '../models/ListingModel'
 import { ListingDetailResultWithSelectedFields } from '../types/listing_search_response_types'
 import { ListingDetailResultProjectionFields } from '../config'
+import Boundary from '../models/BoundaryModel'
+import { getPaginationParams } from '.'
+import listingSearchGeocodeView from '../views/listingSearchGeocodeView'
+import listingSearchGeocodeNoBoundaryView from '../views/listingSearchGeocodeNoBoundaryView'
 
 /**
  * Create a MongoDB $sort query
@@ -271,4 +283,60 @@ export const getListingForAddressSearch = async (
       ListingDetailResultProjectionFields
     )
   }
+}
+
+export const getAddressTypesFromParams = (address_types: string) =>
+  address_types.split(',') as AddressType[]
+
+export const getResponseForPlaceId = async (
+  query: GeocodeBoundarySearchParams
+) => {
+  const { place_id, address_types } = query
+  if (!place_id || !address_types) return
+  // If it's an address we will need to geocode so we can't just use place_id. Logic in the controller handles that for
+  // the sake of effeciency
+  if (isListingAddressType(getAddressTypesFromParams(address_types))) return
+
+  const pagination = getPaginationParams(query)
+  const boundary = await Boundary.findOne({ placeId: place_id })
+  if (!boundary) {
+    const { geometry } = (await getPlaceDetails({ place_id })).data.result
+    return listingSearchGeocodeNoBoundaryView(geometry.viewport, pagination)
+  }
+  const results = await Listing.findWithinBounds(
+    boundary.geometry,
+    query,
+    pagination
+  )
+  return listingSearchGeocodeView(boundary, results, pagination)
+}
+
+export const getResponseForListingAddress = async (
+  { address_components, place_id, geometry }: GeocodeResult,
+  query: GeocodeBoundarySearchParams
+) => {
+  const listing = await getListingForAddressSearch(address_components, place_id)
+  const pagination = getPaginationParams(query)
+  return listingSearchGeocodeNoBoundaryView(
+    geometry.viewport,
+    pagination,
+    listing
+  )
+}
+
+export const getResponseForBoundary = async (
+  { place_id, geometry }: GeocodeResult,
+  query: GeocodeBoundarySearchParams
+) => {
+  const pagination = getPaginationParams(query)
+  const boundary = await Boundary.findOne({ placeId: place_id })
+  if (!boundary) {
+    return listingSearchGeocodeNoBoundaryView(geometry.viewport, pagination)
+  }
+  const results = await Listing.findWithinBounds(
+    boundary.geometry,
+    query,
+    pagination
+  )
+  return listingSearchGeocodeView(boundary, results, pagination)
 }

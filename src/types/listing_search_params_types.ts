@@ -1,5 +1,3 @@
-import { GeocodeRequestParams } from '../lib/geocoder'
-
 export type SortType = 'listedDate' | 'listPrice' | 'beds' | 'baths' | 'sqft'
 
 export type SortDirection = 'asc' | 'desc'
@@ -50,8 +48,11 @@ export interface BoundsParams {
   bounds_west: number
 }
 
-export type GeocodeBoundarySearchParams = GeocodeRequestParams &
-  Partial<ListingFilterParams>
+export type GeocodeBoundarySearchParams = {
+  address?: string
+  place_id?: string
+  address_types?: string
+} & Partial<ListingFilterParams>
 
 export interface BoundarySearchParams
   extends BoundsParams,
