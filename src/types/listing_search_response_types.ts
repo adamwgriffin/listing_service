@@ -44,7 +44,7 @@ export type ListingSearchResponse<T = ListingResultWithSelectedFields> = {
   pagination: PaginationResponse
 }
 
-export type GeocodeBoundarySearchResponse = ListingSearchResponse & {
+export type GeocodeBoundarySearchResponse = Partial<ListingSearchResponse> & {
   boundary?: IBoundary
   viewport?: LatLngBounds
   listingDetail?: ListingDetailResultWithSelectedFields

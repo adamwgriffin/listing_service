@@ -71,7 +71,7 @@ export const geocodeBoundarySearch = async (ctx: GeocodeBoundaryContext) => {
       .data.results[0]
 
     if (isListingAddressType(geocodeResult.types)) {
-      ctx.body = await getResponseForListingAddress(geocodeResult, ctx.query)
+      ctx.body = await getResponseForListingAddress(geocodeResult)
       return
     }
 

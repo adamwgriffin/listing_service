@@ -301,7 +301,7 @@ export const getResponseForPlaceId = async (
   const boundary = await Boundary.findOne({ placeId: place_id })
   if (!boundary) {
     const { geometry } = (await getPlaceDetails({ place_id })).data.result
-    return listingSearchGeocodeNoBoundaryView(geometry.viewport, pagination)
+    return listingSearchGeocodeNoBoundaryView(geometry.viewport)
   }
   const results = await Listing.findWithinBounds(
     boundary.geometry,
@@ -311,17 +311,13 @@ export const getResponseForPlaceId = async (
   return listingSearchGeocodeView(boundary, results, pagination)
 }
 
-export const getResponseForListingAddress = async (
-  { address_components, place_id, geometry }: GeocodeResult,
-  query: GeocodeBoundarySearchParams
-) => {
+export const getResponseForListingAddress = async ({
+  address_components,
+  place_id,
+  geometry
+}: GeocodeResult) => {
   const listing = await getListingForAddressSearch(address_components, place_id)
-  const pagination = getPaginationParams(query)
-  return listingSearchGeocodeNoBoundaryView(
-    geometry.viewport,
-    pagination,
-    listing
-  )
+  return listingSearchGeocodeNoBoundaryView(geometry.viewport, listing)
 }
 
 export const getResponseForBoundary = async (
@@ -331,7 +327,7 @@ export const getResponseForBoundary = async (
   const pagination = getPaginationParams(query)
   const boundary = await Boundary.findOne({ placeId: place_id })
   if (!boundary) {
-    return listingSearchGeocodeNoBoundaryView(geometry.viewport, pagination)
+    return listingSearchGeocodeNoBoundaryView(geometry.viewport)
   }
   const results = await Listing.findWithinBounds(
     boundary.geometry,
