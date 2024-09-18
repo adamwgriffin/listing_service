@@ -59,54 +59,44 @@ export interface RadiusSearchContext extends Context {
 }
 
 export const geocodeBoundarySearch = async (ctx: GeocodeBoundaryContext) => {
-  try {
-    // If we have a place_id then we may not need to make an additional request to the geocode service
-    const placeIdRes = await getResponseForPlaceId(ctx.query)
-    if (placeIdRes) {
-      ctx.body = placeIdRes
-      return
-    }
-
-    const geocodeResult = (await geocode(getGeocodeParamsFromQuery(ctx.query)))
-      .data.results[0]
-
-    if (isListingAddressType(geocodeResult.types)) {
-      ctx.body = await getResponseForListingAddress(geocodeResult)
-      return
-    }
-
-    ctx.body = await getResponseForBoundary(geocodeResult, ctx.query)
-  } catch (error) {
-    ctx.status = error?.response?.status || 500
-    ctx.body = errorView(error)
+  // If we have a place_id then we may not need to make an additional request to the geocode service
+  const placeIdRes = await getResponseForPlaceId(ctx.query)
+  if (placeIdRes) {
+    ctx.body = placeIdRes
+    return
   }
+
+  const geocodeResult = (await geocode(getGeocodeParamsFromQuery(ctx.query)))
+    .data.results[0]
+
+  if (isListingAddressType(geocodeResult.types)) {
+    ctx.body = await getResponseForListingAddress(geocodeResult)
+    return
+  }
+
+  ctx.body = await getResponseForBoundary(geocodeResult, ctx.query)
 }
 
 export const boundarySearch = async (ctx: BoundarySearchContext) => {
   const { id } = ctx.params
-  try {
-    const boundary = await Boundary.findById(id)
+  const boundary = await Boundary.findById(id)
 
-    if (!boundary) {
-      ctx.status = 404
-      return (ctx.body = {
-        error: `No boundary found for boundary id ${id}.`
-      })
-    }
-
-    const pagination = getPaginationParams(ctx.query)
-
-    const results = await Listing.findWithinBounds(
-      getBoundaryGeometryWithBounds(boundary, ctx.query),
-      ctx.query,
-      pagination
-    )
-
-    ctx.body = listingSearchView(results, pagination)
-  } catch (error) {
-    ctx.status = 500
-    ctx.body = errorView(error)
+  if (!boundary) {
+    ctx.status = 404
+    return (ctx.body = {
+      error: `No boundary found for boundary id ${id}.`
+    })
   }
+
+  const pagination = getPaginationParams(ctx.query)
+
+  const results = await Listing.findWithinBounds(
+    getBoundaryGeometryWithBounds(boundary, ctx.query),
+    ctx.query,
+    pagination
+  )
+
+  ctx.body = listingSearchView(results, pagination)
 }
 
 export const boundsSearch = async (ctx: BoundsSearchContext) => {
@@ -117,39 +107,28 @@ export const boundsSearch = async (ctx: BoundsSearchContext) => {
     bounds_south,
     bounds_west
   })
-  try {
-    const pagination = getPaginationParams(ctx.query)
-    const results = await Listing.findWithinBounds(
-      geoJSONPolygon,
-      ctx.query,
-      pagination
-    )
-    ctx.body = listingSearchView(results, pagination)
-  } catch (error) {
-    ctx.status = 500
-    ctx.body = errorView(error)
-  }
+  const pagination = getPaginationParams(ctx.query)
+  const results = await Listing.findWithinBounds(
+    geoJSONPolygon,
+    ctx.query,
+    pagination
+  )
+  ctx.body = listingSearchView(results, pagination)
 }
 
 export const radiusSearch = async (ctx: RadiusSearchContext) => {
   const { lat, lng, max_distance } = ctx.query
   const pagination = getPaginationParams(ctx.query)
-
-  try {
-    const results =
-      await Listing.findWithinRadius<ListingRadiusResultWithSelectedFields>(
-        Number(lat),
-        Number(lng),
-        Number(max_distance) || DefaultMaxDistance,
-        ctx.query,
-        pagination
-      )
-    ctx.body = listingSearchView<ListingRadiusResultWithSelectedFields>(
-      results,
+  const results =
+    await Listing.findWithinRadius<ListingRadiusResultWithSelectedFields>(
+      Number(lat),
+      Number(lng),
+      Number(max_distance) || DefaultMaxDistance,
+      ctx.query,
       pagination
     )
-  } catch (error) {
-    ctx.status = 500
-    ctx.body = errorView(error)
-  }
+  ctx.body = listingSearchView<ListingRadiusResultWithSelectedFields>(
+    results,
+    pagination
+  )
 }
