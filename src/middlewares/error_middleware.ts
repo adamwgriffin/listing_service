@@ -1,5 +1,7 @@
+import type { Context } from 'koa'
+
 // Based on https://github.com/koajs/koa/wiki/Error-Handling
-export const errorMiddleware = async (ctx, next) => {
+export const errorMiddleware = async (ctx: Context, next: () => Promise<unknown>) => {
   try {
     await next()
   } catch (err) {

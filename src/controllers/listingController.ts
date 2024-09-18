@@ -1,15 +1,16 @@
+import type { Context } from 'koa'
 import { Types } from 'mongoose'
 import Listing from '../models/ListingModel'
 import { ListingDetailResultProjectionFields } from '../config'
 import { daysOnMarket } from '../lib/listing_search_helpers'
 
-export const createListing = async (ctx) => {
+export const createListing = async (ctx: Context) => {
   const listing = await Listing.create(ctx.request.body)
   ctx.status = 201
   ctx.body = listing
 }
 
-export const readListing = async (ctx) => {
+export const readListing = async (ctx: Context) => {
   const { id } = ctx.params
   if (!Types.ObjectId.isValid(id)) {
     ctx.status = 422
@@ -31,7 +32,7 @@ export const readListing = async (ctx) => {
   }
 }
 
-export const updateListing = async (ctx) => {
+export const updateListing = async (ctx: Context) => {
   const { id } = ctx.params
   const updatedListing = await Listing.findByIdAndUpdate(id, ctx.request.body, {
     new: true
@@ -44,7 +45,7 @@ export const updateListing = async (ctx) => {
   }
 }
 
-export const deleteListing = async (ctx) => {
+export const deleteListing = async (ctx: Context) => {
   const { id } = ctx.params
   const deletedListing = await Listing.findByIdAndDelete(id)
   if (!deletedListing) {
