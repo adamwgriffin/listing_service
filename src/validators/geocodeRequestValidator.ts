@@ -8,5 +8,7 @@ export const geocodeRequestValidator = z
   .partial()
   .refine(({ address, place_id }) => address || place_id, {
     path: ['address', 'place_id'],
-    message: "Either 'address' or 'place_id' are required"
+    message: 'Either "address" or "place_id" are required'
   })
+
+export type GeocodeRequestQuery = z.infer<typeof geocodeRequestValidator>
