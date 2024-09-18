@@ -110,7 +110,7 @@ const removeDuplicateNeighborhoodNames = (
   neighborhoodFeatures: PolyOrMultiPolyFeature[]
 ) => {
   return neighborhoodFeatures.filter(
-    (feature) => feature.properties.S_HOOD !== feature.properties.L_HOOD
+    (feature) => feature?.properties?.S_HOOD !== feature?.properties?.L_HOOD
   )
 }
 
@@ -121,8 +121,8 @@ const fixNeighborhoodProperties = (
     // This boundary seems to actually be for a neighborhood called "Adams" that I've never heard of but which appears
     // on the map inside of Ballard
     if (
-      feature.properties.S_HOOD === 'Ballard' &&
-      feature.properties.S_HOOD_ALT_NAMES === 'Adams'
+      feature?.properties?.S_HOOD === 'Ballard' &&
+      feature?.properties?.S_HOOD_ALT_NAMES === 'Adams'
     ) {
       feature.properties.S_HOOD = 'Adams'
       feature.properties.S_HOOD_ALT_NAMES = null
@@ -147,7 +147,7 @@ const getName = (feature: PolyOrMultiPolyFeature) => {
   )
     ? NeighborhoodNameAttribute
     : DistrictNameAttribute
-  return `${feature.properties[nameAttribute]}, Seattle, WA, USA`
+  return `${feature?.properties?.[nameAttribute]}, Seattle, WA, USA`
 }
 
 const getPlaceId = async (name: string) =>
