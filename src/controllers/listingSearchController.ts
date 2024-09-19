@@ -27,7 +27,6 @@ import {
 } from '../lib/listing_search_helpers'
 import { getPaginationParams } from '../lib'
 import listingSearchView from '../views/listingSearchView'
-import errorView from '../views/errorView'
 
 export interface GeocodeBoundaryContext extends Context {
   query: GeocodeBoundarySearchParams
