@@ -7,6 +7,7 @@ import type {
 import { Client, AddressType } from '@googlemaps/google-maps-services-js'
 import type { BoundaryType } from '../models/BoundaryModel'
 import type { ListingAddress } from '../models/ListingModel'
+import env from './env'
 
 export type GeocodeRequestParams = Omit<GeocodeRequest['params'], 'key'>
 
@@ -71,7 +72,7 @@ const googleMapsClient = new Client({})
 
 export const geocode = async (params: GeocodeRequestParams) => {
   return googleMapsClient.geocode({
-    params: { ...params, key: process.env.GOOGLE_MAPS_API_KEY }
+    params: { ...params, key: env.GOOGLE_MAPS_API_KEY }
   })
 }
 
@@ -84,7 +85,7 @@ export const reverseGeocode = async (
     params: {
       latlng: `${lat},${lng}`,
       result_type,
-      key: process.env.GOOGLE_MAPS_API_KEY
+      key: env.GOOGLE_MAPS_API_KEY
     }
   })
   if (response.status < 200 || response.status > 299) {
@@ -97,7 +98,7 @@ export const getPlaceDetails = async (
   params: Omit<PlaceDetailsRequest['params'], 'key'>
 ) => {
   return googleMapsClient.placeDetails({
-    params: { ...params, key: process.env.GOOGLE_MAPS_API_KEY }
+    params: { ...params, key: env.GOOGLE_MAPS_API_KEY }
   })
 }
 

@@ -1,10 +1,11 @@
 import app from './app'
+import env from './lib/env'
 import { connectToDatabase, disconnectDatabase } from './database'
 
 const startServer = async (): Promise<void> => {
   try {
     await connectToDatabase()
-    const port = process.env.APP_PORT || 3001
+    const port = env.APP_PORT || 3001
     app.listen(port, () => {
       console.log(`Server listening on port ${port} 🚀`)
     })
