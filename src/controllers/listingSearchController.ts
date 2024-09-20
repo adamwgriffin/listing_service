@@ -28,34 +28,34 @@ import {
 import { getPaginationParams } from '../lib'
 import listingSearchView from '../views/listingSearchView'
 
-export interface GeocodeBoundaryContext extends Context {
+export type GeocodeBoundaryContext = {
   query: GeocodeBoundarySearchParams
   status: number
   body: GeocodeBoundarySearchResponse | ErrorResponse
-}
+} & Context
 
-export interface BoundarySearchContext extends Context {
+export type BoundarySearchContext = {
   params: {
     id: string
   }
   query: BoundarySearchParams
   status: number
   body: ListingSearchResponse | ErrorResponse
-}
+} & Context
 
-export interface BoundsSearchContext extends Context {
+export type BoundsSearchContext = {
   query: BoundarySearchParams
   status: number
   body: ListingSearchResponse | ErrorResponse
-}
+} & Context
 
-export interface RadiusSearchContext extends Context {
+export type RadiusSearchContext = {
   query: RadiusSearchParams
   status: number
   body:
     | ListingSearchResponse<ListingRadiusResultWithSelectedFields>
     | ErrorResponse
-}
+} & Context
 
 export const geocodeBoundarySearch = async (ctx: GeocodeBoundaryContext) => {
   // If we have a place_id then we may not need to make an additional request to the geocode service
