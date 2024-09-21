@@ -334,9 +334,12 @@ ListingSchema.statics.findByPlaceIdOrAddress = async function <
   address: ListingAddress,
   fields: ProjectionFields<T> = ListingDetailResultProjectionFields
 ): Promise<T | null> {
-  const addressQuery = {}
+  const addressQuery: { [index: string]: string } = {}
   for (const k in address) {
-    addressQuery[`address.${k}`] = address[k]
+    const v = address[k as keyof typeof address]
+    if (typeof v === 'string') {
+      addressQuery[`address.${k}`] = v
+    }
   }
   return this.findOne<T>({ $or: [{ placeId }, addressQuery] }, fields)
 }
