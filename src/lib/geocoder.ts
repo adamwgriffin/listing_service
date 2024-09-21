@@ -47,26 +47,35 @@ export const getBoundaryTypeFromGeocoderAddressTypes = (
  * Maps all the different types in an AddressComponent.types array to a specific address field that we use for a Listing
  * record.
  */
-const AddressComponentMapping = Object.freeze({
-  street_number: ['street_number'],
-  street_address: ['street_address', 'route'],
-  city: [
-    'locality',
-    'sublocality',
-    'sublocality_level_1',
-    'sublocality_level_2',
-    'sublocality_level_3',
-    'sublocality_level_4'
+const AddressComponentMapping = new Map<
+  'street_number' | 'street_address' | 'city' | 'state' | 'zip',
+  AddressComponent['types']
+>([
+  ['street_number', [AddressType.street_number]],
+  ['street_address', [AddressType.street_address, AddressType.route]],
+  [
+    'city',
+    [
+      AddressType.locality,
+      AddressType.sublocality,
+      AddressType.sublocality_level_1,
+      AddressType.sublocality_level_2,
+      AddressType.sublocality_level_3,
+      AddressType.sublocality_level_4
+    ]
   ],
-  state: [
-    'administrative_area_level_1',
-    'administrative_area_level_2',
-    'administrative_area_level_3',
-    'administrative_area_level_4',
-    'administrative_area_level_5'
+  [
+    'state',
+    [
+      AddressType.administrative_area_level_1,
+      AddressType.administrative_area_level_2,
+      AddressType.administrative_area_level_3,
+      AddressType.administrative_area_level_4,
+      AddressType.administrative_area_level_5
+    ]
   ],
-  zip: ['postal_code']
-})
+  ['zip', [AddressType.postal_code]]
+])
 
 const googleMapsClient = new Client({})
 
@@ -108,13 +117,18 @@ export const getPlaceDetails = async (
 export const addressComponentsToListingAddress = (
   addressComponents: AddressComponent[]
 ): Partial<ListingAddress> => {
-  const address: Partial<ListingAddress> = {}
+  const address: ListingAddress = {
+    line1: '',
+    city: '',
+    state: '',
+    zip: ''
+  }
   let street_number = ''
   let street_address = ''
 
   addressComponents.forEach((component) => {
-    for (const field in AddressComponentMapping) {
-      if (!AddressComponentMapping[field].includes(component.types[0])) {
+    for (const [field, types] of AddressComponentMapping) {
+      if (!types.includes(component.types[0])) {
         continue
       }
       if (field === 'street_number') {
