@@ -1,8 +1,14 @@
-import type { Context } from 'koa'
+import type { Context, Request } from 'koa'
 import { Types } from 'mongoose'
-import Listing from '../models/ListingModel'
+import Listing, { IListing } from '../models/ListingModel'
 import { ListingDetailResultProjectionFields } from '../config'
 import { daysOnMarket } from '../lib/listing_search_helpers'
+
+export type UpdateListingContext = {
+  request: {
+    body: Partial<IListing>
+  } & Request
+} & Context
 
 export const createListing = async (ctx: Context) => {
   const listing = await Listing.create(ctx.request.body)
@@ -32,7 +38,7 @@ export const readListing = async (ctx: Context) => {
   }
 }
 
-export const updateListing = async (ctx: Context) => {
+export const updateListing = async (ctx: UpdateListingContext) => {
   const { id } = ctx.params
   const updatedListing = await Listing.findByIdAndUpdate(id, ctx.request.body, {
     new: true
