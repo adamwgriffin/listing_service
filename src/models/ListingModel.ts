@@ -333,7 +333,7 @@ ListingSchema.statics.findByPlaceIdOrAddress = async function <
   placeId: IListing['placeId'],
   address: ListingAddress,
   fields: ProjectionFields<T> = ListingDetailResultProjectionFields
-): Promise<T> {
+): Promise<T | null> {
   const addressQuery = {}
   for (const k in address) {
     addressQuery[`address.${k}`] = address[k]

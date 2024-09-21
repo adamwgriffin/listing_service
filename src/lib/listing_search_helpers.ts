@@ -72,7 +72,7 @@ export const removePartsOfBoundaryOutsideOfBounds = (
   boundary: Polygon | MultiPolygon
 ) => {
   const boundsPolygon = boundsParamsToGeoJSONPolygon(bounds)
-  return intersect(boundsPolygon, boundary).geometry
+  return intersect(boundsPolygon, boundary)?.geometry
 }
 
 /**
@@ -86,7 +86,10 @@ export const getBoundaryGeometryWithBounds = (
   const { bounds_north, bounds_east, bounds_south, bounds_west } = query
   if (bounds_north && bounds_east && bounds_south && bounds_west) {
     const bounds = { bounds_north, bounds_east, bounds_south, bounds_west }
-    return removePartsOfBoundaryOutsideOfBounds(bounds, boundary.geometry)
+    return (
+      removePartsOfBoundaryOutsideOfBounds(bounds, boundary.geometry) ||
+      boundary.geometry
+    )
   } else {
     return boundary.geometry
   }
