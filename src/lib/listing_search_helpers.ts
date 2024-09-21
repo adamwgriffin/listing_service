@@ -2,11 +2,10 @@ import type { Polygon, MultiPolygon } from '@turf/turf'
 import type { FilterQuery } from 'mongoose'
 import type { ListingAddress, IListingModel } from '../models/ListingModel'
 import type { IBoundary } from '../models/BoundaryModel'
-import type {
-  BoundsParams,
-  GeocodeBoundarySearchParams,
-  ListingFilterParams
-} from '../types/listing_search_params_types'
+import type { ListingFilterParams } from '../zod_schemas/listingSearchParamsSchema'
+import type { GeocodeBoundarySearchParams } from '../zod_schemas/geocodeBoundarySearchSchema'
+import type { BoundsParams } from '../zod_schemas/listingSearchParamsSchema'
+import type { BoundarySearchParams } from '../zod_schemas/boundarySearchRequestSchema'
 import { bboxPolygon, intersect } from '@turf/turf'
 import { differenceInDays, subDays } from 'date-fns'
 import {
@@ -81,7 +80,7 @@ export const removePartsOfBoundaryOutsideOfBounds = (
  */
 export const getBoundaryGeometryWithBounds = (
   boundary: IBoundary,
-  query: BoundsParams
+  query: BoundarySearchParams
 ): Polygon | MultiPolygon => {
   const { bounds_north, bounds_east, bounds_south, bounds_west } = query
   if (bounds_north && bounds_east && bounds_south && bounds_west) {
@@ -221,31 +220,31 @@ export const buildfilterQueries = (
     filters.push(numberRangeQuery('lotSize', lot_size_min, lot_size_max))
   }
   if (waterfront) {
-    filters.push({ waterfront: waterfront === 'true' })
+    filters.push({ waterfront: true })
   }
   if (view) {
-    filters.push({ view: view === 'true' })
+    filters.push({ view: true })
   }
   if (fireplace) {
-    filters.push({ fireplace: fireplace === 'true' })
+    filters.push({ fireplace: true })
   }
   if (basement) {
-    filters.push({ basement: basement === 'true' })
+    filters.push({ basement: true })
   }
   if (garage) {
-    filters.push({ garage: garage === 'true' })
+    filters.push({ garage: true })
   }
   if (new_construction) {
-    filters.push({ newConstruction: new_construction === 'true' })
+    filters.push({ newConstruction: true })
   }
   if (pool) {
-    filters.push({ pool: pool === 'true' })
+    filters.push({ pool: true })
   }
   if (air_conditioning) {
-    filters.push({ airConditioning: air_conditioning === 'true' })
+    filters.push({ airConditioning: true })
   }
   if (rental) {
-    filters.push({ rental: rental === 'true' })
+    filters.push({ rental: true })
   } else {
     filters.push({ rental: { $exists: false } })
   }

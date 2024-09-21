@@ -1,5 +1,5 @@
 import type { ListingSearchAggregateResult } from '../models/ListingModel'
-import type { PaginationParams } from '../types/listing_search_params_types'
+import type { PaginationParams } from '../zod_schemas/listingSearchParamsSchema'
 import type {
   ListingResultWithSelectedFields,
   ListingSearchResponse

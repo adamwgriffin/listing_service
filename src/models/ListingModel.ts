@@ -1,11 +1,11 @@
 import type { MultiPolygon, Point, Polygon } from '@turf/turf'
-import type { GeocodeBoundarySearchParams } from '../types/listing_search_params_types'
+import type { GeocodeBoundarySearchParams } from '../zod_schemas/geocodeBoundarySearchSchema'
 import type {
   ListingResultWithSelectedFields,
   ListingRadiusResultWithSelectedFields,
   ListingDetailResultWithSelectedFields
 } from '../types/listing_search_response_types'
-import type { PaginationParams } from '../types/listing_search_params_types'
+import type { PaginationParams } from '../zod_schemas/listingSearchParamsSchema'
 import { Model, ProjectionFields, Schema, model } from 'mongoose'
 import PointSchema from './PointSchema'
 import {

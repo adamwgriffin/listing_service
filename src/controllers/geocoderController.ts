@@ -1,5 +1,5 @@
 import type { Context } from 'koa'
-import type { GeocodeRequestQuery } from '../validators/geocodeRequestValidator'
+import type { GeocodeRequestQuery } from '../zod_schemas/geocodeRequestSchema'
 import { geocode, getGeocodeParamsFromQuery } from '../lib/geocoder'
 import { GeocodeResult } from '@googlemaps/google-maps-services-js'
 

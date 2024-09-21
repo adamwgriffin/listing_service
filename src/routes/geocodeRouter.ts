@@ -1,10 +1,10 @@
 import Router from '@koa/router'
 import { geocodeRequest } from '../controllers/geocoderController'
-import { validateQuery } from '../middlewares/validationMiddleware'
-import { geocodeRequestValidator } from '../validators/geocodeRequestValidator'
+import { parseQuery } from '../middlewares/validationMiddleware'
+import { geocodeRequestSchema } from '../zod_schemas/geocodeRequestSchema'
 
 export default new Router().get(
   '/',
-  validateQuery(geocodeRequestValidator),
+  parseQuery(geocodeRequestSchema),
   geocodeRequest
 )

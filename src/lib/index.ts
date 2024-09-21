@@ -1,5 +1,5 @@
 import { DefaultPageSize } from '../config'
-import type { PaginationParams } from '../types/listing_search_params_types'
+import type { PaginationParams } from '../zod_schemas/listingSearchParamsSchema'
 
 export const getPaginationParams = (
   query: Partial<PaginationParams>

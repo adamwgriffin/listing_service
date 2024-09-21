@@ -1,9 +1,8 @@
 import type { Context } from 'koa'
-import type {
-  BoundarySearchParams,
-  GeocodeBoundarySearchParams,
-  RadiusSearchParams
-} from '../types/listing_search_params_types'
+import type { GeocodeBoundarySearchParams } from '../zod_schemas/geocodeBoundarySearchSchema'
+import type { BoundarySearchParams } from '../zod_schemas/boundarySearchRequestSchema'
+import type { BoundsSearchParams } from '../zod_schemas/boundsSearchRequestSchema'
+import type { RadiusSearchParams } from '../zod_schemas/radiusSearchRequestSchema'
 import type {
   ErrorResponse,
   GeocodeBoundarySearchResponse,
@@ -12,7 +11,6 @@ import type {
 } from '../types/listing_search_response_types'
 import Listing from '../models/ListingModel'
 import Boundary from '../models/BoundaryModel'
-import { DefaultMaxDistance } from '../config'
 import {
   geocode,
   getGeocodeParamsFromQuery,
@@ -44,7 +42,7 @@ export type BoundarySearchContext = {
 } & Context
 
 export type BoundsSearchContext = {
-  query: BoundarySearchParams
+  query: BoundsSearchParams
   status: number
   body: ListingSearchResponse | ErrorResponse
 } & Context
@@ -120,9 +118,9 @@ export const radiusSearch = async (ctx: RadiusSearchContext) => {
   const pagination = getPaginationParams(ctx.query)
   const results =
     await Listing.findWithinRadius<ListingRadiusResultWithSelectedFields>(
-      Number(lat),
-      Number(lng),
-      Number(max_distance) || DefaultMaxDistance,
+      lat,
+      lng,
+      max_distance,
       ctx.query,
       pagination
     )
