@@ -220,7 +220,7 @@ export const createRandomListingModel = (
   return listing
 }
 
-export const createListing = async (point: Point): Promise<IListing> => {
+export const createListing = async (point: Point): Promise<IListing | undefined> => {
   const res = await reverseGeocode(point.coordinates[1], point.coordinates[0])
   const geocoderResult = res.data.results[0]
   if (!geocoderResult?.address_components) {
@@ -232,7 +232,7 @@ export const createListing = async (point: Point): Promise<IListing> => {
   const neighborhood = getNeighborhoodFromAddressComponents(
     geocoderResult.address_components
   )
-  if (neighborhood == '') {
+  if (neighborhood === '' || neighborhood === undefined) {
     console.warn(
       `No neighborhood found for reverseGeocode of ${point.coordinates}. No model created.`
     )
