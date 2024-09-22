@@ -303,6 +303,7 @@ export const getResponseForPlaceId = async (
   const boundary = await Boundary.findOne({ placeId: place_id })
   if (!boundary) {
     const { geometry } = (await getPlaceDetails({ place_id })).data.result
+    if (!geometry) return
     return listingSearchGeocodeNoBoundaryView(geometry.viewport)
   }
   const results = await Listing.findWithinBounds(
