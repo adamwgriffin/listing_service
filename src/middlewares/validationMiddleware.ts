@@ -1,11 +1,7 @@
 import type { Context } from 'koa'
 import type { Middleware } from '@koa/router'
 import type { ZodIssue, ZodTypeAny } from 'zod'
-
-export type ValidationError = {
-  message: string
-  field?: string
-}
+import type { ValidationError } from '../types/listing_search_response_types'
 
 const formatError = (e: ZodIssue) => {
   const err: ValidationError = {
