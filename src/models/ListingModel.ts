@@ -15,7 +15,7 @@ import {
   ListingDetailResultProjectionFields
 } from '../config'
 import {
-  buildfilterQueries,
+  buildFilterQueries,
   buildfilterQueriesObject,
   listingSortQuery
 } from '../lib/listing_search_helpers'
@@ -351,7 +351,7 @@ ListingSchema.statics.findWithinBounds = async function <
               }
             }
           },
-          ...buildfilterQueries(query)
+          ...buildFilterQueries(query)
         ]
       }
     },

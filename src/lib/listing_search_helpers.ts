@@ -107,13 +107,13 @@ export const numberRangeQuery = (
   field: string,
   min: number | undefined,
   max: number | undefined
-): FilterQuery<IListingModel> => {
+) => {
   const query: FilterQuery<IListingModel> = { [field]: {} }
   if (min) {
-    query[field].$gte = Number(min)
+    query[field].$gte = min
   }
   if (max) {
-    query[field].$lte = Number(max)
+    query[field].$lte = max
   }
   return query
 }
@@ -140,10 +140,10 @@ export const openHouseQuery = (
  * Convert listing search filter params into an array of MongoDB queries for each filter.
  *
  * @example
- * buildfilterQueries({ "price_min": 100000, "waterfornt": "true" })
+ * buildFilterQueries({ "price_min": 100000, "waterfornt": "true" })
  * // Returns [{ "listPrice": { $gte: 100000} }, { "waterfornt": true }]
  */
-export const buildfilterQueries = (
+export const buildFilterQueries = (
   params: GeocodeBoundarySearchParams
 ): FilterQuery<IListingModel>[] => {
   // TODO: refactor this. the list is way too long.
@@ -176,6 +176,10 @@ export const buildfilterQueries = (
     open_house_before
   } = params
   const filters = []
+
+  filters.push({
+    status: status ? { $in: status.split(',') } : { status: 'active' }
+  })
   if (property_type) {
     filters.push({
       propertyType: {
@@ -183,14 +187,12 @@ export const buildfilterQueries = (
       }
     })
   }
-  if (status) {
-    filters.push({
-      status: {
-        $in: status.split(',')
-      }
-    })
+  if (rental === true) {
+    filters.push({ rental: true })
   } else {
-    filters.push({ status: 'active' })
+    // Need to explicitly exclude rentals, otherwise if the request does not supply the rental param it will return
+    // everything that has status: active by default
+    filters.push({ rental: { $exists: false } })
   }
   if (sold_in_last) {
     filters.push({
@@ -202,7 +204,10 @@ export const buildfilterQueries = (
   if (open_house_after || open_house_before) {
     filters.push(openHouseQuery(open_house_after, open_house_before))
   }
-  // TODO: make this more DRY
+
+  // TODO: make this part more DRY
+
+  // Range queries
   if (price_min || price_max) {
     filters.push(numberRangeQuery('listPrice', price_min, price_max))
   }
@@ -221,35 +226,34 @@ export const buildfilterQueries = (
   if (lot_size_min || lot_size_max) {
     filters.push(numberRangeQuery('lotSize', lot_size_min, lot_size_max))
   }
-  if (waterfront) {
-    filters.push({ waterfront: true })
+
+  // Boolean queries We have to check the actual type for boolean params because if the value is false it means to
+  // exclude records. A simple truthiness check wouldn't accomplish that.
+  if (typeof waterfront === 'boolean') {
+    filters.push({ waterfront })
   }
-  if (view) {
-    filters.push({ view: true })
+  if (typeof view === 'boolean') {
+    filters.push({ view })
   }
-  if (fireplace) {
-    filters.push({ fireplace: true })
+  if (typeof fireplace === 'boolean') {
+    filters.push({ fireplace })
   }
-  if (basement) {
-    filters.push({ basement: true })
+  if (typeof basement === 'boolean') {
+    filters.push({ basement })
   }
-  if (garage) {
-    filters.push({ garage: true })
+  if (typeof garage === 'boolean') {
+    filters.push({ garage })
   }
-  if (new_construction) {
-    filters.push({ newConstruction: true })
+  if (typeof new_construction === 'boolean') {
+    filters.push({ newConstruction: new_construction })
   }
-  if (pool) {
-    filters.push({ pool: true })
+  if (typeof pool === 'boolean') {
+    filters.push({ pool })
   }
-  if (air_conditioning) {
-    filters.push({ airConditioning: true })
+  if (typeof air_conditioning === 'boolean') {
+    filters.push({ airConditioning: air_conditioning })
   }
-  if (rental) {
-    filters.push({ rental: true })
-  } else {
-    filters.push({ rental: { $exists: false } })
-  }
+
   return filters
 }
 
@@ -264,13 +268,12 @@ export const buildfilterQueries = (
 export const buildfilterQueriesObject = (
   params: GeocodeBoundarySearchParams
 ): FilterQuery<IListingModel> => {
-  return buildfilterQueries(params).reduce((q, acc) => ({ ...acc, ...q }), {})
+  return buildFilterQueries(params).reduce((q, acc) => ({ ...acc, ...q }), {})
 }
 
 export const listingAddressHasRequiredFields = (
   listingAddress: ListingAddress
-) =>
-  listingAddressSchema.safeParse(listingAddress).success
+) => listingAddressSchema.safeParse(listingAddress).success
 
 export const getListingForAddressSearch = async (
   address_components: AddressComponent[],
