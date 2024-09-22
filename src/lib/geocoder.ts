@@ -6,7 +6,7 @@ import type {
 } from '@googlemaps/google-maps-services-js'
 import { Client, AddressType } from '@googlemaps/google-maps-services-js'
 import type { BoundaryType } from '../models/BoundaryModel'
-import type { ListingAddress } from '../models/ListingModel'
+import type { ListingAddress } from '../zod_schemas/listingSchema'
 import env from './env'
 
 export type GeocodeRequestParams = Omit<GeocodeRequest['params'], 'key'>
@@ -116,7 +116,7 @@ export const getPlaceDetails = async (
  */
 export const addressComponentsToListingAddress = (
   addressComponents: AddressComponent[]
-): Partial<ListingAddress> => {
+) => {
   const address: ListingAddress = {
     line1: '',
     city: '',

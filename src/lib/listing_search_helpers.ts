@@ -1,6 +1,7 @@
 import type { Polygon, MultiPolygon } from '@turf/turf'
 import type { FilterQuery } from 'mongoose'
-import type { ListingAddress, IListingModel } from '../models/ListingModel'
+import type { ListingAddress } from '../zod_schemas/listingSchema'
+import type { IListingModel } from '../models/ListingModel'
 import type { IBoundary } from '../models/BoundaryModel'
 import type { ListingFilterParams } from '../zod_schemas/listingSearchParamsSchema'
 import type { GeocodeBoundarySearchParams } from '../zod_schemas/geocodeBoundarySearchSchema'
@@ -18,13 +19,14 @@ import {
   AddressType,
   GeocodeResult
 } from '@googlemaps/google-maps-services-js'
-import Listing, { RequiredListingAddressFields } from '../models/ListingModel'
+import Listing from '../models/ListingModel'
 import { ListingDetailResultWithSelectedFields } from '../types/listing_search_response_types'
 import { ListingDetailResultProjectionFields } from '../config'
 import Boundary from '../models/BoundaryModel'
 import { getPaginationParams } from '.'
 import listingSearchGeocodeView from '../views/listingSearchGeocodeView'
 import listingSearchGeocodeNoBoundaryView from '../views/listingSearchGeocodeNoBoundaryView'
+import { listingAddressSchema } from '../zod_schemas/listingSchema'
 
 /**
  * Create a MongoDB $sort query
@@ -266,11 +268,9 @@ export const buildfilterQueriesObject = (
 }
 
 export const listingAddressHasRequiredFields = (
-  listingAddress: Partial<ListingAddress>
+  listingAddress: ListingAddress
 ) =>
-  RequiredListingAddressFields.every(
-    (field) => listingAddress[field]?.length > 0
-  )
+  listingAddressSchema.safeParse(listingAddress).success
 
 export const getListingForAddressSearch = async (
   address_components: AddressComponent[],

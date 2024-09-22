@@ -1,3 +1,4 @@
+import type { ListingAddress } from '../zod_schemas/listingSchema'
 import type {
   IListing,
   PhotoGalleryImage,
@@ -5,7 +6,6 @@ import type {
   PropertDetail,
   PropertyStatus,
   OpenHouse,
-  ListingAddress
 } from '../models/ListingModel'
 import type { Point, Polygon, MultiPolygon } from '@turf/turf'
 import { bbox, randomPoint, booleanPointInPolygon } from '@turf/turf'

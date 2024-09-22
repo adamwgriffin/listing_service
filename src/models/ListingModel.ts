@@ -5,6 +5,7 @@ import type {
   ListingRadiusResultWithSelectedFields,
   ListingDetailResultWithSelectedFields
 } from '../types/listing_search_response_types'
+import type { ListingAddress } from '../zod_schemas/listingSchema'
 import type { PaginationParams } from '../zod_schemas/listingSearchParamsSchema'
 import { Model, ProjectionFields, Schema, model } from 'mongoose'
 import PointSchema from './PointSchema'
@@ -19,12 +20,6 @@ import {
   listingSortQuery
 } from '../lib/listing_search_helpers'
 
-export const RequiredListingAddressFields = Object.freeze([
-  'line1',
-  'city',
-  'state',
-  'zip'
-])
 
 export const PropertyTypes = [
   'single-family',
@@ -47,14 +42,6 @@ export const AllPropertyStatuses = [
 export type PropertyType = (typeof PropertyTypes)[number]
 
 export type PropertyStatus = (typeof AllPropertyStatuses)[number]
-
-export interface ListingAddress {
-  line1: string
-  line2?: string
-  city: string
-  state: string
-  zip: string
-}
 
 export interface PhotoGalleryImage {
   galleryUrl: string // 1920x1080 (used for slideshow image)
