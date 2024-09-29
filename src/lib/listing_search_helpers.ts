@@ -177,9 +177,8 @@ export const buildFilterQueries = (
   } = params
   const filters = []
 
-  filters.push({
-    status: status ? { $in: status.split(',') } : { status: 'active' }
-  })
+  filters.push({ status: status ? { $in: status.split(',') } : 'active' })
+
   if (property_type) {
     filters.push({
       propertyType: {
