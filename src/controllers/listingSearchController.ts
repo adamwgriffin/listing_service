@@ -75,10 +75,7 @@ export const boundarySearch = async (ctx: BoundarySearchContext) => {
   const { id } = ctx.params
   const boundary = await Boundary.findById(id)
 
-  if (!boundary) {
-    ctx.status = 404
-    throw new Error(`No boundary found for boundary id ${id}.`)
-  }
+  ctx.assert(boundary, 404, `No boundary found for boundary id ${id}.`)
 
   const pagination = getPaginationParams(ctx.query)
 
