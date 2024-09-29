@@ -16,7 +16,7 @@ export const geocodeRequestRefinements: Parameters<
 > = [
   ({ address, place_id }) => address || place_id,
   {
-    path: ['address', 'place_id'],
+    path: ['address/place_id'],
     message: 'Either "address" or "place_id" are required'
   }
 ]
