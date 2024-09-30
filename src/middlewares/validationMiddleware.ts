@@ -7,8 +7,8 @@ const formatError = (e: ZodIssue) => {
   const err: ValidationError = {
     message: e.message
   }
-  if (e.path) {
-    err.field = e.path.join(',')
+  if (e.path.length) {
+    err.field = e.path.join('.')
   }
   return err
 }
