@@ -1,18 +1,24 @@
 import { z } from 'zod'
 import {
-  sharedGeocodeRequestSchema,
-  geocodeRequestRefinements
+  sharedGeocodeQuerySchema,
+  geocodeQueryRefinements
 } from './geocodeRequestSchema'
 import { listingFilterParamsSchema } from './listingSearchParamsSchema'
 
-export const geocodeBoundarySearchSchema = sharedGeocodeRequestSchema
+export const geocodeBoundaryQuerySchema = sharedGeocodeQuerySchema
   .extend({
     address_types: z.string().optional()
   })
   .merge(listingFilterParamsSchema.partial())
   .strict()
-  .refine(...geocodeRequestRefinements)
+  .refine(...geocodeQueryRefinements)
 
-export type GeocodeBoundarySearchParams = z.infer<
-  typeof geocodeBoundarySearchSchema
+export const geocodeBoundaryRequestSchema = z.object({
+  query: geocodeBoundaryQuerySchema
+})
+
+export type GeocodeBoundaryQueryParams = z.infer<typeof geocodeBoundaryQuerySchema>
+
+export type GeocodeBoundaryRequest = z.infer<
+  typeof geocodeBoundaryRequestSchema
 >

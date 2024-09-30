@@ -3,10 +3,9 @@ import type { FilterQuery } from 'mongoose'
 import type { ListingAddress } from '../zod_schemas/listingSchema'
 import type { IListingModel } from '../models/ListingModel'
 import type { IBoundary } from '../models/BoundaryModel'
-import type { ListingFilterParams } from '../zod_schemas/listingSearchParamsSchema'
-import type { GeocodeBoundarySearchParams } from '../zod_schemas/geocodeBoundarySearchSchema'
+import type { GeocodeBoundaryQueryParams } from '../zod_schemas/geocodeBoundarySearchSchema'
 import type { BoundsParams } from '../zod_schemas/listingSearchParamsSchema'
-import type { BoundarySearchParams } from '../zod_schemas/boundarySearchRequestSchema'
+import type { BoundarySearchQueryParams } from '../zod_schemas/boundarySearchRequestSchema'
 import { bboxPolygon, intersect } from '@turf/turf'
 import { differenceInDays, subDays } from 'date-fns'
 import {
@@ -40,10 +39,10 @@ import { listingAddressSchema } from '../zod_schemas/listingSchema'
  * // { "listedDate": 1 }
  */
 export const listingSortQuery = (
-  query: Partial<ListingFilterParams>
+  queryParams: GeocodeBoundaryQueryParams
 ): FilterQuery<IListingModel> => {
-  const sortBy = query.sort_by || 'listedDate'
-  const sortDirection = query.sort_direction === 'asc' ? 1 : -1
+  const sortBy = queryParams.sort_by || 'listedDate'
+  const sortDirection = queryParams.sort_direction === 'asc' ? 1 : -1
   return { [sortBy]: sortDirection }
 }
 
@@ -82,9 +81,9 @@ export const removePartsOfBoundaryOutsideOfBounds = (
  */
 export const getBoundaryGeometryWithBounds = (
   boundary: IBoundary,
-  query: BoundarySearchParams
+  queryParams: BoundarySearchQueryParams
 ): Polygon | MultiPolygon => {
-  const { bounds_north, bounds_east, bounds_south, bounds_west } = query
+  const { bounds_north, bounds_east, bounds_south, bounds_west } = queryParams
   if (bounds_north && bounds_east && bounds_south && bounds_west) {
     const bounds = { bounds_north, bounds_east, bounds_south, bounds_west }
     return (
@@ -144,7 +143,7 @@ export const openHouseQuery = (
  * // Returns [{ "listPrice": { $gte: 100000} }, { "waterfornt": true }]
  */
 export const buildFilterQueries = (
-  params: GeocodeBoundarySearchParams
+  queryParams: GeocodeBoundaryQueryParams
 ): FilterQuery<IListingModel>[] => {
   // TODO: refactor this. the list is way too long.
   const {
@@ -174,7 +173,7 @@ export const buildFilterQueries = (
     sold_in_last,
     open_house_after,
     open_house_before
-  } = params
+  } = queryParams
   const filters = []
 
   filters.push({ status: status ? { $in: status.split(',') } : 'active' })
@@ -265,9 +264,12 @@ export const buildFilterQueries = (
  * // Returns { "listPrice": { $gte: 100000} }, "waterfornt": true }
  */
 export const buildfilterQueriesObject = (
-  params: GeocodeBoundarySearchParams
+  queryParams: GeocodeBoundaryQueryParams
 ): FilterQuery<IListingModel> => {
-  return buildFilterQueries(params).reduce((q, acc) => ({ ...acc, ...q }), {})
+  return buildFilterQueries(queryParams).reduce(
+    (q, acc) => ({ ...acc, ...q }),
+    {}
+  )
 }
 
 export const listingAddressHasRequiredFields = (
@@ -293,15 +295,15 @@ export const getAddressTypesFromParams = (address_types: string) =>
   address_types.split(',') as AddressType[]
 
 export const getResponseForPlaceId = async (
-  query: GeocodeBoundarySearchParams
+  queryParams: GeocodeBoundaryQueryParams
 ) => {
-  const { place_id, address_types } = query
+  const { place_id, address_types } = queryParams
   if (!place_id || !address_types) return
   // If it's an address we will need to geocode so we can't just use place_id. Logic in the controller handles that for
   // the sake of effeciency
   if (isListingAddressType(getAddressTypesFromParams(address_types))) return
 
-  const pagination = getPaginationParams(query)
+  const pagination = getPaginationParams(queryParams)
   const boundary = await Boundary.findOne({ placeId: place_id })
   if (!boundary) {
     const { geometry } = (await getPlaceDetails({ place_id })).data.result
@@ -310,7 +312,7 @@ export const getResponseForPlaceId = async (
   }
   const results = await Listing.findWithinBounds(
     boundary.geometry,
-    query,
+    queryParams,
     pagination
   )
   return listingSearchGeocodeView(boundary, results, pagination)
@@ -327,16 +329,16 @@ export const getResponseForListingAddress = async ({
 
 export const getResponseForBoundary = async (
   { place_id, geometry }: GeocodeResult,
-  query: GeocodeBoundarySearchParams
+  queryParams: GeocodeBoundaryQueryParams
 ) => {
-  const pagination = getPaginationParams(query)
+  const pagination = getPaginationParams(queryParams)
   const boundary = await Boundary.findOne({ placeId: place_id })
   if (!boundary) {
     return listingSearchGeocodeNoBoundaryView(geometry.viewport)
   }
   const results = await Listing.findWithinBounds(
     boundary.geometry,
-    query,
+    queryParams,
     pagination
   )
   return listingSearchGeocodeView(boundary, results, pagination)

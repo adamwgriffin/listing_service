@@ -1,9 +1,9 @@
 import Router from '@koa/router'
-import { parseQuery } from '../middlewares/validationMiddleware'
-import { geocodeBoundarySearchSchema } from '../zod_schemas/geocodeBoundarySearchSchema'
-import { boundarySearchParamsSchema } from '../zod_schemas/boundarySearchRequestSchema'
-import { boundsSearchParamsSchema } from '../zod_schemas/boundsSearchRequestSchema'
-import { radiusSearchParamsSchema } from '../zod_schemas/radiusSearchRequestSchema'
+import { parseAndValidateRequest } from '../middlewares/validationMiddleware'
+import { geocodeBoundaryRequestSchema } from '../zod_schemas/geocodeBoundarySearchSchema'
+import { boundarySearchRequestSchema } from '../zod_schemas/boundarySearchRequestSchema'
+import { boundsSearchRequestSchema } from '../zod_schemas/boundsSearchRequestSchema'
+import { radiusSearchRequestSchema } from '../zod_schemas/radiusSearchRequestSchema'
 import {
   geocodeBoundarySearch,
   boundarySearch,
@@ -14,9 +14,21 @@ import {
 export default new Router()
   .get(
     '/geocode',
-    parseQuery(geocodeBoundarySearchSchema),
+    parseAndValidateRequest(geocodeBoundaryRequestSchema),
     geocodeBoundarySearch
   )
-  .get('/boundary/:id', parseQuery(boundarySearchParamsSchema), boundarySearch)
-  .get('/bounds', parseQuery(boundsSearchParamsSchema), boundsSearch)
-  .get('/radius', parseQuery(radiusSearchParamsSchema), radiusSearch)
+  .get(
+    '/boundary/:id',
+    parseAndValidateRequest(boundarySearchRequestSchema),
+    boundarySearch
+  )
+  .get(
+    '/bounds',
+    parseAndValidateRequest(boundsSearchRequestSchema),
+    boundsSearch
+  )
+  .get(
+    '/radius',
+    parseAndValidateRequest(radiusSearchRequestSchema),
+    radiusSearch
+  )

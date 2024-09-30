@@ -4,7 +4,7 @@ import {
   listingFilterParamsSchema
 } from './listingSearchParamsSchema'
 
-export const boundarySearchParamsSchema = boundsParamsSchema
+export const boundarySearchQuerySchema = boundsParamsSchema
   .partial()
   .merge(listingFilterParamsSchema.partial())
   .strict()
@@ -24,4 +24,13 @@ export const boundarySearchParamsSchema = boundsParamsSchema
     }
   )
 
-export type BoundarySearchParams = z.infer<typeof boundarySearchParamsSchema>
+export const boundarySearchRequestSchema = z.object({
+  query: boundarySearchQuerySchema,
+  params: z.object({
+    id: z.string().regex(/^[0-9a-f]{24}$/, 'ID should be a MongoDB ObjectId')
+  })
+})
+
+export type BoundarySearchQueryParams = z.infer<typeof boundarySearchQuerySchema>
+
+export type BoundarySearchRequest = z.infer<typeof boundarySearchRequestSchema>

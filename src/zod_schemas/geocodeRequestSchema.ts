@@ -4,15 +4,15 @@ import { z } from 'zod'
 // (https://github.com/colinhacks/zod/issues/454), so we're separating out the schema and arguments for refine(). Any
 // schemas that want to reuse this will need to extend/merge sharedGeocodeRequestSchema then manually call
 // refine(...geocodeRequestRefinements) and apply the args in order to get the full geocode schema + refinements.
-export const sharedGeocodeRequestSchema = z
+export const sharedGeocodeQuerySchema = z
   .object({
     address: z.string(),
     place_id: z.string()
   })
   .partial()
 
-export const geocodeRequestRefinements: Parameters<
-  (typeof sharedGeocodeRequestSchema)['refine']
+export const geocodeQueryRefinements: Parameters<
+  (typeof sharedGeocodeQuerySchema)['refine']
 > = [
   ({ address, place_id }) => address || place_id,
   {
@@ -21,8 +21,14 @@ export const geocodeRequestRefinements: Parameters<
   }
 ]
 
-export const geocodeRequestSchema = sharedGeocodeRequestSchema
+export const geocodeRequestQuerySchema = sharedGeocodeQuerySchema
   .strict()
-  .refine(...geocodeRequestRefinements)
+  .refine(...geocodeQueryRefinements)
 
-export type GeocodeRequestQuery = z.infer<typeof geocodeRequestSchema>
+export const geocodeRequestSchema = z.object({
+  query: geocodeRequestQuerySchema
+})
+
+export type GeocodeRequestQueryParams = z.infer<typeof geocodeRequestQuerySchema>
+
+export type GeocodeRequest = z.infer<typeof geocodeRequestSchema>

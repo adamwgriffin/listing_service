@@ -4,8 +4,14 @@ import {
   listingFilterParamsSchema
 } from './listingSearchParamsSchema'
 
-export const boundsSearchParamsSchema = boundsParamsSchema
+export const boundsSearchQuerySchema = boundsParamsSchema
   .merge(listingFilterParamsSchema.partial())
   .strict()
 
-export type BoundsSearchParams = z.infer<typeof boundsSearchParamsSchema>
+export const boundsSearchRequestSchema = z.object({
+  query: boundsSearchQuerySchema
+})
+
+export type BoundsSearchQueryParams = z.infer<typeof boundsSearchQuerySchema>
+
+export type BoundsSearchRequest = z.infer<typeof boundsSearchRequestSchema>

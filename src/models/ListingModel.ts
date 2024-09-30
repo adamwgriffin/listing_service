@@ -1,5 +1,5 @@
 import type { MultiPolygon, Point, Polygon } from '@turf/turf'
-import type { GeocodeBoundarySearchParams } from '../zod_schemas/geocodeBoundarySearchSchema'
+import type { GeocodeBoundaryQueryParams } from '../zod_schemas/geocodeBoundarySearchSchema'
 import type {
   ListingResultWithSelectedFields,
   ListingRadiusResultWithSelectedFields,
@@ -101,7 +101,7 @@ export interface IListing {
 export interface IListingModel extends Model<IListing> {
   findWithinBounds<T = ListingResultWithSelectedFields>(
     boundaryGeometry: Polygon | MultiPolygon,
-    query: GeocodeBoundarySearchParams,
+    query: GeocodeBoundaryQueryParams,
     pagination: PaginationParams,
     fields?: ProjectionFields<T>
   ): Promise<ListingSearchAggregateResult<T>>
@@ -110,7 +110,7 @@ export interface IListingModel extends Model<IListing> {
     lat: number,
     lng: number,
     maxDistance: number,
-    query: GeocodeBoundarySearchParams,
+    query: GeocodeBoundaryQueryParams,
     pagination: PaginationParams,
     fields?: ProjectionFields<T>
   ): Promise<ListingSearchAggregateResult<T>>
@@ -336,7 +336,7 @@ ListingSchema.statics.findWithinBounds = async function <
 >(
   this: IListingModel,
   boundaryGeometry: Polygon | MultiPolygon,
-  query: GeocodeBoundarySearchParams,
+  query: GeocodeBoundaryQueryParams,
   { page_size, page_index }: PaginationParams,
   fields: ProjectionFields<T> = ListingResultProjectionFields
 ): Promise<ListingSearchAggregateResult<T>> {
@@ -385,7 +385,7 @@ ListingSchema.statics.findWithinRadius = async function <
   lat: number,
   lng: number,
   maxDistance: number,
-  query: GeocodeBoundarySearchParams,
+  query: GeocodeBoundaryQueryParams,
   { page_size, page_index }: PaginationParams,
   fields: ProjectionFields<T> = ListingRadiusResultProjectionFields
 ): Promise<ListingSearchAggregateResult<T>> {

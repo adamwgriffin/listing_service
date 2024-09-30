@@ -1,8 +1,7 @@
-import type { Context } from 'koa'
-import type { GeocodeBoundarySearchParams } from '../zod_schemas/geocodeBoundarySearchSchema'
-import type { BoundarySearchParams } from '../zod_schemas/boundarySearchRequestSchema'
-import type { BoundsSearchParams } from '../zod_schemas/boundsSearchRequestSchema'
-import type { RadiusSearchParams } from '../zod_schemas/radiusSearchRequestSchema'
+import type { GeocodeBoundaryRequest } from '../zod_schemas/geocodeBoundarySearchSchema'
+import type { BoundarySearchRequest } from '../zod_schemas/boundarySearchRequestSchema'
+import type { BoundsSearchRequest } from '../zod_schemas/boundsSearchRequestSchema'
+import type { RadiusSearchRequest } from '../zod_schemas/radiusSearchRequestSchema'
 import type {
   GeocodeBoundarySearchResponse,
   ListingRadiusResultWithSelectedFields,
@@ -24,33 +23,27 @@ import {
 } from '../lib/listing_search_helpers'
 import { getPaginationParams } from '../lib'
 import listingSearchView from '../views/listingSearchView'
+import { ControllerContext } from '../types'
 
-export type GeocodeBoundaryContext = {
-  query: GeocodeBoundarySearchParams
-  status: number
-  body: GeocodeBoundarySearchResponse
-} & Context
+export type GeocodeBoundaryContext = ControllerContext<
+  GeocodeBoundaryRequest,
+  GeocodeBoundarySearchResponse
+>
 
-export type BoundarySearchContext = {
-  params: {
-    id: string
-  }
-  query: BoundarySearchParams
-  status: number
-  body: ListingSearchResponse
-} & Context
+export type BoundarySearchContext = ControllerContext<
+  BoundarySearchRequest,
+  ListingSearchResponse
+>
 
-export type BoundsSearchContext = {
-  query: BoundsSearchParams
-  status: number
-  body: ListingSearchResponse
-} & Context
+export type BoundsSearchContext = ControllerContext<
+  BoundsSearchRequest,
+  ListingSearchResponse
+>
 
-export type RadiusSearchContext = {
-  query: RadiusSearchParams
-  status: number
-  body: ListingSearchResponse<ListingRadiusResultWithSelectedFields>
-} & Context
+export type RadiusSearchContext = ControllerContext<
+  RadiusSearchRequest,
+  ListingSearchResponse<ListingRadiusResultWithSelectedFields>
+>
 
 export const geocodeBoundarySearch = async (ctx: GeocodeBoundaryContext) => {
   // If we have a place_id then we may not need to make an additional request to the geocode service
