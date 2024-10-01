@@ -1,10 +1,10 @@
 import type { Context } from 'koa'
 import type { Middleware } from '@koa/router'
 import type { ZodIssue, ZodTypeAny, SafeParseSuccess } from 'zod'
-import type { ValidationError } from '../types/listing_search_response_types'
+import type { ServiceError } from '../types/listing_search_response_types'
 
 const formatError = (e: ZodIssue) => {
-  const err: ValidationError = {
+  const err: ServiceError = {
     message: e.message
   }
   if (e.path.length) {

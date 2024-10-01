@@ -50,11 +50,11 @@ export type GeocodeBoundarySearchResponse = Partial<ListingSearchResponse> & {
   listingDetail?: ListingDetailResultWithSelectedFields
 }
 
-export type ValidationError = {
+export type ServiceError = {
   message: string
   field?: string
 }
 
 export type ErrorResponse = {
-  errors: ValidationError[]
+  errors: ServiceError[]
 }
