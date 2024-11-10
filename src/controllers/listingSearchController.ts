@@ -65,8 +65,10 @@ export const geocodeBoundarySearch = async (ctx: GeocodeBoundaryContext) => {
 }
 
 export const boundarySearch = async (ctx: BoundarySearchContext) => {
+  console.log("boundarySearch")
   const { id } = ctx.params
   const boundary = await Boundary.findById(id)
+  console.log("boundary:", boundary)
 
   ctx.assert(boundary, 404, `No boundary found for boundary id ${id}.`)
 
