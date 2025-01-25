@@ -7,7 +7,8 @@ import type {
 } from '../types/listing_search_response_types'
 import type { ListingAddress } from '../zod_schemas/listingSchema'
 import type { PaginationParams } from '../zod_schemas/listingSearchParamsSchema'
-import { Model, ProjectionFields, Schema, model } from 'mongoose'
+import mongoose, { Model, ProjectionFields, Schema, model } from 'mongoose'
+import slugify from 'slugify'
 import PointSchema from './PointSchema'
 import {
   ListingResultProjectionFields,
@@ -44,9 +45,7 @@ export type PropertyType = (typeof PropertyTypes)[number]
 export type PropertyStatus = (typeof AllPropertyStatuses)[number]
 
 export interface PhotoGalleryImage {
-  galleryUrl: string // 1920x1080 (used for slideshow image)
-  fullUrl: string // 853x480(used for listing detail image)
-  smallUrl: string // 533x300 (used for listing card image)
+  url: string
   caption?: string
 }
 
@@ -67,12 +66,24 @@ export interface OpenHouse {
   comments?: string
 }
 
-export interface IListing {
+export interface ListingAmenities {
+  waterfront?: boolean
+  view?: boolean
+  fireplace?: boolean
+  basement?: boolean
+  garage?: boolean
+  newConstruction?: boolean
+  pool?: boolean
+  airConditioning?: boolean
+}
+
+export interface IListing extends ListingAmenities {
   listPrice: number
   soldPrice?: number
   listedDate: Date
   soldDate?: Date
   address: ListingAddress
+  slug: string
   geometry: Point
   placeId?: string
   neighborhood: string
@@ -85,14 +96,6 @@ export interface IListing {
   lotSize: number
   yearBuilt: number
   rental?: boolean
-  waterfront?: boolean
-  view?: boolean
-  fireplace?: boolean
-  basement?: boolean
-  garage?: boolean
-  newConstruction?: boolean
-  pool?: boolean
-  airConditioning?: boolean
   photoGallery?: PhotoGalleryImage[]
   propertyDetails?: PropertDetailsSection[]
   openHouses?: OpenHouse[]
@@ -171,6 +174,11 @@ const ListingSchema = new Schema<IListing, IListingModel>({
       minlength: 1
     }
   },
+  slug: {
+    type: String,
+    unique: true,
+    index: true
+  },
   geometry: {
     type: PointSchema,
     index: '2dsphere',
@@ -210,18 +218,15 @@ const ListingSchema = new Schema<IListing, IListingModel>({
   },
   sqft: {
     type: Number,
-    required: true,
-    index: true
+    required: true
   },
   lotSize: {
     type: Number,
-    required: true,
-    index: true
+    required: true
   },
   yearBuilt: {
     type: Number,
-    required: true,
-    index: true
+    required: true
   },
   rental: {
     type: Boolean,
@@ -230,50 +235,40 @@ const ListingSchema = new Schema<IListing, IListingModel>({
   },
   waterfront: {
     type: Boolean,
-    default: false,
-    index: true
+    default: false
   },
   view: {
     type: Boolean,
-    default: false,
-    index: true
+    default: false
   },
   fireplace: {
     type: Boolean,
-    default: false,
-    index: true
+    default: false
   },
   basement: {
     type: Boolean,
-    default: false,
-    index: true
+    default: false
   },
   garage: {
     type: Boolean,
-    default: false,
-    index: true
+    default: false
   },
   newConstruction: {
     type: Boolean,
-    default: false,
-    index: true
+    default: false
   },
   pool: {
     type: Boolean,
-    default: false,
-    index: true
+    default: false
   },
   airConditioning: {
     type: Boolean,
-    default: false,
-    index: true
+    default: false
   },
   photoGallery: {
     type: [
       {
-        galleryUrl: { type: String, required: true },
-        fullUrl: { type: String, required: true },
-        smallUrl: { type: String, required: true },
+        url: { type: String, required: true },
         caption: { type: String }
       }
     ],
@@ -294,8 +289,7 @@ const ListingSchema = new Schema<IListing, IListingModel>({
       }
     ],
     required: false,
-    default: [],
-    index: true
+    default: []
   },
   openHouses: {
     type: [
@@ -308,6 +302,21 @@ const ListingSchema = new Schema<IListing, IListingModel>({
     default: [],
     required: false
   }
+})
+
+ListingSchema.pre('save', async function (next) {
+  if (this.isModified('address') || !this.slug) {
+    const address = Object.values(this.address).filter(Boolean).join(' ')
+    const baseSlug = slugify(address, { lower: true, strict: true })
+    let slug = baseSlug
+    let count = 0
+    while (await mongoose.models.Listing.exists({ slug })) {
+      count += 1
+      slug = `${baseSlug}-${count}`
+    }
+    this.slug = slug
+  }
+  next()
 })
 
 /**
@@ -421,9 +430,5 @@ ListingSchema.statics.findWithinRadius = async function <
     }
   ])
 }
-
-// looks like this is how we need to do the index if we plan on querying the fields inside the OpenHouses array.
-ListingSchema.index({ 'openHouses.start': 1 })
-ListingSchema.index({ 'openHouses.end': 1 })
 
 export default model<IListing, IListingModel>('Listing', ListingSchema)

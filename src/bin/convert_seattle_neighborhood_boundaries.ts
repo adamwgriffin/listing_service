@@ -19,7 +19,6 @@ type PolyOrMultiPolyCollection =
 const DefaultNeighborhoodFilePath = path.join(
   __dirname,
   '..',
-  '..',
   'data',
   'boundary_data',
   'seattle',
@@ -30,7 +29,6 @@ const DefaultNeighborhoodFilePath = path.join(
 const DefaultDistrictFilePath = path.join(
   __dirname,
   '..',
-  '..',
   'data',
   'boundary_data',
   'seattle',
@@ -40,7 +38,6 @@ const DefaultDistrictFilePath = path.join(
 
 const DefaultOutputPath = path.join(
   __dirname,
-  '..',
   '..',
   'data',
   'boundary_data',

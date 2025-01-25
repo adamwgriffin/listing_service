@@ -8,7 +8,6 @@ import Boundary from '../models/BoundaryModel'
 const DefaultFilePath = path.join(
   __dirname,
   '..',
-  '..',
   'data',
   'seed_data',
   'development',
@@ -47,6 +46,10 @@ const main = async (): Promise<void> => {
     ) as IBoundary[]
     const boundaries = await Boundary.create(boundaryData)
     console.log(`${boundaries.length} boundaries created.`)
+    // If we don't call this it will only create the _id and one other index in MongoDB Atlas. No idea why as it works
+    // fine with a local instance of MongoDB.
+    await Boundary.syncIndexes()
+    console.log('Finished syncing all indexes.')
     await disconnectDatabase()
     process.exit(0)
   } catch (err) {
