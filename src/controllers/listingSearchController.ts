@@ -4,6 +4,7 @@ import type { BoundsSearchRequest } from '../zod_schemas/boundsSearchRequestSche
 import type { RadiusSearchRequest } from '../zod_schemas/radiusSearchRequestSchema'
 import type {
   GeocodeBoundarySearchResponse,
+  BoundarySearchResponse,
   ListingRadiusResultWithSelectedFields,
   ListingSearchResponse
 } from '../types/listing_search_response_types'
@@ -24,6 +25,7 @@ import {
 import { getPaginationParams } from '../lib'
 import listingSearchView from '../views/listingSearchView'
 import { ControllerContext } from '../types'
+import listingSearchBoundaryView from '../views/listingSearchBoundaryView'
 
 export type GeocodeBoundaryContext = ControllerContext<
   GeocodeBoundaryRequest,
@@ -32,7 +34,7 @@ export type GeocodeBoundaryContext = ControllerContext<
 
 export type BoundarySearchContext = ControllerContext<
   BoundarySearchRequest,
-  ListingSearchResponse
+  BoundarySearchResponse
 >
 
 export type BoundsSearchContext = ControllerContext<
@@ -65,10 +67,8 @@ export const geocodeBoundarySearch = async (ctx: GeocodeBoundaryContext) => {
 }
 
 export const boundarySearch = async (ctx: BoundarySearchContext) => {
-  console.log("boundarySearch")
   const { id } = ctx.params
   const boundary = await Boundary.findById(id)
-  console.log("boundary:", boundary)
 
   ctx.assert(boundary, 404, `No boundary found for boundary id ${id}.`)
 
@@ -80,7 +80,7 @@ export const boundarySearch = async (ctx: BoundarySearchContext) => {
     pagination
   )
 
-  ctx.body = listingSearchView(results, pagination)
+  ctx.body = listingSearchBoundaryView(boundary, results, pagination)
 }
 
 export const boundsSearch = async (ctx: BoundsSearchContext) => {
