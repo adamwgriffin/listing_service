@@ -1,17 +1,24 @@
 import { z } from 'zod'
-import {
-  sharedGeocodeQuerySchema,
-  geocodeQueryRefinements
-} from './geocodeRequestSchema'
 import { listingFilterParamsSchema } from './listingSearchParamsSchema'
 
-export const geocodeBoundaryQuerySchema = sharedGeocodeQuerySchema
+export const geocodeBoundaryQuerySchema = z
+  .object({
+    address: z.string(),
+    place_id: z.string()
+  })
+  .partial()
   .extend({
     address_types: z.string().optional()
   })
   .merge(listingFilterParamsSchema.partial())
   .strict()
-  .refine(...geocodeQueryRefinements)
+  .refine(
+    ({ address, place_id }) => address || place_id,
+    {
+      path: ['address/place_id'],
+      message: 'Either "address" or "place_id" are required'
+    }
+  )
 
 export const geocodeBoundaryRequestSchema = z.object({
   query: geocodeBoundaryQuerySchema

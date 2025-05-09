@@ -9,13 +9,3 @@ export const ping = async (ctx: Context) => {
     console.error(error)
   }
 }
-
-export const check = async (ctx: Context) => {
-  try {
-    ctx.body = {
-      message: 'Check route'
-    }
-  } catch (error) {
-    console.error(error)
-  }
-}

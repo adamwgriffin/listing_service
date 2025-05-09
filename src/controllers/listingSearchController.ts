@@ -1,11 +1,9 @@
 import type { GeocodeBoundaryRequest } from '../zod_schemas/geocodeBoundarySearchSchema'
 import type { BoundarySearchRequest } from '../zod_schemas/boundarySearchRequestSchema'
 import type { BoundsSearchRequest } from '../zod_schemas/boundsSearchRequestSchema'
-import type { RadiusSearchRequest } from '../zod_schemas/radiusSearchRequestSchema'
 import type {
   GeocodeBoundarySearchResponse,
   BoundarySearchResponse,
-  ListingRadiusResultWithSelectedFields,
   ListingSearchResponse
 } from '../types/listing_search_response_types'
 import Listing from '../models/ListingModel'
@@ -40,11 +38,6 @@ export type BoundarySearchContext = ControllerContext<
 export type BoundsSearchContext = ControllerContext<
   BoundsSearchRequest,
   ListingSearchResponse
->
-
-export type RadiusSearchContext = ControllerContext<
-  RadiusSearchRequest,
-  ListingSearchResponse<ListingRadiusResultWithSelectedFields>
 >
 
 export const geocodeBoundarySearch = async (ctx: GeocodeBoundaryContext) => {
@@ -98,21 +91,4 @@ export const boundsSearch = async (ctx: BoundsSearchContext) => {
     pagination
   )
   ctx.body = listingSearchView(results, pagination)
-}
-
-export const radiusSearch = async (ctx: RadiusSearchContext) => {
-  const { lat, lng, max_distance } = ctx.query
-  const pagination = getPaginationParams(ctx.query)
-  const results =
-    await Listing.findWithinRadius<ListingRadiusResultWithSelectedFields>(
-      lat,
-      lng,
-      max_distance,
-      ctx.query,
-      pagination
-    )
-  ctx.body = listingSearchView<ListingRadiusResultWithSelectedFields>(
-    results,
-    pagination
-  )
 }

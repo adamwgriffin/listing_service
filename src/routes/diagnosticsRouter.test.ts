@@ -9,12 +9,4 @@ describe('diagnosticsController', () => {
       expect(response.body).toEqual({ message: 'pong' })
     })
   })
-
-  describe('GET /check', () => {
-    it('should return status 200 and message "Check route"', async () => {
-      const response = await request(app.callback()).get('/check')
-      expect(response.status).toBe(200)
-      expect(response.body).toEqual({ message: 'Check route' })
-    })
-  })
 })
