@@ -19,9 +19,6 @@ export type ListingResultWithSelectedFields = Pick<
 > &
   AdditionalListingResultFields
 
-export type ListingRadiusResultWithSelectedFields =
-  ListingResultWithSelectedFields & { distance: number }
-
 export type ListingDetailResultWithSelectedFields = Pick<
   IListing,
   Exclude<

@@ -2,7 +2,6 @@ import type { MultiPolygon, Point, Polygon } from '@turf/turf'
 import type { GeocodeBoundaryQueryParams } from '../zod_schemas/geocodeBoundarySearchSchema'
 import type {
   ListingResultWithSelectedFields,
-  ListingRadiusResultWithSelectedFields,
   ListingDetailResultWithSelectedFields
 } from '../types/listing_search_response_types'
 import type { ListingAddress } from '../zod_schemas/listingSchema'
@@ -12,12 +11,10 @@ import slugify from 'slugify'
 import PointSchema from './PointSchema'
 import {
   ListingResultProjectionFields,
-  ListingRadiusResultProjectionFields,
   ListingDetailResultProjectionFields
 } from '../config'
 import {
   buildFilterQueries,
-  buildfilterQueriesObject,
   listingSortQuery
 } from '../lib/listing_search_helpers'
 
@@ -104,15 +101,6 @@ export interface IListing extends ListingAmenities {
 export interface IListingModel extends Model<IListing> {
   findWithinBounds<T = ListingResultWithSelectedFields>(
     boundaryGeometry: Polygon | MultiPolygon,
-    query: GeocodeBoundaryQueryParams,
-    pagination: PaginationParams,
-    fields?: ProjectionFields<T>
-  ): Promise<ListingSearchAggregateResult<T>>
-
-  findWithinRadius<T = ListingRadiusResultWithSelectedFields>(
-    lat: number,
-    lng: number,
-    maxDistance: number,
     query: GeocodeBoundaryQueryParams,
     pagination: PaginationParams,
     fields?: ProjectionFields<T>
@@ -381,50 +369,6 @@ ListingSchema.statics.findWithinBounds = async function <
           { $skip: page_index * page_size },
           { $limit: page_size },
           { $project: fields }
-        ]
-      }
-    }
-  ])
-}
-
-ListingSchema.statics.findWithinRadius = async function <
-  T = ListingRadiusResultWithSelectedFields
->(
-  this: IListingModel,
-  lat: number,
-  lng: number,
-  maxDistance: number,
-  query: GeocodeBoundaryQueryParams,
-  { page_size, page_index }: PaginationParams,
-  fields: ProjectionFields<T> = ListingRadiusResultProjectionFields
-): Promise<ListingSearchAggregateResult<T>> {
-  return this.aggregate([
-    // $geoNear doesn't go inside of $match like the other queries because it is aggregation pipeline stage, not an
-    // aggregation operator. also, you can only use $geoNear as the first stage of a pipeline.
-    {
-      $geoNear: {
-        near: {
-          type: 'Point',
-          coordinates: [lng, lat]
-        },
-        maxDistance: maxDistance,
-        spherical: true,
-        distanceField: 'distance'
-      }
-    },
-    {
-      $match: buildfilterQueriesObject(query)
-    },
-    { $sort: listingSortQuery(query) },
-    {
-      $facet: {
-        metadata: [{ $count: 'numberAvailable' }],
-        listings: [
-          { $skip: page_index * page_size },
-          { $limit: page_size },
-          {
-            $project: fields
-          }
         ]
       }
     }
