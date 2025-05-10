@@ -8,9 +8,8 @@ const startServer = async (): Promise<void> => {
     app.on('error', (err, ctx) => {
       console.error('Server error', err, ctx)
     })
-    const port = env.APP_PORT || 3001
-    app.listen(port, () => {
-      console.log(`Server listening on port ${port} 🚀`)
+    app.listen(env.APP_PORT, () => {
+      console.log(`Server listening on port ${env.APP_PORT} 🚀`)
     })
   } catch (err) {
     console.log(err)
