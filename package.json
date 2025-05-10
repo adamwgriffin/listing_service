@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "A service for searching real estate listings",
   "main": "dist/server.js",
-  "author": "Adam Griffin <adam@adamgriffin.io>",
+  "author": "Adam Griffin",
   "private": true,
   "scripts": {
     "start": "node dist/server.js",
