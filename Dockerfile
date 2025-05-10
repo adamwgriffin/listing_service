@@ -8,4 +8,4 @@ RUN yarn install --frozen-lockfile --production=false
 
 COPY . .
 
-CMD ["yarn", "start"]
+CMD ["yarn", "dev"]
