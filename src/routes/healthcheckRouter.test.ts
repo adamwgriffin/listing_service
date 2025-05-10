@@ -1,7 +1,7 @@
 import request from 'supertest'
 import app from '../app'
 
-describe('diagnosticsController', () => {
+describe('healthcheckController', () => {
   describe('GET /ping', () => {
     it('should return status 200 and message "pong"', async () => {
       const response = await request(app.callback()).get('/ping')
