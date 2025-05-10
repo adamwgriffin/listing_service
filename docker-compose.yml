@@ -19,7 +19,6 @@ services:
       - DB_HOST=mongodb
     volumes:
       - './src:/app/src'
-      - './data:/app/data'
     depends_on:
       - mongodb
     stdin_open: true
