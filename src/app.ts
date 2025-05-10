@@ -12,8 +12,4 @@ app.use(bodyParser())
 app.use(router.routes())
 app.use(router.allowedMethods())
 
-app.on('error', (err, ctx) => {
-  console.error('Server error', err, ctx)
-})
-
 export default app
