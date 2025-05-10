@@ -1,8 +1,8 @@
 import type { HydratedDocument } from 'mongoose'
-import type { ListingData } from '../lib/random_data'
+import type { ListingData } from '../../lib/random_data'
 import request from 'supertest'
-import app from '../app'
-import Listing, { IListing } from '../models/ListingModel'
+import app from '../../app'
+import Listing, { IListing } from '../../models/ListingModel'
 
 const listingData: ListingData = {
   listPrice: 700000,

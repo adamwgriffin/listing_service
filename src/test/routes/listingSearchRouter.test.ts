@@ -1,6 +1,6 @@
 import request from 'supertest'
-import app from '../app'
-import Boundary from '../models/BoundaryModel'
+import app from '../../app'
+import Boundary from '../../models/BoundaryModel'
 
 describe('listingSearchRouter', () => {
   describe('GET /listing/search/boundary/:id', () => {
