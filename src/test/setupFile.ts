@@ -1,15 +1,23 @@
 import mongoose from 'mongoose'
-import { MongoDbOptions } from '../config'
+import path from 'path'
+import { createBoundariesFromFile } from '../lib/seed_data'
+import { MongoDbUrl } from '../config'
+
+const BoundaryFilePath = path.join(
+  __dirname,
+  '..',
+  'data',
+  'seed_data',
+  'test',
+  'test_boundaries.json'
+)
 
 beforeAll(async () => {
-  // MONGO_URI is set in the globalSetup file
-  if (typeof process.env.MONGO_URI !== 'string') {
-    console.error('MONGO_URI is not set')
-    process.exit(1)
-  }
-  await mongoose.connect(process.env.MONGO_URI, MongoDbOptions)
-})
+  await mongoose.connect(MongoDbUrl)
+  await createBoundariesFromFile(BoundaryFilePath)
+});
 
 afterAll(async () => {
-  await mongoose.disconnect()
-})
+  await mongoose.connection.dropDatabase()
+  await mongoose.connection.close()
+});
