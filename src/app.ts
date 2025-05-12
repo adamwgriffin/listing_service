@@ -4,9 +4,10 @@ import router from './routes/router'
 import { errorMiddleware } from './middlewares/error_middleware'
 
 const app = new Koa()
-app.use(errorMiddleware)
-app.use(bodyParser())
-app.use(router.routes())
-app.use(router.allowedMethods())
+app
+  .use(errorMiddleware)
+  .use(bodyParser())
+  .use(router.routes())
+  .use(router.allowedMethods())
 
 export default app
