@@ -63,8 +63,9 @@ export const boundsParamsToGeoJSONPolygon = (bounds: BoundsParams): Polygon => {
 }
 
 /**
- * Remove any parts of a boundary that are outside of a set of bounds. These bounds typically represent the viewport of
- * a map. The purpose of doing this is adjust a geospatial boundary in order to avoid returning listings that are
+ * Remove any parts of a boundary that are outside of a set of bounds. These
+ * bounds typically represent the viewport of a map. The purpose of doing this
+ * is adjust a geospatial boundary in order to avoid returning listings that are
  * outside the map viewport.
  */
 export const removePartsOfBoundaryOutsideOfBounds = (
@@ -76,8 +77,9 @@ export const removePartsOfBoundaryOutsideOfBounds = (
 }
 
 /**
- * If bounds params are present, modify the boundary so that any parts that are outside of the bounds will be
- * removed. This way the search will only return results that are within both the boundary + the bounds.
+ * If bounds params are present, modify the boundary so that any parts that are
+ * outside of the bounds will be removed. This way the search will only return
+ * results that are within both the boundary + the bounds.
  */
 export const getBoundaryGeometryWithBounds = (
   boundary: IBoundary,
@@ -139,8 +141,8 @@ export const openHouseQuery = (
  * Convert listing search filter params into an array of MongoDB queries for each filter.
  *
  * @example
- * buildFilterQueries({ "price_min": 100000, "waterfornt": "true" })
- * // Returns [{ "listPrice": { $gte: 100000} }, { "waterfornt": true }]
+ * buildFilterQueries({ "price_min": 100000, "waterfront": "true" })
+ * // Returns [{ "listPrice": { $gte: 100000} }, { "waterfront": true }]
  */
 export const buildFilterQueries = (
   queryParams: GeocodeBoundaryQueryParams
@@ -260,8 +262,8 @@ export const buildFilterQueries = (
  * only the query is one object rather than an array of objects.
  *
  * @example
- * buildfilterQueriesObject({ "price_min": 100000, "waterfornt": "true" })
- * // Returns { "listPrice": { $gte: 100000} }, "waterfornt": true }
+ * buildfilterQueriesObject({ "price_min": 100000, "waterfront": "true" })
+ * // Returns { "listPrice": { $gte: 100000} }, "waterfront": true }
  */
 export const buildfilterQueriesObject = (
   queryParams: GeocodeBoundaryQueryParams
@@ -299,8 +301,8 @@ export const getResponseForPlaceId = async (
 ) => {
   const { place_id, address_types } = queryParams
   if (!place_id || !address_types) return
-  // If it's an address we will need to geocode so we can't just use place_id. Logic in the controller handles that for
-  // the sake of effeciency
+  // If it's an address we will need to geocode so we can't just use place_id.
+  // Logic in the controller handles that for the sake of effeciency
   if (isListingAddressType(getAddressTypesFromParams(address_types))) return
 
   const pagination = getPaginationParams(queryParams)
