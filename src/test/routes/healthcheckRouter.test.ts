@@ -1,5 +1,7 @@
 import request from 'supertest'
-import app from '../../app'
+import { buildApp } from '../../app'
+
+const app = buildApp()
 
 describe('healthcheckController', () => {
   describe('GET /ping', () => {

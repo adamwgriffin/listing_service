@@ -1,10 +1,9 @@
 import request from 'supertest'
-import app from '../../app'
+import { buildApp } from '../../app'
+import type { ListingData } from '../../lib/random_data'
 import Boundary from '../../models/BoundaryModel'
 import Listing from '../../models/ListingModel'
-import type { ListingData } from '../../lib/random_data'
 import type { ListingSearchResponse } from '../../types/listing_search_response_types'
-import Repositories from '../../respositories'
 
 const ViewportBoundsFremont = {
   bounds_north: 47.69011227856514,
@@ -53,7 +52,7 @@ const outsideBoundsListingData: ListingData = {
   neighborhood: 'Wallingford'
 }
 
-app.context.repositories = Repositories
+const app = buildApp()
 
 describe('listingSearchRouter', () => {
   describe('GET /listing/search/boundary/:id', () => {
