@@ -1,7 +1,4 @@
-import {
-  AddressType,
-  GeocodeResult
-} from '@googlemaps/google-maps-services-js'
+import { AddressType, GeocodeResult } from '@googlemaps/google-maps-services-js'
 import type { MultiPolygon, Polygon } from '@turf/turf'
 import { bboxPolygon, intersect } from '@turf/turf'
 import { type Context } from 'koa'
@@ -17,9 +14,8 @@ import { listingAddressSchema } from '../zod_schemas/listingSchema'
 import type { BoundsParams } from '../zod_schemas/listingSearchParamsSchema'
 import {
   addressComponentsToListingAddress,
-  getPlaceDetails,
   isListingAddressType
-} from './geocoderService'
+} from '../lib/geocode'
 
 /**
  * Converts a set of north/east/south/west coordinates into a rectangular polygon
@@ -82,7 +78,9 @@ export const getResponseForPlaceId = async (ctx: GeocodeBoundaryContext) => {
   const pagination = getPaginationParams(ctx.query)
   const boundary = await Boundary.findOne({ placeId: place_id })
   if (!boundary) {
-    const { geometry } = (await getPlaceDetails({ place_id })).data.result
+    const { geometry } = (
+      await ctx.geocodeService.getPlaceDetails({ place_id })
+    ).data.result
     if (!geometry) return
     return listingSearchGeocodeNoBoundaryView(geometry.viewport)
   }

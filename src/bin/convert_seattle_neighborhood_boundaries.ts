@@ -8,13 +8,15 @@ import type { IBoundary } from '../models/BoundaryModel'
 import fs from 'fs'
 import path from 'path'
 import yargs from 'yargs'
-import { geocode } from '../services/geocoderService'
+import { buildGeocodeService } from '../services/geocoderService'
 import { sleep } from '../lib'
 
 type PolyOrMultiPolyFeature = Feature<Polygon> | Feature<MultiPolygon>
 type PolyOrMultiPolyCollection =
   | FeatureCollection<Polygon>
   | FeatureCollection<MultiPolygon>
+
+const geocodeService = buildGeocodeService()
 
 const DefaultNeighborhoodFilePath = path.join(
   __dirname,
@@ -97,12 +99,15 @@ const processArgv = async () => {
   return argv
 }
 
-// The same name is used for some features in the neighborhood file as is used in the "district" file. In general, it
-// seems that what the city refers to as a "district" is actually what most people would consider to be the neighborhood
-// boundary, so we are removing the neighborhood bounadry in favor of using the so called "district" version in the
-// other file. The S_HOOD attribute being the same as L_HOOD seems to always indicate that this is a duplicate of a
-// district bounadry. The district file only uses L_HOOD for it's names, so I guess we can surmise that L_HOOD is the
-// same as district for all intents and purposes.
+// The same name is used for some features in the neighborhood file as is used
+// in the "district" file. In general, it seems that what the city refers to as
+// a "district" is actually what most people would consider to be the
+// neighborhood boundary, so we are removing the neighborhood bounadry in favor
+// of using the so called "district" version in the other file. The S_HOOD
+// attribute being the same as L_HOOD seems to always indicate that this is a
+// duplicate of a district bounadry. The district file only uses L_HOOD for it's
+// names, so I guess we can surmise that L_HOOD is the same as district for all
+// intents and purposes.
 const removeDuplicateNeighborhoodNames = (
   neighborhoodFeatures: PolyOrMultiPolyFeature[]
 ) => {
@@ -115,8 +120,8 @@ const fixNeighborhoodProperties = (
   neighborhoodFeatures: PolyOrMultiPolyFeature[]
 ) => {
   for (const feature of neighborhoodFeatures) {
-    // This boundary seems to actually be for a neighborhood called "Adams" that I've never heard of but which appears
-    // on the map inside of Ballard
+    // This boundary seems to actually be for a neighborhood called "Adams" that
+    // I've never heard of but which appears on the map inside of Ballard
     if (
       feature?.properties?.S_HOOD === 'Ballard' &&
       feature?.properties?.S_HOOD_ALT_NAMES === 'Adams'
@@ -148,9 +153,10 @@ const getName = (feature: PolyOrMultiPolyFeature) => {
 }
 
 const getPlaceId = async (name: string) =>
-  (await geocode({ address: name })).data.results[0].place_id
+  (await geocodeService.geocode({ address: name })).data.results[0].place_id
 
-// We want all our own boundaries to be MultiPolygon for the sake of simplicity, so adding an extra [] for this
+// We want all our own boundaries to be MultiPolygon for the sake of simplicity,
+// so adding an extra [] for this
 const getCoordinates = (
   feature: PolyOrMultiPolyFeature
 ): MultiPolygon['coordinates'] =>
@@ -201,15 +207,17 @@ const main = async () => {
   const argv = await processArgv()
 
   try {
-    const neighborhoodCollection: PolyOrMultiPolyCollection =
-      JSON.parse(fs.readFileSync(argv.neighborhoodFile, 'utf-8'))
+    const neighborhoodCollection: PolyOrMultiPolyCollection = JSON.parse(
+      fs.readFileSync(argv.neighborhoodFile, 'utf-8')
+    )
 
     console.log('Cleaning up neighborhood file')
     const neighborhoodFeatures = cleanUpNeighborhoodFile(neighborhoodCollection)
 
     console.log('Converting FeatureCollection files to boundaries...')
-    const districtCollection: PolyOrMultiPolyCollection =
-      JSON.parse(fs.readFileSync(argv.districtFile, 'utf-8'))
+    const districtCollection: PolyOrMultiPolyCollection = JSON.parse(
+      fs.readFileSync(argv.districtFile, 'utf-8')
+    )
     const boundaries = await createBoundariesInBatches(
       [...neighborhoodFeatures, ...districtCollection.features],
       argv.sleep,

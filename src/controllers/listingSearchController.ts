@@ -1,9 +1,5 @@
 import { getPaginationParams } from '../lib'
-import {
-  geocode,
-  getGeocodeParamsFromQuery,
-  isListingAddressType
-} from '../services/geocoderService'
+import { getGeocodeParamsFromQuery, isListingAddressType } from '../lib/geocode'
 import {
   boundsParamsToGeoJSONPolygon,
   getBoundaryGeometryWithBounds,
@@ -46,8 +42,9 @@ export const geocodeBoundarySearch = async (ctx: GeocodeBoundaryContext) => {
     return
   }
 
-  const geocodeResult = (await geocode(getGeocodeParamsFromQuery(ctx.query)))
-    .data.results[0]
+  const geocodeResult = (
+    await ctx.geocodeService.geocode(getGeocodeParamsFromQuery(ctx.query))
+  ).data.results[0]
 
   if (isListingAddressType(geocodeResult.types)) {
     ctx.body = await getResponseForListingAddress(geocodeResult, ctx)
