@@ -1,14 +1,14 @@
-import type { ListingSearchAggregateResult } from '../models/ListingModel'
-import type { PaginationParams } from '../zod_schemas/listingSearchParamsSchema'
+import { type FindWithinBoundsResult } from '../respositories/listingRepository'
 import type {
   ListingResultWithSelectedFields,
   ListingSearchResponse
 } from '../types/listing_search_response_types'
+import type { PaginationParams } from '../zod_schemas/listingSearchParamsSchema'
 
-export default <T = ListingResultWithSelectedFields>(
-  results: ListingSearchAggregateResult<T>,
+export default (
+  results: FindWithinBoundsResult[],
   pagination: PaginationParams
-): ListingSearchResponse<T> => {
+): ListingSearchResponse<ListingResultWithSelectedFields> => {
   const { listings, metadata } = results[0]
   const numberAvailable = metadata[0]?.numberAvailable || 0
   return {

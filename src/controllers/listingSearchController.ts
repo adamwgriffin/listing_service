@@ -1,13 +1,4 @@
-import type { GeocodeBoundaryRequest } from '../zod_schemas/geocodeBoundarySearchSchema'
-import type { BoundarySearchRequest } from '../zod_schemas/boundarySearchRequestSchema'
-import type { BoundsSearchRequest } from '../zod_schemas/boundsSearchRequestSchema'
-import type {
-  GeocodeBoundarySearchResponse,
-  BoundarySearchResponse,
-  ListingSearchResponse
-} from '../types/listing_search_response_types'
-import Listing from '../models/ListingModel'
-import Boundary from '../models/BoundaryModel'
+import { getPaginationParams } from '../lib'
 import {
   geocode,
   getGeocodeParamsFromQuery,
@@ -19,11 +10,18 @@ import {
   getResponseForBoundary,
   getResponseForListingAddress,
   getResponseForPlaceId
-} from '../lib/listing_search_helpers'
-import { getPaginationParams } from '../lib'
-import listingSearchView from '../views/listingSearchView'
+} from '../services/listingSearchService'
 import { ControllerContext } from '../types'
+import type {
+  BoundarySearchResponse,
+  GeocodeBoundarySearchResponse,
+  ListingSearchResponse
+} from '../types/listing_search_response_types'
 import listingSearchBoundaryView from '../views/listingSearchBoundaryView'
+import listingSearchView from '../views/listingSearchView'
+import type { BoundarySearchRequest } from '../zod_schemas/boundarySearchRequestSchema'
+import type { BoundsSearchRequest } from '../zod_schemas/boundsSearchRequestSchema'
+import type { GeocodeBoundaryRequest } from '../zod_schemas/geocodeBoundarySearchSchema'
 
 export type GeocodeBoundaryContext = ControllerContext<
   GeocodeBoundaryRequest,
@@ -42,7 +40,7 @@ export type BoundsSearchContext = ControllerContext<
 
 export const geocodeBoundarySearch = async (ctx: GeocodeBoundaryContext) => {
   // If we have a place_id then we may not need to make an additional request to the geocode service
-  const placeIdRes = await getResponseForPlaceId(ctx.query)
+  const placeIdRes = await getResponseForPlaceId(ctx)
   if (placeIdRes) {
     ctx.body = placeIdRes
     return
@@ -52,22 +50,22 @@ export const geocodeBoundarySearch = async (ctx: GeocodeBoundaryContext) => {
     .data.results[0]
 
   if (isListingAddressType(geocodeResult.types)) {
-    ctx.body = await getResponseForListingAddress(geocodeResult)
+    ctx.body = await getResponseForListingAddress(geocodeResult, ctx)
     return
   }
 
-  ctx.body = await getResponseForBoundary(geocodeResult, ctx.query)
+  ctx.body = await getResponseForBoundary(geocodeResult, ctx)
 }
 
 export const boundarySearch = async (ctx: BoundarySearchContext) => {
   const { id } = ctx.params
-  const boundary = await Boundary.findById(id)
+  const boundary = await ctx.repositories.boundary.findById(id)
 
   ctx.assert(boundary, 404, `No boundary found for boundary id ${id}.`)
 
   const pagination = getPaginationParams(ctx.query)
 
-  const results = await Listing.findWithinBounds(
+  const results = await ctx.repositories.listing.findWithinBounds(
     getBoundaryGeometryWithBounds(boundary, ctx.query),
     ctx.query,
     pagination
@@ -85,7 +83,7 @@ export const boundsSearch = async (ctx: BoundsSearchContext) => {
     bounds_west
   })
   const pagination = getPaginationParams(ctx.query)
-  const results = await Listing.findWithinBounds(
+  const results = await ctx.repositories.listing.findWithinBounds(
     geoJSONPolygon,
     ctx.query,
     pagination

@@ -1,9 +1,8 @@
 import type { Context } from 'koa'
 import { Types } from 'mongoose'
-import Listing from '../models/ListingModel'
-import { ListingDetailResultProjectionFields } from '../config'
-import { daysOnMarket } from '../lib/listing_search_helpers'
+import { daysOnMarket } from '../services/listingSearchService'
 
+// TODO: Use Zod to validate this & add a view
 export const getListingById = async (ctx: Context) => {
   const { id } = ctx.params
   if (!Types.ObjectId.isValid(id)) {
@@ -11,17 +10,10 @@ export const getListingById = async (ctx: Context) => {
     ctx.body = { message: `Invalid ID ${id}` }
     return
   }
-  const listing = await Listing.findById(
-    id,
-    ListingDetailResultProjectionFields
-  )
-  if (!listing) {
-    ctx.status = 404
-    ctx.body = { message: `Listing not found with ID ${id}` }
-  } else {
-    ctx.body = {
-      ...listing.toObject(),
-      daysOnMarket: daysOnMarket(listing.listedDate, listing.soldDate)
-    }
+  const listing = await ctx.repositories.listing.findByListingId(id)
+  ctx.assert(listing, 404, `Listing not found with ID ${id}`)
+  ctx.body = {
+    ...listing,
+    daysOnMarket: daysOnMarket(listing.listedDate, listing.soldDate)
   }
 }

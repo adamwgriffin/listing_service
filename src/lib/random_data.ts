@@ -24,7 +24,7 @@ import {
   PropertyStatuses,
   RentalPropertyStatuses
 } from '../models/ListingModel'
-import { listingAddressHasRequiredFields } from './listing_search_helpers'
+import { listingAddressHasRequiredFields } from '../services/listingSearchService'
 import { galleryData } from '../data/seed_data/development/photo_galleries'
 
 export type GeneratedListingGeocodeData = {

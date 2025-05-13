@@ -2,7 +2,10 @@ import type { HydratedDocument } from 'mongoose'
 import type { ListingData } from '../../lib/random_data'
 import request from 'supertest'
 import app from '../../app'
+import repositories from '../../respositories'
 import Listing, { IListing } from '../../models/ListingModel'
+
+app.context.repositories = repositories
 
 const listingData: ListingData = {
   listPrice: 700000,
