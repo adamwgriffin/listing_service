@@ -1,15 +1,15 @@
-import type { Context } from 'koa'
-import { Types } from 'mongoose'
+import type { ControllerContext } from '../types'
+import type { ListingDetailResponse } from '../types/listing_search_response_types'
+import type { ListingDetailRequest } from '../zod_schemas/listingDetailRequestSchema'
 import listingDetailView from '../views/listingDetailView'
 
-// TODO: Use Zod to validate this & add a view
-export const getListingById = async (ctx: Context) => {
+export type GeocodeBoundaryContext = ControllerContext<
+  ListingDetailRequest,
+  ListingDetailResponse
+>
+
+export const getListingDetail = async (ctx: GeocodeBoundaryContext) => {
   const { id } = ctx.params
-  if (!Types.ObjectId.isValid(id)) {
-    ctx.status = 422
-    ctx.body = { message: `Invalid ID ${id}` }
-    return
-  }
   const listing = await ctx.repositories.listing.findByListingId(id)
   ctx.assert(listing, 404, `Listing not found with ID ${id}`)
   ctx.body = listingDetailView(listing)

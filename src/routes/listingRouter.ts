@@ -1,7 +1,13 @@
 import Router from '@koa/router'
 import listingSearchRouter from './listingSearchRouter'
-import { getListingById } from '../controllers/listingController'
+import { getListingDetail } from '../controllers/listingController'
+import { listingDetailRequestSchema } from '../zod_schemas/listingDetailRequestSchema'
+import { parseAndValidateRequest } from '../middlewares/validationMiddleware'
 
 export default new Router()
-  .get('/:id', getListingById)
+  .get(
+    '/:id',
+    parseAndValidateRequest(listingDetailRequestSchema),
+    getListingDetail
+  )
   .use('/search', listingSearchRouter.routes())

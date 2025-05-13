@@ -41,6 +41,10 @@ export type ListingSearchResponse<T = ListingResultWithSelectedFields> = {
   pagination: PaginationResponse
 }
 
+export type ListingDetailResponse = ListingDetailResultWithSelectedFields & {
+  daysOnMarket: number
+}
+
 export type BoundarySearchResponse = ListingSearchResponse & {
   boundary: IBoundary
 }
