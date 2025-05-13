@@ -11,9 +11,16 @@ import type {
   PlaceDetailsRequestParams
 } from '../lib/geocode'
 import env from '../lib/env'
+import { type GeocodeParams } from '../zod_schemas/geocodeBoundarySearchSchema'
 
 export interface IGeocoderService {
   geocode: (params: GeocodeRequestParams) => Promise<GeocodeResponse>
+
+  /**
+   * Get params from query string. If place_id is available use that, otherwise
+   * use address.
+   */
+  geocodeFromAvailableParam: (params: GeocodeParams) => Promise<GeocodeResponse>
 
   reverseGeocode: (
     lat: number,
@@ -33,6 +40,11 @@ export class GeocoderService implements IGeocoderService {
     return this.client.geocode({
       params: { ...params, key: this.apiKey }
     })
+  }
+
+  public async geocodeFromAvailableParam({ place_id, address }: GeocodeParams) {
+    const request = place_id ? { place_id } : { address }
+    return this.geocode(request)
   }
 
   public async reverseGeocode(
@@ -63,8 +75,5 @@ export class GeocoderService implements IGeocoderService {
 }
 
 export const buildGeocodeService = () => {
-  return new GeocoderService(
-      new Client(),
-      env.GOOGLE_MAPS_API_KEY
-    )
+  return new GeocoderService(new Client(), env.GOOGLE_MAPS_API_KEY)
 }

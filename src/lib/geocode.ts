@@ -129,7 +129,3 @@ export const getNeighborhoodFromAddressComponents = (
 export const isListingAddressType = (types: AddressType[]) =>
   GeocodeResultListingAddressTypes.some((t) => types.includes(t))
 
-export const getGeocodeParamsFromQuery = ({
-  place_id,
-  address
-}: GeocodeRequestParams) => (place_id ? { place_id } : { address })
