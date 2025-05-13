@@ -19,7 +19,7 @@ import {
   addressComponentsToListingAddress,
   getPlaceDetails,
   isListingAddressType
-} from '../lib/geocoder'
+} from './geocoderService'
 
 /**
  * Converts a set of north/east/south/west coordinates into a rectangular polygon

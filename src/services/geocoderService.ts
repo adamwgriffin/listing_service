@@ -7,7 +7,7 @@ import type {
 import { Client, AddressType } from '@googlemaps/google-maps-services-js'
 import type { BoundaryType } from '../models/BoundaryModel'
 import type { ListingAddress } from '../zod_schemas/listingSchema'
-import env from './env'
+import env from '../lib/env'
 
 export type GeocodeRequestParams = Omit<GeocodeRequest['params'], 'key'>
 

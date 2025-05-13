@@ -18,7 +18,7 @@ import {
   reverseGeocode,
   addressComponentsToListingAddress,
   getNeighborhoodFromAddressComponents
-} from '../lib/geocoder'
+} from '../services/geocoderService'
 import {
   PropertyTypes,
   PropertyStatuses,

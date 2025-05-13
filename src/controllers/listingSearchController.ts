@@ -3,7 +3,7 @@ import {
   geocode,
   getGeocodeParamsFromQuery,
   isListingAddressType
-} from '../lib/geocoder'
+} from '../services/geocoderService'
 import {
   boundsParamsToGeoJSONPolygon,
   getBoundaryGeometryWithBounds,

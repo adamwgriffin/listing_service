@@ -8,7 +8,7 @@ import type { IBoundary } from '../models/BoundaryModel'
 import fs from 'fs'
 import path from 'path'
 import yargs from 'yargs'
-import { geocode } from '../lib/geocoder'
+import { geocode } from '../services/geocoderService'
 import { sleep } from '../lib'
 
 type PolyOrMultiPolyFeature = Feature<Polygon> | Feature<MultiPolygon>
