@@ -2,11 +2,11 @@ import Koa from 'koa'
 import bodyParser from 'koa-bodyparser'
 import router from './routes/router'
 import { errorMiddleware } from './middlewares/error_middleware'
-import type { Repositories } from './respositories'
+import type { IRepositories } from './respositories'
 
 declare module 'koa' {
   interface DefaultContext {
-    repositories: Repositories
+    repositories: IRepositories
   }
 }
 

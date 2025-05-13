@@ -1,17 +1,17 @@
-import { type ListingRepository, listingRepository } from './listingRepository'
+import { type IListingRepository, ListingRepository } from './ListingRepository'
 import {
-  type BoundaryRepository,
-  boundaryRepository
-} from './boundaryRepository'
+  type IBoundaryRepository,
+  BoundaryRepository
+} from './BoundaryRepository'
 
-export type Repositories = {
-  listing: ListingRepository
+export interface IRepositories {
+  listing: IListingRepository
+  boundary: IBoundaryRepository
+}
+
+const Repositories = {
+  listing: ListingRepository,
   boundary: BoundaryRepository
 }
 
-const repositories = {
-  listing: listingRepository,
-  boundary: boundaryRepository
-}
-
-export default repositories
+export default Repositories

@@ -18,7 +18,7 @@ export type FindWithinBoundsResult = {
   listings: ListingResultWithSelectedFields[]
 }
 
-export type ListingRepository = {
+export interface IListingRepository {
   findByPlaceIdOrAddress: (
     placeId: string,
     address: ListingAddress
@@ -130,7 +130,7 @@ export const findByListingIds = async (ids: string[]) => {
   ).lean<ListingResultWithSelectedFields[]>()
 }
 
-export const listingRepository: ListingRepository = {
+export const ListingRepository: IListingRepository = {
   findByPlaceIdOrAddress,
   findWithinBounds,
   findByPlaceId,

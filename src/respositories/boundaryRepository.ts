@@ -3,7 +3,7 @@ import BoundaryModel, {
   type IBoundary
 } from '../models/BoundaryModel'
 
-export type BoundaryRepository = {
+export type IBoundaryRepository = {
   findBoundaries: (
     lat: number,
     lng: number,
@@ -47,7 +47,7 @@ const findById = async (id: string) => {
   return BoundaryModel.findById(id)
 }
 
-export const boundaryRepository: BoundaryRepository = {
+export const BoundaryRepository: IBoundaryRepository = {
   findBoundaries,
   findByPlaceId,
   findById

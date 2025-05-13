@@ -1,4 +1,4 @@
-import { type FindWithinBoundsResult } from '../respositories/listingRepository'
+import { type FindWithinBoundsResult } from '../respositories/ListingRepository'
 import type {
   ListingResultWithSelectedFields,
   ListingSearchResponse
