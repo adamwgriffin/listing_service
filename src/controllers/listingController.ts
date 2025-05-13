@@ -1,6 +1,6 @@
 import type { Context } from 'koa'
 import { Types } from 'mongoose'
-import { daysOnMarket } from '../services/listingSearchService'
+import listingDetailView from '../views/listingDetailView'
 
 // TODO: Use Zod to validate this & add a view
 export const getListingById = async (ctx: Context) => {
@@ -12,8 +12,5 @@ export const getListingById = async (ctx: Context) => {
   }
   const listing = await ctx.repositories.listing.findByListingId(id)
   ctx.assert(listing, 404, `Listing not found with ID ${id}`)
-  ctx.body = {
-    ...listing,
-    daysOnMarket: daysOnMarket(listing.listedDate, listing.soldDate)
-  }
+  ctx.body = listingDetailView(listing)
 }

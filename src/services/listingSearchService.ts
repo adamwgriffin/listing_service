@@ -4,7 +4,6 @@ import {
 } from '@googlemaps/google-maps-services-js'
 import type { MultiPolygon, Polygon } from '@turf/turf'
 import { bboxPolygon, intersect } from '@turf/turf'
-import { differenceInDays } from 'date-fns'
 import { type Context } from 'koa'
 import { getPaginationParams } from '../lib'
 import { type GeocodeBoundaryContext } from '../controllers/listingSearchController'
@@ -21,13 +20,6 @@ import {
   getPlaceDetails,
   isListingAddressType
 } from '../lib/geocoder'
-
-export const daysOnMarket = (
-  listedDate: Date,
-  soldDate: Date | undefined
-): number => {
-  return differenceInDays(soldDate || new Date(), listedDate)
-}
 
 /**
  * Converts a set of north/east/south/west coordinates into a rectangular polygon
