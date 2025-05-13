@@ -57,10 +57,10 @@ export const findByPlaceIdOrAddress = async (
       addressQuery[`address.${k}`] = v
     }
   }
-  return ListingModel.findOne<ListingDetailResultWithSelectedFields>(
+  return ListingModel.findOne(
     { $or: [{ placeId }, addressQuery] },
     ListingDetailResultProjectionFields
-  )
+  ).lean<ListingDetailResultWithSelectedFields>()
 }
 
 export const findWithinBounds = async (

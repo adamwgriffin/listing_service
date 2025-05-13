@@ -36,15 +36,15 @@ const findBoundaries = async (
         type: boundaryType
       }
     ]
-  })
+  }).lean()
 }
 
 const findByPlaceId = async (placeId: string) => {
-  return BoundaryModel.findOne({ placeId })
+  return BoundaryModel.findOne({ placeId }).lean()
 }
 
 const findById = async (id: string) => {
-  return BoundaryModel.findById(id)
+  return BoundaryModel.findById(id).lean()
 }
 
 export const BoundaryRepository: IBoundaryRepository = {
