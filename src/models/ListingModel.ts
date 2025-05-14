@@ -1,23 +1,8 @@
-import type { MultiPolygon, Point, Polygon } from '@turf/turf'
-import type { GeocodeBoundaryQueryParams } from '../zod_schemas/geocodeBoundarySearchSchema'
-import type {
-  ListingResultWithSelectedFields,
-  ListingDetailResultWithSelectedFields
-} from '../types/listing_search_response_types'
-import type { ListingAddress } from '../zod_schemas/listingSchema'
-import type { PaginationParams } from '../zod_schemas/listingSearchParamsSchema'
-import mongoose, { Model, ProjectionFields, Schema, model } from 'mongoose'
+import type { Point } from '@turf/turf'
+import mongoose, { Model, Schema, model } from 'mongoose'
 import slugify from 'slugify'
+import type { ListingAddress } from '../zod_schemas/listingSchema'
 import PointSchema from './PointSchema'
-import {
-  ListingResultProjectionFields,
-  ListingDetailResultProjectionFields
-} from '../config'
-import {
-  buildFilterQueries,
-  listingSortQuery
-} from '../lib/listing_search_helpers'
-
 
 export const PropertyTypes = [
   'single-family',
@@ -98,27 +83,7 @@ export interface IListing extends ListingAmenities {
   openHouses?: OpenHouse[]
 }
 
-export interface IListingModel extends Model<IListing> {
-  findWithinBounds<T = ListingResultWithSelectedFields>(
-    boundaryGeometry: Polygon | MultiPolygon,
-    query: GeocodeBoundaryQueryParams,
-    pagination: PaginationParams,
-    fields?: ProjectionFields<T>
-  ): Promise<ListingSearchAggregateResult<T>>
-
-  findByPlaceIdOrAddress<T = ListingDetailResultWithSelectedFields>(
-    placeId: string,
-    address: Partial<ListingAddress>,
-    fields?: ProjectionFields<T>
-  ): Promise<T>
-}
-
-export type ListingSearchAggregateResult<T> = {
-  metadata: { numberAvailable: number }[]
-  listings: Array<T>
-}[]
-
-const ListingSchema = new Schema<IListing, IListingModel>({
+const ListingSchema = new Schema<IListing>({
   listPrice: {
     type: Number,
     required: true,
@@ -307,73 +272,5 @@ ListingSchema.pre('save', async function (next) {
   next()
 })
 
-/**
- * Find a listing by placeId first. If that fails, try address instead.
- */
-ListingSchema.statics.findByPlaceIdOrAddress = async function <
-  T = ListingDetailResultWithSelectedFields
->(
-  this: IListingModel,
-  placeId: IListing['placeId'],
-  address: ListingAddress,
-  fields: ProjectionFields<T> = ListingDetailResultProjectionFields
-): Promise<T | null> {
-  const addressQuery: { [index: string]: string } = {}
-  for (const k in address) {
-    const v = address[k as keyof typeof address]
-    if (typeof v === 'string') {
-      addressQuery[`address.${k}`] = v
-    }
-  }
-  return this.findOne<T>({ $or: [{ placeId }, addressQuery] }, fields)
-}
-
-ListingSchema.statics.findWithinBounds = async function <
-  T = ListingResultWithSelectedFields
->(
-  this: IListingModel,
-  boundaryGeometry: Polygon | MultiPolygon,
-  query: GeocodeBoundaryQueryParams,
-  { page_size, page_index }: PaginationParams,
-  fields: ProjectionFields<T> = ListingResultProjectionFields
-): Promise<ListingSearchAggregateResult<T>> {
-  return this.aggregate([
-    {
-      $match: {
-        $and: [
-          {
-            geometry: {
-              $geoWithin: {
-                $geometry: boundaryGeometry
-              }
-            }
-          },
-          ...buildFilterQueries(query)
-        ]
-      }
-    },
-    { $sort: listingSortQuery(query) },
-    // using the aggregation pipline in combination with $facet allows us to get the total number of documents that
-    // match the query when using $skip & $limit for pagination. it allows us to count the total results from the
-    // $match stage before they go through the $skip/$limit stages that will reduce the number of results returned.
-    {
-      $facet: {
-        metadata: [
-          // this part counts the total. "numberAvailable" is just a name for the field
-          { $count: 'numberAvailable' }
-        ],
-        listings: [
-          // $skip allows us to move ahead to each page in the results set by skipping the previous page results we
-          // have already seen, while $limit only returns the amount per page. together they create a slice of the
-          // result set represented as a "page"
-          { $skip: page_index * page_size },
-          { $limit: page_size },
-          { $project: fields }
-        ]
-      }
-    }
-  ])
-}
-
-export default (mongoose.models.Listing as IListingModel) ||
-  model<IListing, IListingModel>('Listing', ListingSchema)
+export default (mongoose.models.Listing as Model<IListing>) ||
+  model<IListing, Model<IListing>>('Listing', ListingSchema)

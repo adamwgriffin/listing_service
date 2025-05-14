@@ -1,14 +1,15 @@
-import type { Context } from 'koa'
-import Listing from '../models/ListingModel'
-import { ListingResultProjectionFields } from '../config'
+import type { ControllerContext } from '../types'
+import { ListingResultWithSelectedFields } from '../types/listing_search_response_types'
+import type { ListingsRequest } from '../zod_schemas/listingsRequestSchema'
 
-export const getListingsById = async (ctx: Context) => {
-  const ids = ctx.params.ids.split(',')
-  const listings = await Listing.find(
-    { _id: { $in: ids } },
-    ListingResultProjectionFields
+export type GetListingsContext = ControllerContext<
+  ListingsRequest,
+  { listings: ListingResultWithSelectedFields[] }
+>
+
+export const getListingsById = async (ctx: GetListingsContext) => {
+  const listings = await ctx.repositories.listing.findByListingIds(
+    ctx.params.ids
   )
-  ctx.body = {
-    listings: listings
-  }
+  ctx.body = { listings }
 }

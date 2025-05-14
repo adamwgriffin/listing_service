@@ -1,10 +1,11 @@
-import app from './app'
-import env from './lib/env'
+import { buildApp } from './app'
 import { connectToDatabase, disconnectDatabase } from './database'
+import env from './lib/env'
 
 const startServer = async (): Promise<void> => {
   try {
     await connectToDatabase()
+    const app = buildApp()
     app.on('error', (err, ctx) => {
       console.error('Server error', err, ctx)
     })

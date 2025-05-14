@@ -1,27 +1,16 @@
-import type { Context } from 'koa'
-import { Types } from 'mongoose'
-import Listing from '../models/ListingModel'
-import { ListingDetailResultProjectionFields } from '../config'
-import { daysOnMarket } from '../lib/listing_search_helpers'
+import type { ControllerContext } from '../types'
+import type { ListingDetailResponse } from '../types/listing_search_response_types'
+import type { ListingDetailRequest } from '../zod_schemas/listingDetailRequestSchema'
+import listingDetailView from '../views/listingDetailView'
 
-export const getListingById = async (ctx: Context) => {
+export type GetListingDetailContext = ControllerContext<
+  ListingDetailRequest,
+  ListingDetailResponse
+>
+
+export const getListingDetail = async (ctx: GetListingDetailContext) => {
   const { id } = ctx.params
-  if (!Types.ObjectId.isValid(id)) {
-    ctx.status = 422
-    ctx.body = { message: `Invalid ID ${id}` }
-    return
-  }
-  const listing = await Listing.findById(
-    id,
-    ListingDetailResultProjectionFields
-  )
-  if (!listing) {
-    ctx.status = 404
-    ctx.body = { message: `Listing not found with ID ${id}` }
-  } else {
-    ctx.body = {
-      ...listing.toObject(),
-      daysOnMarket: daysOnMarket(listing.listedDate, listing.soldDate)
-    }
-  }
+  const listing = await ctx.repositories.listing.findByListingId(id)
+  ctx.assert(listing, 404, `Listing not found with ID ${id}`)
+  ctx.body = listingDetailView(listing)
 }

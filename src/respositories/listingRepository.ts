@@ -1,0 +1,139 @@
+import type { MultiPolygon, Polygon } from '@turf/turf'
+import {
+  ListingDetailResultProjectionFields,
+  ListingResultProjectionFields
+} from '../config/listing_search.config'
+import ListingModel from '../models/ListingModel'
+import { buildFilterQueries, listingSortQuery } from '../queries/listingQueries'
+import {
+  ListingDetailResultWithSelectedFields,
+  ListingResultWithSelectedFields
+} from '../types/listing_search_response_types'
+import { type GeocodeBoundaryQueryParams } from '../zod_schemas/geocodeBoundarySearchSchema'
+import { ListingAddress } from '../zod_schemas/listingSchema'
+import { type PaginationParams } from '../zod_schemas/listingSearchParamsSchema'
+
+export type FindWithinBoundsResult = {
+  metadata: { numberAvailable: number }[]
+  listings: ListingResultWithSelectedFields[]
+}
+
+export interface IListingRepository {
+  findByPlaceIdOrAddress: (
+    placeId: string,
+    address: ListingAddress
+  ) => Promise<ListingDetailResultWithSelectedFields | null>
+
+  findWithinBounds: (
+    boundaryGeometry: Polygon | MultiPolygon,
+    query: GeocodeBoundaryQueryParams,
+    pagination: PaginationParams
+  ) => Promise<FindWithinBoundsResult[]>
+
+  findByPlaceId: (
+    placeId: string
+  ) => Promise<ListingDetailResultWithSelectedFields | null>
+
+  findByListingId: (
+    placeId: string
+  ) => Promise<ListingDetailResultWithSelectedFields | null>
+
+  findByListingIds: (
+    ids: string[]
+  ) => Promise<ListingResultWithSelectedFields[]>
+}
+
+/**
+ * Find a listing by placeId first. If that fails, try address instead.
+ */
+export const findByPlaceIdOrAddress = async (
+  placeId: string,
+  address: ListingAddress
+) => {
+  const addressQuery: { [index: string]: string } = {}
+  for (const k in address) {
+    const v = address[k as keyof typeof address]
+    if (typeof v === 'string') {
+      addressQuery[`address.${k}`] = v
+    }
+  }
+  return ListingModel.findOne(
+    { $or: [{ placeId }, addressQuery] },
+    ListingDetailResultProjectionFields
+  ).lean<ListingDetailResultWithSelectedFields>()
+}
+
+export const findWithinBounds = async (
+  boundaryGeometry: Polygon | MultiPolygon,
+  query: GeocodeBoundaryQueryParams,
+  { page_size, page_index }: PaginationParams
+) => {
+  return ListingModel.aggregate<FindWithinBoundsResult>([
+    {
+      $match: {
+        $and: [
+          {
+            geometry: {
+              $geoWithin: {
+                $geometry: boundaryGeometry
+              }
+            }
+          },
+          ...buildFilterQueries(query)
+        ]
+      }
+    },
+    { $sort: listingSortQuery(query) },
+    // Using the aggregation pipline in combination with $facet allows us to get
+    // the total number of documents that match the query when using $skip &
+    // $limit for pagination. It allows us to count the total results from the
+    // $match stage before they go through the $skip/$limit stages that will
+    // reduce the number of results returned.
+    {
+      $facet: {
+        metadata: [
+          // This part counts the total. "numberAvailable" is just a name for the field
+          { $count: 'numberAvailable' }
+        ],
+        listings: [
+          // Using $skip allows us to move ahead to each page in the results set
+          // by skipping the previous page results we have already seen, while
+          // $limit only returns the amount per page. Together they create a
+          // slice of the result set represented as a "page"
+          { $skip: page_index * page_size },
+          { $limit: page_size },
+          { $project: ListingResultProjectionFields }
+        ]
+      }
+    }
+  ])
+}
+
+export const findByPlaceId = async (placeId: string) => {
+  return ListingModel.findOne(
+    { placeId },
+    ListingDetailResultProjectionFields
+  ).lean<ListingDetailResultWithSelectedFields>()
+}
+
+export const findByListingId = async (id: string) => {
+  return ListingModel.findById(
+    id,
+    ListingDetailResultProjectionFields
+  ).lean<ListingDetailResultWithSelectedFields>()
+}
+
+export const findByListingIds = async (ids: string[]) => {
+  return ListingModel.find(
+    { _id: { $in: ids } },
+    ListingResultProjectionFields
+  ).lean<ListingResultWithSelectedFields[]>()
+}
+
+export const ListingRepository: IListingRepository = {
+  findByPlaceIdOrAddress,
+  findWithinBounds,
+  findByPlaceId,
+  findByListingId,
+  findByListingIds
+}

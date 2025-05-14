@@ -15,17 +15,17 @@ import { bbox, randomPoint, booleanPointInPolygon } from '@turf/turf'
 import { faker } from '@faker-js/faker'
 import { subMonths, addHours, addMonths } from 'date-fns'
 import {
-  reverseGeocode,
   addressComponentsToListingAddress,
   getNeighborhoodFromAddressComponents
-} from '../lib/geocoder'
+} from '../lib/geocode'
 import {
   PropertyTypes,
   PropertyStatuses,
   RentalPropertyStatuses
 } from '../models/ListingModel'
-import { listingAddressHasRequiredFields } from './listing_search_helpers'
+import { listingAddressHasRequiredFields } from '../services/listingSearchService'
 import { galleryData } from '../data/seed_data/development/photo_galleries'
+import { buildGeocodeService } from '../services/geocoderService'
 
 export type GeneratedListingGeocodeData = {
   address: ListingAddress
@@ -35,6 +35,8 @@ export type GeneratedListingGeocodeData = {
 }
 
 export type ListingData = Omit<IListing, 'slug'>
+
+const geocodeService = buildGeocodeService()
 
 export const RentalPropertyTypes = PropertyTypes.filter((t) => t !== 'land')
 
@@ -270,7 +272,7 @@ export const createRandomListingModel = (
 const reverseGeocodeWithExponentialBackoff = async (point: Point) => {
   try {
     const res = await backOff(
-      () => reverseGeocode(point.coordinates[1], point.coordinates[0]),
+      () => geocodeService.reverseGeocode(point.coordinates[1], point.coordinates[0]),
       {
         retry(error: unknown, attemptNumber) {
           const errorMessage =
@@ -342,7 +344,9 @@ export const generateRandomGeospatialDataForPoly = async (
     // For some reason they way we do this generates a lot of duplicate place_ids,
     // even though the coordinates are technically different, so we're de-duping
     // them here.
-    const alreadyExists = listingGeocodeData.some((d) => d.placeId === data?.placeId)
+    const alreadyExists = listingGeocodeData.some(
+      (d) => d.placeId === data?.placeId
+    )
     if (data && !alreadyExists) {
       listingGeocodeData.push(data)
     }

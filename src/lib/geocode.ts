@@ -1,15 +1,18 @@
-import type {
+import {
   AddressComponent,
-  GeocodeRequest,
-  PlaceDetailsRequest,
-  ReverseGeocodeResponse
+  AddressType,
+  type GeocodeRequest,
+  type PlaceDetailsRequest
 } from '@googlemaps/google-maps-services-js'
-import { Client, AddressType } from '@googlemaps/google-maps-services-js'
 import type { BoundaryType } from '../models/BoundaryModel'
 import type { ListingAddress } from '../zod_schemas/listingSchema'
-import env from './env'
 
 export type GeocodeRequestParams = Omit<GeocodeRequest['params'], 'key'>
+
+export type PlaceDetailsRequestParams = Omit<
+  PlaceDetailsRequest['params'],
+  'key'
+>
 
 export const AddressTypeToBoundaryTypeMapping: Map<AddressType, BoundaryType> =
   new Map([
@@ -22,7 +25,8 @@ export const AddressTypeToBoundaryTypeMapping: Map<AddressType, BoundaryType> =
   ])
 
 /**
- * Address types that usually belong to a residence, as opposed to city/state/zip types
+ * Address types that usually belong to a residence, as opposed to
+ * city/state/zip types
  */
 export const GeocodeResultListingAddressTypes: readonly AddressType[] =
   Object.freeze([
@@ -32,7 +36,8 @@ export const GeocodeResultListingAddressTypes: readonly AddressType[] =
   ])
 
 /**
- * Converts a geocoder result type name into the name we use internally for the type field in a Boundary record
+ * Converts a geocoder result type name into the name we use internally for the
+ * type field in a Boundary record
  */
 export const getBoundaryTypeFromGeocoderAddressTypes = (
   types: AddressType[]
@@ -44,8 +49,8 @@ export const getBoundaryTypeFromGeocoderAddressTypes = (
 }
 
 /**
- * Maps all the different types in an AddressComponent.types array to a specific address field that we use for a Listing
- * record.
+ * Maps all the different types in an AddressComponent.types array to a specific
+ * address field that we use for a Listing record.
  */
 const AddressComponentMapping = new Map<
   'street_number' | 'street_address' | 'city' | 'state' | 'zip',
@@ -77,42 +82,9 @@ const AddressComponentMapping = new Map<
   ['zip', [AddressType.postal_code]]
 ])
 
-const googleMapsClient = new Client({})
-
-export const geocode = async (params: GeocodeRequestParams) => {
-  return googleMapsClient.geocode({
-    params: { ...params, key: env.GOOGLE_MAPS_API_KEY }
-  })
-}
-
-export const reverseGeocode = async (
-  lat: number,
-  lng: number,
-  result_type: AddressType[] = [AddressType.street_address]
-): Promise<ReverseGeocodeResponse> => {
-  const response = await googleMapsClient.reverseGeocode({
-    params: {
-      latlng: `${lat},${lng}`,
-      result_type,
-      key: env.GOOGLE_MAPS_API_KEY
-    }
-  })
-  if (response.status < 200 || response.status > 299) {
-    throw new Error('Failed to fetch address')
-  }
-  return response
-}
-
-export const getPlaceDetails = async (
-  params: Omit<PlaceDetailsRequest['params'], 'key'>
-) => {
-  return googleMapsClient.placeDetails({
-    params: { ...params, key: env.GOOGLE_MAPS_API_KEY }
-  })
-}
-
 /**
- * Convert the address fields from a geocode result into the fields we use for a Listing address in the database
+ * Convert the address fields from a geocode result into the fields we use for a
+ * Listing address in the database
  */
 export const addressComponentsToListingAddress = (
   addressComponents: AddressComponent[]
@@ -157,7 +129,3 @@ export const getNeighborhoodFromAddressComponents = (
 export const isListingAddressType = (types: AddressType[]) =>
   GeocodeResultListingAddressTypes.some((t) => types.includes(t))
 
-export const getGeocodeParamsFromQuery = ({
-  place_id,
-  address
-}: GeocodeRequestParams) => (place_id ? { place_id } : { address })
