@@ -375,4 +375,5 @@ ListingSchema.statics.findWithinBounds = async function <
   ])
 }
 
-export default model<IListing, IListingModel>('Listing', ListingSchema)
+export default (mongoose.models.Listing as IListingModel) ||
+  model<IListing, IListingModel>('Listing', ListingSchema)

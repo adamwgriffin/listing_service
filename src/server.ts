@@ -5,9 +5,11 @@ import { connectToDatabase, disconnectDatabase } from './database'
 const startServer = async (): Promise<void> => {
   try {
     await connectToDatabase()
-    const port = env.APP_PORT || 3001
-    app.listen(port, () => {
-      console.log(`Server listening on port ${port} 🚀`)
+    app.on('error', (err, ctx) => {
+      console.error('Server error', err, ctx)
+    })
+    app.listen(env.APP_PORT, () => {
+      console.log(`Server listening on port ${env.APP_PORT} 🚀`)
     })
   } catch (err) {
     console.log(err)

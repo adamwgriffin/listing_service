@@ -1,9 +1,8 @@
-import type { IBoundary } from '../models/BoundaryModel'
-import fs from 'fs'
 import path from 'path'
 import yargs from 'yargs'
 import { connectToDatabase, disconnectDatabase } from '../database'
 import Boundary from '../models/BoundaryModel'
+import { createBoundariesFromFile } from '../lib/seed_data'
 
 const DefaultFilePath = path.join(
   __dirname,
@@ -41,10 +40,7 @@ const main = async (): Promise<void> => {
   try {
     await connectToDatabase()
     console.log('Creating boundaries...')
-    const boundaryData = JSON.parse(
-      fs.readFileSync(argv.file, 'utf-8')
-    ) as IBoundary[]
-    const boundaries = await Boundary.create(boundaryData)
+    const boundaries = await createBoundariesFromFile(argv.file)
     console.log(`${boundaries.length} boundaries created.`)
     // If we don't call this it will only create the _id and one other index in MongoDB Atlas. No idea why as it works
     // fine with a local instance of MongoDB.

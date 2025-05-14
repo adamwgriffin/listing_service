@@ -1,5 +1,5 @@
 import type { MultiPolygon } from '@turf/turf'
-import { Model, Schema, model } from 'mongoose'
+import mongoose, { Model, Schema } from 'mongoose'
 import MultiPolygonSchema from './MultiPolygonSchema'
 
 export const BoundaryTypes = [
@@ -82,6 +82,5 @@ BoundarySchema.statics.findBoundaries = async function (
   })
 }
 
-const Boundary = model<IBoundary, BoundaryModel>('Boundary', BoundarySchema)
-
-export default Boundary
+export default (mongoose.models.Boundary as BoundaryModel) ||
+  mongoose.model<IBoundary, BoundaryModel>('Boundary', BoundarySchema);

@@ -11,7 +11,6 @@ const schema = z.object({
   DB_PASSWORD: z.string().min(1),
   DB_NAME: z.string().min(1),
   GOOGLE_MAPS_API_KEY: z.string().min(1),
-  MONGO_URI: z.string().optional(),
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development')
 })
 

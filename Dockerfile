@@ -1,4 +1,4 @@
-ARG NODE_VERSION
+ARG NODE_VERSION=latest
 FROM node:$NODE_VERSION-alpine
 
 WORKDIR /app
@@ -8,6 +8,4 @@ RUN yarn install --frozen-lockfile --production=false
 
 COPY . .
 
-RUN yarn build
-
-CMD ["yarn", "start"]
+CMD ["yarn", "dev"]
