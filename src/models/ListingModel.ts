@@ -1,86 +1,86 @@
-import type { Point } from '@turf/turf'
-import mongoose, { Model, Schema, model } from 'mongoose'
-import slugify from 'slugify'
-import type { ListingAddress } from '../zod_schemas/listingSchema'
-import PointSchema from './PointSchema'
+import type { Point } from "@turf/turf";
+import mongoose, { Model, Schema, model } from "mongoose";
+import slugify from "slugify";
+import type { ListingAddress } from "../zod_schemas/listingSchema";
+import PointSchema from "./PointSchema";
 
 export const PropertyTypes = [
-  'single-family',
-  'condo',
-  'townhouse',
-  'manufactured',
-  'land',
-  'multi-family'
-] as const
+  "single-family",
+  "condo",
+  "townhouse",
+  "manufactured",
+  "land",
+  "multi-family"
+] as const;
 
-export const PropertyStatuses = ['active', 'pending', 'sold'] as const
+export const PropertyStatuses = ["active", "pending", "sold"] as const;
 
-export const RentalPropertyStatuses = ['active', 'rented'] as const
+export const RentalPropertyStatuses = ["active", "rented"] as const;
 
 export const AllPropertyStatuses = [
   ...PropertyStatuses,
   ...RentalPropertyStatuses
-]
+];
 
-export type PropertyType = (typeof PropertyTypes)[number]
+export type PropertyType = (typeof PropertyTypes)[number];
 
-export type PropertyStatus = (typeof AllPropertyStatuses)[number]
+export type PropertyStatus = (typeof AllPropertyStatuses)[number];
 
 export interface PhotoGalleryImage {
-  url: string
-  caption?: string
+  url: string;
+  caption?: string;
 }
 
 export interface PropertDetail {
-  name: string
-  details: string[]
+  name: string;
+  details: string[];
 }
 
 export interface PropertDetailsSection {
-  name: string
-  description?: string
-  details: PropertDetail[]
+  name: string;
+  description?: string;
+  details: PropertDetail[];
 }
 
 export interface OpenHouse {
-  start: Date
-  end: Date
-  comments?: string
+  start: Date;
+  end: Date;
+  comments?: string;
 }
 
 export interface ListingAmenities {
-  waterfront?: boolean
-  view?: boolean
-  fireplace?: boolean
-  basement?: boolean
-  garage?: boolean
-  newConstruction?: boolean
-  pool?: boolean
-  airConditioning?: boolean
+  waterfront?: boolean;
+  view?: boolean;
+  fireplace?: boolean;
+  basement?: boolean;
+  garage?: boolean;
+  newConstruction?: boolean;
+  pool?: boolean;
+  airConditioning?: boolean;
 }
 
 export interface IListing extends ListingAmenities {
-  listPrice: number
-  soldPrice?: number
-  listedDate: Date
-  soldDate?: Date
-  address: ListingAddress
-  slug: string
-  geometry: Point
-  placeId?: string
-  neighborhood: string
-  propertyType: PropertyType
-  status: PropertyStatus
-  description?: string
-  beds: number
-  baths: number
-  sqft: number
-  lotSize: number
-  yearBuilt: number
-  rental?: boolean
-  photoGallery?: PhotoGalleryImage[]
-  propertyDetails?: PropertDetailsSection[]
-  openHouses?: OpenHouse[]
+  listPrice: number;
+  soldPrice?: number;
+  listedDate: Date;
+  soldDate?: Date;
+  address: ListingAddress;
+  slug: string;
+  geometry: Point;
+  placeId?: string;
+  neighborhood: string;
+  propertyType: PropertyType;
+  status: PropertyStatus;
+  description?: string;
+  beds: number;
+  baths: number;
+  sqft: number;
+  lotSize: number;
+  yearBuilt: number;
+  rental?: boolean;
+  photoGallery?: PhotoGalleryImage[];
+  propertyDetails?: PropertDetailsSection[];
+  openHouses?: OpenHouse[];
 }
 
 const ListingSchema = new Schema<IListing>({
@@ -134,7 +134,7 @@ const ListingSchema = new Schema<IListing>({
   },
   geometry: {
     type: PointSchema,
-    index: '2dsphere',
+    index: "2dsphere",
     required: true
   },
   placeId: {
@@ -155,7 +155,7 @@ const ListingSchema = new Schema<IListing>({
     type: String,
     required: true,
     enum: AllPropertyStatuses,
-    default: 'active',
+    default: "active",
     index: true
   },
   description: String,
@@ -255,22 +255,22 @@ const ListingSchema = new Schema<IListing>({
     default: [],
     required: false
   }
-})
+});
 
-ListingSchema.pre('save', async function (next) {
-  if (this.isModified('address') || !this.slug) {
-    const address = Object.values(this.address).filter(Boolean).join(' ')
-    const baseSlug = slugify(address, { lower: true, strict: true })
-    let slug = baseSlug
-    let count = 0
+ListingSchema.pre("save", async function (next) {
+  if (this.isModified("address") || !this.slug) {
+    const address = Object.values(this.address).filter(Boolean).join(" ");
+    const baseSlug = slugify(address, { lower: true, strict: true });
+    let slug = baseSlug;
+    let count = 0;
     while (await mongoose.models.Listing.exists({ slug })) {
-      count += 1
-      slug = `${baseSlug}-${count}`
+      count += 1;
+      slug = `${baseSlug}-${count}`;
     }
-    this.slug = slug
+    this.slug = slug;
   }
-  next()
-})
+  next();
+});
 
 export default (mongoose.models.Listing as Model<IListing>) ||
-  model<IListing, Model<IListing>>('Listing', ListingSchema)
+  model<IListing, Model<IListing>>("Listing", ListingSchema);

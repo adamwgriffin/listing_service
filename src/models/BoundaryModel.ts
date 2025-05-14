@@ -1,25 +1,25 @@
-import type { MultiPolygon } from '@turf/turf'
-import mongoose, { Model, Schema } from 'mongoose'
-import MultiPolygonSchema from './MultiPolygonSchema'
+import type { MultiPolygon } from "@turf/turf";
+import mongoose, { Model, Schema } from "mongoose";
+import MultiPolygonSchema from "./MultiPolygonSchema";
 
 export const BoundaryTypes = [
-  'neighborhood',
-  'city',
-  'zip_code',
-  'county',
-  'state',
-  'country',
-  'school_district',
-  'school'
-] as const
+  "neighborhood",
+  "city",
+  "zip_code",
+  "county",
+  "state",
+  "country",
+  "school_district",
+  "school"
+] as const;
 
-export type BoundaryType = (typeof BoundaryTypes)[number]
+export type BoundaryType = (typeof BoundaryTypes)[number];
 
 export interface IBoundary {
-  name: string
-  type: BoundaryType
-  geometry: MultiPolygon
-  placeId: string
+  name: string;
+  type: BoundaryType;
+  geometry: MultiPolygon;
+  placeId: string;
 }
 
 // Making placeId a required field because we don't really want to have to guess
@@ -42,7 +42,7 @@ export const BoundarySchema: Schema<IBoundary> = new Schema({
     // on the coordinates in the MultiPolygonSchema. putting them on the
     // coordinates breaks things so that you can never create a record
     // successfully
-    index: '2dsphere',
+    index: "2dsphere",
     required: true
   },
   placeId: {
@@ -50,7 +50,7 @@ export const BoundarySchema: Schema<IBoundary> = new Schema({
     index: true,
     required: true
   }
-})
+});
 
 export default (mongoose.models.Boundary as Model<IBoundary>) ||
-  mongoose.model<IBoundary, Model<IBoundary>>('Boundary', BoundarySchema)
+  mongoose.model<IBoundary, Model<IBoundary>>("Boundary", BoundarySchema);

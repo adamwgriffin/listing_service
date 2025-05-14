@@ -1,19 +1,19 @@
 import BoundaryModel, {
   type BoundaryType,
   type IBoundary
-} from '../models/BoundaryModel'
+} from "../models/BoundaryModel";
 
 export type IBoundaryRepository = {
   findBoundaries: (
     lat: number,
     lng: number,
     boundaryType: BoundaryType
-  ) => Promise<IBoundary[]>
+  ) => Promise<IBoundary[]>;
 
-  findByPlaceId: (placeId: string) => Promise<IBoundary | null>
+  findByPlaceId: (placeId: string) => Promise<IBoundary | null>;
 
-  findById: (id: string) => Promise<IBoundary | null>
-}
+  findById: (id: string) => Promise<IBoundary | null>;
+};
 
 const findBoundaries = async (
   lat: number,
@@ -26,7 +26,7 @@ const findBoundaries = async (
         geometry: {
           $geoIntersects: {
             $geometry: {
-              type: 'Point',
+              type: "Point",
               coordinates: [lng, lat]
             }
           }
@@ -36,19 +36,19 @@ const findBoundaries = async (
         type: boundaryType
       }
     ]
-  }).lean()
-}
+  }).lean();
+};
 
 const findByPlaceId = async (placeId: string) => {
-  return BoundaryModel.findOne({ placeId }).lean()
-}
+  return BoundaryModel.findOne({ placeId }).lean();
+};
 
 const findById = async (id: string) => {
-  return BoundaryModel.findById(id).lean()
-}
+  return BoundaryModel.findById(id).lean();
+};
 
 export const BoundaryRepository: IBoundaryRepository = {
   findBoundaries,
   findByPlaceId,
   findById
-}
+};

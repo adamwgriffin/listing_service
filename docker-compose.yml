@@ -14,11 +14,11 @@ services:
         NODE_VERSION: 20
     env_file: ./.env
     ports:
-      - '${APP_PORT}:${APP_PORT}'
+      - "${APP_PORT}:${APP_PORT}"
     environment:
       - DB_HOST=mongodb
     volumes:
-      - './src:/app/src'
+      - "./src:/app/src"
     depends_on:
       - mongodb
     stdin_open: true
@@ -27,9 +27,9 @@ services:
   mongodb:
     <<: *mongodb-base
     ports:
-      - '27017:27017'
+      - "27017:27017"
     volumes:
-      - 'mongo-data:/data/db'
+      - "mongo-data:/data/db"
 
   mongodb-test:
     <<: *mongodb-base
