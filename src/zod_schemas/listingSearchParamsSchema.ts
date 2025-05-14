@@ -1,26 +1,26 @@
-import { z } from 'zod'
-import { booleanEnum } from '.'
+import { z } from "zod";
+import { booleanEnum } from ".";
 
 export const sortTypeSchema = z.enum([
-  'listedDate',
-  'listPrice',
-  'beds',
-  'baths',
-  'sqft'
-])
+  "listedDate",
+  "listPrice",
+  "beds",
+  "baths",
+  "sqft"
+]);
 
-export type SortType = z.infer<typeof sortTypeSchema>
+export type SortType = z.infer<typeof sortTypeSchema>;
 
-export const sortDirectionSchema = z.enum(['asc', 'desc'])
+export const sortDirectionSchema = z.enum(["asc", "desc"]);
 
-export type SortDirection = z.infer<typeof sortDirectionSchema>
+export type SortDirection = z.infer<typeof sortDirectionSchema>;
 
 export const paginationParamsSchema = z.object({
   page_index: z.coerce.number(),
   page_size: z.coerce.number()
-})
+});
 
-export type PaginationParams = z.infer<typeof paginationParamsSchema>
+export type PaginationParams = z.infer<typeof paginationParamsSchema>;
 
 export const listingFilterParamsSchema = z
   .object({
@@ -54,15 +54,15 @@ export const listingFilterParamsSchema = z
     open_house_after: z.string(),
     open_house_before: z.string()
   })
-  .extend(paginationParamsSchema.shape)
+  .extend(paginationParamsSchema.shape);
 
-export type ListingFilterParams = z.infer<typeof listingFilterParamsSchema>
+export type ListingFilterParams = z.infer<typeof listingFilterParamsSchema>;
 
 export const boundsParamsSchema = z.object({
   bounds_north: z.coerce.number(),
   bounds_east: z.coerce.number(),
   bounds_south: z.coerce.number(),
   bounds_west: z.coerce.number()
-})
+});
 
-export type BoundsParams = z.infer<typeof boundsParamsSchema>
+export type BoundsParams = z.infer<typeof boundsParamsSchema>;

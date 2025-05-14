@@ -1,17 +1,17 @@
-import Koa from 'koa'
-import bodyParser from 'koa-bodyparser'
-import router from './routes/router'
-import { errorMiddleware } from './middlewares/error_middleware'
-import Repositories, { type IRepositories } from './respositories'
+import Koa from "koa";
+import bodyParser from "koa-bodyparser";
+import router from "./routes/router";
+import { errorMiddleware } from "./middlewares/error_middleware";
+import Repositories, { type IRepositories } from "./respositories";
 import {
   type IGeocoderService,
   buildGeocodeService
-} from './services/geocoderService'
+} from "./services/geocoderService";
 
-declare module 'koa' {
+declare module "koa" {
   interface DefaultContext {
-    repositories: IRepositories
-    geocodeService: IGeocoderService
+    repositories: IRepositories;
+    geocodeService: IGeocoderService;
   }
 }
 
@@ -23,13 +23,13 @@ export const buildApp = (
   respositories?: IRepositories,
   geocoderService?: IGeocoderService
 ) => {
-  const app = new Koa()
+  const app = new Koa();
   app
     .use(errorMiddleware)
     .use(bodyParser())
     .use(router.routes())
-    .use(router.allowedMethods())
-  app.context.repositories = respositories || Repositories
-  app.context.geocodeService = geocoderService || buildGeocodeService()
-  return app
-}
+    .use(router.allowedMethods());
+  app.context.repositories = respositories || Repositories;
+  app.context.geocodeService = geocoderService || buildGeocodeService();
+  return app;
+};

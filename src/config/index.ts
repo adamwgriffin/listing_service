@@ -1,2 +1,2 @@
-export * from './database.config'
-export * from './listing_search.config'
+export * from "./database.config";
+export * from "./listing_search.config";
