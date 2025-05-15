@@ -30,12 +30,20 @@ services:
       - "27017:27017"
     volumes:
       - "mongo-data:/data/db"
+      # When this volume is present the image will initialize the database with
+      # the script inside init-mongo/ when container is started for the first
+      # time
+      - ./init-mongo:/docker-entrypoint-initdb.d
 
   mongodb-test:
     <<: *mongodb-base
+    ports:
+      - "27018:27017"
     # Using tmpfs runs this in memory to make the tests faster
     tmpfs:
       - /data/db
+    volumes:
+      - ./init-mongo:/docker-entrypoint-initdb.d
 
 volumes:
   mongo-data:
