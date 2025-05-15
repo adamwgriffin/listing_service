@@ -70,6 +70,16 @@ export const listingAddressHasRequiredFields = (
 export const getAddressTypesFromParams = (address_types: string) =>
   address_types.split(",") as AddressType[];
 
+/**
+ * Logic for handling a request that includes a place_id.
+ * 
+ * 1. Check if geocode request can be handled by looking up a boundary via place_id
+ * 2. Attempt to find a boundary with the given place_id and listings within it
+ * 3. If we don't have a boundary for the place_id, return the suggested
+ *    viewport instead. The client has logic that will determine if it wants to
+ *    search within that viewport with a different request.
+ * 3. Format data into proper shape for response
+ */
 export const getResponseForPlaceId = async (ctx: GeocodeBoundaryContext) => {
   const { place_id, address_types } = ctx.query;
   if (!place_id || !address_types) return;
@@ -94,6 +104,9 @@ export const getResponseForPlaceId = async (ctx: GeocodeBoundaryContext) => {
   return listingSearchBoundaryView(boundary, results, pagination);
 };
 
+/**
+ * Try to find a listing that matches the geocode result and format the respose.
+ */
 export const getResponseForListingAddress = async (
   { address_components, place_id, geometry }: GeocodeResult,
   ctx: Context
@@ -109,9 +122,12 @@ export const getResponseForListingAddress = async (
   return listingSearchGeocodeNoBoundaryView(geometry.viewport, listing);
 };
 
+/**
+ * Finds a boundary that matches a geocode result and any listings within it.
+ */
 export const getResponseForBoundary = async (
   { place_id, geometry }: GeocodeResult,
-  ctx: GeocodeBoundaryContext
+  ctx: Context
 ) => {
   const boundary = await ctx.repositories.boundary.findByPlaceId(place_id);
   if (!boundary) {
