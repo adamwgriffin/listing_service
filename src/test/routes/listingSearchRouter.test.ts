@@ -1,7 +1,10 @@
 import request from "supertest";
 import { buildApp } from "../../app";
 import Boundary from "../../models/BoundaryModel";
-import type { ListingSearchResponse } from "../../types/listing_search_response_types";
+import type {
+  ListingSearchResponse,
+  BoundarySearchResponse
+} from "../../types/listing_search_response_types";
 
 const FremontViewportBounds = {
   bounds_north: 47.69011227856514,
@@ -17,20 +20,23 @@ const app = buildApp();
 
 describe("listingSearchRouter", () => {
   describe("GET /listing/search/boundary/:id", () => {
-    it("returns a successful status when a boundary with the given ID exists", async () => {
+    it("validates the boundary ID params type", async () => {
+      const res = await request(app.callback()).get(
+        `/listing/search/boundary/bad_id_type`
+      );
+      expect(res.status).toBe(400);
+    });
+
+    it("returns listings that are inside the given boundary", async () => {
       const boundary = await Boundary.findOne().lean();
       if (!boundary) throw new Error("No boundaries found in test database");
       const res = await request(app.callback()).get(
         `/listing/search/boundary/${boundary._id}`
       );
       expect(res.status).toBe(200);
-    });
-
-    it("validates the boundary ID params type", async () => {
-      const res = await request(app.callback()).get(
-        `/listing/search/boundary/bad_id_type`
-      );
-      expect(res.status).toBe(400);
+      const data: BoundarySearchResponse = res.body;
+      expect(data.boundary.placeId).toEqual(boundary.placeId);
+      expect(data.listings.length).toBeGreaterThan(0)
     });
 
     it("returns a not found status when a boundary with the given ID does not exist", async () => {
@@ -50,7 +56,7 @@ describe("listingSearchRouter", () => {
       expect(res.status).toBe(400);
     });
 
-    it("Only returns listings that are inside the bounds", async () => {
+    it("only returns listings that are inside the bounds", async () => {
       const res = await request(app.callback())
         .get("/listing/search/bounds")
         .query(FremontViewportBounds);
