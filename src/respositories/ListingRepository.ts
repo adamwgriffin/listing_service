@@ -3,6 +3,7 @@ import {
   ListingDetailResultProjectionFields,
   ListingResultProjectionFields
 } from "../config/listing_search.config";
+import { getPaginationParams } from "../lib";
 import ListingModel from "../models/ListingModel";
 import {
   buildFilterQueries,
@@ -14,7 +15,6 @@ import {
 } from "../types/listing_search_response_types";
 import { type GeocodeBoundaryQueryParams } from "../zod_schemas/geocodeBoundarySearchSchema";
 import { ListingAddress } from "../zod_schemas/listingSchema";
-import { type PaginationParams } from "../zod_schemas/listingSearchParamsSchema";
 
 export type FindWithinBoundsResult = {
   metadata: { numberAvailable: number }[];
@@ -29,8 +29,7 @@ export interface IListingRepository {
 
   findWithinBounds: (
     boundaryGeometry: Polygon | MultiPolygon,
-    query: GeocodeBoundaryQueryParams,
-    pagination: PaginationParams
+    query: GeocodeBoundaryQueryParams
   ) => Promise<FindWithinBoundsResult[]>;
 
   findByPlaceId: (
@@ -68,9 +67,9 @@ export const findByPlaceIdOrAddress = async (
 
 export const findWithinBounds = async (
   boundaryGeometry: Polygon | MultiPolygon,
-  query: GeocodeBoundaryQueryParams,
-  { page_size, page_index }: PaginationParams
+  query: GeocodeBoundaryQueryParams
 ) => {
+  const { page_size, page_index } = getPaginationParams(query);
   return ListingModel.aggregate<FindWithinBoundsResult>([
     {
       $match: {

@@ -1,4 +1,3 @@
-import { getPaginationParams } from "../lib";
 import { isListingAddressType } from "../lib/geocode";
 import {
   boundsParamsToGeoJSONPolygon,
@@ -61,12 +60,9 @@ export const boundarySearch = async (ctx: BoundarySearchContext) => {
 
   ctx.assert(boundary, 404, `No boundary found for boundary id ${id}.`);
 
-  const pagination = getPaginationParams(ctx.query);
-
   const results = await ctx.repositories.listing.findWithinBounds(
     getBoundaryGeometryWithBounds(boundary, ctx.query),
-    ctx.query,
-    pagination
+    ctx.query
   );
 
   ctx.body = listingSearchBoundaryView(boundary, results, ctx.query);
@@ -80,11 +76,9 @@ export const boundsSearch = async (ctx: BoundsSearchContext) => {
     bounds_south,
     bounds_west
   });
-  const pagination = getPaginationParams(ctx.query);
   const results = await ctx.repositories.listing.findWithinBounds(
     geoJSONPolygon,
-    ctx.query,
-    pagination
+    ctx.query
   );
   ctx.body = listingSearchView(results, ctx.query);
 };

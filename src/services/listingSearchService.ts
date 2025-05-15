@@ -5,7 +5,6 @@ import {
 import type { MultiPolygon, Polygon } from "@turf/turf";
 import { bboxPolygon, intersect } from "@turf/turf";
 import { type Context } from "koa";
-import { getPaginationParams } from "../lib";
 import { type GeocodeBoundaryContext } from "../controllers/listingSearchController";
 import type { IBoundary } from "../models/BoundaryModel";
 import listingSearchBoundaryView from "../views/listingSearchBoundaryView";
@@ -72,7 +71,7 @@ export const getAddressTypesFromParams = (address_types: string) =>
 
 /**
  * Logic for handling a request that includes a place_id.
- * 
+ *
  * 1. Check if geocode request can be handled by looking up a boundary via place_id
  * 2. Attempt to find a boundary with the given place_id and listings within it
  * 3. If we don't have a boundary for the place_id, return the suggested
@@ -95,11 +94,9 @@ export const getResponseForPlaceId = async (ctx: GeocodeBoundaryContext) => {
     if (!geometry) return;
     return listingSearchGeocodeNoBoundaryView(geometry.viewport);
   }
-  const pagination = getPaginationParams(ctx.query);
   const results = await ctx.repositories.listing.findWithinBounds(
     boundary.geometry,
-    ctx.query,
-    pagination
+    ctx.query
   );
   return listingSearchBoundaryView(boundary, results, ctx.query);
 };
@@ -133,11 +130,9 @@ export const getResponseForBoundary = async (
   if (!boundary) {
     return listingSearchGeocodeNoBoundaryView(geometry.viewport);
   }
-  const pagination = getPaginationParams(ctx.query);
   const results = await ctx.repositories.listing.findWithinBounds(
     boundary.geometry,
-    ctx.query,
-    pagination
+    ctx.query
   );
   return listingSearchBoundaryView(boundary, results, ctx.query);
 };
