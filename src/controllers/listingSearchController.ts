@@ -69,7 +69,7 @@ export const boundarySearch = async (ctx: BoundarySearchContext) => {
     pagination
   );
 
-  ctx.body = listingSearchBoundaryView(boundary, results, pagination);
+  ctx.body = listingSearchBoundaryView(boundary, results, ctx.query);
 };
 
 export const boundsSearch = async (ctx: BoundsSearchContext) => {
@@ -86,5 +86,5 @@ export const boundsSearch = async (ctx: BoundsSearchContext) => {
     ctx.query,
     pagination
   );
-  ctx.body = listingSearchView(results, pagination);
+  ctx.body = listingSearchView(results, ctx.query);
 };

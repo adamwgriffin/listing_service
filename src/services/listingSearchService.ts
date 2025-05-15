@@ -101,7 +101,7 @@ export const getResponseForPlaceId = async (ctx: GeocodeBoundaryContext) => {
     ctx.query,
     pagination
   );
-  return listingSearchBoundaryView(boundary, results, pagination);
+  return listingSearchBoundaryView(boundary, results, ctx.query);
 };
 
 /**
@@ -139,5 +139,5 @@ export const getResponseForBoundary = async (
     ctx.query,
     pagination
   );
-  return listingSearchBoundaryView(boundary, results, pagination);
+  return listingSearchBoundaryView(boundary, results, ctx.query);
 };
