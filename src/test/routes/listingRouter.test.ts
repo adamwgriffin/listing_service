@@ -12,11 +12,11 @@ describe("listingRouter", () => {
     });
 
     it("returns a listing", async () => {
-      const listing = await Listing.findOne().lean();
-      if (!listing) throw new Error("No listings found in test database");
-      const res = await request(app.callback()).get(`/listing/${listing._id}`);
+      const listingId = (await Listing.findOne().lean())?._id.toString();
+      if (!listingId) throw new Error("No listings found in test database");
+      const res = await request(app.callback()).get(`/listing/${listingId}`);
       expect(res.status).toBe(200);
-      expect(res.body._id).toBe(listing._id);
+      expect(res.body._id).toBe(listingId);
     });
 
     it("returns a not found status when a listing with the given ID does not exist", async () => {
