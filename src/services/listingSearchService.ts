@@ -78,7 +78,6 @@ export const getResponseForPlaceId = async (ctx: GeocodeBoundaryContext) => {
   // Logic in the controller handles that for the sake of effeciency
   if (isListingAddressType(getAddressTypesFromParams(address_types))) return;
 
-  const pagination = getPaginationParams(ctx.query);
   const boundary = await Boundary.findOne({ placeId: place_id });
   if (!boundary) {
     const { geometry } = (
@@ -87,6 +86,7 @@ export const getResponseForPlaceId = async (ctx: GeocodeBoundaryContext) => {
     if (!geometry) return;
     return listingSearchGeocodeNoBoundaryView(geometry.viewport);
   }
+  const pagination = getPaginationParams(ctx.query);
   const results = await ctx.repositories.listing.findWithinBounds(
     boundary.geometry,
     ctx.query,
@@ -114,11 +114,11 @@ export const getResponseForBoundary = async (
   { place_id, geometry }: GeocodeResult,
   ctx: GeocodeBoundaryContext
 ) => {
-  const pagination = getPaginationParams(ctx.query);
   const boundary = await Boundary.findOne({ placeId: place_id });
   if (!boundary) {
     return listingSearchGeocodeNoBoundaryView(geometry.viewport);
   }
+  const pagination = getPaginationParams(ctx.query);
   const results = await ctx.repositories.listing.findWithinBounds(
     boundary.geometry,
     ctx.query,
