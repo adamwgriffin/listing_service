@@ -1,12 +1,15 @@
 import { DefaultPageSize } from "../config";
-import type { PaginationParams } from "../zod_schemas/listingSearchParamsSchema";
+import type {
+  ListingFilterParams,
+  PaginationParams
+} from "../zod_schemas/listingSearchParamsSchema";
 
 export const getPaginationParams = (
-  query: Partial<PaginationParams>
+  query: Partial<ListingFilterParams>
 ): PaginationParams => {
   return {
-    page_size: Number(query.page_size) || DefaultPageSize,
-    page_index: Number(query.page_index) || 0
+    page_size: query.page_size || DefaultPageSize,
+    page_index: query.page_index || 0
   };
 };
 
