@@ -8,7 +8,6 @@ import { type Context } from "koa";
 import { getPaginationParams } from "../lib";
 import { type GeocodeBoundaryContext } from "../controllers/listingSearchController";
 import type { IBoundary } from "../models/BoundaryModel";
-import Boundary from "../models/BoundaryModel";
 import listingSearchBoundaryView from "../views/listingSearchBoundaryView";
 import listingSearchGeocodeNoBoundaryView from "../views/listingSearchGeocodeNoBoundaryView";
 import type { BoundarySearchQueryParams } from "../zod_schemas/boundarySearchRequestSchema";
@@ -78,7 +77,7 @@ export const getResponseForPlaceId = async (ctx: GeocodeBoundaryContext) => {
   // Logic in the controller handles that for the sake of effeciency
   if (isListingAddressType(getAddressTypesFromParams(address_types))) return;
 
-  const boundary = await Boundary.findOne({ placeId: place_id });
+  const boundary = await ctx.repositories.boundary.findByPlaceId(place_id);
   if (!boundary) {
     const { geometry } = (
       await ctx.geocodeService.getPlaceDetails({ place_id })
@@ -114,7 +113,7 @@ export const getResponseForBoundary = async (
   { place_id, geometry }: GeocodeResult,
   ctx: GeocodeBoundaryContext
 ) => {
-  const boundary = await Boundary.findOne({ placeId: place_id });
+  const boundary = await ctx.repositories.boundary.findByPlaceId(place_id);
   if (!boundary) {
     return listingSearchGeocodeNoBoundaryView(geometry.viewport);
   }
