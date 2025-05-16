@@ -1,4 +1,4 @@
-import { DefaultPageSize } from "../config";
+import { DefaultPageSize } from "../config/listingSearchConfig";
 import type {
   ListingFilterParams,
   PaginationParams

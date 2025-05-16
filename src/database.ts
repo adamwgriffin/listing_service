@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { MongoDbUrl, MongoDbOptions } from "./config";
+import { MongoDbUrl, MongoDbOptions } from "./config/databaseConfig";
 
 mongoose.connection.on("error", (e) => {
   console.error("MongoDB connection error:", e);

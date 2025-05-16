@@ -2,7 +2,7 @@ import type { MultiPolygon, Polygon } from "@turf/turf";
 import {
   ListingDetailResultProjectionFields,
   ListingResultProjectionFields
-} from "../config/listing_search.config";
+} from "../config/listingSearchConfig";
 import { getPaginationParams } from "../lib";
 import ListingModel from "../models/ListingModel";
 import {

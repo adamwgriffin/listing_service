@@ -4,7 +4,7 @@ import type { IBoundary } from "../models/BoundaryModel";
 import {
   ListingResultProjectionFields,
   ListingDetailResultProjectionFields
-} from "../config";
+} from "../config/listingSearchConfig";
 import { LatLngBounds } from "@googlemaps/google-maps-services-js";
 
 export type AdditionalListingResultFields = {
