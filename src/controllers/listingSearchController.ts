@@ -2,9 +2,9 @@ import { isListingAddressType } from "../lib/geocode";
 import {
   boundsParamsToGeoJSONPolygon,
   getBoundaryGeometryWithBounds,
-  getResponseForBoundary,
-  getResponseForListingAddress,
-  getResponseForPlaceId
+  getResultsForPlaceId,
+  getListingForAddress,
+  getResultsForPlaceIdRequest
 } from "../services/listingSearchService";
 import { ControllerContext } from "../types";
 import type {
@@ -13,6 +13,7 @@ import type {
   ListingSearchResponse
 } from "../types/listing_search_response_types";
 import listingSearchBoundaryView from "../views/listingSearchBoundaryView";
+import listingSearchGeocodeNoBoundaryView from "../views/listingSearchGeocodeNoBoundaryView";
 import listingSearchView from "../views/listingSearchView";
 import type { BoundarySearchRequest } from "../zod_schemas/boundarySearchRequestSchema";
 import type { BoundsSearchRequest } from "../zod_schemas/boundsSearchRequestSchema";
@@ -34,11 +35,15 @@ export type BoundsSearchContext = ControllerContext<
 >;
 
 export const geocodeBoundarySearch = async (ctx: GeocodeBoundaryContext) => {
-  // If we have a place_id then we may not need to make an additional request to
-  // the geocode service
-  const placeIdRes = await getResponseForPlaceId(ctx);
-  if (placeIdRes) {
-    ctx.body = placeIdRes;
+  // If we have a place_id then we may not need to make a request to the geocode
+  // service
+  const placeIdData = await getResultsForPlaceIdRequest(ctx);
+  if (placeIdData) {
+    ctx.body = listingSearchBoundaryView(
+      placeIdData.boundary,
+      placeIdData.results,
+      ctx.query
+    );
     return;
   }
 
@@ -47,11 +52,22 @@ export const geocodeBoundarySearch = async (ctx: GeocodeBoundaryContext) => {
   ).data.results[0];
 
   if (isListingAddressType(geocodeResult.types)) {
-    ctx.body = await getResponseForListingAddress(geocodeResult, ctx);
+    const listing = await getListingForAddress(geocodeResult, ctx);
+    ctx.body = listingSearchGeocodeNoBoundaryView(
+      geocodeResult.geometry.viewport,
+      listing
+    );
     return;
   }
 
-  ctx.body = await getResponseForBoundary(geocodeResult, ctx);
+  const boundaryData = await getResultsForPlaceId(geocodeResult.place_id, ctx);
+  ctx.body = boundaryData
+    ? listingSearchBoundaryView(
+        boundaryData.boundary,
+        boundaryData.results,
+        ctx.query
+      )
+    : listingSearchGeocodeNoBoundaryView(geocodeResult.geometry.viewport);
 };
 
 export const boundarySearch = async (ctx: BoundarySearchContext) => {
