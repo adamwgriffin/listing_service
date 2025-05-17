@@ -45,6 +45,8 @@ export type ListingDetailResponse = ListingDetailResultWithSelectedFields & {
   daysOnMarket: number;
 };
 
+export type ListingsResponse = { listings: ListingResultWithSelectedFields[] }
+
 export type BoundarySearchResponse = ListingSearchResponse & {
   boundary: IBoundary;
 };
