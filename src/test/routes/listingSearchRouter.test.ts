@@ -2,7 +2,11 @@ import request from "supertest";
 import { buildApp } from "../../app";
 import Boundary from "../../models/BoundaryModel";
 import { boundsParamsToGeoJSONPolygon } from "../../services/listingSearchService";
-import type { BoundarySearchResponse } from "../../types/listing_search_response_types";
+import type {
+  BoundarySearchResponse,
+  ListingResultWithSelectedFields,
+  ListingSearchResponse
+} from "../../types/listing_search_response_types";
 import { listingsInsideBoundary } from "../test_helpers";
 
 const FremontViewportBounds = {
@@ -17,6 +21,50 @@ const AddressWithNoData = "851 NW 85th Street, Seattle, WA 98117";
 const StreetAddressPlaceId = "ChIJsa_uptMVkFQRmZ6RBFqLu4s";
 
 const app = buildApp();
+
+const NumberRangeFilters: Record<string, Record<string, number>> = {
+  beds: {
+    beds_min: 2,
+    beds_max: 3
+  },
+  listPrice: {
+    price_min: 700000,
+    price_max: 800000
+  },
+  sqft: {
+    sqft_min: 1000,
+    sqft_max: 1754
+  }
+};
+
+function flattenNumberRangeFilters(filters: typeof NumberRangeFilters) {
+  return Object.values(filters).reduce(
+    (acc, curr) => ({ ...acc, ...curr }),
+    {}
+  );
+}
+
+const allFiltersWithinRange = (listing: ListingResultWithSelectedFields) => {
+  return Object.entries(NumberRangeFilters).every(([field, filterRange]) => {
+    const [min, max] = Object.values(filterRange);
+    const fieldValue = listing[field as keyof typeof listing] as number;
+    return fieldValue >= min && fieldValue <= max;
+  });
+};
+
+const testFilters = (endpoint: string, query: object) => {
+  describe("when filters are included in the request", () => {
+    it("finds listings in the correct range for filters that use a numeric range", async () => {
+      const filters = flattenNumberRangeFilters(NumberRangeFilters);
+      const res = await request(app.callback())
+        .get(endpoint)
+        .query({ ...query, ...filters });
+      const data: ListingSearchResponse = res.body;
+      expect(data.listings.length).toBeGreaterThanOrEqual(1);
+      expect(data.listings.every(allFiltersWithinRange)).toBe(true);
+    });
+  });
+};
 
 describe("listingSearchRouter", () => {
   describe("GET /listing/search/boundary/:id", () => {
@@ -67,10 +115,12 @@ describe("listingSearchRouter", () => {
         true
       );
     });
+
+    testFilters("/listing/search/bounds", FremontViewportBounds);
   });
 
   describe("GET /listing/search/geocode", () => {
-    it("validates that either a place_id or address param are present in the request", async () => {
+    it("validates that either a place_id or address param is present in the request", async () => {
       const res = await request(app.callback())
         .get("/listing/search/geocode")
         .query({ price_min: 700000 });
@@ -142,6 +192,11 @@ describe("listingSearchRouter", () => {
           });
         expect(res.body).toHaveProperty("viewport");
       });
+    });
+
+    testFilters("/listing/search/geocode", {
+      place_id: FremontPlaceId,
+      address_types: "neighborhood,political"
     });
   });
 });
