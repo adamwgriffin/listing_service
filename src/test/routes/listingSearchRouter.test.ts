@@ -7,7 +7,10 @@ import type {
   ListingResultWithSelectedFields,
   ListingSearchResponse
 } from "../../types/listing_search_response_types";
-import { listingsInsideBoundary } from "../test_helpers";
+import {
+  getNonExistingBoundaryId,
+  listingsInsideBoundary
+} from "../test_helpers";
 
 const FremontViewportBounds = {
   bounds_north: 47.69011227856514,
@@ -88,9 +91,8 @@ describe("listingSearchRouter", () => {
     });
 
     it("returns a not found status when a boundary with the given ID does not exist", async () => {
-      const nonExistentId = new Boundary()._id;
       const res = await request(app.callback()).get(
-        `/listing/search/boundary/${nonExistentId}`
+        `/listing/search/boundary/${getNonExistingBoundaryId()}`
       );
       expect(res.status).toBe(404);
     });
