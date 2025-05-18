@@ -30,9 +30,13 @@ const NumberRangeFilters: Record<string, Record<string, number>> = {
     beds_min: 2,
     beds_max: 3
   },
+  baths: {
+    baths_min: 2,
+    baths_max: 4
+  },
   listPrice: {
-    price_min: 700000,
-    price_max: 800000
+    price_min: 500000,
+    price_max: 900000
   },
   sqft: {
     sqft_min: 1000,
@@ -65,6 +69,23 @@ const testFilters = (endpoint: string, query: object) => {
       const data: ListingSearchResponse = res.body;
       expect(data.listings.length).toBeGreaterThanOrEqual(1);
       expect(data.listings.every(allFiltersWithinRange)).toBe(true);
+    });
+
+    it("finds listings with the correct status", async () => {
+      const statuses = ["active", "pending"];
+      const res = await request(app.callback())
+        .get(endpoint)
+        .query({ ...query, status: statuses.join(",") });
+      const data: ListingSearchResponse = res.body;
+      expect(data.listings.length).toBeGreaterThanOrEqual(1);
+      const correctStatuses = data.listings.every((listing) =>
+        statuses.includes(listing.status)
+      );
+      expect(correctStatuses).toBe(true);
+      const incorrectStatuses = data.listings.some((l) =>
+        ["sold", "rented"].includes(l.status)
+      );
+      expect(incorrectStatuses).toBe(false);
     });
   });
 };
