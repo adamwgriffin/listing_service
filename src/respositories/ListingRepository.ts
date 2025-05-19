@@ -1,12 +1,10 @@
 import type { MultiPolygon, Polygon } from "@turf/turf";
-import {
-  ListingDetailResultProjectionFields,
-  ListingResultProjectionFields
-} from "../config/listingSearchConfig";
 import { getPaginationParams } from "../lib";
 import ListingModel from "../models/ListingModel";
 import {
   buildFilterQueries,
+  ListingDetailResultProjectionFields,
+  ListingResultProjectionFields,
   listingSortQuery
 } from "../queries/listingQueries";
 import {

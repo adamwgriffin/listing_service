@@ -1,11 +1,11 @@
-import type { Types } from "mongoose";
-import type { IListing } from "../models/ListingModel";
-import type { IBoundary } from "../models/BoundaryModel";
-import {
-  ListingResultProjectionFields,
-  ListingDetailResultProjectionFields
-} from "../config/listingSearchConfig";
 import { LatLngBounds } from "@googlemaps/google-maps-services-js";
+import type { Types } from "mongoose";
+import type { IBoundary } from "../models/BoundaryModel";
+import type { IListing } from "../models/ListingModel";
+import {
+  ListingDetailResultProjectionFields,
+  ListingResultProjectionFields
+} from "../queries/listingQueries";
 
 export type AdditionalListingResultFields = {
   _id: Types.ObjectId;
@@ -45,7 +45,7 @@ export type ListingDetailResponse = ListingDetailResultWithSelectedFields & {
   daysOnMarket: number;
 };
 
-export type ListingsResponse = { listings: ListingResultWithSelectedFields[] }
+export type ListingsResponse = { listings: ListingResultWithSelectedFields[] };
 
 export type BoundarySearchResponse = ListingSearchResponse & {
   boundary: IBoundary;
