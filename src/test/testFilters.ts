@@ -1,6 +1,6 @@
 import request from "supertest";
 import type {
-  ListingResultWithSelectedFields,
+  ListingResult,
   ListingSearchResponse
 } from "../types/listing_search_response_types";
 import type Application from "koa";
@@ -35,7 +35,7 @@ function testFiltersToQueryParams(filters: typeof NumberRangeFilters) {
 }
 
 const allFiltersWithinNumericRange = (
-  listing: ListingResultWithSelectedFields
+  listing: ListingResult
 ) => {
   return Object.entries(NumberRangeFilters).every(([field, filterRange]) => {
     const [min, max] = Object.values(filterRange);

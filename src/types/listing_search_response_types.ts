@@ -13,7 +13,7 @@ export type AdditionalListingResultFields = {
   longitude: number;
 };
 
-export type ListingResultWithSelectedFields = Pick<
+export type ListingResult = Pick<
   IListing,
   Exclude<keyof typeof ListingResultProjectionFields, "latitude" | "longitude">
 > &
@@ -36,7 +36,7 @@ export type PaginationResponse = {
   numberOfPages: number;
 };
 
-export type ListingSearchResponse<T = ListingResultWithSelectedFields> = {
+export type ListingSearchResponse<T = ListingResult> = {
   listings: T[];
   pagination: PaginationResponse;
 };
@@ -45,7 +45,7 @@ export type ListingDetailResponse = ListingDetailResultWithSelectedFields & {
   daysOnMarket: number;
 };
 
-export type ListingsResponse = { listings: ListingResultWithSelectedFields[] };
+export type ListingsResponse = { listings: ListingResult[] };
 
 export type BoundarySearchResponse = ListingSearchResponse & {
   boundary: IBoundary;

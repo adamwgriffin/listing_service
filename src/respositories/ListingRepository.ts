@@ -9,14 +9,14 @@ import {
 } from "../queries/listingQueries";
 import {
   ListingDetailResultWithSelectedFields,
-  ListingResultWithSelectedFields
+  ListingResult
 } from "../types/listing_search_response_types";
 import { type GeocodeBoundaryQueryParams } from "../zod_schemas/geocodeBoundarySearchSchema";
 import { ListingAddress } from "../zod_schemas/listingSchema";
 
 export type FindWithinBoundsResult = {
   metadata: { numberAvailable: number }[];
-  listings: ListingResultWithSelectedFields[];
+  listings: ListingResult[];
 };
 
 export interface IListingRepository {
@@ -40,7 +40,7 @@ export interface IListingRepository {
 
   findByListingIds: (
     ids: string[]
-  ) => Promise<ListingResultWithSelectedFields[]>;
+  ) => Promise<ListingResult[]>;
 }
 
 /**
@@ -127,7 +127,7 @@ export const findByListingIds = async (ids: string[]) => {
   return ListingModel.find(
     { _id: { $in: ids } },
     ListingResultProjectionFields
-  ).lean<ListingResultWithSelectedFields[]>();
+  ).lean<ListingResult[]>();
 };
 
 export const ListingRepository: IListingRepository = {
