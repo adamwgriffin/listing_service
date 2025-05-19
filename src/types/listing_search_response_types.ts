@@ -19,7 +19,7 @@ export type ListingResult = Pick<
 > &
   AdditionalListingResultFields;
 
-export type ListingDetailResultWithSelectedFields = Pick<
+export type ListingDetailResult = Pick<
   IListing,
   Exclude<
     keyof typeof ListingDetailResultProjectionFields,
@@ -41,7 +41,7 @@ export type ListingSearchResponse<T = ListingResult> = {
   pagination: PaginationResponse;
 };
 
-export type ListingDetailResponse = ListingDetailResultWithSelectedFields & {
+export type ListingDetailResponse = ListingDetailResult & {
   daysOnMarket: number;
 };
 
@@ -54,7 +54,7 @@ export type BoundarySearchResponse = ListingSearchResponse & {
 export type GeocodeBoundarySearchResponse = Partial<ListingSearchResponse> & {
   boundary?: IBoundary;
   viewport?: LatLngBounds;
-  listingDetail?: ListingDetailResultWithSelectedFields;
+  listingDetail?: ListingDetailResult;
 };
 
 export type ServiceError = {

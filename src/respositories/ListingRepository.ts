@@ -8,7 +8,7 @@ import {
   listingSortQuery
 } from "../queries/listingQueries";
 import {
-  ListingDetailResultWithSelectedFields,
+  ListingDetailResult,
   ListingResult
 } from "../types/listing_search_response_types";
 import { type GeocodeBoundaryQueryParams } from "../zod_schemas/geocodeBoundarySearchSchema";
@@ -23,7 +23,7 @@ export interface IListingRepository {
   findByPlaceIdOrAddress: (
     placeId: string,
     address: ListingAddress
-  ) => Promise<ListingDetailResultWithSelectedFields | null>;
+  ) => Promise<ListingDetailResult | null>;
 
   findWithinBounds: (
     boundaryGeometry: Polygon | MultiPolygon,
@@ -32,11 +32,11 @@ export interface IListingRepository {
 
   findByPlaceId: (
     placeId: string
-  ) => Promise<ListingDetailResultWithSelectedFields | null>;
+  ) => Promise<ListingDetailResult | null>;
 
   findByListingId: (
     placeId: string
-  ) => Promise<ListingDetailResultWithSelectedFields | null>;
+  ) => Promise<ListingDetailResult | null>;
 
   findByListingIds: (
     ids: string[]
@@ -60,7 +60,7 @@ export const findByPlaceIdOrAddress = async (
   return ListingModel.findOne(
     { $or: [{ placeId }, addressQuery] },
     ListingDetailResultProjectionFields
-  ).lean<ListingDetailResultWithSelectedFields>();
+  ).lean<ListingDetailResult>();
 };
 
 export const findWithinBounds = async (
@@ -113,14 +113,14 @@ export const findByPlaceId = async (placeId: string) => {
   return ListingModel.findOne(
     { placeId },
     ListingDetailResultProjectionFields
-  ).lean<ListingDetailResultWithSelectedFields>();
+  ).lean<ListingDetailResult>();
 };
 
 export const findByListingId = async (id: string) => {
   return ListingModel.findById(
     id,
     ListingDetailResultProjectionFields
-  ).lean<ListingDetailResultWithSelectedFields>();
+  ).lean<ListingDetailResult>();
 };
 
 export const findByListingIds = async (ids: string[]) => {

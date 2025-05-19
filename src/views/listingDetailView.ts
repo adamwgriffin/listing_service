@@ -1,7 +1,7 @@
 import { differenceInDays } from "date-fns";
-import { type ListingDetailResultWithSelectedFields } from "../types/listing_search_response_types";
+import { type ListingDetailResult } from "../types/listing_search_response_types";
 
-export default (listingDetail: ListingDetailResultWithSelectedFields) => {
+export default (listingDetail: ListingDetailResult) => {
   const daysOnMarket = differenceInDays(
     listingDetail.soldDate || new Date(),
     listingDetail.listedDate
