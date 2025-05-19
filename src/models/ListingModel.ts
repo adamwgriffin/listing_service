@@ -257,6 +257,7 @@ const ListingSchema = new Schema<IListing>({
   }
 });
 
+/** Add a unique slug based on the listing address before a listing is saved. */
 ListingSchema.pre("save", async function (next) {
   if (this.isModified("address") || !this.slug) {
     const address = Object.values(this.address).filter(Boolean).join(" ");
