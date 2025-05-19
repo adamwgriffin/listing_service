@@ -1,8 +1,9 @@
-import { DefaultPageSize } from "../config/listingSearchConfig";
 import type {
   ListingFilterParams,
   PaginationParams
 } from "../zod_schemas/listingSearchParamsSchema";
+
+export const DefaultPageSize = 20;
 
 export const getPaginationParams = (
   query: Partial<ListingFilterParams>

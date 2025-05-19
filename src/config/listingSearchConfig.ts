@@ -26,4 +26,3 @@ export const ListingDetailResultProjectionFields = {
   propertyDetails: 1
 };
 
-export const DefaultPageSize = 20;
