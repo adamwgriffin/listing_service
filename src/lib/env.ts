@@ -24,4 +24,7 @@ if (!parsed.success) {
   process.exit(1);
 }
 
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME } = parsed.data;
+export const MongoDbUrl = `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}?authSource=admin`;
+
 export default parsed.data;
