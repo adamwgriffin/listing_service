@@ -12,7 +12,7 @@
     "lint": "eslint . --ext .ts",
     "format": "prettier --write .",
     "build": "tsc",
-    "test": "docker compose run --rm -e DB_HOST=mongodb-test app yarn jest",
+    "test": "docker compose run --rm app-test yarn jest",
     "console": "docker compose run --rm app yarn ts-node",
     "generate_listing_data": "./run-script src/bin/generate_listing_data",
     "seed_listing_data": "./run-script src/bin/seed_listing_data",

@@ -1,3 +1,12 @@
+x-app-base: &app-base
+  build:
+    context: .
+    args:
+      NODE_VERSION: 20
+  env_file: ./.env
+  volumes:
+    - "./src:/app/src"
+
 x-mongodb-base: &mongodb-base
   image: mongo:latest
   env_file: ./.env
@@ -8,17 +17,11 @@ x-mongodb-base: &mongodb-base
 
 services:
   app:
-    build:
-      context: .
-      args:
-        NODE_VERSION: 20
-    env_file: ./.env
+    <<: *app-base
     ports:
       - "${APP_PORT}:${APP_PORT}"
     environment:
       - DB_HOST=mongodb
-    volumes:
-      - "./src:/app/src"
     depends_on:
       - mongodb
     stdin_open: true
@@ -35,11 +38,21 @@ services:
       # time
       - ./init-mongo:/docker-entrypoint-initdb.d
 
+  app-test:
+    <<: *app-base
+    profiles: ["manual"]
+    environment:
+      - DB_HOST=mongodb-test
+    depends_on:
+      - mongodb-test
+
   mongodb-test:
+    profiles: ["manual"]
     <<: *mongodb-base
     ports:
       - "27018:27017"
-    # Using tmpfs runs this in memory to make the tests faster
+    # Using tmpfs only persists data in memory so we can hopefully make the
+    # tests faster and the test data ephemeral
     tmpfs:
       - /data/db
     volumes:
