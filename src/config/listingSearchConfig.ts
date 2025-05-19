@@ -26,6 +26,4 @@ export const ListingDetailResultProjectionFields = {
   propertyDetails: 1
 };
 
-export const DefaultMaxDistance = 1609.34; // 1 mile in meters
-
 export const DefaultPageSize = 20;
