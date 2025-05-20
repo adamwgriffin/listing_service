@@ -1,12 +1,33 @@
+import { type HydratedDocument } from "mongoose";
 import request from "supertest";
 import { buildApp } from "../../../../app";
-import BoundaryModel from "../../../../models/BoundaryModel";
+import BoundaryModel, { type IBoundary } from "../../../../models/BoundaryModel";
+import ListingModel, { type IListing } from "../../../../models/ListingModel";
 import type { BoundarySearchResponse } from "../../../../types/listing_search_response_types";
+import fremontBoundary from "../../../data/fremontBoundary";
+import listingTemplate from "../../../data/listingTemplate";
 import { getNonExistingBoundaryId } from "../../../testHelpers";
 
-const app = buildApp();
-
 describe("GET /listing/search/boundary/:id", () => {
+  const app = buildApp();
+
+  let boundary: HydratedDocument<IBoundary>;
+  let listing: HydratedDocument<IListing>;
+
+  beforeAll(async () => {
+    [boundary, listing] = await Promise.all([
+      BoundaryModel.create(fremontBoundary),
+      ListingModel.create(listingTemplate)
+    ]);
+  });
+
+  afterAll(async () => {
+    return Promise.all([
+      BoundaryModel.deleteOne({ _id: boundary._id }),
+      ListingModel.deleteOne({ _id: listing._id })
+    ]);
+  });
+
   it("validates the boundary ID params type", async () => {
     const res = await request(app.callback()).get(
       `/listing/search/boundary/bad_id_type`
@@ -15,8 +36,6 @@ describe("GET /listing/search/boundary/:id", () => {
   });
 
   it("returns listings that are inside the given boundary", async () => {
-    const boundary = await BoundaryModel.findOne().lean();
-    if (!boundary) throw new Error("No boundaries found in test database");
     const res = await request(app.callback()).get(
       `/listing/search/boundary/${boundary._id}`
     );
