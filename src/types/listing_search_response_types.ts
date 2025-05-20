@@ -1,11 +1,11 @@
-import type { Types } from "mongoose";
-import type { IListing } from "../models/ListingModel";
-import type { IBoundary } from "../models/BoundaryModel";
-import {
-  ListingResultProjectionFields,
-  ListingDetailResultProjectionFields
-} from "../config";
 import { LatLngBounds } from "@googlemaps/google-maps-services-js";
+import type { Types } from "mongoose";
+import type { IBoundary } from "../models/BoundaryModel";
+import type { IListing } from "../models/ListingModel";
+import {
+  ListingDetailResultProjectionFields,
+  ListingResultProjectionFields
+} from "../queries/listingQueries";
 
 export type AdditionalListingResultFields = {
   _id: Types.ObjectId;
@@ -13,13 +13,13 @@ export type AdditionalListingResultFields = {
   longitude: number;
 };
 
-export type ListingResultWithSelectedFields = Pick<
+export type ListingResult = Pick<
   IListing,
   Exclude<keyof typeof ListingResultProjectionFields, "latitude" | "longitude">
 > &
   AdditionalListingResultFields;
 
-export type ListingDetailResultWithSelectedFields = Pick<
+export type ListingDetailResult = Pick<
   IListing,
   Exclude<
     keyof typeof ListingDetailResultProjectionFields,
@@ -36,14 +36,16 @@ export type PaginationResponse = {
   numberOfPages: number;
 };
 
-export type ListingSearchResponse<T = ListingResultWithSelectedFields> = {
+export type ListingSearchResponse<T = ListingResult> = {
   listings: T[];
   pagination: PaginationResponse;
 };
 
-export type ListingDetailResponse = ListingDetailResultWithSelectedFields & {
+export type ListingDetailResponse = ListingDetailResult & {
   daysOnMarket: number;
 };
+
+export type ListingsResponse = { listings: ListingResult[] };
 
 export type BoundarySearchResponse = ListingSearchResponse & {
   boundary: IBoundary;
@@ -52,7 +54,7 @@ export type BoundarySearchResponse = ListingSearchResponse & {
 export type GeocodeBoundarySearchResponse = Partial<ListingSearchResponse> & {
   boundary?: IBoundary;
   viewport?: LatLngBounds;
-  listingDetail?: ListingDetailResultWithSelectedFields;
+  listingDetail?: ListingDetailResult;
 };
 
 export type ServiceError = {

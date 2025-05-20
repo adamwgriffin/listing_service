@@ -1,49 +1,46 @@
 import type { MultiPolygon, Polygon } from "@turf/turf";
-import {
-  ListingDetailResultProjectionFields,
-  ListingResultProjectionFields
-} from "../config/listing_search.config";
+import { getPaginationParams } from "../lib";
 import ListingModel from "../models/ListingModel";
 import {
   buildFilterQueries,
+  ListingDetailResultProjectionFields,
+  ListingResultProjectionFields,
   listingSortQuery
 } from "../queries/listingQueries";
 import {
-  ListingDetailResultWithSelectedFields,
-  ListingResultWithSelectedFields
+  ListingDetailResult,
+  ListingResult
 } from "../types/listing_search_response_types";
 import { type GeocodeBoundaryQueryParams } from "../zod_schemas/geocodeBoundarySearchSchema";
 import { ListingAddress } from "../zod_schemas/listingSchema";
-import { type PaginationParams } from "../zod_schemas/listingSearchParamsSchema";
 
 export type FindWithinBoundsResult = {
   metadata: { numberAvailable: number }[];
-  listings: ListingResultWithSelectedFields[];
+  listings: ListingResult[];
 };
 
 export interface IListingRepository {
   findByPlaceIdOrAddress: (
     placeId: string,
     address: ListingAddress
-  ) => Promise<ListingDetailResultWithSelectedFields | null>;
+  ) => Promise<ListingDetailResult | null>;
 
   findWithinBounds: (
     boundaryGeometry: Polygon | MultiPolygon,
-    query: GeocodeBoundaryQueryParams,
-    pagination: PaginationParams
+    query: GeocodeBoundaryQueryParams
   ) => Promise<FindWithinBoundsResult[]>;
 
   findByPlaceId: (
     placeId: string
-  ) => Promise<ListingDetailResultWithSelectedFields | null>;
+  ) => Promise<ListingDetailResult | null>;
 
   findByListingId: (
     placeId: string
-  ) => Promise<ListingDetailResultWithSelectedFields | null>;
+  ) => Promise<ListingDetailResult | null>;
 
   findByListingIds: (
     ids: string[]
-  ) => Promise<ListingResultWithSelectedFields[]>;
+  ) => Promise<ListingResult[]>;
 }
 
 /**
@@ -63,14 +60,14 @@ export const findByPlaceIdOrAddress = async (
   return ListingModel.findOne(
     { $or: [{ placeId }, addressQuery] },
     ListingDetailResultProjectionFields
-  ).lean<ListingDetailResultWithSelectedFields>();
+  ).lean<ListingDetailResult>();
 };
 
 export const findWithinBounds = async (
   boundaryGeometry: Polygon | MultiPolygon,
-  query: GeocodeBoundaryQueryParams,
-  { page_size, page_index }: PaginationParams
+  query: GeocodeBoundaryQueryParams
 ) => {
+  const { page_size, page_index } = getPaginationParams(query);
   return ListingModel.aggregate<FindWithinBoundsResult>([
     {
       $match: {
@@ -116,21 +113,21 @@ export const findByPlaceId = async (placeId: string) => {
   return ListingModel.findOne(
     { placeId },
     ListingDetailResultProjectionFields
-  ).lean<ListingDetailResultWithSelectedFields>();
+  ).lean<ListingDetailResult>();
 };
 
 export const findByListingId = async (id: string) => {
   return ListingModel.findById(
     id,
     ListingDetailResultProjectionFields
-  ).lean<ListingDetailResultWithSelectedFields>();
+  ).lean<ListingDetailResult>();
 };
 
 export const findByListingIds = async (ids: string[]) => {
   return ListingModel.find(
     { _id: { $in: ids } },
     ListingResultProjectionFields
-  ).lean<ListingResultWithSelectedFields[]>();
+  ).lean<ListingResult[]>();
 };
 
 export const ListingRepository: IListingRepository = {

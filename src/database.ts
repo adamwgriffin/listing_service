@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { MongoDbUrl, MongoDbOptions } from "./config";
+import { MongoDbUrl } from "./lib/env";
 
 mongoose.connection.on("error", (e) => {
   console.error("MongoDB connection error:", e);
@@ -7,7 +7,7 @@ mongoose.connection.on("error", (e) => {
 
 export const connectToDatabase = async (): Promise<void> => {
   try {
-    const conn = await mongoose.connect(MongoDbUrl, MongoDbOptions);
+    const conn = await mongoose.connect(MongoDbUrl);
     console.debug(`MongoDB connected: ${conn.connection.host}`);
   } catch (err) {
     console.error(err);

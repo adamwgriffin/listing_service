@@ -1,10 +1,10 @@
 import type { ControllerContext } from "../types";
-import { ListingResultWithSelectedFields } from "../types/listing_search_response_types";
+import type { ListingsResponse } from '../types/listing_search_response_types';
 import type { ListingsRequest } from "../zod_schemas/listingsRequestSchema";
 
 export type GetListingsContext = ControllerContext<
   ListingsRequest,
-  { listings: ListingResultWithSelectedFields[] }
+  ListingsResponse
 >;
 
 export const getListingsById = async (ctx: GetListingsContext) => {

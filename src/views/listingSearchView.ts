@@ -1,15 +1,17 @@
+import { getPaginationParams } from '../lib';
 import { type FindWithinBoundsResult } from "../respositories/ListingRepository";
 import type {
-  ListingResultWithSelectedFields,
+  ListingResult,
   ListingSearchResponse
 } from "../types/listing_search_response_types";
-import type { PaginationParams } from "../zod_schemas/listingSearchParamsSchema";
+import type { ListingFilterParams } from "../zod_schemas/listingSearchParamsSchema";
 
 export default (
   results: FindWithinBoundsResult[],
-  pagination: PaginationParams
-): ListingSearchResponse<ListingResultWithSelectedFields> => {
+  query: Partial<ListingFilterParams>
+): ListingSearchResponse<ListingResult> => {
   const { listings, metadata } = results[0];
+  const pagination = getPaginationParams(query);
   const numberAvailable = metadata[0]?.numberAvailable || 0;
   return {
     listings: listings,

@@ -5,19 +5,16 @@ import {
 import type { MultiPolygon, Polygon } from "@turf/turf";
 import { bboxPolygon, intersect } from "@turf/turf";
 import { type Context } from "koa";
-import { getPaginationParams } from "../lib";
 import { type GeocodeBoundaryContext } from "../controllers/listingSearchController";
-import type { IBoundary } from "../models/BoundaryModel";
-import listingSearchBoundaryView from "../views/listingSearchBoundaryView";
-import listingSearchGeocodeNoBoundaryView from "../views/listingSearchGeocodeNoBoundaryView";
-import type { BoundarySearchQueryParams } from "../zod_schemas/boundarySearchRequestSchema";
-import type { ListingAddress } from "../zod_schemas/listingSchema";
-import { listingAddressSchema } from "../zod_schemas/listingSchema";
-import type { BoundsParams } from "../zod_schemas/listingSearchParamsSchema";
 import {
   addressComponentsToListingAddress,
   isListingAddressType
 } from "../lib/geocode";
+import type { IBoundary } from "../models/BoundaryModel";
+import type { BoundarySearchQueryParams } from "../zod_schemas/boundarySearchRequestSchema";
+import type { ListingAddress } from "../zod_schemas/listingSchema";
+import { listingAddressSchema } from "../zod_schemas/listingSchema";
+import type { BoundsParams } from "../zod_schemas/listingSearchParamsSchema";
 
 /**
  * Converts a set of north/east/south/west coordinates into a rectangular polygon
@@ -70,58 +67,47 @@ export const listingAddressHasRequiredFields = (
 export const getAddressTypesFromParams = (address_types: string) =>
   address_types.split(",") as AddressType[];
 
-export const getResponseForPlaceId = async (ctx: GeocodeBoundaryContext) => {
-  const { place_id, address_types } = ctx.query;
-  if (!place_id || !address_types) return;
-  // If it's an address we will need to geocode so we can't just use place_id.
-  // Logic in the controller handles that for the sake of effeciency
-  if (isListingAddressType(getAddressTypesFromParams(address_types))) return;
-
+/**
+ * Use place_id to finds a boundary and listings within it.
+ */
+export const getResultsForPlaceId = async (place_id: string, ctx: Context) => {
   const boundary = await ctx.repositories.boundary.findByPlaceId(place_id);
-  if (!boundary) {
-    const { geometry } = (
-      await ctx.geocodeService.getPlaceDetails({ place_id })
-    ).data.result;
-    if (!geometry) return;
-    return listingSearchGeocodeNoBoundaryView(geometry.viewport);
-  }
-  const pagination = getPaginationParams(ctx.query);
+  if (!boundary) return;
   const results = await ctx.repositories.listing.findWithinBounds(
     boundary.geometry,
-    ctx.query,
-    pagination
+    ctx.query
   );
-  return listingSearchBoundaryView(boundary, results, pagination);
+  return { boundary, results };
 };
 
-export const getResponseForListingAddress = async (
-  { address_components, place_id, geometry }: GeocodeResult,
+/**
+ * Handle a request that includes a place_id && address_types. If the request is
+ * for a boundary type, get listing results for that boundary.
+ */
+export const getResultsForPlaceIdRequest = async (
+  ctx: GeocodeBoundaryContext
+) => {
+  const { place_id, address_types } = ctx.query;
+  if (!place_id || !address_types) return;
+  if (isListingAddressType(getAddressTypesFromParams(address_types))) return;
+  return getResultsForPlaceId(place_id, ctx);
+};
+
+/**
+ * Try to find a listing that matches a geocode result, either by address or
+ * place_id.
+ */
+export const getListingForAddress = async (
+  { address_components, place_id }: GeocodeResult,
   ctx: Context
 ) => {
   const listingAddress = addressComponentsToListingAddress(address_components);
-
-  const listing = listingAddressHasRequiredFields(listingAddress)
+  // Avoid including address in the $or query if it's clear that the geocode
+  // result doesn't have enough address data to ever succeed.
+  return listingAddressHasRequiredFields(listingAddress)
     ? await ctx.repositories.listing.findByPlaceIdOrAddress(
         place_id,
         listingAddress
       )
     : await ctx.repositories.listing.findByPlaceId(place_id);
-  return listingSearchGeocodeNoBoundaryView(geometry.viewport, listing);
-};
-
-export const getResponseForBoundary = async (
-  { place_id, geometry }: GeocodeResult,
-  ctx: GeocodeBoundaryContext
-) => {
-  const boundary = await ctx.repositories.boundary.findByPlaceId(place_id);
-  if (!boundary) {
-    return listingSearchGeocodeNoBoundaryView(geometry.viewport);
-  }
-  const pagination = getPaginationParams(ctx.query);
-  const results = await ctx.repositories.listing.findWithinBounds(
-    boundary.geometry,
-    ctx.query,
-    pagination
-  );
-  return listingSearchBoundaryView(boundary, results, pagination);
 };
