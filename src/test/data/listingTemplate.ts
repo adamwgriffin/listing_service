@@ -1,6 +1,8 @@
-export default {
+import type { ListingData } from "../../lib/random_data";
+
+const listingTemplate: ListingData = {
   listPrice: 151000,
-  listedDate: "2024-09-24T14:00:49.128Z",
+  listedDate: new Date("2024-09-24T14:00:49.128Z"),
   address: {
     line1: "4219 Linden Avenue North",
     line2: "",
@@ -26,3 +28,5 @@ export default {
   propertyDetails: [],
   openHouses: []
 };
+
+export default listingTemplate;
