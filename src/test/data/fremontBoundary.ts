@@ -1,4 +1,6 @@
-export default {
+import { IBoundary } from '../../models/BoundaryModel';
+
+const fremontBoundary: IBoundary = {
   name: "Fremont, Seattle, WA, USA",
   type: "neighborhood",
   geometry: {
@@ -466,3 +468,5 @@ export default {
   },
   placeId: "ChIJ1WmlZawVkFQRmE1TlcKlxaI"
 };
+
+export default fremontBoundary;
