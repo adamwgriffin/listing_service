@@ -40,6 +40,10 @@ describe("GET /listings/:ids", () => {
     expect(responseIds).toEqual(listingIds);
   });
 
+  // This endpoint is mostly used to get a list of favorites that have been
+  // saved for a user. It's reasonable to assume that some of these listings may
+  // be deleted over time for various reasons, which is why we are not returning
+  // an error for listings that were not found.
   describe("when not all the ids in the request were found", () => {
     it("returns only the listings that were found without any errors", async () => {
       const nonExistentId = getNonExistingListingId();
