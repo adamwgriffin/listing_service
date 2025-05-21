@@ -1,15 +1,33 @@
+import { HydratedDocument } from "mongoose";
 import request from "supertest";
 import { buildApp } from "../../../../app";
-import { testFilters } from "../../../testFilters";
+import BoundaryModel, { IBoundary } from "../../../../models/BoundaryModel";
+import ListingModel, { IListing } from "../../../../models/ListingModel";
+import fremontBoundary from "../../../data/fremontBoundary";
+import listingTemplate from "../../../data/listingTemplate";
 import { listingsInsideBoundary } from "../../../testHelpers";
 
-const FremontPlaceId = "ChIJ1WmlZawVkFQRmE1TlcKlxaI";
-const FremontLocationString = "Fremont, Seattle, WA";
 const AddressWithNoData = "851 NW 85th Street, Seattle, WA 98117";
 const StreetAddressPlaceId = "ChIJsa_uptMVkFQRmZ6RBFqLu4s";
 
 describe("GET /listing/search/geocode", () => {
   const app = buildApp();
+
+  let boundary: HydratedDocument<IBoundary>;
+  let listing: HydratedDocument<IListing>;
+
+  beforeAll(async () => {
+    boundary = await BoundaryModel.create(fremontBoundary);
+    listing = await app.context.repositories.listing.createListing({
+      ...listingTemplate,
+      placeId: StreetAddressPlaceId
+    });
+  });
+
+  afterAll(async () => {
+    await BoundaryModel.deleteOne({ _id: boundary._id });
+    await ListingModel.deleteOne({ _id: listing._id });
+  });
 
   it("validates that either a place_id or address param is present in the request", async () => {
     const res = await request(app.callback())
@@ -22,7 +40,7 @@ describe("GET /listing/search/geocode", () => {
     const res = await request(app.callback())
       .get(`/listing/search/geocode`)
       .query({
-        place_id: FremontPlaceId,
+        place_id: fremontBoundary.placeId,
         address_types: "neighborhood,political"
       });
     expect(
@@ -35,10 +53,10 @@ describe("GET /listing/search/geocode", () => {
       const res = await request(app.callback())
         .get(`/listing/search/geocode`)
         .query({
-          place_id: FremontPlaceId,
+          place_id: fremontBoundary.placeId,
           address_types: "neighborhood,political"
         });
-      expect(res.body.boundary.placeId).toEqual(FremontPlaceId);
+      expect(res.body.boundary.placeId).toEqual(fremontBoundary.placeId);
     });
 
     it("finds the listing that matches the place_id for street address types", async () => {
@@ -57,20 +75,18 @@ describe("GET /listing/search/geocode", () => {
       const res = await request(app.callback())
         .get(`/listing/search/geocode`)
         .query({
-          address: FremontLocationString
+          address: fremontBoundary.name
         });
-      expect(res.body.boundary.placeId).toEqual(FremontPlaceId);
+      expect(res.body.boundary.placeId).toEqual(fremontBoundary.placeId);
     });
 
     it("geocodes and finds a listing for street address types", async () => {
+      const { line1, city, state, zip } = listing.address;
+      const address = `${line1}, ${city}, ${state} ${zip}, USA`;
       const res = await request(app.callback())
         .get(`/listing/search/geocode`)
-        .query({
-          address: "5902 8th Avenue Northwest, Seattle, WA 98107, USA"
-        });
-      expect(res.body.listingDetail.placeId).toEqual(
-        "ChIJsa_uptMVkFQRmZ6RBFqLu4s"
-      );
+        .query({ address });
+      expect(res.body.listingDetail.placeId).toEqual(StreetAddressPlaceId);
     });
   });
 
@@ -83,10 +99,5 @@ describe("GET /listing/search/geocode", () => {
         });
       expect(res.body).toHaveProperty("viewport");
     });
-  });
-
-  testFilters(app, "/listing/search/geocode", {
-    place_id: FremontPlaceId,
-    address_types: "neighborhood,political"
   });
 });

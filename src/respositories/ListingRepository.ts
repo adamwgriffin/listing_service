@@ -1,6 +1,6 @@
 import type { MultiPolygon, Polygon } from "@turf/turf";
 import { getPaginationParams } from "../lib";
-import ListingModel from "../models/ListingModel";
+import ListingModel, { IListing } from "../models/ListingModel";
 import {
   buildFilterQueries,
   ListingDetailResultProjectionFields,
@@ -13,6 +13,9 @@ import {
 } from "../types/listing_search_response_types";
 import { type GeocodeBoundaryQueryParams } from "../zod_schemas/geocodeBoundarySearchSchema";
 import { ListingAddress } from "../zod_schemas/listingSchema";
+import { type ListingData } from "../lib/random_data";
+import { type HydratedDocument } from "mongoose";
+import { MongoServerError } from "mongodb";
 
 export type FindWithinBoundsResult = {
   metadata: { numberAvailable: number }[];
@@ -30,17 +33,24 @@ export interface IListingRepository {
     query: GeocodeBoundaryQueryParams
   ) => Promise<FindWithinBoundsResult[]>;
 
-  findByPlaceId: (
-    placeId: string
-  ) => Promise<ListingDetailResult | null>;
+  findByPlaceId: (placeId: string) => Promise<ListingDetailResult | null>;
 
-  findByListingId: (
-    placeId: string
-  ) => Promise<ListingDetailResult | null>;
+  findByListingId: (placeId: string) => Promise<ListingDetailResult | null>;
 
-  findByListingIds: (
-    ids: string[]
-  ) => Promise<ListingResult[]>;
+  findByListingIds: (ids: string[]) => Promise<ListingResult[]>;
+
+  /**
+   * Create a listing record.
+   *
+   * @note The save hook that adds a uniquey slug can sometimes fail in
+   * multi-threaded environments so this function attemps to recover from those
+   * errors by retrying. You can opt out of this behavior by passing 0 as the
+   * maxAttempts argument.
+   */
+  createListing: (
+    listing: ListingData,
+    maxAttempts?: number
+  ) => Promise<HydratedDocument<IListing>>;
 }
 
 /**
@@ -130,10 +140,41 @@ export const findByListingIds = async (ids: string[]) => {
   ).lean<ListingResult[]>();
 };
 
+const isDuplicateSlugError = (error: unknown) => {
+  return (
+    error instanceof MongoServerError &&
+    error.code === 11000 &&
+    error?.keyPattern?.slug === 1
+  );
+};
+
+export const createListing = async (data: ListingData, maxAttempts = 5) => {
+  let count = 0;
+
+  while (count <= maxAttempts) {
+    try {
+      const listing = await ListingModel.create(data);
+      return listing;
+    } catch (error) {
+      if (isDuplicateSlugError(error) && maxAttempts !== 0) {
+        console.debug("Duplicate key error encountered:", error);
+        count++;
+      } else {
+        throw error;
+      }
+    }
+  }
+
+  throw new Error(
+    `Failed to generate a unique slug after ${maxAttempts} attempts`
+  );
+};
+
 export const ListingRepository: IListingRepository = {
   findByPlaceIdOrAddress,
   findWithinBounds,
   findByPlaceId,
   findByListingId,
-  findByListingIds
+  findByListingIds,
+  createListing
 };

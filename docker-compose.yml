@@ -55,8 +55,6 @@ services:
     # tests faster and the test data ephemeral
     tmpfs:
       - /data/db
-    volumes:
-      - ./init-mongo:/docker-entrypoint-initdb.d
 
 volumes:
   mongo-data:
