@@ -19,7 +19,7 @@ describe("GET /listings/:ids", () => {
   });
 
   afterAll(async () => {
-    return ListingModel.deleteMany({ _id: { $in: listingIds } });
+    await ListingModel.deleteMany({ _id: { $in: listingIds } });
   });
 
   it("validates the listing IDs params type for all IDs in the request", async () => {

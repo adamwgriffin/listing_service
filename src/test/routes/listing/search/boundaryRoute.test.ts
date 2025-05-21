@@ -22,7 +22,7 @@ describe("GET /listing/search/boundary/:id", () => {
   });
 
   afterAll(async () => {
-    return Promise.all([
+    await Promise.all([
       BoundaryModel.deleteOne({ _id: boundary._id }),
       ListingModel.deleteOne({ _id: listing._id })
     ]);

@@ -14,7 +14,7 @@ describe("GET /listing/:id", () => {
   });
 
   afterAll(async () => {
-    return ListingModel.deleteOne({ _id: listingId });
+    await ListingModel.deleteOne({ _id: listingId });
   });
 
   it("validates the listing ID param type", async () => {
