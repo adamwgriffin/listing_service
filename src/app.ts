@@ -10,7 +10,7 @@ import {
 
 declare module "koa" {
   interface DefaultContext {
-    repositories: IRepositories;
+    db: IRepositories;
     geocodeService: IGeocoderService;
   }
 }
@@ -29,7 +29,7 @@ export const buildApp = (
     .use(bodyParser())
     .use(router.routes())
     .use(router.allowedMethods());
-  app.context.repositories = respositories || Repositories;
+  app.context.db = respositories || Repositories;
   app.context.geocodeService = geocoderService || buildGeocodeService();
   return app;
 };

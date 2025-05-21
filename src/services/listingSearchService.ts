@@ -71,9 +71,9 @@ export const getAddressTypesFromParams = (address_types: string) =>
  * Use place_id to finds a boundary and listings within it.
  */
 export const getResultsForPlaceId = async (place_id: string, ctx: Context) => {
-  const boundary = await ctx.repositories.boundary.findByPlaceId(place_id);
+  const boundary = await ctx.db.boundary.findByPlaceId(place_id);
   if (!boundary) return;
-  const results = await ctx.repositories.listing.findWithinBounds(
+  const results = await ctx.db.listing.findWithinBounds(
     boundary.geometry,
     ctx.query
   );
@@ -105,9 +105,9 @@ export const getListingForAddress = async (
   // Avoid including address in the $or query if it's clear that the geocode
   // result doesn't have enough address data to ever succeed.
   return listingAddressHasRequiredFields(listingAddress)
-    ? await ctx.repositories.listing.findByPlaceIdOrAddress(
+    ? await ctx.db.listing.findByPlaceIdOrAddress(
         place_id,
         listingAddress
       )
-    : await ctx.repositories.listing.findByPlaceId(place_id);
+    : await ctx.db.listing.findByPlaceId(place_id);
 };

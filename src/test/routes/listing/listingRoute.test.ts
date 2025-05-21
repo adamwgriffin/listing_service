@@ -11,7 +11,7 @@ describe("GET /listing/:id", () => {
 
   beforeAll(async () => {
     listingId = (
-      await app.context.repositories.listing.createListing(listingTemplate, 0)
+      await app.context.db.listing.createListing(listingTemplate, 0)
     )._id.toString();
   });
 

@@ -72,11 +72,11 @@ export const geocodeBoundarySearch = async (ctx: GeocodeBoundaryContext) => {
 
 export const boundarySearch = async (ctx: BoundarySearchContext) => {
   const { id } = ctx.params;
-  const boundary = await ctx.repositories.boundary.findById(id);
+  const boundary = await ctx.db.boundary.findById(id);
 
   ctx.assert(boundary, 404, `No boundary found for boundary id ${id}.`);
 
-  const results = await ctx.repositories.listing.findWithinBounds(
+  const results = await ctx.db.listing.findWithinBounds(
     getBoundaryGeometryWithBounds(boundary, ctx.query),
     ctx.query
   );
@@ -92,7 +92,7 @@ export const boundsSearch = async (ctx: BoundsSearchContext) => {
     bounds_south,
     bounds_west
   });
-  const results = await ctx.repositories.listing.findWithinBounds(
+  const results = await ctx.db.listing.findWithinBounds(
     geoJSONPolygon,
     ctx.query
   );

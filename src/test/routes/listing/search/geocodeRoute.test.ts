@@ -18,7 +18,7 @@ describe("GET /listing/search/geocode", () => {
 
   beforeAll(async () => {
     boundary = await BoundaryModel.create(fremontBoundary);
-    listing = await app.context.repositories.listing.createListing({
+    listing = await app.context.db.listing.createListing({
       ...listingTemplate,
       placeId: StreetAddressPlaceId
     });

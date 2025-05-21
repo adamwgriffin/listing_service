@@ -8,7 +8,7 @@ export type GetListingsContext = ControllerContext<
 >;
 
 export const getListingsById = async (ctx: GetListingsContext) => {
-  const listings = await ctx.repositories.listing.findByListingIds(
+  const listings = await ctx.db.listing.findByListingIds(
     ctx.params.ids
   );
   ctx.body = { listings };
