@@ -4,22 +4,14 @@ import request from "supertest";
 import { buildApp } from "../../../../app";
 import { randomPointsWithinPolygon } from "../../../../lib/random_data";
 import ListingModel, { IListing } from "../../../../models/ListingModel";
-import { boundsParamsToGeoJSONPolygon } from "../../../../services/listingSearchService";
 import listingTemplate from "../../../data/listingTemplate";
-import { listingsInsideBoundary } from "../../../testHelpers";
-
-const FremontViewportBounds = {
-  bounds_north: 47.69011227856514,
-  bounds_east: -122.32789118536581,
-  bounds_south: 47.62356960805306,
-  bounds_west: -122.38144953497519
-};
+import {
+  FremontViewportBounds,
+  FremontViewportBoundsPolygon,
+  listingsInsideBoundary
+} from "../../../testHelpers";
 
 const app = buildApp();
-
-const FremontViewportBoundsPolygon = boundsParamsToGeoJSONPolygon(
-  FremontViewportBounds
-);
 
 describe("GET /listing/search/bounds", () => {
   describe("bounds params", () => {
