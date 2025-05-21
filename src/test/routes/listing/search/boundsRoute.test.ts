@@ -30,7 +30,7 @@ describe("GET /listing/search/bounds", () => {
         FremontViewportBoundsPolygon,
         1
       )[0];
-      listing = await ListingModel.create({
+      listing = await app.context.repositories.listing.createListing({
         ...listingTemplate,
         geometry: point
       });

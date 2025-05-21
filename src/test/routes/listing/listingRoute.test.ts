@@ -10,7 +10,9 @@ describe("GET /listing/:id", () => {
   let listingId: string;
 
   beforeAll(async () => {
-    listingId = (await ListingModel.create(listingTemplate))._id.toString();
+    listingId = (
+      await app.context.repositories.listing.createListing(listingTemplate, 0)
+    )._id.toString();
   });
 
   afterAll(async () => {

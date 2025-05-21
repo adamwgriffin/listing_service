@@ -17,17 +17,16 @@ describe("GET /listing/search/geocode", () => {
   let listing: HydratedDocument<IListing>;
 
   beforeAll(async () => {
-    [boundary, listing] = await Promise.all([
-      BoundaryModel.create(fremontBoundary),
-      ListingModel.create({ ...listingTemplate, placeId: StreetAddressPlaceId })
-    ]);
+    boundary = await BoundaryModel.create(fremontBoundary);
+    listing = await app.context.repositories.listing.createListing({
+      ...listingTemplate,
+      placeId: StreetAddressPlaceId
+    });
   });
 
   afterAll(async () => {
-    await Promise.all([
-      BoundaryModel.deleteOne({ _id: boundary._id }),
-      ListingModel.deleteOne({ _id: listing._id })
-    ]);
+    await BoundaryModel.deleteOne({ _id: boundary._id });
+    await ListingModel.deleteOne({ _id: listing._id });
   });
 
   it("validates that either a place_id or address param is present in the request", async () => {

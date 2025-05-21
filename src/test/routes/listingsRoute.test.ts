@@ -8,14 +8,15 @@ import ListingModel from "../../models/ListingModel";
 describe("GET /listings/:ids", () => {
   const app = buildApp();
 
-  let listingIds: string[];
+  const listingIds: string[] = [];
 
   beforeAll(async () => {
-    const listings = await ListingModel.create([
-      listingTemplate,
-      listingTemplate
-    ]);
-    listingIds = listings.map((l) => l._id.toString());
+    const listingOne =
+      await app.context.repositories.listing.createListing(listingTemplate);
+    const listingTwo =
+      await app.context.repositories.listing.createListing(listingTemplate);
+    listingIds.push(listingOne._id.toString());
+    listingIds.push(listingTwo._id.toString());
   });
 
   afterAll(async () => {

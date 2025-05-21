@@ -15,17 +15,13 @@ describe("GET /listing/search/boundary/:id", () => {
   let listing: HydratedDocument<IListing>;
 
   beforeAll(async () => {
-    [boundary, listing] = await Promise.all([
-      BoundaryModel.create(fremontBoundary),
-      ListingModel.create(listingTemplate)
-    ]);
+    boundary = await BoundaryModel.create(fremontBoundary);
+    listing = await app.context.repositories.listing.createListing(listingTemplate);
   });
 
   afterAll(async () => {
-    await Promise.all([
-      BoundaryModel.deleteOne({ _id: boundary._id }),
-      ListingModel.deleteOne({ _id: listing._id })
-    ]);
+    await BoundaryModel.deleteOne({ _id: boundary._id });
+    await ListingModel.deleteOne({ _id: listing._id });
   });
 
   it("validates the boundary ID params type", async () => {
