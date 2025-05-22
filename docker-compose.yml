@@ -40,14 +40,12 @@ services:
 
   app-test:
     <<: *app-base
-    profiles: ["manual"]
     environment:
       - DB_HOST=mongodb-test
     depends_on:
       - mongodb-test
 
   mongodb-test:
-    profiles: ["manual"]
     <<: *mongodb-base
     ports:
       - "27018:27017"
