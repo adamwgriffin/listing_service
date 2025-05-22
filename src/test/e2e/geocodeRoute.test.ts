@@ -1,11 +1,11 @@
 import { HydratedDocument } from "mongoose";
 import request from "supertest";
-import { buildApp } from "../../../../app";
-import BoundaryModel, { IBoundary } from "../../../../models/BoundaryModel";
-import ListingModel, { IListing } from "../../../../models/ListingModel";
-import fremontBoundary from "../../../data/fremontBoundary";
-import geocodeListing from "../../../data/geocodeListing";
-import { listingsInsideBoundary } from "../../../testHelpers";
+import { buildApp } from "../../app";
+import BoundaryModel, { IBoundary } from "../../models/BoundaryModel";
+import ListingModel, { IListing } from "../../models/ListingModel";
+import fremontBoundary from "../data/fremontBoundary";
+import geocodeListing from "../data/geocodeListing";
+import { listingsInsideBoundary } from "../testHelpers";
 
 const AddressWithNoData = "851 NW 85th Street, Seattle, WA 98117";
 

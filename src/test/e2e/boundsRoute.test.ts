@@ -1,15 +1,15 @@
 import { booleanPointInPolygon } from "@turf/turf";
 import { HydratedDocument } from "mongoose";
 import request from "supertest";
-import { buildApp } from "../../../../app";
-import { randomPointsWithinPolygon } from "../../../../lib/random_data";
-import ListingModel, { IListing } from "../../../../models/ListingModel";
-import listingTemplate from "../../../data/listingTemplate";
+import { buildApp } from "../../app";
+import { randomPointsWithinPolygon } from "../../lib/random_data";
+import ListingModel, { IListing } from "../../models/ListingModel";
+import listingTemplate from "../data/listingTemplate";
 import {
   FremontViewportBounds,
   FremontViewportBoundsPolygon,
   listingsInsideBoundary
-} from "../../../testHelpers";
+} from "../testHelpers";
 
 const app = buildApp();
 
