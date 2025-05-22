@@ -4,11 +4,10 @@ import { buildApp } from "../../../../app";
 import BoundaryModel, { IBoundary } from "../../../../models/BoundaryModel";
 import ListingModel, { IListing } from "../../../../models/ListingModel";
 import fremontBoundary from "../../../data/fremontBoundary";
-import listingTemplate from "../../../data/listingTemplate";
+import geocodeListing from "../../../data/geocodeListing";
 import { listingsInsideBoundary } from "../../../testHelpers";
 
 const AddressWithNoData = "851 NW 85th Street, Seattle, WA 98117";
-const StreetAddressPlaceId = "ChIJsa_uptMVkFQRmZ6RBFqLu4s";
 
 describe("GET /listing/search/geocode", () => {
   const app = buildApp();
@@ -18,10 +17,7 @@ describe("GET /listing/search/geocode", () => {
 
   beforeAll(async () => {
     boundary = await BoundaryModel.create(fremontBoundary);
-    listing = await app.context.db.listing.createListing({
-      ...listingTemplate,
-      placeId: StreetAddressPlaceId
-    });
+    listing = await app.context.db.listing.createListing(geocodeListing);
   });
 
   afterAll(async () => {
@@ -63,10 +59,10 @@ describe("GET /listing/search/geocode", () => {
       const res = await request(app.callback())
         .get(`/listing/search/geocode`)
         .query({
-          place_id: StreetAddressPlaceId,
+          place_id: listing.placeId,
           address_types: "street_address"
         });
-      expect(res.body.listingDetail.placeId).toEqual(StreetAddressPlaceId);
+      expect(res.body.listingDetail.placeId).toEqual(listing.placeId);
     });
   });
 
@@ -86,7 +82,7 @@ describe("GET /listing/search/geocode", () => {
       const res = await request(app.callback())
         .get(`/listing/search/geocode`)
         .query({ address });
-      expect(res.body.listingDetail.placeId).toEqual(StreetAddressPlaceId);
+      expect(res.body.listingDetail.placeId).toEqual(listing.placeId);
     });
   });
 
