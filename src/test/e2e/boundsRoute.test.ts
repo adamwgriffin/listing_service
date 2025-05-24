@@ -1,15 +1,15 @@
 import { booleanPointInPolygon } from "@turf/turf";
 import { HydratedDocument } from "mongoose";
 import request from "supertest";
-import { buildApp } from "../../../../app";
-import { randomPointsWithinPolygon } from "../../../../lib/random_data";
-import ListingModel, { IListing } from "../../../../models/ListingModel";
-import listingTemplate from "../../../data/listingTemplate";
+import { buildApp } from "../../app";
+import { randomPointsWithinPolygon } from "../../lib/random_data";
+import ListingModel, { IListing } from "../../models/ListingModel";
+import listingTemplate from "../data/listingTemplate";
 import {
   FremontViewportBounds,
   FremontViewportBoundsPolygon,
   listingsInsideBoundary
-} from "../../../testHelpers";
+} from "../testHelpers";
 
 const app = buildApp();
 
@@ -22,7 +22,7 @@ describe("GET /listing/search/bounds", () => {
         FremontViewportBoundsPolygon,
         1
       )[0];
-      listing = await app.context.repositories.listing.createListing({
+      listing = await app.context.db.listing.createListing({
         ...listingTemplate,
         geometry: point
       });

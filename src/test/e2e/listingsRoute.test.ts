@@ -12,9 +12,9 @@ describe("GET /listings/:ids", () => {
 
   beforeAll(async () => {
     const listingOne =
-      await app.context.repositories.listing.createListing(listingTemplate);
+      await app.context.db.listing.createListing(listingTemplate);
     const listingTwo =
-      await app.context.repositories.listing.createListing(listingTemplate);
+      await app.context.db.listing.createListing(listingTemplate);
     listingIds.push(listingOne._id.toString());
     listingIds.push(listingTwo._id.toString());
   });

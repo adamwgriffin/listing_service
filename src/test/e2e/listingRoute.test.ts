@@ -1,8 +1,8 @@
 import request from "supertest";
-import { buildApp } from "../../../app";
-import ListingModel from "../../../models/ListingModel";
-import listingTemplate from "../../data/listingTemplate";
-import { getNonExistingListingId } from "../../testHelpers";
+import { buildApp } from "../../app";
+import ListingModel from "../../models/ListingModel";
+import listingTemplate from "../data/listingTemplate";
+import { getNonExistingListingId } from "../testHelpers";
 
 describe("GET /listing/:id", () => {
   const app = buildApp();
@@ -11,7 +11,7 @@ describe("GET /listing/:id", () => {
 
   beforeAll(async () => {
     listingId = (
-      await app.context.repositories.listing.createListing(listingTemplate, 0)
+      await app.context.db.listing.createListing(listingTemplate, 0)
     )._id.toString();
   });
 

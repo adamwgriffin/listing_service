@@ -1,6 +1,7 @@
 x-app-base: &app-base
   build:
     context: .
+    dockerfile: ./docker/Dockerfile
     args:
       NODE_VERSION: 20
   env_file: ./.env
@@ -36,18 +37,16 @@ services:
       # When this volume is present the image will initialize the database with
       # the script inside init-mongo/ when container is started for the first
       # time
-      - ./init-mongo:/docker-entrypoint-initdb.d
+      - ./docker/init-mongo:/docker-entrypoint-initdb.d
 
   app-test:
     <<: *app-base
-    profiles: ["manual"]
     environment:
       - DB_HOST=mongodb-test
     depends_on:
       - mongodb-test
 
   mongodb-test:
-    profiles: ["manual"]
     <<: *mongodb-base
     ports:
       - "27018:27017"

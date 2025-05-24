@@ -157,7 +157,6 @@ export const createListing = async (data: ListingData, maxAttempts = 5) => {
       return listing;
     } catch (error) {
       if (isDuplicateSlugError(error) && maxAttempts !== 0) {
-        console.debug("Duplicate key error encountered:", error);
         count++;
       } else {
         throw error;

@@ -54,12 +54,12 @@ describe("when filters are included in the request", () => {
       const points = randomPointsWithinPolygon(FremontViewportBoundsPolygon, 2);
       const matchingData =
         listingDataThatMatchesNumberRangeFilters(numericRangeFilters);
-      matchingListing = await app.context.repositories.listing.createListing({
+      matchingListing = await app.context.db.listing.createListing({
         ...listingTemplate,
         ...matchingData,
         geometry: points[0]
       });
-      nonMatchingListing = await app.context.repositories.listing.createListing(
+      nonMatchingListing = await app.context.db.listing.createListing(
         {
           ...listingTemplate,
           ...matchingData,
