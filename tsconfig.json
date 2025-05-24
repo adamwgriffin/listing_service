@@ -1,12 +1,7 @@
 {
+  "extends": "@tsconfig/node24/tsconfig.json",
+  "include": ["src"],
   "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
-    "sourceMap": true,
-    "outDir": "./dist",
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "strict": true
+    "outDir": "./dist"
   }
 }
