@@ -1,7 +1,7 @@
 import Koa from "koa";
 import bodyParser from "koa-bodyparser";
 import router from "./routes/router";
-import { errorMiddleware } from "./middlewares/error_middleware";
+import { errorMiddleware } from "./middlewares/errorMiddleware";
 import Repositories, { type IRepositories } from "./respositories";
 import {
   type IGeocoderService,

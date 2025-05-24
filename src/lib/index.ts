@@ -16,3 +16,19 @@ export const getPaginationParams = (
 
 export const sleep = (ms: number) =>
   new Promise((resolve) => setTimeout(resolve, ms));
+
+/** Makes sure that the value caught in a try/catch block is an actural Error
+ * type since JS allows any type to be thrown. */
+export const ensureError = (value: unknown): Error => {
+  if (value instanceof Error) return value;
+
+  let stringified = "[Unable to stringify the thrown value]";
+  try {
+    stringified = JSON.stringify(value);
+  } catch {}
+
+  const error = new Error(
+    `This value was thrown as is, not through an Error: ${stringified}`
+  );
+  return error;
+};

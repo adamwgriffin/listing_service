@@ -1,7 +1,10 @@
 import type { Context } from "koa";
 import type { Middleware } from "@koa/router";
 import type { ZodIssue, ZodTypeAny, SafeParseSuccess } from "zod";
-import type { ServiceError } from "../types/listing_search_response_types";
+import {
+  type ServiceError,
+  type ErrorResponse
+} from "../zod_schemas/errorSchema";
 
 const formatError = (e: ZodIssue) => {
   const err: ServiceError = {
@@ -39,9 +42,10 @@ export const parseAndValidateRequest = (schema: ZodTypeAny): Middleware => {
     if (result.success) {
       assignParsedResultToContext(result, ctx);
     } else {
-      ctx.throw(400, "Validation Error", {
+      const err: ErrorResponse = {
         errors: result.error.errors.map(formatError)
-      });
+      };
+      ctx.throw(400, "Validation Error", err);
     }
     await next();
   };

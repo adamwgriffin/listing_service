@@ -56,12 +56,3 @@ export type GeocodeBoundarySearchResponse = Partial<ListingSearchResponse> & {
   viewport?: LatLngBounds;
   listingDetail?: ListingDetailResult;
 };
-
-export type ServiceError = {
-  message: string;
-  field?: string;
-};
-
-export type ErrorResponse = {
-  errors: ServiceError[];
-};
