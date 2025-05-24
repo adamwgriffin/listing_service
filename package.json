@@ -14,11 +14,11 @@
     "build": "tsc",
     "test": "docker compose up -d app-test && docker compose exec app-test yarn jest --runInBand",
     "console": "docker compose run app yarn ts-node",
-    "generate_listing_data": "./run-script src/bin/generate_listing_data",
-    "seed_listing_data": "./run-script src/bin/seed_listing_data",
-    "seed_boundary_data": "./run-script src/bin/seed_boundary_data",
-    "seed_dev_data": "./run-script src/bin/seed_boundary_data && ./run-script src/bin/seed_listing_data",
-    "generate_and_seed_listing_data": "./run-script src/bin/generate_listing_data && ./run-script src/bin/seed_listing_data"
+    "generate_listing_data": "./run-script src/bin/generate_listing_data.ts",
+    "seed_listing_data": "./run-script src/bin/seed_listing_data.ts",
+    "seed_boundary_data": "./run-script src/bin/seed_boundary_data.ts",
+    "seed_dev_data": "./run-script src/bin/seed_boundary_data.ts && ./run-script src/bin/seed_listing_data.ts",
+    "generate_and_seed_listing_data": "./run-script src/bin/generate_listing_data.ts && ./run-script src/bin/seed_listing_data.ts"
   },
   "dependencies": {
     "@googlemaps/google-maps-services-js": "^3.3.28",
