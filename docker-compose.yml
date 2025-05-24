@@ -3,7 +3,7 @@ x-app-base: &app-base
     context: .
     dockerfile: ./docker/Dockerfile
     args:
-      NODE_VERSION: 20
+      NODE_VERSION: 24
   env_file: ./.env
   volumes:
     - "./src:/app/src"
