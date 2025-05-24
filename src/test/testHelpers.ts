@@ -1,4 +1,5 @@
-import { booleanPointInPolygon, MultiPolygon, Polygon } from "@turf/turf";
+import { booleanPointInPolygon } from "@turf/turf";
+import type { MultiPolygon, Polygon } from "geojson";
 import BoundaryModel from "../models/BoundaryModel";
 import ListingModel from "../models/ListingModel";
 import { boundsParamsToGeoJSONPolygon } from "../services/listingSearchService";

@@ -2,8 +2,8 @@ import {
   AddressType,
   GeocodeResult
 } from "@googlemaps/google-maps-services-js";
-import type { MultiPolygon, Polygon } from "@turf/turf";
-import { bboxPolygon, intersect } from "@turf/turf";
+import type { MultiPolygon, Polygon } from "geojson";
+import { bboxPolygon, intersect, feature, featureCollection } from "@turf/turf";
 import { type Context } from "koa";
 import { type GeocodeBoundaryContext } from "../controllers/listingSearchController";
 import {
@@ -35,8 +35,12 @@ const removePartsOfBoundaryOutsideOfBounds = (
   bounds: BoundsParams,
   boundary: Polygon | MultiPolygon
 ) => {
-  const boundsPolygon = boundsParamsToGeoJSONPolygon(bounds);
-  return intersect(boundsPolygon, boundary)?.geometry;
+  return intersect(
+    featureCollection([
+      feature(boundsParamsToGeoJSONPolygon(bounds)),
+      feature(boundary)
+    ])
+  )?.geometry;
 };
 
 /**
@@ -105,9 +109,6 @@ export const getListingForAddress = async (
   // Avoid including address in the $or query if it's clear that the geocode
   // result doesn't have enough address data to ever succeed.
   return listingAddressHasRequiredFields(listingAddress)
-    ? await ctx.db.listing.findByPlaceIdOrAddress(
-        place_id,
-        listingAddress
-      )
+    ? await ctx.db.listing.findByPlaceIdOrAddress(place_id, listingAddress)
     : await ctx.db.listing.findByPlaceId(place_id);
 };

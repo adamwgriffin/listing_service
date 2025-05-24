@@ -1,5 +1,8 @@
-import type { MultiPolygon, Polygon } from "@turf/turf";
+import type { MultiPolygon, Polygon } from "geojson";
+import { MongoServerError } from "mongodb";
+import { type HydratedDocument } from "mongoose";
 import { getPaginationParams } from "../lib";
+import { type ListingData } from "../lib/random_data";
 import ListingModel, { IListing } from "../models/ListingModel";
 import {
   buildFilterQueries,
@@ -13,9 +16,6 @@ import {
 } from "../types/listing_search_response_types";
 import { type GeocodeBoundaryQueryParams } from "../zod_schemas/geocodeBoundarySearchSchema";
 import { ListingAddress } from "../zod_schemas/listingSchema";
-import { type ListingData } from "../lib/random_data";
-import { type HydratedDocument } from "mongoose";
-import { MongoServerError } from "mongodb";
 
 export type FindWithinBoundsResult = {
   metadata: { numberAvailable: number }[];

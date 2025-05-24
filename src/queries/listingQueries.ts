@@ -1,5 +1,5 @@
 import { subDays } from "date-fns";
-import type { FilterQuery } from "mongoose";
+import type { FilterQuery, ProjectionType } from "mongoose";
 import { type IListing } from "../models/ListingModel";
 import { GeocodeBoundaryQueryParams } from "../zod_schemas/geocodeBoundarySearchSchema";
 

@@ -1,4 +1,4 @@
-import { Polygon } from "@turf/turf";
+import { Polygon } from "geojson";
 import { Schema } from "mongoose";
 
 const PolygonSchema = new Schema<Polygon>({
