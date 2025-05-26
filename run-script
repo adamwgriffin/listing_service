@@ -1,3 +1,5 @@
 #!/bin/bash
 
-docker compose run --rm app npx ts-node "$@"
+# Used to run Typescript scripts inside the app container
+
+docker compose run --rm app npx tsx "$@"
