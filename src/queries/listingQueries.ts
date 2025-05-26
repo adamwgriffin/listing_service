@@ -1,5 +1,5 @@
 import { subDays } from "date-fns";
-import type { FilterQuery } from "mongoose";
+import type { FilterQuery, ProjectionType } from "mongoose";
 import { type IListing } from "../models/ListingModel";
 import { GeocodeBoundaryQueryParams } from "../zod_schemas/geocodeBoundarySearchSchema";
 
@@ -24,7 +24,7 @@ export const ListingResultProjectionFields = {
   photoGallery: 1,
   openHouses: 1,
   placeId: 1
-};
+} as const satisfies ProjectionType<IListing>;
 
 export const ListingDetailResultProjectionFields = {
   ...ListingResultProjectionFields,
@@ -32,7 +32,7 @@ export const ListingDetailResultProjectionFields = {
   yearBuilt: 1,
   soldDate: 1,
   propertyDetails: 1
-};
+} as const satisfies ProjectionType<IListing>;
 
 /**
  * Create a MongoDB $sort query

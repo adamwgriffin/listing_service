@@ -3,9 +3,10 @@ FROM node:$NODE_VERSION-alpine
 
 WORKDIR /app
 
-COPY package*.json yarn.lock ./
-RUN yarn install --frozen-lockfile --production=false
+COPY package*.json ./
+
+RUN npm ci
 
 COPY . .
 
-CMD ["yarn", "dev"]
+CMD ["npm", "run", "dev"]

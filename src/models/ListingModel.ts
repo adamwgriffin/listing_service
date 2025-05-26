@@ -1,4 +1,4 @@
-import type { Point } from "@turf/turf";
+import type { Point } from "geojson";
 import mongoose, { Model, Schema, model } from "mongoose";
 import slugify from "slugify";
 import type { ListingAddress } from "../zod_schemas/listingSchema";

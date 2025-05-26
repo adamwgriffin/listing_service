@@ -59,14 +59,12 @@ describe("when filters are included in the request", () => {
         ...matchingData,
         geometry: points[0]
       });
-      nonMatchingListing = await app.context.db.listing.createListing(
-        {
-          ...listingTemplate,
-          ...matchingData,
-          listPrice: numericRangeFilters.price_max + 100_000,
-          geometry: points[1]
-        }
-      );
+      nonMatchingListing = await app.context.db.listing.createListing({
+        ...listingTemplate,
+        ...matchingData,
+        listPrice: numericRangeFilters.price_max + 100_000,
+        geometry: points[1]
+      });
     });
 
     afterAll(async () => {

@@ -1,9 +1,7 @@
 import { type HydratedDocument } from "mongoose";
 import request from "supertest";
 import { buildApp } from "../../app";
-import BoundaryModel, {
-  type IBoundary
-} from "../../models/BoundaryModel";
+import BoundaryModel, { type IBoundary } from "../../models/BoundaryModel";
 import ListingModel, { type IListing } from "../../models/ListingModel";
 import type { BoundarySearchResponse } from "../../types/listing_search_response_types";
 import fremontBoundary from "../data/fremontBoundary";

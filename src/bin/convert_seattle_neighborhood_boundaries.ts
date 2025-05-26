@@ -1,15 +1,15 @@
-import type {
-  FeatureCollection,
-  Feature,
-  Polygon,
-  MultiPolygon
-} from "@turf/turf";
-import type { IBoundary } from "../models/BoundaryModel";
 import fs from "fs";
+import type {
+  Feature,
+  FeatureCollection,
+  MultiPolygon,
+  Polygon
+} from "geojson";
 import path from "path";
 import yargs from "yargs";
-import { buildGeocodeService } from "../services/geocoderService";
 import { sleep } from "../lib";
+import type { IBoundary } from "../models/BoundaryModel";
+import { buildGeocodeService } from "../services/geocoderService";
 
 type PolyOrMultiPolyFeature = Feature<Polygon> | Feature<MultiPolygon>;
 type PolyOrMultiPolyCollection =

@@ -1,4 +1,4 @@
-import { getPaginationParams } from '../lib';
+import { getPaginationParams } from "../lib";
 import { type FindWithinBoundsResult } from "../respositories/ListingRepository";
 import type {
   ListingResult,
