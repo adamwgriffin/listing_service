@@ -1,4 +1,4 @@
-import { IBoundary } from '../../models/BoundaryModel';
+import { IBoundary } from "../../models/BoundaryModel";
 
 const fremontBoundary: IBoundary = {
   name: "Fremont, Seattle, WA, USA",
