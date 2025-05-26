@@ -15,7 +15,7 @@ const DefaultFilePath = path.join(
 );
 
 const processArgv = async () => {
-  const argv = await yargs(process.argv.slice(2))
+  return yargs(process.argv.slice(2))
     .option("file", {
       alias: "f",
       type: "string",
@@ -26,13 +26,6 @@ const processArgv = async () => {
     .alias("h", "help")
     .help("help")
     .usage(`Usage: $0 [options]`).argv;
-
-  if (argv.help) {
-    yargs.showHelp();
-    process.exit(0);
-  }
-
-  return argv;
 };
 
 const main = async (): Promise<void> => {

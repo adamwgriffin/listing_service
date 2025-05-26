@@ -52,7 +52,7 @@ const NeighborhoodNameAttribute = "S_HOOD";
 const DistrictNameAttribute = "L_HOOD";
 
 const processArgv = async () => {
-  const argv = await yargs(process.argv.slice(2))
+  return yargs(process.argv.slice(2))
     .option("neighborhood-file", {
       alias: "f",
       type: "string",
@@ -90,13 +90,6 @@ const processArgv = async () => {
       "Convert City of Seattle Neighborhood Map Atlas Neighborhoods" +
         "or Districts FeatureCollection into an array of JSON Boundary objects"
     ).argv;
-
-  if (argv.help) {
-    yargs.showHelp();
-    process.exit(0);
-  }
-
-  return argv;
 };
 
 // The same name is used for some features in the neighborhood file as is used
