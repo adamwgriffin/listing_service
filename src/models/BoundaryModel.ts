@@ -24,8 +24,8 @@ export interface IBoundary {
 
 // Making placeId a required field because we don't really want to have to guess
 // if a boundary matches a given request or not by just searching via
-// `$geoIntersects`. If we were unable to geocode a boundary, or manually, map
-// it to a specific string, then we just shouldn't use it at all.
+// `$geoIntersects`. If we were unable to geocode a boundary, or manually map it
+// to a specific string, then we just shouldn't use it at all.
 export const BoundarySchema: Schema<IBoundary> = new Schema({
   name: {
     type: String,
