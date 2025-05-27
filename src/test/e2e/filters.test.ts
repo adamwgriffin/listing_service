@@ -9,7 +9,7 @@ import { type ListingFilterParams } from "../../zod_schemas/listingSearchParamsS
 import listingTemplate from "../data/listingTemplate";
 import {
   FremontViewportBounds,
-  FremontViewportBoundsPolygon
+  FremontViewportBoundsPoly
 } from "../testHelpers";
 
 const numericRangeFilters = {
@@ -51,7 +51,7 @@ describe("when filters are included in the request", () => {
     let nonMatchingListing: HydratedDocument<IListing>;
 
     beforeAll(async () => {
-      const points = randomPointsWithinPolygon(FremontViewportBoundsPolygon, 2);
+      const points = randomPointsWithinPolygon(FremontViewportBoundsPoly, 2);
       const matchingData =
         listingDataThatMatchesNumberRangeFilters(numericRangeFilters);
       matchingListing = await app.context.db.listing.createListing({
