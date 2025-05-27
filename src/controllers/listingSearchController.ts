@@ -76,10 +76,13 @@ export const boundarySearch = async (ctx: BoundarySearchContext) => {
 
   ctx.assert(boundary, 404, `No boundary found for boundary id ${id}.`);
 
-  const results = await ctx.db.listing.findWithinBounds(
-    getBoundaryGeometryWithBounds(boundary, ctx.query),
-    ctx.query
-  );
+  const bounds = getBoundaryGeometryWithBounds(boundary, ctx.query);
+  if (bounds === null) {
+    ctx.body = listingSearchBoundaryView(boundary, null, ctx.query);
+    return;
+  }
+
+  const results = await ctx.db.listing.findWithinBounds(bounds, ctx.query);
 
   ctx.body = listingSearchBoundaryView(boundary, results, ctx.query);
 };

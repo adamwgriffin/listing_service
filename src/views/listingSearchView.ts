@@ -7,14 +7,15 @@ import type {
 import type { ListingFilterParams } from "../zod_schemas/listingSearchParamsSchema";
 
 export default (
-  results: FindWithinBoundsResult[],
+  results: FindWithinBoundsResult[] | null,
   query: Partial<ListingFilterParams>
 ): ListingSearchResponse<ListingResult> => {
-  const { listings, metadata } = results[0];
+  const result = results?.[0];
+  const listings = result?.listings || [];
   const pagination = getPaginationParams(query);
-  const numberAvailable = metadata[0]?.numberAvailable || 0;
+  const numberAvailable = result?.metadata[0]?.numberAvailable || 0;
   return {
-    listings: listings,
+    listings,
     pagination: {
       page: pagination.page_index,
       pageSize: pagination.page_size,

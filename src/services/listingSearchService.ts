@@ -15,6 +15,7 @@ import type { BoundarySearchQueryParams } from "../zod_schemas/boundarySearchReq
 import type { ListingAddress } from "../zod_schemas/listingSchema";
 import { listingAddressSchema } from "../zod_schemas/listingSchema";
 import type { BoundsParams } from "../zod_schemas/listingSearchParamsSchema";
+import { boundsParamsSchema } from "../zod_schemas/listingSearchParamsSchema";
 
 /**
  * Converts a set of north/east/south/west coordinates into a rectangular polygon
@@ -35,12 +36,14 @@ const removePartsOfBoundaryOutsideOfBounds = (
   bounds: BoundsParams,
   boundary: Polygon | MultiPolygon
 ) => {
-  return intersect(
-    featureCollection([
-      feature(boundsParamsToGeoJSONPolygon(bounds)),
-      feature(boundary)
-    ])
-  )?.geometry;
+  return (
+    intersect(
+      featureCollection([
+        feature(boundsParamsToGeoJSONPolygon(bounds)),
+        feature(boundary)
+      ])
+    )?.geometry || null
+  );
 };
 
 /**
@@ -51,14 +54,10 @@ const removePartsOfBoundaryOutsideOfBounds = (
 export const getBoundaryGeometryWithBounds = (
   boundary: IBoundary,
   queryParams: BoundarySearchQueryParams
-): Polygon | MultiPolygon => {
-  const { bounds_north, bounds_east, bounds_south, bounds_west } = queryParams;
-  if (bounds_north && bounds_east && bounds_south && bounds_west) {
-    const bounds = { bounds_north, bounds_east, bounds_south, bounds_west };
-    return (
-      removePartsOfBoundaryOutsideOfBounds(bounds, boundary.geometry) ||
-      boundary.geometry
-    );
+) => {
+  const parsed = boundsParamsSchema.safeParse(queryParams);
+  if (parsed.success) {
+    return removePartsOfBoundaryOutsideOfBounds(parsed.data, boundary.geometry);
   } else {
     return boundary.geometry;
   }

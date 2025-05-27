@@ -6,7 +6,7 @@ import listingSearchView from "./listingSearchView";
 
 export default (
   boundary: IBoundary,
-  results: FindWithinBoundsResult[],
+  results: FindWithinBoundsResult[] | null,
   query: Partial<ListingFilterParams>
 ): BoundarySearchResponse => {
   return {

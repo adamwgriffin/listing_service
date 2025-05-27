@@ -6,7 +6,7 @@ import ListingModel, { type IListing } from "../../models/ListingModel";
 import type { BoundarySearchResponse } from "../../types/listing_search_response_types";
 import fremontBoundary from "../data/fremontBoundary";
 import listingTemplate from "../data/listingTemplate";
-import { getNonExistingBoundaryId } from "../testHelpers";
+import { getNonExistingBoundaryId, ViewportBoundsExcludingFremontBoundary } from "../testHelpers";
 
 describe("GET /listing/search/boundary/:id", () => {
   const app = buildApp();
@@ -46,5 +46,15 @@ describe("GET /listing/search/boundary/:id", () => {
       `/listing/search/boundary/${getNonExistingBoundaryId()}`
     );
     expect(res.status).toBe(404);
+  });
+
+  describe("when the boundary is completely outside the bounds", () => {
+    it("does not return any listings", async () => {
+      const res = await request(app.callback())
+        .get(`/listing/search/boundary/${boundary._id}`)
+        .query(ViewportBoundsExcludingFremontBoundary);
+      const data: BoundarySearchResponse = res.body;
+      expect(data.listings.length).toEqual(0);
+    });
   });
 });
