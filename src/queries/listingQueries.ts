@@ -101,113 +101,86 @@ export const openHouseQuery = (
  * // Returns [{ "listPrice": { $gte: 100000} }, { "waterfront": true }]
  */
 export const buildFilterQueries = (
-  queryParams: GeocodeBoundaryQueryParams
+  q: GeocodeBoundaryQueryParams
 ): FilterQuery<IListing>[] => {
-  // TODO: refactor this. the list is way too long.
-  const {
-    property_type,
-    status,
-    price_min,
-    price_max,
-    beds_min,
-    beds_max,
-    baths_min,
-    baths_max,
-    sqft_min,
-    sqft_max,
-    year_built_min,
-    year_built_max,
-    lot_size_min,
-    lot_size_max,
-    waterfront,
-    view,
-    fireplace,
-    basement,
-    garage,
-    new_construction,
-    pool,
-    air_conditioning,
-    rental,
-    sold_in_last,
-    open_house_after,
-    open_house_before
-  } = queryParams;
   const filters = [];
 
-  filters.push({ status: status ? { $in: status.split(",") } : "active" });
+  filters.push({ status: q.status ? { $in: q.status.split(",") } : "active" });
 
-  if (property_type) {
+  if (q.property_type) {
     filters.push({
       propertyType: {
-        $in: property_type.split(",")
+        $in: q.property_type.split(",")
       }
     });
   }
-  if (rental === true) {
+  if (q.rental === true) {
     filters.push({ rental: true });
   } else {
-    // Need to explicitly exclude rentals, otherwise if the request does not supply the rental param it will return
-    // everything that has status: active by default
+    // Need to explicitly exclude rentals, otherwise if the request does not
+    // supply the rental param it will return everything that has status: active
+    // by default
     filters.push({ rental: { $exists: false } });
   }
-  if (sold_in_last) {
+  if (q.sold_in_last) {
     filters.push({
       soldDate: {
-        $gte: subDays(new Date(), sold_in_last)
+        $gte: subDays(new Date(), q.sold_in_last)
       }
     });
   }
-  if (open_house_after || open_house_before) {
-    filters.push(openHouseQuery(open_house_after, open_house_before));
+  if (q.open_house_after || q.open_house_before) {
+    filters.push(openHouseQuery(q.open_house_after, q.open_house_before));
   }
-
-  // TODO: make this part more DRY
 
   // Range queries
-  if (price_min || price_max) {
-    filters.push(numberRangeQuery("listPrice", price_min, price_max));
+  if (q.price_min || q.price_max) {
+    filters.push(numberRangeQuery("listPrice", q.price_min, q.price_max));
   }
-  if (beds_min || beds_max) {
-    filters.push(numberRangeQuery("beds", beds_min, beds_max));
+  if (q.beds_min || q.beds_max) {
+    filters.push(numberRangeQuery("beds", q.beds_min, q.beds_max));
   }
-  if (baths_min || baths_max) {
-    filters.push(numberRangeQuery("baths", baths_min, baths_max));
+  if (q.baths_min || q.baths_max) {
+    filters.push(numberRangeQuery("baths", q.baths_min, q.baths_max));
   }
-  if (sqft_min || sqft_max) {
-    filters.push(numberRangeQuery("sqft", sqft_min, sqft_max));
+  if (q.sqft_min || q.sqft_max) {
+    filters.push(numberRangeQuery("sqft", q.sqft_min, q.sqft_max));
   }
-  if (year_built_min || year_built_max) {
-    filters.push(numberRangeQuery("yearBuilt", year_built_min, year_built_max));
+  if (q.year_built_min || q.year_built_max) {
+    filters.push(
+      numberRangeQuery("yearBuilt", q.year_built_min, q.year_built_max)
+    );
   }
-  if (lot_size_min || lot_size_max) {
-    filters.push(numberRangeQuery("lotSize", lot_size_min, lot_size_max));
+  if (q.lot_size_min || q.lot_size_max) {
+    filters.push(numberRangeQuery("lotSize", q.lot_size_min, q.lot_size_max));
   }
 
-  // Boolean queries We have to check the actual type for boolean params because if the value is false it means to
-  // exclude records. A simple truthiness check wouldn't accomplish that.
-  if (typeof waterfront === "boolean") {
-    filters.push({ waterfront });
+  // Boolean queries. We have to check the actual type for boolean params
+  // because if the value is false it means to exclude records. A simple
+  // truthiness check wouldn't accomplish that.
+  if (typeof q.waterfront === "boolean") {
+    filters.push({ waterfront: q.waterfront });
   }
-  if (typeof view === "boolean") {
-    filters.push({ view });
+  if (typeof q.view === "boolean") {
+    filters.push({ view: q.view });
   }
-  if (typeof fireplace === "boolean") {
-    filters.push({ fireplace });
+  if (typeof q.fireplace === "boolean") {
+    filters.push({ fireplace: q.fireplace });
   }
-  if (typeof basement === "boolean") {
-    filters.push({ basement });
+  if (typeof q.basement === "boolean") {
+    filters.push({ basement: q.basement });
   }
-  if (typeof garage === "boolean") {
-    filters.push({ garage });
+  if (typeof q.garage === "boolean") {
+    filters.push({ garage: q.garage });
   }
-  if (typeof new_construction === "boolean") {
-    filters.push({ newConstruction: new_construction });
+  if (typeof q.new_construction === "boolean") {
+    filters.push({ newConstruction: q.new_construction });
   }
-  if (typeof pool === "boolean") {
-    filters.push({ pool });
+  if (typeof q.pool === "boolean") {
+    filters.push({ pool: q.pool });
   }
-  if (typeof air_conditioning === "boolean") {
-    filters.push({ airConditioning: air_conditioning });
+  if (typeof q.air_conditioning === "boolean") {
+    filters.push({ airConditioning: q.air_conditioning });
   }
 
   return filters;
