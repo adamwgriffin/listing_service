@@ -2,34 +2,39 @@ import { booleanPointInPolygon } from "@turf/turf";
 import { HydratedDocument } from "mongoose";
 import request from "supertest";
 import { buildApp } from "../../app";
-import { randomPointsWithinPolygon } from "../../lib/random_data";
 import ListingModel, { IListing } from "../../models/ListingModel";
+import type { ListingSearchResponse } from "../../types/listing_search_response_types";
 import listingTemplate from "../data/listingTemplate";
 import {
-  FremontViewportBounds,
-  FremontViewportBoundsPolygon,
+  BoundsExcludingPartOfFremontBoundary,
   listingsInsideBoundary
 } from "../testHelpers";
+
+const { insideBoundsPoint, outsideBoundsPoint, boundsParams, boundsPoly } =
+  BoundsExcludingPartOfFremontBoundary;
 
 const app = buildApp();
 
 describe("GET /listing/search/bounds", () => {
   describe("bounds params", () => {
-    let listing: HydratedDocument<IListing>;
+    let listingInsideBounds: HydratedDocument<IListing>;
+    let listingOutsideBounds: HydratedDocument<IListing>;
 
     beforeAll(async () => {
-      const point = randomPointsWithinPolygon(
-        FremontViewportBoundsPolygon,
-        1
-      )[0];
-      listing = await app.context.db.listing.createListing({
+      listingInsideBounds = await app.context.db.listing.createListing({
         ...listingTemplate,
-        geometry: point
+        geometry: insideBoundsPoint
+      });
+      listingOutsideBounds = await app.context.db.listing.createListing({
+        ...listingTemplate,
+        geometry: outsideBoundsPoint
       });
     });
 
     afterAll(async () => {
-      await ListingModel.deleteOne({ _id: listing._id });
+      await ListingModel.deleteMany({
+        _id: { $in: [listingInsideBounds._id, listingOutsideBounds._id] }
+      });
     });
 
     it("validates that all bounds params are present", async () => {
@@ -42,16 +47,18 @@ describe("GET /listing/search/bounds", () => {
     it("only returns listings that are inside the bounds", async () => {
       expect(
         booleanPointInPolygon(
-          listing.geometry.coordinates,
-          FremontViewportBoundsPolygon
+          listingInsideBounds.geometry.coordinates,
+          boundsPoly
         )
       ).toBe(true);
       const res = await request(app.callback())
         .get("/listing/search/bounds")
-        .query(FremontViewportBounds);
-      expect(
-        listingsInsideBoundary(FremontViewportBoundsPolygon, res.body.listings)
-      ).toBe(true);
+        .query(boundsParams);
+      const data: ListingSearchResponse = res.body;
+      const listingIds = data.listings.map((l) => l._id.toString());
+      expect(listingIds).toContain(listingInsideBounds._id.toString());
+      expect(listingIds).not.toContain(listingOutsideBounds._id.toString());
+      expect(listingsInsideBoundary(boundsPoly, data.listings)).toBe(true);
     });
   });
 });
