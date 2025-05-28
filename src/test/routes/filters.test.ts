@@ -222,4 +222,51 @@ describe("filters", () => {
       });
     });
   });
+
+  describe("rentals", () => {
+    let rentalListing: HydratedDocument<IListing>;
+    let nonRentalListing: HydratedDocument<IListing>;
+
+    beforeAll(async () => {
+      const points = randomPointsWithinPolygon(FremontViewportBoundsPoly, 1);
+      rentalListing = await app.context.db.listing.createListing({
+        ...listingTemplate,
+        rental: true,
+        geometry: points[0]
+      });
+      nonRentalListing =
+        await app.context.db.listing.createListing(listingTemplate);
+    });
+
+    afterAll(async () => {
+      await ListingModel.deleteMany({
+        _id: {
+          $in: [rentalListing._id.toString(), nonRentalListing._id.toString()]
+        }
+      });
+    });
+
+    describe("when the rental param is included and set to true", () => {
+      it("only rentals are returned in the response", async () => {
+        const res = await request(app.callback())
+          .get("/listing/search/bounds")
+          .query({
+            ...FremontViewportBounds,
+            rental: true
+          });
+        const data: ListingSearchResponse = res.body;
+        expect(data.listings.every((l) => l.rental === true)).toBe(true);
+      });
+    });
+
+    describe("when the rental param is not included in the request", () => {
+      it("no rentals are returned in the response", async () => {
+        const res = await request(app.callback())
+          .get("/listing/search/bounds")
+          .query(FremontViewportBounds);
+        const data: ListingSearchResponse = res.body;
+        expect(data.listings.every((l) => !l.rental)).toBe(true);
+      });
+    });
+  });
 });
