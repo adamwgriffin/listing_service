@@ -1,7 +1,7 @@
 import { subDays } from "date-fns";
 import type { FilterQuery, ProjectionType } from "mongoose";
 import { type IListing } from "../models/ListingModel";
-import { GeocodeBoundaryQueryParams } from "../zod_schemas/geocodeBoundarySearchSchema";
+import { type ListingFilterParams } from "../zod_schemas/listingSearchParamsSchema";
 
 /**
  * Used for mongodb's $project section to select the fields we want to return in
@@ -46,7 +46,7 @@ export const ListingDetailResultProjectionFields = {
  * // { "listedDate": 1 }
  */
 export const listingSortQuery = (
-  queryParams: GeocodeBoundaryQueryParams
+  queryParams: Partial<ListingFilterParams>
 ): FilterQuery<IListing> => {
   const sortBy = queryParams.sort_by || "listedDate";
   const sortDirection = queryParams.sort_direction === "asc" ? 1 : -1;
@@ -101,7 +101,7 @@ export const openHouseQuery = (
  * // Returns [{ "listPrice": { $gte: 100000} }, { "waterfront": true }]
  */
 export const buildFilterQueries = (
-  q: GeocodeBoundaryQueryParams
+  q: Partial<ListingFilterParams>
 ): FilterQuery<IListing>[] => {
   const filters = [];
 
