@@ -29,8 +29,6 @@ export const ensureError = (value: unknown): Error => {
     stringified = "[Unable to stringify the thrown value]";
   }
 
-  const error = new Error(
-    `This value was thrown as is, not through an Error: ${stringified}`
-  );
+  const error = new Error(`Non-Error value thrown: ${stringified}`);
   return error;
 };

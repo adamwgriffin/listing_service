@@ -1,5 +1,4 @@
 import { LatLngBounds } from "@googlemaps/google-maps-services-js";
-import type { Types } from "mongoose";
 import type { IBoundary } from "../models/BoundaryModel";
 import type { IListing } from "../models/ListingModel";
 import {
@@ -8,7 +7,7 @@ import {
 } from "../queries/listingQueries";
 
 export type AdditionalListingResultFields = {
-  _id: Types.ObjectId;
+  _id: string;
   latitude: number;
   longitude: number;
 };
