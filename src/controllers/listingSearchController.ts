@@ -3,7 +3,7 @@ import {
   boundsParamsToGeoJSONPolygon,
   getBoundaryGeometryWithBounds,
   getResultsForPlaceId,
-  getListingForAddress,
+  getListingForListingAddressResult,
   getResultsForPlaceIdRequest
 } from "../services/listingSearchService";
 import { ControllerContext } from "../types";
@@ -52,7 +52,7 @@ export const geocodeBoundarySearch = async (ctx: GeocodeBoundaryContext) => {
   ).data.results[0];
 
   if (isListingAddressType(geocodeResult.types)) {
-    const listing = await getListingForAddress(geocodeResult, ctx);
+    const listing = await getListingForListingAddressResult(geocodeResult, ctx);
     ctx.body = listingSearchGeocodeNoBoundaryView(
       geocodeResult.geometry.viewport,
       listing

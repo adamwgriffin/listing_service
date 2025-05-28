@@ -97,10 +97,11 @@ export const getResultsForPlaceIdRequest = async (
 };
 
 /**
- * Try to find a listing that matches a geocode result, either by address or
+ * Try to find a listing that matches a geocode result for street address
+ * location, rather than a boundary.  either by address or
  * place_id.
  */
-export const getListingForAddress = async (
+export const getListingForListingAddressResult = async (
   { address_components, place_id }: GeocodeResult,
   ctx: Context
 ) => {
