@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { booleanEnum } from ".";
-import { AllPropertyStatuses } from '../models/ListingModel';
+import { AllPropertyStatuses, PropertyTypes } from "../models/ListingModel";
 
 export const sortTypeSchema = z.enum([
   "listedDate",
@@ -40,7 +40,10 @@ export const listingFilterParamsSchema = z
     sort_by: sortTypeSchema,
     sort_direction: sortDirectionSchema,
     sold_days: z.coerce.number(),
-    property_type: z.string(),
+    property_type: z
+      .string()
+      .transform((s) => s.split(",").map((s) => s.trim()))
+      .pipe(z.array(z.enum(PropertyTypes))),
     status: z
       .string()
       .transform((s) => s.split(",").map((s) => s.trim()))

@@ -110,7 +110,7 @@ export const buildFilterQueries = (
   if (q.property_type) {
     filters.push({
       propertyType: {
-        $in: q.property_type.split(",")
+        $in: q.property_type
       }
     });
   }
