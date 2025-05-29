@@ -128,6 +128,16 @@ describe("filters", () => {
       });
     });
 
+    it("validates the status type", async () => {
+      const res = await request(app.callback())
+        .get("/listing/search/bounds")
+        .query({
+          ...FremontViewportBounds,
+          status: "sold,invalid_type"
+        });
+      expect(res.status).toBe(400);
+    });
+
     describe("when the status param is included", () => {
       it("only returns the statuses that are requested", async () => {
         const requestedStatuses = ["pending", "sold"];
