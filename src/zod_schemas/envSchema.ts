@@ -8,5 +8,10 @@ export const envSchema = z.object({
   DB_PASSWORD: z.string().min(1),
   DB_NAME: z.string().min(1),
   GOOGLE_MAPS_API_KEY: z.string().min(1),
-  NODE_ENV: z.enum(["development", "production", "test"]).default("development")
+  NODE_ENV: z
+    .enum(["development", "test", "production"])
+    .default("development"),
+  LOG_LEVEL: z
+    .enum(["fatal", "error", "warn", "info", "debug", "trace", "silent"])
+    .default("info")
 });
