@@ -105,12 +105,12 @@ export const buildFilterQueries = (
 ): FilterQuery<IListing>[] => {
   const filters = [];
 
-  filters.push({ status: q.status ? { $in: q.status.split(",") } : "active" });
+  filters.push({ status: q.status ? { $in: q.status } : "active" });
 
   if (q.property_type) {
     filters.push({
       propertyType: {
-        $in: q.property_type.split(",")
+        $in: q.property_type
       }
     });
   }

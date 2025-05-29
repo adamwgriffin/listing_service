@@ -17,10 +17,7 @@ export const PropertyStatuses = ["active", "pending", "sold"] as const;
 
 export const RentalPropertyStatuses = ["active", "rented"] as const;
 
-export const AllPropertyStatuses = [
-  ...PropertyStatuses,
-  ...RentalPropertyStatuses
-];
+export const AllPropertyStatuses = [...PropertyStatuses, "rented"] as const;
 
 export type PropertyType = (typeof PropertyTypes)[number];
 
