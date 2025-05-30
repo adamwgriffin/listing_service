@@ -1,14 +1,35 @@
 import request from "supertest";
 import { buildApp } from "../../app";
+import * as database from "../../database";
 
 const app = buildApp();
 
 describe("healthcheckController", () => {
-  describe("GET /ping", () => {
-    it('should return status 200 and message "pong"', async () => {
-      const response = await request(app.callback()).get("/ping");
-      expect(response.status).toBe(200);
-      expect(response.text).toEqual("pong");
+  describe("GET /health", () => {
+    describe("when the service is healthy", () => {
+      it("should return status 200", async () => {
+        const res = await request(app.callback()).get("/health");
+        expect(res.status).toBe(200);
+      });
+    });
+
+    describe("when the service is not healthy", () => {
+      beforeAll(() => {
+        // Use silent to surpress the exception it logs to the console from
+        // ctx.assert()
+        app.silent = true;
+        jest.spyOn(database, "databaseIsConnected").mockReturnValue(false);
+      });
+
+      afterAll(() => {
+        app.silent = false;
+        jest.restoreAllMocks();
+      });
+
+      it("should return status 503", async () => {
+        const res = await request(app.callback()).get("/health");
+        expect(res.status).toBe(503);
+      });
     });
   });
 });
