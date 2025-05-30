@@ -25,3 +25,7 @@ export const disconnectDatabase = async (): Promise<void> => {
     process.exit(1);
   }
 };
+
+export const databaseIsConnected = (): boolean => {
+  return mongoose.connection.readyState === 1;
+};

@@ -1,4 +1,4 @@
 import Router from "@koa/router";
-import { ping } from "../controllers/healthcheckController";
+import { health } from "../controllers/healthcheckController";
 
-export default new Router().get("/ping", ping);
+export default new Router().get("/health", health);
