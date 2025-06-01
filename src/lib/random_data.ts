@@ -25,7 +25,7 @@ import {
 } from "../models/ListingModel";
 import { listingAddressHasRequiredFields } from "../services/listingSearchService";
 import { galleryData } from "../data/seed_data/development/photo_galleries";
-import { buildGeocodeService } from "../services/geocoderService";
+import { createGeocodeService } from "../services/geocoderService";
 
 export type GeneratedListingGeocodeData = {
   address: ListingAddress;
@@ -36,7 +36,7 @@ export type GeneratedListingGeocodeData = {
 
 export type ListingData = Omit<IListing, "slug">;
 
-const geocodeService = buildGeocodeService();
+const geocodeService = createGeocodeService();
 
 export const RentalPropertyTypes = PropertyTypes.filter((t) => t !== "land");
 

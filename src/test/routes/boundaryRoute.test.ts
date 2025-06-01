@@ -1,16 +1,17 @@
 import { type HydratedDocument } from "mongoose";
 import request from "supertest";
-import { buildApp } from "../../app";
+import app from "../../app";
 import BoundaryModel, { type IBoundary } from "../../models/BoundaryModel";
 import ListingModel, { type IListing } from "../../models/ListingModel";
 import type { BoundarySearchResponse } from "../../types/listing_search_response_types";
 import fremontBoundary from "../data/fremontBoundary";
 import listingTemplate from "../data/listingTemplate";
-import { getNonExistingBoundaryId, ViewportBoundsExcludingFremontBoundary } from "../testHelpers";
+import {
+  getNonExistingBoundaryId,
+  ViewportBoundsExcludingFremontBoundary
+} from "../testHelpers";
 
 describe("GET /listing/search/boundary/:id", () => {
-  const app = buildApp();
-
   let boundary: HydratedDocument<IBoundary>;
   let listing: HydratedDocument<IListing>;
 

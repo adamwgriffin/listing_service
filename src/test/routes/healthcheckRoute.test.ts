@@ -1,8 +1,6 @@
 import request from "supertest";
-import { buildApp } from "../../app";
+import app from "../../app";
 import * as database from "../../database";
-
-const app = buildApp();
 
 describe("healthcheckController", () => {
   describe("GET /health", () => {

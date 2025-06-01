@@ -6,11 +6,11 @@ import {
   type PlaceDetailsResponse,
   type ReverseGeocodeResponse
 } from "@googlemaps/google-maps-services-js";
+import env from "../lib/env";
 import type {
   GeocodeRequestParams,
   PlaceDetailsRequestParams
 } from "../lib/geocode";
-import env from "../lib/env";
 import { type GeocodeParams } from "../zod_schemas/geocodeBoundarySearchSchema";
 
 export interface IGeocoderService {
@@ -79,6 +79,6 @@ export class GeocoderService implements IGeocoderService {
   }
 }
 
-export const buildGeocodeService = () => {
+export const createGeocodeService = () => {
   return new GeocoderService(new Client(), env.GOOGLE_MAPS_API_KEY);
 };

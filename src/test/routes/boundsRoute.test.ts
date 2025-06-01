@@ -1,7 +1,7 @@
 import { booleanPointInPolygon } from "@turf/turf";
 import { HydratedDocument } from "mongoose";
 import request from "supertest";
-import { buildApp } from "../../app";
+import app from "../../app";
 import ListingModel, { IListing } from "../../models/ListingModel";
 import type { ListingSearchResponse } from "../../types/listing_search_response_types";
 import listingTemplate from "../data/listingTemplate";
@@ -12,8 +12,6 @@ import {
 
 const { insideBoundsPoint, outsideBoundsPoint, boundsParams, boundsPoly } =
   BoundsExcludingPartOfFremontBoundary;
-
-const app = buildApp();
 
 describe("GET /listing/search/bounds", () => {
   describe("bounds params", () => {

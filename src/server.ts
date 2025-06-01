@@ -1,13 +1,11 @@
-import { buildApp } from "./app";
+import app from "./app";
 import { connectToDatabase, disconnectDatabase } from "./database";
 import env from "./lib/env";
 import logger from "./lib/logger";
-import httpLoggerMiddleware from "./middlewares/httpLoggerMiddleware";
 
 const startServer = async () => {
   try {
     await connectToDatabase();
-    const app = buildApp([httpLoggerMiddleware]);
     app.on("error", (err) => {
       logger.error({ err }, "Server error");
     });
