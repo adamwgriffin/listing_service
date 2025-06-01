@@ -43,6 +43,7 @@ services:
     <<: *app-base
     environment:
       - DB_HOST=mongodb-test
+      - LOG_LEVEL=silent
     depends_on:
       - mongodb-test
 

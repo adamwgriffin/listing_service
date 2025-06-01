@@ -9,14 +9,14 @@ import path from "path";
 import yargs from "yargs";
 import { sleep } from "../lib";
 import type { IBoundary } from "../models/BoundaryModel";
-import { buildGeocodeService } from "../services/geocoderService";
+import { createGeocodeService } from "../services/geocoderService";
 
 type PolyOrMultiPolyFeature = Feature<Polygon> | Feature<MultiPolygon>;
 type PolyOrMultiPolyCollection =
   | FeatureCollection<Polygon>
   | FeatureCollection<MultiPolygon>;
 
-const geocodeService = buildGeocodeService();
+const geocodeService = createGeocodeService();
 
 const DefaultNeighborhoodFilePath = path.join(
   __dirname,

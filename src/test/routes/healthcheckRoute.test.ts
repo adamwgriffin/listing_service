@@ -1,8 +1,6 @@
 import request from "supertest";
-import { buildApp } from "../../app";
+import app from "../../app";
 import * as database from "../../database";
-
-const app = buildApp();
 
 describe("healthcheckController", () => {
   describe("GET /health", () => {
@@ -15,14 +13,10 @@ describe("healthcheckController", () => {
 
     describe("when the service is not healthy", () => {
       beforeAll(() => {
-        // Use silent to surpress the exception it logs to the console from
-        // ctx.assert()
-        app.silent = true;
         jest.spyOn(database, "databaseIsConnected").mockReturnValue(false);
       });
 
       afterAll(() => {
-        app.silent = false;
         jest.restoreAllMocks();
       });
 

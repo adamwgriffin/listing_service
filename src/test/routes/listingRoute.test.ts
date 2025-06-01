@@ -1,12 +1,10 @@
 import request from "supertest";
-import { buildApp } from "../../app";
+import app from "../../app";
 import ListingModel from "../../models/ListingModel";
 import listingTemplate from "../data/listingTemplate";
 import { getNonExistingListingId } from "../testHelpers";
 
 describe("GET /listing/:id", () => {
-  const app = buildApp();
-
   let listingId: string;
 
   beforeAll(async () => {

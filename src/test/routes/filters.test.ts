@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
 import { type HydratedDocument } from "mongoose";
 import request from "supertest";
-import { buildApp } from "../../app";
+import app from "../../app";
 import { ListingData, randomPointsWithinPolygon } from "../../lib/random_data";
 import ListingModel, { IListing } from "../../models/ListingModel";
 import type { ListingSearchResponse } from "../../types/listing_search_response_types";
@@ -59,8 +59,6 @@ const listingDataThatMatchesFilters = (
     airConditioning: f.air_conditioning
   };
 };
-
-const app = buildApp();
 
 describe("filters", () => {
   describe("when standard filters are included in the request", () => {

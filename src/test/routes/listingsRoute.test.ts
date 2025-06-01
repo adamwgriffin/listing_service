@@ -1,13 +1,11 @@
 import request from "supertest";
-import { buildApp } from "../../app";
-import type { ListingsResponse } from "../../types/listing_search_response_types";
-import { getNonExistingListingId } from "../testHelpers";
-import listingTemplate from "../data/listingTemplate";
+import app from "../../app";
 import ListingModel from "../../models/ListingModel";
+import type { ListingsResponse } from "../../types/listing_search_response_types";
+import listingTemplate from "../data/listingTemplate";
+import { getNonExistingListingId } from "../testHelpers";
 
 describe("GET /listings/:ids", () => {
-  const app = buildApp();
-
   const listingIds: string[] = [];
 
   beforeAll(async () => {

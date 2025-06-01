@@ -42,7 +42,7 @@ export interface IListingRepository {
   /**
    * Create a listing record.
    *
-   * @note The save hook that adds a uniquey slug can sometimes fail in
+   * @note The save hook that adds a unique slug can sometimes fail in
    * multi-threaded environments so this function attemps to recover from those
    * errors by retrying. You can opt out of this behavior by passing 0 as the
    * maxAttempts argument.
