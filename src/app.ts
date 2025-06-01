@@ -29,6 +29,5 @@ app
 app.context.log = logger;
 app.context.db = Repositories;
 app.context.geocodeService = createGeocodeService();
-app.silent = true;
 
 export default app;
