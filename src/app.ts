@@ -29,5 +29,10 @@ app
 app.context.log = logger;
 app.context.db = Repositories;
 app.context.geocodeService = createGeocodeService();
+// Catching the error here allows us to use our logger and set the log level to
+// "error" rather than relying on Koa's default error logging.
+app.on("error", (err) => {
+  logger.error({ err }, "Server error");
+});
 
 export default app;

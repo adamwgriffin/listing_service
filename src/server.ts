@@ -6,9 +6,6 @@ import logger from "./lib/logger";
 const startServer = async () => {
   try {
     await connectToDatabase();
-    app.on("error", (err) => {
-      logger.error({ err }, "Server error");
-    });
     app.listen(env.APP_PORT, () => {
       logger.info(`Server listening on port ${env.APP_PORT} 🚀`);
     });
