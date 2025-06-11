@@ -37,7 +37,7 @@ const processArgv = async () => {
       alias: "o",
       type: "string",
       default: DefaultOutputPath,
-      describe: "Path to save the file to"
+      describe: "Path to save the file to save"
     })
     .alias("h", "help")
     .help("help")
