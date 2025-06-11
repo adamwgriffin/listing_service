@@ -73,12 +73,13 @@ export const randomNumberInRangeRounded = (
   roundTo: number
 ): number => roundDownToNearest(faker.number.int({ min, max }), roundTo);
 
+export const createSoldDate = (from: Date, to: Date) => {
+  return faker.date.between({ from, to });
+};
+
 export const addSoldData = (listing: ListingData): ListingData => {
   const today = new Date();
-  const soldDate = faker.date.between({
-    from: listing.listedDate,
-    to: today
-  });
+  const soldDate = createSoldDate(listing.listedDate, today);
   return {
     ...listing,
     soldPrice: randomNumberInRangeRounded(
@@ -164,11 +165,12 @@ const createOpenHouse = (listedDate: Date): OpenHouse => {
   };
 };
 
-const createOpenHouses = (
-  numberOfOpenHouses: number,
-  listedDate: Date
+export const createOpenHouses = (
+  listedDate: Date,
+  numberOfOpenHouses?: number
 ): OpenHouse[] => {
-  const openHouses = Array.from({ length: numberOfOpenHouses }, () => {
+  const length = numberOfOpenHouses ?? faker.number.int({ min: 1, max: 5 });
+  const openHouses = Array.from({ length }, () => {
     return createOpenHouse(listedDate);
   });
   return openHouses.sort((a, b) => a.start.getTime() - b.start.getTime());
@@ -227,6 +229,13 @@ const createNewConstruction = (propertyType: PropertyType) =>
     ? false
     : faker.datatype.boolean({ probability: 0.4 });
 
+export const createListedDate = (date: Date, amount: number = 6) => {
+  return faker.date.between({
+    from: subMonths(date, amount),
+    to: date
+  });
+};
+
 export const createRandomListingModel = (
   listingGeocodeData: GeneratedListingGeocodeData
 ): ListingData => {
@@ -236,10 +245,7 @@ export const createRandomListingModel = (
   const propertyType = getPropertyType(rental);
   const listing: ListingData = {
     listPrice: getListPrice(rental),
-    listedDate: faker.date.between({
-      from: subMonths(today, 6),
-      to: today
-    }),
+    listedDate: createListedDate(today),
     address: { ...AddressComponentAddressTemplate, ...address },
     geometry: point,
     placeId,
@@ -266,10 +272,7 @@ export const createRandomListingModel = (
     return addSoldData(listing);
   }
   if (listing.status === "active" && !listing.rental) {
-    listing.openHouses = createOpenHouses(
-      faker.number.int({ min: 1, max: 5 }),
-      listing.listedDate
-    );
+    listing.openHouses = createOpenHouses(listing.listedDate);
   }
   return listing;
 };
