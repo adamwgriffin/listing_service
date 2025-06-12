@@ -1,31 +1,34 @@
-import { backOff } from "exponential-backoff";
-import type { ListingAddress } from "../zod_schemas/listingSchema";
-import type {
-  IListing,
-  PhotoGalleryImage,
-  PropertDetailsSection,
-  PropertDetail,
-  PropertyStatus,
-  OpenHouse,
-  PropertyType,
-  ListingAmenities
-} from "../models/ListingModel";
-import type { Point, Polygon, MultiPolygon } from "geojson";
-import { bbox, randomPoint, booleanPointInPolygon } from "@turf/turf";
 import { faker } from "@faker-js/faker";
-import { subMonths, addHours, addMonths } from "date-fns";
+import { bbox, booleanPointInPolygon, randomPoint } from "@turf/turf";
+import { addHours, addMonths, subMonths } from "date-fns";
+import { backOff } from "exponential-backoff";
+import type { MultiPolygon, Point, Polygon } from "geojson";
+import {
+  galleryData,
+  landGalleryData
+} from "../data/seed_data/development/photo_galleries";
 import {
   addressComponentsToListingAddress,
   getNeighborhoodFromAddressComponents
 } from "../lib/geocode";
+import type {
+  IListing,
+  ListingAmenities,
+  OpenHouse,
+  PhotoGalleryImage,
+  PropertDetail,
+  PropertDetailsSection,
+  PropertyStatus,
+  PropertyType
+} from "../models/ListingModel";
 import {
-  PropertyTypes,
   PropertyStatuses,
+  PropertyTypes,
   RentalPropertyStatuses
 } from "../models/ListingModel";
-import { listingAddressHasRequiredFields } from "../services/listingSearchService";
-import { galleryData } from "../data/seed_data/development/photo_galleries";
 import { createGeocodeService } from "../services/geocoderService";
+import { listingAddressHasRequiredFields } from "../services/listingSearchService";
+import type { ListingAddress } from "../zod_schemas/listingSchema";
 
 export type GeneratedListingGeocodeData = {
   address: ListingAddress;
@@ -73,12 +76,13 @@ export const randomNumberInRangeRounded = (
   roundTo: number
 ): number => roundDownToNearest(faker.number.int({ min, max }), roundTo);
 
+export const createSoldDate = (from: Date, to: Date) => {
+  return faker.date.between({ from, to });
+};
+
 export const addSoldData = (listing: ListingData): ListingData => {
   const today = new Date();
-  const soldDate = faker.date.between({
-    from: listing.listedDate,
-    to: today
-  });
+  const soldDate = createSoldDate(listing.listedDate, today);
   return {
     ...listing,
     soldPrice: randomNumberInRangeRounded(
@@ -100,11 +104,14 @@ const getStatus = (rental: boolean): PropertyStatus =>
     rental ? RentalPropertyStatuses : PropertyStatuses
   );
 
-const getPropertyType = (rental: boolean) =>
+const getPropertyType = (rental: boolean): PropertyType =>
   faker.helpers.arrayElement(rental ? RentalPropertyTypes : PropertyTypes);
 
-const createPhotoGallery = (): PhotoGalleryImage[] => {
-  const [galleryName, fileNames] = faker.helpers.objectEntry(galleryData);
+export const createPhotoGallery = (
+  propertyType: PropertyType
+): PhotoGalleryImage[] => {
+  const data = propertyType === "land" ? landGalleryData : galleryData;
+  const [galleryName, fileNames] = faker.helpers.objectEntry(data);
   return fileNames.map((fileName) => {
     return {
       url: `/gallery/${galleryName}/${fileName}`,
@@ -164,11 +171,12 @@ const createOpenHouse = (listedDate: Date): OpenHouse => {
   };
 };
 
-const createOpenHouses = (
-  numberOfOpenHouses: number,
-  listedDate: Date
+export const createOpenHouses = (
+  listedDate: Date,
+  numberOfOpenHouses?: number
 ): OpenHouse[] => {
-  const openHouses = Array.from({ length: numberOfOpenHouses }, () => {
+  const length = numberOfOpenHouses ?? faker.number.int({ min: 1, max: 5 });
+  const openHouses = Array.from({ length }, () => {
     return createOpenHouse(listedDate);
   });
   return openHouses.sort((a, b) => a.start.getTime() - b.start.getTime());
@@ -227,6 +235,13 @@ const createNewConstruction = (propertyType: PropertyType) =>
     ? false
     : faker.datatype.boolean({ probability: 0.4 });
 
+export const createListedDate = (date: Date, amount: number = 6) => {
+  return faker.date.between({
+    from: subMonths(date, amount),
+    to: date
+  });
+};
+
 export const createRandomListingModel = (
   listingGeocodeData: GeneratedListingGeocodeData
 ): ListingData => {
@@ -236,10 +251,7 @@ export const createRandomListingModel = (
   const propertyType = getPropertyType(rental);
   const listing: ListingData = {
     listPrice: getListPrice(rental),
-    listedDate: faker.date.between({
-      from: subMonths(today, 6),
-      to: today
-    }),
+    listedDate: createListedDate(today),
     address: { ...AddressComponentAddressTemplate, ...address },
     geometry: point,
     placeId,
@@ -253,7 +265,7 @@ export const createRandomListingModel = (
     yearBuilt: faker.number.int({ min: 1910, max: today.getFullYear() }),
     newConstruction: createNewConstruction(propertyType),
     ...createAmenities(propertyType),
-    photoGallery: createPhotoGallery(),
+    photoGallery: createPhotoGallery(propertyType),
     propertyDetails: createPropertyDetails(
       faker.number.int({ min: 4, max: 12 })
     )
@@ -266,10 +278,7 @@ export const createRandomListingModel = (
     return addSoldData(listing);
   }
   if (listing.status === "active" && !listing.rental) {
-    listing.openHouses = createOpenHouses(
-      faker.number.int({ min: 1, max: 5 }),
-      listing.listedDate
-    );
+    listing.openHouses = createOpenHouses(listing.listedDate);
   }
   return listing;
 };

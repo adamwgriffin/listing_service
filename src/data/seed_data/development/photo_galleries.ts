@@ -1,4 +1,6 @@
-export const galleryData = {
+export type GalleryData = Record<string, string[]>;
+
+export const galleryData: GalleryData = {
   "1sebYBjoXa6d": [
     "0.jpg",
     "1.jpg",
@@ -84,5 +86,17 @@ export const galleryData = {
   "uXWM0AqqO2An": [
     "0.jpg",
     "1.jpg"
+  ]
+}
+
+export const landGalleryData: GalleryData = {
+  "VbnONRVe32wx": [
+    "0.jpg",
+    "1.jpg"
+  ],
+  "pkddop4CGto9": [
+    "0.jpg",
+    "1.jpg",
+    "2.jpg"
   ]
 }

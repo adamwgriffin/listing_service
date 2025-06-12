@@ -104,11 +104,11 @@ export const addressComponentsToListingAddress = (
         continue;
       }
       if (field === "street_number") {
-        street_number = component.long_name;
+        street_number = component.short_name;
       } else if (field === "street_address") {
-        street_address = component.long_name;
+        street_address = component.short_name;
       } else {
-        address[field] = component.long_name;
+        address[field] = component.short_name;
       }
     }
   });

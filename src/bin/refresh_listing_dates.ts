@@ -1,19 +1,13 @@
 import fs from "fs";
 import path from "path";
 import yargs from "yargs";
+import { ensureError } from "../lib";
 import {
-  type GeneratedListingGeocodeData,
-  createRandomListingModel
+  createListedDate,
+  createOpenHouses,
+  createSoldDate,
+  ListingData
 } from "../lib/random_data";
-
-const DefaultOutputPath = path.join(
-  __dirname,
-  "..",
-  "data",
-  "seed_data",
-  "development",
-  "dev_listings.json"
-);
 
 const DefaultFilePath = path.join(
   __dirname,
@@ -21,7 +15,7 @@ const DefaultFilePath = path.join(
   "data",
   "seed_data",
   "development",
-  "dev_listing_geocode_data.json"
+  "dev_listings.json"
 );
 
 const processArgv = async () => {
@@ -36,7 +30,7 @@ const processArgv = async () => {
     .option("output-path", {
       alias: "o",
       type: "string",
-      default: DefaultOutputPath,
+      default: DefaultFilePath,
       describe: "Path to save the file to save"
     })
     .alias("h", "help")
@@ -47,18 +41,29 @@ const processArgv = async () => {
 };
 
 const main = async () => {
-  try {
-    const argv = await processArgv();
+  const argv = await processArgv();
 
-    const data = JSON.parse(
+  try {
+    const listingData: ListingData[] = JSON.parse(
       fs.readFileSync(argv.file, "utf-8")
-    ) as GeneratedListingGeocodeData[];
-    console.info("Creating listing model data...");
-    const listings = data.map((d) => createRandomListingModel(d));
-    fs.writeFileSync(argv.outputPath, JSON.stringify(listings, null, 2));
-    console.info(`${listings.length} listings created.`);
+    );
+
+    const today = new Date();
+
+    for (const listing of listingData) {
+      listing.listedDate = createListedDate(today);
+      if (listing.status === "active" && !listing.rental) {
+        listing.openHouses = createOpenHouses(listing.listedDate);
+      }
+      if (listing.status === "sold") {
+        listing.soldDate = createSoldDate(listing.listedDate, today);
+      }
+    }
+
+    console.log(`Refreshed ${listingData.length} listings.`);
+    fs.writeFileSync(argv.outputPath, JSON.stringify(listingData, null, 2));
   } catch (error) {
-    const errorMessage = error instanceof Error ? `"${error.message}"` : "";
+    const errorMessage = ensureError(error);
     console.error("Encountered error generating listing data", errorMessage);
     process.exit(1);
   }
