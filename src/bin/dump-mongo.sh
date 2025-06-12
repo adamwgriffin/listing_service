@@ -8,5 +8,5 @@ docker-compose exec -T mongodb sh -c '
     --password "$DB_PASSWORD" \
     --authenticationDatabase admin \
     --db "$DB_NAME"
-' > ../../init-mongo/db.dump.archive.gz
+' > ./docker/init-mongo/db.dump.archive.gz
 
