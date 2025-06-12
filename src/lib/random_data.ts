@@ -1,31 +1,34 @@
-import { backOff } from "exponential-backoff";
-import type { ListingAddress } from "../zod_schemas/listingSchema";
-import type {
-  IListing,
-  PhotoGalleryImage,
-  PropertDetailsSection,
-  PropertDetail,
-  PropertyStatus,
-  OpenHouse,
-  PropertyType,
-  ListingAmenities
-} from "../models/ListingModel";
-import type { Point, Polygon, MultiPolygon } from "geojson";
-import { bbox, randomPoint, booleanPointInPolygon } from "@turf/turf";
 import { faker } from "@faker-js/faker";
-import { subMonths, addHours, addMonths } from "date-fns";
+import { bbox, booleanPointInPolygon, randomPoint } from "@turf/turf";
+import { addHours, addMonths, subMonths } from "date-fns";
+import { backOff } from "exponential-backoff";
+import type { MultiPolygon, Point, Polygon } from "geojson";
+import {
+  galleryData,
+  landGalleryData
+} from "../data/seed_data/development/photo_galleries";
 import {
   addressComponentsToListingAddress,
   getNeighborhoodFromAddressComponents
 } from "../lib/geocode";
+import type {
+  IListing,
+  ListingAmenities,
+  OpenHouse,
+  PhotoGalleryImage,
+  PropertDetail,
+  PropertDetailsSection,
+  PropertyStatus,
+  PropertyType
+} from "../models/ListingModel";
 import {
-  PropertyTypes,
   PropertyStatuses,
+  PropertyTypes,
   RentalPropertyStatuses
 } from "../models/ListingModel";
-import { listingAddressHasRequiredFields } from "../services/listingSearchService";
-import { galleryData } from "../data/seed_data/development/photo_galleries";
 import { createGeocodeService } from "../services/geocoderService";
+import { listingAddressHasRequiredFields } from "../services/listingSearchService";
+import type { ListingAddress } from "../zod_schemas/listingSchema";
 
 export type GeneratedListingGeocodeData = {
   address: ListingAddress;
@@ -101,11 +104,14 @@ const getStatus = (rental: boolean): PropertyStatus =>
     rental ? RentalPropertyStatuses : PropertyStatuses
   );
 
-const getPropertyType = (rental: boolean) =>
+const getPropertyType = (rental: boolean): PropertyType =>
   faker.helpers.arrayElement(rental ? RentalPropertyTypes : PropertyTypes);
 
-const createPhotoGallery = (): PhotoGalleryImage[] => {
-  const [galleryName, fileNames] = faker.helpers.objectEntry(galleryData);
+export const createPhotoGallery = (
+  propertyType: PropertyType
+): PhotoGalleryImage[] => {
+  const data = propertyType === "land" ? landGalleryData : galleryData;
+  const [galleryName, fileNames] = faker.helpers.objectEntry(data);
   return fileNames.map((fileName) => {
     return {
       url: `/gallery/${galleryName}/${fileName}`,
@@ -259,7 +265,7 @@ export const createRandomListingModel = (
     yearBuilt: faker.number.int({ min: 1910, max: today.getFullYear() }),
     newConstruction: createNewConstruction(propertyType),
     ...createAmenities(propertyType),
-    photoGallery: createPhotoGallery(),
+    photoGallery: createPhotoGallery(propertyType),
     propertyDetails: createPropertyDetails(
       faker.number.int({ min: 4, max: 12 })
     )
