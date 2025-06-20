@@ -6,7 +6,10 @@ import logger from "./logger";
 
 const keyvRedisStore = new KeyvRedis(env.REDIS_URL);
 
-const keyv = new Keyv({ store: keyvRedisStore });
+const keyv = new Keyv(keyvRedisStore, {
+  namespace: "",
+  useKeyPrefix: false
+});
 
 export const cache = createCache({
   stores: [keyv],
