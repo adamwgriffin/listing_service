@@ -18,7 +18,8 @@
     "seed_listing_data": "./run-script src/bin/seed_listing_data.ts",
     "seed_boundary_data": "./run-script src/bin/seed_boundary_data.ts",
     "seed_dev_data": "npm run seed_boundary_data && npm run seed_listing_data",
-    "generate_and_seed_listing_data": "npm run generate_listing_data && npm run seed_listing_data"
+    "generate_and_seed_listing_data": "npm run generate_listing_data && npm run seed_listing_data",
+    "clear_cache": "./run-script src/bin/clear_cache"
   },
   "dependencies": {
     "@googlemaps/google-maps-services-js": "^3.4.1",
