@@ -10,7 +10,7 @@ const keyv = new Keyv({ store: keyvRedisStore });
 
 export const cache = createCache({
   stores: [keyv],
-  ttl: 7 * 24 * 60 * 60 * 1000 // 1 week
+  ttl: env.CACHE_TTL
 });
 
 cache.on("set", ({ error }) => {
