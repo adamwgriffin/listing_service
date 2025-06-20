@@ -6,9 +6,9 @@ mongoose.connection.on("error", (e) => {
   logger.error("MongoDB connection error:", e);
 });
 
-export const connectToDatabase = async (): Promise<void> => {
+export const connectToDatabase = async (url: string = MongoDbUrl) => {
   try {
-    const conn = await mongoose.connect(MongoDbUrl);
+    const conn = await mongoose.connect(url);
     logger.debug(`MongoDB connected to host: ${conn.connection.host}`);
   } catch (err) {
     logger.error(err);
@@ -16,7 +16,7 @@ export const connectToDatabase = async (): Promise<void> => {
   }
 };
 
-export const disconnectDatabase = async (): Promise<void> => {
+export const disconnectDatabase = async () => {
   try {
     await mongoose.connection.close();
     logger.debug("MongoDB disconnected");
