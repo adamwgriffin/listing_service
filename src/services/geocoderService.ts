@@ -14,6 +14,7 @@ import type {
 } from "../lib/geocode";
 import { type GeocodeParams } from "../zod_schemas/geocodeBoundarySearchSchema";
 import { cache } from "../lib/cache";
+import { type Cache } from "cache-manager";
 
 export interface IGeocoderService {
   geocode: (params: GeocodeRequestParams) => Promise<GeocodeResponse>;
@@ -38,6 +39,7 @@ export interface IGeocoderService {
 export class GeocoderService implements IGeocoderService {
   constructor(
     private client: Client,
+    private cache: Cache,
     private apiKey: string
   ) {}
 
@@ -50,7 +52,7 @@ export class GeocoderService implements IGeocoderService {
   public async cachedGeocodeFromParams({ place_id, address }: GeocodeParams) {
     const request = place_id ? { place_id } : { address };
     const cacheKey = "geocode:" + Object.entries(request).flat().join(":");
-    return cache.wrap(cacheKey, async () => {
+    return this.cache.wrap(cacheKey, async () => {
       return (await this.geocode(request)).data.results[0];
     });
   }
@@ -83,5 +85,5 @@ export class GeocoderService implements IGeocoderService {
 }
 
 export const createGeocodeService = () => {
-  return new GeocoderService(new Client(), env.GOOGLE_MAPS_API_KEY);
+  return new GeocoderService(new Client(), cache, env.GOOGLE_MAPS_API_KEY);
 };
