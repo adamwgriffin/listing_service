@@ -2,6 +2,7 @@ import app from "./app";
 import { connectToDatabase, disconnectDatabase } from "./database";
 import env from "./lib/env";
 import logger from "./lib/logger";
+import { cache } from "./lib/cache";
 
 const startServer = async () => {
   try {
@@ -12,6 +13,8 @@ const startServer = async () => {
     process.on("SIGTERM", async () => {
       logger.debug("Cleaning up before closing the server...");
       await disconnectDatabase();
+      await cache.disconnect();
+      logger.debug("Cache disconnected");
       logger.debug("Cleanup complete. Closing the server...");
       process.exit(0);
     });

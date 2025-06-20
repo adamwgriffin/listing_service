@@ -18,12 +18,15 @@
     "seed_listing_data": "./run-script src/bin/seed_listing_data.ts",
     "seed_boundary_data": "./run-script src/bin/seed_boundary_data.ts",
     "seed_dev_data": "npm run seed_boundary_data && npm run seed_listing_data",
-    "generate_and_seed_listing_data": "npm run generate_listing_data && npm run seed_listing_data"
+    "generate_and_seed_listing_data": "npm run generate_listing_data && npm run seed_listing_data",
+    "clear_cache": "./run-script src/bin/clear_cache"
   },
   "dependencies": {
     "@googlemaps/google-maps-services-js": "^3.4.1",
+    "@keyv/redis": "^4.4.0",
     "@koa/router": "^13.1.0",
     "@turf/turf": "^7.2.0",
+    "cache-manager": "^7.0.0",
     "date-fns": "^4.1.0",
     "dotenv": "^16.5.0",
     "koa": "^3.0.0",

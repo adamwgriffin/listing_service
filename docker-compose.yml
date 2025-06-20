@@ -25,6 +25,7 @@ services:
       - DB_HOST=mongodb
     depends_on:
       - mongodb
+      - redis
     stdin_open: true
     tty: true
 
@@ -46,6 +47,7 @@ services:
       - LOG_LEVEL=silent
     depends_on:
       - mongodb-test
+      - redis
 
   mongodb-test:
     <<: *mongodb-base
@@ -56,5 +58,13 @@ services:
     tmpfs:
       - /data/db
 
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+
 volumes:
   mongo-data:
+  redis-data:

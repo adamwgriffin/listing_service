@@ -1,6 +1,7 @@
 import {
   AddressType,
   Client,
+  type GeocodeResult,
   type GeocodeResponse,
   type PlaceDetailsRequest,
   type PlaceDetailsResponse,
@@ -12,17 +13,17 @@ import type {
   PlaceDetailsRequestParams
 } from "../lib/geocode";
 import { type GeocodeParams } from "../zod_schemas/geocodeBoundarySearchSchema";
+import { cache } from "../lib/cache";
+import { type Cache } from "cache-manager";
 
 export interface IGeocoderService {
   geocode: (params: GeocodeRequestParams) => Promise<GeocodeResponse>;
 
   /**
-   * Get params from query string. If place_id is available use that, otherwise
-   * use address.
+   * A cached geocode request. Get params from query string. If place_id is
+   * available use that, otherwise use address.
    */
-  geocodeFromAvailableParam: (
-    params: GeocodeParams
-  ) => Promise<GeocodeResponse>;
+  cachedGeocodeFromParams: (params: GeocodeParams) => Promise<GeocodeResult>;
 
   reverseGeocode: (
     lat: number,
@@ -38,6 +39,7 @@ export interface IGeocoderService {
 export class GeocoderService implements IGeocoderService {
   constructor(
     private client: Client,
+    private cache: Cache,
     private apiKey: string
   ) {}
 
@@ -47,9 +49,12 @@ export class GeocoderService implements IGeocoderService {
     });
   }
 
-  public async geocodeFromAvailableParam({ place_id, address }: GeocodeParams) {
+  public async cachedGeocodeFromParams({ place_id, address }: GeocodeParams) {
     const request = place_id ? { place_id } : { address };
-    return this.geocode(request);
+    const cacheKey = "geocode:" + Object.entries(request).flat().join(":");
+    return this.cache.wrap(cacheKey, async () => {
+      return (await this.geocode(request)).data.results[0];
+    });
   }
 
   public async reverseGeocode(
@@ -80,5 +85,5 @@ export class GeocoderService implements IGeocoderService {
 }
 
 export const createGeocodeService = () => {
-  return new GeocoderService(new Client(), env.GOOGLE_MAPS_API_KEY);
+  return new GeocoderService(new Client(), cache, env.GOOGLE_MAPS_API_KEY);
 };
