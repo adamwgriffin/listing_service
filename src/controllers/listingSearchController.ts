@@ -2,8 +2,8 @@ import { isListingAddressType } from "../lib/geocode";
 import {
   boundsParamsToGeoJSONPolygon,
   getBoundaryGeometryWithBounds,
-  getResultsForPlaceId,
   getListingForListingAddressResult,
+  getResultsForPlaceId,
   getResultsForPlaceIdRequest
 } from "../services/listingSearchService";
 import { ControllerContext } from "../types";
@@ -47,9 +47,9 @@ export const geocodeBoundarySearch = async (ctx: GeocodeBoundaryContext) => {
     return;
   }
 
-  const geocodeResult = (
-    await ctx.geocodeService.geocodeFromAvailableParam(ctx.query)
-  ).data.results[0];
+  const geocodeResult = await ctx.geocodeService.cachedGeocodeFromParams(
+    ctx.query
+  );
 
   if (isListingAddressType(geocodeResult.types)) {
     const listing = await getListingForListingAddressResult(geocodeResult, ctx);
