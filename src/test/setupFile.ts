@@ -1,10 +1,9 @@
-import mongoose from "mongoose";
-import { MongoDbUrl } from "../lib/env";
+import { connectToDatabase, disconnectDatabase } from "../database";
 
 beforeAll(async () => {
-  await mongoose.connect(MongoDbUrl);
+  await connectToDatabase();
 });
 
 afterAll(async () => {
-  await mongoose.connection.close();
+  await disconnectDatabase();
 });
