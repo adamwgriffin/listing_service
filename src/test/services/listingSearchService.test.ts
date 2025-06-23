@@ -5,10 +5,11 @@ import {
   boundsParamsToGeoJSONPolygon,
   getBoundaryGeometryWithBounds,
   getResultsForPlaceId,
-  getResultsForPlaceIdRequest
+  getResultsForPlaceIdRequest,
+  listingAddressHasRequiredFields
 } from "../../services/listingSearchService";
-import { zBoundarySchema } from "../../zod_schemas/zBoundarySchema";
 import { polygonSchema } from "../../zod_schemas/geojsonSchema";
+import { zBoundarySchema } from "../../zod_schemas/zBoundarySchema";
 import fremontBoundary from "../data/fremontBoundary";
 import {
   BoundsExcludingPartOfFremontBoundary,
@@ -105,6 +106,30 @@ describe("listingSearchService", () => {
           intersectionBoundary
         )
       ).toBe(true);
+    });
+  });
+
+  describe("listingAddressHasRequiredFields", () => {
+    it("returns false for addresses that have the required fields", () => {
+      expect(
+        listingAddressHasRequiredFields({
+          line1: "123 Test Lane",
+          city: "Seattle",
+          state: "WA",
+          zip: "98119"
+        })
+      ).toBe(true);
+    });
+
+    it("returns false for addresses that don't have the required fields", () => {
+      expect(
+        listingAddressHasRequiredFields({
+          line1: "  ",
+          city: "Seattle",
+          state: "WA",
+          zip: "98119"
+        })
+      ).toBe(false);
     });
   });
 
