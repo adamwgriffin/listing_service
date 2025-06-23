@@ -1,10 +1,9 @@
 import {
-  AddressType,
-  GeocodeResult
+  AddressComponent,
+  AddressType
 } from "@googlemaps/google-maps-services-js";
 import { bboxPolygon, feature, featureCollection, intersect } from "@turf/turf";
 import type { MultiPolygon, Polygon } from "geojson";
-import { type Context } from "koa";
 import {
   addressComponentsToListingAddress,
   isListingAddressType
@@ -118,13 +117,17 @@ export const getResultsForPlaceIdRequest = async (
  * location, rather than a boundary, either by address or place_id.
  */
 export const getListingForListingAddressResult = async (
-  { address_components, place_id }: GeocodeResult,
-  ctx: Context
+  addressComponents: AddressComponent[],
+  placeId: string,
+  listingRepo: Pick<
+    IListingRepository,
+    "findByPlaceIdOrAddress" | "findByPlaceId"
+  >
 ) => {
-  const listingAddress = addressComponentsToListingAddress(address_components);
+  const listingAddress = addressComponentsToListingAddress(addressComponents);
   // Avoid including address in the $or query if it's clear that the geocode
   // result doesn't have enough address data to ever succeed.
   return listingAddressHasRequiredFields(listingAddress)
-    ? await ctx.db.listing.findByPlaceIdOrAddress(place_id, listingAddress)
-    : await ctx.db.listing.findByPlaceId(place_id);
+    ? await listingRepo.findByPlaceIdOrAddress(placeId, listingAddress)
+    : await listingRepo.findByPlaceId(placeId);
 };
