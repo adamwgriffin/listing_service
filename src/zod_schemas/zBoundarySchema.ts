@@ -1,16 +1,6 @@
 import { z } from "zod";
 import { BoundaryTypes } from "../models/BoundaryModel";
-
-const multiPolygonSchema = z.object({
-  type: z.literal("MultiPolygon"),
-  coordinates: z.array(
-    z.array(
-      z.array(
-        z.tuple([z.number(), z.number()]) // [longitude, latitude]
-      )
-    )
-  )
-});
+import { multiPolygonSchema } from "./geojsonSchema";
 
 export const zBoundarySchema = z.object({
   name: z.string().min(1),

@@ -2,11 +2,13 @@ import { booleanPointInPolygon } from "@turf/turf";
 import { z } from "zod";
 import {
   type PlaceIdLookupContext,
+  boundsParamsToGeoJSONPolygon,
   getBoundaryGeometryWithBounds,
   getResultsForPlaceId,
   getResultsForPlaceIdRequest
 } from "../../services/listingSearchService";
 import { zBoundarySchema } from "../../zod_schemas/zBoundarySchema";
+import { polygonSchema } from "../../zod_schemas/geojsonSchema";
 import fremontBoundary from "../data/fremontBoundary";
 import {
   BoundsExcludingPartOfFremontBoundary,
@@ -37,6 +39,18 @@ const mockPlaceIdLookupContext: PlaceIdLookupContext = {
 };
 
 describe("listingSearchService", () => {
+  describe("boundsParamsToGeoJSONPolygon", () => {
+    it("converts bounds params to a GeoJSON Polygon", () => {
+      const polygon = boundsParamsToGeoJSONPolygon({
+        bounds_north: 47.69011227856514,
+        bounds_east: -122.32789118536581,
+        bounds_south: 47.62356960805306,
+        bounds_west: -122.38144953497519
+      });
+      expect(polygonSchema.safeParse(polygon).success).toBe(true);
+    });
+  });
+
   describe("getBoundaryGeometryWithBounds", () => {
     it("just returns the given boundary geometry if there are no bounds params in the query", () => {
       const boundary = getBoundaryGeometryWithBounds(fremontBoundary, {});
