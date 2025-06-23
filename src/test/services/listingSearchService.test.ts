@@ -1,17 +1,17 @@
 import { booleanPointInPolygon } from "@turf/turf";
+import { z } from "zod";
 import {
   type PlaceIdLookupContext,
   getBoundaryGeometryWithBounds,
   getResultsForPlaceId,
   getResultsForPlaceIdRequest
 } from "../../services/listingSearchService";
+import { zBoundarySchema } from "../../zod_schemas/zBoundarySchema";
 import fremontBoundary from "../data/fremontBoundary";
 import {
   BoundsExcludingPartOfFremontBoundary,
   ViewportBoundsExcludingFremontBoundary
 } from "../testHelpers";
-import { z } from "zod";
-import { zBoundarySchema } from "../../zod_schemas/zBoundarySchema";
 
 const { insideBoundsPoint, outsideBoundsPoint, boundsParams, boundsPoly } =
   BoundsExcludingPartOfFremontBoundary;
