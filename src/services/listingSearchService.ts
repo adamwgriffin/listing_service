@@ -96,22 +96,26 @@ export const getResultsForPlaceId = async (
 };
 
 /**
- * Handle a request that includes a place_id and/or address_types. If the request is
- * for a boundary type, get listing results for that boundary.
+ * Handle a boundary request that includes both place_id and address_types params. This is
+ * typically data received from an autocomplete selection on the frontend.
  */
 export const getResultsForPlaceIdRequest = async (
   ctx: PlaceIdLookupContext
 ) => {
   const { place_id, address_types } = ctx.query;
+  // We need both place_id & address_types data in order to determine if we can
+  // get the boundary
   if (!place_id || !address_types) return;
+  // If it's a listing address we will want to geocode because the way we find
+  // them requires additional geocode information. We return early to allow the
+  // caller to take care of that.
   if (isListingAddressType(getAddressTypesFromParams(address_types))) return;
   return getResultsForPlaceId(place_id, ctx);
 };
 
 /**
  * Try to find a listing that matches a geocode result for street address
- * location, rather than a boundary.  either by address or
- * place_id.
+ * location, rather than a boundary, either by address or place_id.
  */
 export const getListingForListingAddressResult = async (
   { address_components, place_id }: GeocodeResult,
