@@ -5,17 +5,26 @@ import {
 import { bboxPolygon, feature, featureCollection, intersect } from "@turf/turf";
 import type { MultiPolygon, Polygon } from "geojson";
 import { type Context } from "koa";
-import { type GeocodeBoundaryContext } from "../controllers/listingSearchController";
 import {
   addressComponentsToListingAddress,
   isListingAddressType
 } from "../lib/geocode";
 import type { IBoundary } from "../models/BoundaryModel";
+import type { IBoundaryRepository } from "../respositories/BoundaryRepository";
+import type { IListingRepository } from "../respositories/ListingRepository";
 import type { BoundarySearchQueryParams } from "../zod_schemas/boundarySearchRequestSchema";
+import { type GeocodeBoundaryRequest } from "../zod_schemas/geocodeBoundarySearchSchema";
 import type { ListingAddress } from "../zod_schemas/listingSchema";
 import { listingAddressSchema } from "../zod_schemas/listingSchema";
 import type { BoundsParams } from "../zod_schemas/listingSearchParamsSchema";
 import { boundsParamsSchema } from "../zod_schemas/listingSearchParamsSchema";
+
+export interface PlaceIdLookupContext extends GeocodeBoundaryRequest {
+  db: {
+    listing: Pick<IListingRepository, "findWithinBounds">;
+    boundary: Pick<IBoundaryRepository, "findByPlaceId">;
+  };
+}
 
 /**
  * Converts a set of north/east/south/west coordinates into a rectangular polygon
@@ -73,7 +82,10 @@ export const getAddressTypesFromParams = (address_types: string) =>
 /**
  * Use place_id to finds a boundary and listings within it.
  */
-export const getResultsForPlaceId = async (place_id: string, ctx: Context) => {
+export const getResultsForPlaceId = async (
+  place_id: string,
+  ctx: PlaceIdLookupContext
+) => {
   const boundary = await ctx.db.boundary.findByPlaceId(place_id);
   if (!boundary) return;
   const results = await ctx.db.listing.findWithinBounds(
@@ -88,7 +100,7 @@ export const getResultsForPlaceId = async (place_id: string, ctx: Context) => {
  * for a boundary type, get listing results for that boundary.
  */
 export const getResultsForPlaceIdRequest = async (
-  ctx: GeocodeBoundaryContext
+  ctx: PlaceIdLookupContext
 ) => {
   const { place_id, address_types } = ctx.query;
   if (!place_id || !address_types) return;
