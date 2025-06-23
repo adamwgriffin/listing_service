@@ -2,7 +2,8 @@ import { booleanPointInPolygon } from "@turf/turf";
 import {
   type PlaceIdLookupContext,
   getBoundaryGeometryWithBounds,
-  getResultsForPlaceId
+  getResultsForPlaceId,
+  getResultsForPlaceIdRequest
 } from "../../services/listingSearchService";
 import fremontBoundary from "../data/fremontBoundary";
 import {
@@ -119,6 +120,53 @@ describe("listingSearchService", () => {
         })
         .safeParse(result).success;
       expect(validResult).toBe(true);
+    });
+  });
+
+  describe("getResultsForPlaceIdRequest", () => {
+    describe("when either place_id or address_types are missing in the query", () => {
+      it("returns nothing", async () => {
+        const ctx = { ...mockPlaceIdLookupContext };
+        ctx.query = { place_id: fremontBoundary.placeId };
+        expect(await getResultsForPlaceIdRequest(ctx)).toBeUndefined();
+        ctx.query = { address_types: "neighborhood,political" };
+        expect(await getResultsForPlaceIdRequest(ctx)).toBeUndefined();
+      });
+    });
+
+    describe("when the address_types are for a listing address rather than a boundary", () => {
+      it("returns nothing", async () => {
+        const ctx = {
+          ...mockPlaceIdLookupContext,
+          query: { address_types: "street_address" }
+        };
+        expect(await getResultsForPlaceIdRequest(ctx)).toBeUndefined();
+      });
+    });
+
+    describe("when a place_id boundary and address_types are included in the query", () => {
+      it("returns the boundary and the listing results if a boundary was found", async () => {
+        const ctx = { ...mockPlaceIdLookupContext };
+        ctx.db.boundary = {
+          findByPlaceId() {
+            return new Promise((resolve) => {
+              resolve(fremontBoundary);
+            });
+          }
+        };
+        ctx.query = {
+          place_id: fremontBoundary.placeId,
+          address_types: "neighborhood,political"
+        };
+        const result = await getResultsForPlaceIdRequest(ctx);
+        const validResult = z
+          .object({
+            boundary: zBoundarySchema,
+            results: z.array(z.any())
+          })
+          .safeParse(result).success;
+        expect(validResult).toBe(true);
+      });
     });
   });
 });
