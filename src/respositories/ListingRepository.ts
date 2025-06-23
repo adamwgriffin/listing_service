@@ -1,6 +1,5 @@
 import type { MultiPolygon, Polygon } from "geojson";
 import { MongoServerError } from "mongodb";
-import { type HydratedDocument } from "mongoose";
 import { getPaginationParams } from "../lib";
 import { type ListingData } from "../lib/random_data";
 import ListingModel, { IListing } from "../models/ListingModel";
@@ -15,12 +14,14 @@ import {
   ListingResult
 } from "../types/listing_search_response_types";
 import { ListingAddress } from "../zod_schemas/listingSchema";
-import { ListingFilterParams } from '../zod_schemas/listingSearchParamsSchema';
+import { ListingFilterParams } from "../zod_schemas/listingSearchParamsSchema";
 
 export type FindWithinBoundsResult = {
   metadata: { numberAvailable: number }[];
   listings: ListingResult[];
 };
+
+export type ListingQueryResult = { _id: string } & IListing;
 
 export interface IListingRepository {
   findByPlaceIdOrAddress: (
@@ -50,7 +51,7 @@ export interface IListingRepository {
   createListing: (
     listing: ListingData,
     maxAttempts?: number
-  ) => Promise<HydratedDocument<IListing>>;
+  ) => Promise<ListingQueryResult>;
 }
 
 /**
@@ -153,8 +154,8 @@ export const createListing = async (data: ListingData, maxAttempts = 5) => {
 
   while (count <= maxAttempts) {
     try {
-      const listing = await ListingModel.create(data);
-      return listing;
+      const listing = (await ListingModel.create(data)).toObject();
+      return { ...listing, _id: listing._id.toString() };
     } catch (error) {
       if (isDuplicateSlugError(error) && maxAttempts !== 0) {
         count++;

@@ -1,9 +1,8 @@
 import { faker } from "@faker-js/faker";
-import { type HydratedDocument } from "mongoose";
 import request from "supertest";
 import app from "../../app";
 import { ListingData, randomPointsWithinPolygon } from "../../lib/random_data";
-import ListingModel, { IListing } from "../../models/ListingModel";
+import ListingModel from "../../models/ListingModel";
 import type { ListingSearchResponse } from "../../types/listing_search_response_types";
 import { type ListingFilterParams } from "../../zod_schemas/listingSearchParamsSchema";
 import listingTemplate from "../data/listingTemplate";
@@ -12,6 +11,7 @@ import {
   FremontViewportBoundsPoly
 } from "../testHelpers";
 import { PropertyStatuses, PropertyTypes } from "../../models/ListingModel";
+import { ListingQueryResult } from "../../respositories/ListingRepository";
 
 const filterParams = {
   price_min: 151_000,
@@ -62,8 +62,8 @@ const listingDataThatMatchesFilters = (
 
 describe("filters", () => {
   describe("when standard filters are included in the request", () => {
-    let matchingListing: HydratedDocument<IListing>;
-    let nonMatchingListing: HydratedDocument<IListing>;
+    let matchingListing: ListingQueryResult;
+    let nonMatchingListing: ListingQueryResult;
 
     beforeAll(async () => {
       const points = randomPointsWithinPolygon(FremontViewportBoundsPoly, 2);
@@ -83,8 +83,9 @@ describe("filters", () => {
     });
 
     afterAll(async () => {
-      await matchingListing.deleteOne();
-      await nonMatchingListing.deleteOne();
+      await ListingModel.deleteMany({
+        _id: { $in: [matchingListing._id, nonMatchingListing._id] }
+      });
     });
 
     it("finds listings that match the filters", async () => {
@@ -95,14 +96,14 @@ describe("filters", () => {
           ...filterParams
         });
       const data: ListingSearchResponse = res.body;
-      const listingIds = data.listings.map((l) => l._id.toString());
-      expect(listingIds).toContain(matchingListing._id.toString());
-      expect(listingIds).not.toContain(nonMatchingListing._id.toString());
+      const listingIds = data.listings.map((l) => l._id);
+      expect(listingIds).toContain(matchingListing._id);
+      expect(listingIds).not.toContain(nonMatchingListing._id);
     });
   });
 
   describe("status", () => {
-    const listings: HydratedDocument<IListing>[] = [];
+    const listings: ListingQueryResult[] = [];
 
     beforeAll(async () => {
       const points = randomPointsWithinPolygon(
@@ -120,7 +121,7 @@ describe("filters", () => {
     });
 
     afterAll(async () => {
-      const listingIds = listings.map((l) => l._id.toString());
+      const listingIds = listings.map((l) => l._id);
       await ListingModel.deleteMany({
         _id: { $in: listingIds }
       });
@@ -164,7 +165,7 @@ describe("filters", () => {
   });
 
   describe("property_type", () => {
-    const listings: HydratedDocument<IListing>[] = [];
+    const listings: ListingQueryResult[] = [];
 
     beforeAll(async () => {
       const points = randomPointsWithinPolygon(
@@ -182,7 +183,7 @@ describe("filters", () => {
     });
 
     afterAll(async () => {
-      const listingIds = listings.map((l) => l._id.toString());
+      const listingIds = listings.map((l) => l._id);
       await ListingModel.deleteMany({
         _id: { $in: listingIds }
       });
@@ -242,8 +243,8 @@ describe("filters", () => {
   });
 
   describe("rentals", () => {
-    let rentalListing: HydratedDocument<IListing>;
-    let nonRentalListing: HydratedDocument<IListing>;
+    let rentalListing: ListingQueryResult;
+    let nonRentalListing: ListingQueryResult;
 
     beforeAll(async () => {
       const points = randomPointsWithinPolygon(FremontViewportBoundsPoly, 1);
@@ -259,7 +260,7 @@ describe("filters", () => {
     afterAll(async () => {
       await ListingModel.deleteMany({
         _id: {
-          $in: [rentalListing._id.toString(), nonRentalListing._id.toString()]
+          $in: [rentalListing._id, nonRentalListing._id]
         }
       });
     });

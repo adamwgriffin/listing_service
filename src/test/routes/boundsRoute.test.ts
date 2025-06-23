@@ -1,22 +1,22 @@
 import { booleanPointInPolygon } from "@turf/turf";
-import { HydratedDocument } from "mongoose";
 import request from "supertest";
 import app from "../../app";
-import ListingModel, { IListing } from "../../models/ListingModel";
+import ListingModel from "../../models/ListingModel";
 import type { ListingSearchResponse } from "../../types/listing_search_response_types";
 import listingTemplate from "../data/listingTemplate";
 import {
   BoundsExcludingPartOfFremontBoundary,
   listingsInsideBoundary
 } from "../testHelpers";
+import { ListingQueryResult } from "../../respositories/ListingRepository";
 
 const { insideBoundsPoint, outsideBoundsPoint, boundsParams, boundsPoly } =
   BoundsExcludingPartOfFremontBoundary;
 
 describe("GET /listing/search/bounds", () => {
   describe("bounds params", () => {
-    let listingInsideBounds: HydratedDocument<IListing>;
-    let listingOutsideBounds: HydratedDocument<IListing>;
+    let listingInsideBounds: ListingQueryResult;
+    let listingOutsideBounds: ListingQueryResult;
 
     beforeAll(async () => {
       listingInsideBounds = await app.context.db.listing.createListing({
@@ -53,9 +53,9 @@ describe("GET /listing/search/bounds", () => {
         .get("/listing/search/bounds")
         .query(boundsParams);
       const data: ListingSearchResponse = res.body;
-      const listingIds = data.listings.map((l) => l._id.toString());
-      expect(listingIds).toContain(listingInsideBounds._id.toString());
-      expect(listingIds).not.toContain(listingOutsideBounds._id.toString());
+      const listingIds = data.listings.map((l) => l._id);
+      expect(listingIds).toContain(listingInsideBounds._id);
+      expect(listingIds).not.toContain(listingOutsideBounds._id);
       expect(listingsInsideBoundary(boundsPoly, data.listings)).toBe(true);
     });
   });
