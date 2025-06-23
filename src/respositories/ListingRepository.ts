@@ -14,8 +14,8 @@ import {
   ListingDetailResult,
   ListingResult
 } from "../types/listing_search_response_types";
-import { type GeocodeBoundaryQueryParams } from "../zod_schemas/geocodeBoundarySearchSchema";
 import { ListingAddress } from "../zod_schemas/listingSchema";
+import { ListingFilterParams } from '../zod_schemas/listingSearchParamsSchema';
 
 export type FindWithinBoundsResult = {
   metadata: { numberAvailable: number }[];
@@ -30,7 +30,7 @@ export interface IListingRepository {
 
   findWithinBounds: (
     boundaryGeometry: Polygon | MultiPolygon,
-    query: GeocodeBoundaryQueryParams
+    query: Partial<ListingFilterParams>
   ) => Promise<FindWithinBoundsResult[]>;
 
   findByPlaceId: (placeId: string) => Promise<ListingDetailResult | null>;
@@ -75,7 +75,7 @@ export const findByPlaceIdOrAddress = async (
 
 export const findWithinBounds = async (
   boundaryGeometry: Polygon | MultiPolygon,
-  query: GeocodeBoundaryQueryParams
+  query: Partial<ListingFilterParams>
 ) => {
   const { page_size, page_index } = getPaginationParams(query);
   return ListingModel.aggregate<FindWithinBoundsResult>([
