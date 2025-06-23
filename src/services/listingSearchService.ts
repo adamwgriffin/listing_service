@@ -2,8 +2,8 @@ import {
   AddressType,
   GeocodeResult
 } from "@googlemaps/google-maps-services-js";
+import { bboxPolygon, feature, featureCollection, intersect } from "@turf/turf";
 import type { MultiPolygon, Polygon } from "geojson";
-import { bboxPolygon, intersect, feature, featureCollection } from "@turf/turf";
 import { type Context } from "koa";
 import { type GeocodeBoundaryContext } from "../controllers/listingSearchController";
 import {
@@ -84,7 +84,7 @@ export const getResultsForPlaceId = async (place_id: string, ctx: Context) => {
 };
 
 /**
- * Handle a request that includes a place_id && address_types. If the request is
+ * Handle a request that includes a place_id and/or address_types. If the request is
  * for a boundary type, get listing results for that boundary.
  */
 export const getResultsForPlaceIdRequest = async (
