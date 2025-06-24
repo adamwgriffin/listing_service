@@ -2,16 +2,17 @@ import { HydratedDocument } from "mongoose";
 import request from "supertest";
 import app from "../../app";
 import BoundaryModel, { IBoundary } from "../../models/BoundaryModel";
-import ListingModel, { IListing } from "../../models/ListingModel";
+import ListingModel from "../../models/ListingModel";
 import fremontBoundary from "../data/fremontBoundary";
 import geocodeListing from "../data/geocodeListing";
 import { listingsInsideBoundary } from "../testHelpers";
+import { ListingQueryResult } from '../../respositories/ListingRepository';
 
 const AddressWithNoData = "851 NW 85th Street, Seattle, WA 98117";
 
 describe("GET /listing/search/geocode", () => {
   let boundary: HydratedDocument<IBoundary>;
-  let listing: HydratedDocument<IListing>;
+  let listing: ListingQueryResult;
 
   beforeAll(async () => {
     boundary = await BoundaryModel.create(fremontBoundary);

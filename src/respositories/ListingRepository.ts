@@ -1,6 +1,5 @@
 import type { MultiPolygon, Polygon } from "geojson";
 import { MongoServerError } from "mongodb";
-import { type HydratedDocument } from "mongoose";
 import { getPaginationParams } from "../lib";
 import { type ListingData } from "../lib/random_data";
 import ListingModel, { IListing } from "../models/ListingModel";
@@ -14,13 +13,15 @@ import {
   ListingDetailResult,
   ListingResult
 } from "../types/listing_search_response_types";
-import { type GeocodeBoundaryQueryParams } from "../zod_schemas/geocodeBoundarySearchSchema";
 import { ListingAddress } from "../zod_schemas/listingSchema";
+import { ListingFilterParams } from "../zod_schemas/listingSearchParamsSchema";
 
 export type FindWithinBoundsResult = {
   metadata: { numberAvailable: number }[];
   listings: ListingResult[];
 };
+
+export type ListingQueryResult = { _id: string } & IListing;
 
 export interface IListingRepository {
   findByPlaceIdOrAddress: (
@@ -30,7 +31,7 @@ export interface IListingRepository {
 
   findWithinBounds: (
     boundaryGeometry: Polygon | MultiPolygon,
-    query: GeocodeBoundaryQueryParams
+    query: Partial<ListingFilterParams>
   ) => Promise<FindWithinBoundsResult[]>;
 
   findByPlaceId: (placeId: string) => Promise<ListingDetailResult | null>;
@@ -50,7 +51,9 @@ export interface IListingRepository {
   createListing: (
     listing: ListingData,
     maxAttempts?: number
-  ) => Promise<HydratedDocument<IListing>>;
+  ) => Promise<ListingQueryResult>;
+
+  deleteListingsById: (ids: string[]) => Promise<boolean>;
 }
 
 /**
@@ -75,7 +78,7 @@ export const findByPlaceIdOrAddress = async (
 
 export const findWithinBounds = async (
   boundaryGeometry: Polygon | MultiPolygon,
-  query: GeocodeBoundaryQueryParams
+  query: Partial<ListingFilterParams>
 ) => {
   const { page_size, page_index } = getPaginationParams(query);
   return ListingModel.aggregate<FindWithinBoundsResult>([
@@ -153,8 +156,8 @@ export const createListing = async (data: ListingData, maxAttempts = 5) => {
 
   while (count <= maxAttempts) {
     try {
-      const listing = await ListingModel.create(data);
-      return listing;
+      const listing = (await ListingModel.create(data)).toObject();
+      return { ...listing, _id: listing._id.toString() };
     } catch (error) {
       if (isDuplicateSlugError(error) && maxAttempts !== 0) {
         count++;
@@ -169,11 +172,17 @@ export const createListing = async (data: ListingData, maxAttempts = 5) => {
   );
 };
 
+export const deleteListingsById = async (ids: string[]) => {
+  const result = await ListingModel.deleteMany({ _id: { $in: ids } });
+  return result.acknowledged;
+};
+
 export const ListingRepository: IListingRepository = {
   findByPlaceIdOrAddress,
   findWithinBounds,
   findByPlaceId,
   findByListingId,
   findByListingIds,
-  createListing
+  createListing,
+  deleteListingsById
 };

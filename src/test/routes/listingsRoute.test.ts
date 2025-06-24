@@ -1,6 +1,5 @@
 import request from "supertest";
 import app from "../../app";
-import ListingModel from "../../models/ListingModel";
 import type { ListingsResponse } from "../../types/listing_search_response_types";
 import listingTemplate from "../data/listingTemplate";
 import { getNonExistingListingId } from "../testHelpers";
@@ -18,7 +17,7 @@ describe("GET /listings/:ids", () => {
   });
 
   afterAll(async () => {
-    await ListingModel.deleteMany({ _id: { $in: listingIds } });
+    await app.context.db.listing.deleteListingsById(listingIds);
   });
 
   it("validates the listing IDs params type for all IDs in the request", async () => {

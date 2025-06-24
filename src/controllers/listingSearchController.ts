@@ -52,7 +52,11 @@ export const geocodeBoundarySearch = async (ctx: GeocodeBoundaryContext) => {
   );
 
   if (isListingAddressType(geocodeResult.types)) {
-    const listing = await getListingForListingAddressResult(geocodeResult, ctx);
+    const listing = await getListingForListingAddressResult(
+      geocodeResult.address_components,
+      geocodeResult.place_id,
+      ctx.db.listing
+    );
     ctx.body = listingSearchGeocodeNoBoundaryView(
       geocodeResult.geometry.viewport,
       listing
