@@ -18,7 +18,7 @@ describe("GET /listing/search/boundary/:id", () => {
 
   beforeAll(async () => {
     boundary = await BoundaryModel.create(fremontBoundary);
-    listing = await app.context.db.listing.createListing(listingTemplate);
+    listing = await app.context.db.listing.createListingWithRetry(listingTemplate);
   });
 
   afterAll(async () => {

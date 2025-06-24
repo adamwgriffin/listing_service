@@ -70,12 +70,12 @@ describe("filters", () => {
     beforeAll(async () => {
       const points = randomPointsWithinPolygon(FremontViewportBoundsPoly, 2);
       const matchingData = listingDataThatMatchesFilters(filterParams);
-      matchingListing = await app.context.db.listing.createListing({
+      matchingListing = await app.context.db.listing.createListingWithRetry({
         ...listingTemplate,
         ...matchingData,
         geometry: points[0]
       });
-      nonMatchingListing = await app.context.db.listing.createListing({
+      nonMatchingListing = await app.context.db.listing.createListingWithRetry({
         ...listingTemplate,
         ...matchingData,
         listPrice: filterParams.price_max + 100_000,
@@ -114,7 +114,7 @@ describe("filters", () => {
         PropertyStatuses.length
       );
       for (let i = 0; i < PropertyStatuses.length; i++) {
-        const listing = await app.context.db.listing.createListing({
+        const listing = await app.context.db.listing.createListingWithRetry({
           ...listingTemplate,
           status: PropertyStatuses[i],
           geometry: points[i]
@@ -174,7 +174,7 @@ describe("filters", () => {
         PropertyTypes.length
       );
       for (let i = 0; i < PropertyTypes.length; i++) {
-        const listing = await app.context.db.listing.createListing({
+        const listing = await app.context.db.listing.createListingWithRetry({
           ...listingTemplate,
           propertyType: PropertyTypes[i],
           geometry: points[i]
@@ -247,13 +247,13 @@ describe("filters", () => {
 
     beforeAll(async () => {
       const points = randomPointsWithinPolygon(FremontViewportBoundsPoly, 1);
-      rentalListing = await app.context.db.listing.createListing({
+      rentalListing = await app.context.db.listing.createListingWithRetry({
         ...listingTemplate,
         rental: true,
         geometry: points[0]
       });
       nonRentalListing =
-        await app.context.db.listing.createListing(listingTemplate);
+        await app.context.db.listing.createListingWithRetry(listingTemplate);
     });
 
     afterAll(async () => {

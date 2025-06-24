@@ -18,11 +18,11 @@ describe("GET /listing/search/bounds", () => {
     let listingOutsideBounds: ListingQueryResult;
 
     beforeAll(async () => {
-      listingInsideBounds = await app.context.db.listing.createListing({
+      listingInsideBounds = await app.context.db.listing.createListingWithRetry({
         ...listingTemplate,
         geometry: insideBoundsPoint
       });
-      listingOutsideBounds = await app.context.db.listing.createListing({
+      listingOutsideBounds = await app.context.db.listing.createListingWithRetry({
         ...listingTemplate,
         geometry: outsideBoundsPoint
       });

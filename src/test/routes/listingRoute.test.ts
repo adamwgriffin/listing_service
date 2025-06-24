@@ -7,7 +7,7 @@ describe("GET /listing/:slug", () => {
   let listing: ListingQueryResult;
 
   beforeAll(async () => {
-    listing = await app.context.db.listing.createListing(listingTemplate, 0);
+    listing = await app.context.db.listing.createListingWithRetry(listingTemplate, 0);
   });
 
   afterAll(async () => {

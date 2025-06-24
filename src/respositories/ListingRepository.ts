@@ -50,7 +50,7 @@ export interface IListingRepository {
    * errors by retrying. You can opt out of this behavior by passing 0 as the
    * maxAttempts argument.
    */
-  createListing: (
+  createListingWithRetry: (
     listing: ListingData,
     maxAttempts?: number
   ) => Promise<ListingQueryResult>;
@@ -193,6 +193,6 @@ export const ListingRepository: IListingRepository = {
   findBySlug,
   findByListingId,
   findByListingIds,
-  createListing,
+  createListingWithRetry: createListing,
   deleteListingsById
 };

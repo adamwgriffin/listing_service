@@ -9,9 +9,9 @@ describe("GET /listings/:ids", () => {
 
   beforeAll(async () => {
     const listingOne =
-      await app.context.db.listing.createListing(listingTemplate);
+      await app.context.db.listing.createListingWithRetry(listingTemplate);
     const listingTwo =
-      await app.context.db.listing.createListing(listingTemplate);
+      await app.context.db.listing.createListingWithRetry(listingTemplate);
     listingIds.push(listingOne._id.toString());
     listingIds.push(listingTwo._id.toString());
   });
