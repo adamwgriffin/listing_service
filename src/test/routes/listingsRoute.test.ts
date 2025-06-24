@@ -22,7 +22,7 @@ describe("GET /listings/:ids", () => {
 
   it("validates the listing IDs params type for all IDs in the request", async () => {
     const res = await request(app.callback()).get(
-      `/listing/${listingIds.join(",")},invalid_type`
+      `/listings/${listingIds.join(",")},invalid_type`
     );
     expect(res.status).toBe(400);
   });
