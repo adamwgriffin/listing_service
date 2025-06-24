@@ -8,6 +8,7 @@ import { type ListingFilterParams } from "../zod_schemas/listingSearchParamsSche
  * the response.
  */
 export const ListingResultProjectionFields = {
+  propertyType: 1,
   status: 1,
   listPrice: 1,
   soldPrice: 1,
@@ -15,6 +16,7 @@ export const ListingResultProjectionFields = {
   beds: 1,
   baths: 1,
   sqft: 1,
+  lotSize: 1,
   neighborhood: 1,
   description: 1,
   address: 1,
@@ -23,12 +25,12 @@ export const ListingResultProjectionFields = {
   rental: 1,
   photoGallery: 1,
   openHouses: 1,
-  placeId: 1
+  placeId: 1,
+  slug: 1
 } as const satisfies ProjectionType<IListing>;
 
 export const ListingDetailResultProjectionFields = {
   ...ListingResultProjectionFields,
-  propertyType: 1,
   yearBuilt: 1,
   soldDate: 1,
   propertyDetails: 1
