@@ -2,7 +2,11 @@ import { faker } from "@faker-js/faker";
 import request from "supertest";
 import app from "../../app";
 import { ListingData, randomPointsWithinPolygon } from "../../lib/random_data";
-import ListingModel from "../../models/ListingModel";
+import ListingModel, {
+  PropertyStatuses,
+  PropertyTypes
+} from "../../models/ListingModel";
+import { ListingQueryResult } from "../../respositories/ListingRepository";
 import type { ListingSearchResponse } from "../../types/listing_search_response_types";
 import { type ListingFilterParams } from "../../zod_schemas/listingSearchParamsSchema";
 import listingTemplate from "../data/listingTemplate";
@@ -10,8 +14,6 @@ import {
   FremontViewportBounds,
   FremontViewportBoundsPoly
 } from "../testHelpers";
-import { PropertyStatuses, PropertyTypes } from "../../models/ListingModel";
-import { ListingQueryResult } from "../../respositories/ListingRepository";
 
 const filterParams = {
   price_min: 151_000,
@@ -83,9 +85,10 @@ describe("filters", () => {
     });
 
     afterAll(async () => {
-      await ListingModel.deleteMany({
-        _id: { $in: [matchingListing._id, nonMatchingListing._id] }
-      });
+      await app.context.db.listing.deleteListingsById([
+        matchingListing._id,
+        nonMatchingListing._id
+      ]);
     });
 
     it("finds listings that match the filters", async () => {
@@ -122,9 +125,7 @@ describe("filters", () => {
 
     afterAll(async () => {
       const listingIds = listings.map((l) => l._id);
-      await ListingModel.deleteMany({
-        _id: { $in: listingIds }
-      });
+      await app.context.db.listing.deleteListingsById(listingIds);
     });
 
     it("validates the values of status", async () => {
@@ -184,9 +185,7 @@ describe("filters", () => {
 
     afterAll(async () => {
       const listingIds = listings.map((l) => l._id);
-      await ListingModel.deleteMany({
-        _id: { $in: listingIds }
-      });
+      await app.context.db.listing.deleteListingsById(listingIds);
     });
 
     it("validates the values of property_type", async () => {
@@ -258,11 +257,10 @@ describe("filters", () => {
     });
 
     afterAll(async () => {
-      await ListingModel.deleteMany({
-        _id: {
-          $in: [rentalListing._id, nonRentalListing._id]
-        }
-      });
+      await app.context.db.listing.deleteListingsById([
+        rentalListing._id,
+        nonRentalListing._id
+      ]);
     });
 
     describe("when the rental param is included and set to true", () => {

@@ -1,14 +1,13 @@
 import { booleanPointInPolygon } from "@turf/turf";
 import request from "supertest";
 import app from "../../app";
-import ListingModel from "../../models/ListingModel";
+import { ListingQueryResult } from "../../respositories/ListingRepository";
 import type { ListingSearchResponse } from "../../types/listing_search_response_types";
 import listingTemplate from "../data/listingTemplate";
 import {
   BoundsExcludingPartOfFremontBoundary,
   listingsInsideBoundary
 } from "../testHelpers";
-import { ListingQueryResult } from "../../respositories/ListingRepository";
 
 const { insideBoundsPoint, outsideBoundsPoint, boundsParams, boundsPoly } =
   BoundsExcludingPartOfFremontBoundary;
@@ -30,9 +29,10 @@ describe("GET /listing/search/bounds", () => {
     });
 
     afterAll(async () => {
-      await ListingModel.deleteMany({
-        _id: { $in: [listingInsideBounds._id, listingOutsideBounds._id] }
-      });
+      await app.context.db.listing.deleteListingsById([
+        listingInsideBounds._id,
+        listingOutsideBounds._id
+      ]);
     });
 
     it("validates that all bounds params are present", async () => {

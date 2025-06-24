@@ -52,6 +52,8 @@ export interface IListingRepository {
     listing: ListingData,
     maxAttempts?: number
   ) => Promise<ListingQueryResult>;
+
+  deleteListingsById: (ids: string[]) => Promise<boolean>;
 }
 
 /**
@@ -170,11 +172,17 @@ export const createListing = async (data: ListingData, maxAttempts = 5) => {
   );
 };
 
+export const deleteListingsById = async (ids: string[]) => {
+  const result = await ListingModel.deleteMany({ _id: { $in: ids } });
+  return result.acknowledged;
+};
+
 export const ListingRepository: IListingRepository = {
   findByPlaceIdOrAddress,
   findWithinBounds,
   findByPlaceId,
   findByListingId,
   findByListingIds,
-  createListing
+  createListing,
+  deleteListingsById
 };
