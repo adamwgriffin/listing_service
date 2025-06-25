@@ -6,7 +6,7 @@ import { parseAndValidateRequest } from "../middlewares/validationMiddleware";
 
 export default new Router()
   .get(
-    "/:id",
+    "/:slug",
     parseAndValidateRequest(listingDetailRequestSchema),
     getListingDetail
   )

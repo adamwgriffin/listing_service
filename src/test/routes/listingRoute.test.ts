@@ -1,36 +1,31 @@
 import request from "supertest";
 import app from "../../app";
-import ListingModel from "../../models/ListingModel";
+import { type ListingQueryResult } from "../../respositories/ListingRepository";
 import listingTemplate from "../data/listingTemplate";
-import { getNonExistingListingId } from "../testHelpers";
 
-describe("GET /listing/:id", () => {
-  let listingId: string;
+describe("GET /listing/:slug", () => {
+  let listing: ListingQueryResult;
 
   beforeAll(async () => {
-    listingId = (
-      await app.context.db.listing.createListing(listingTemplate, 0)
-    )._id.toString();
+    listing = await app.context.db.listing.createListingWithRetry(listingTemplate, 0);
   });
 
   afterAll(async () => {
-    await ListingModel.deleteOne({ _id: listingId });
+    await app.context.db.listing.deleteListingsById([listing._id]);
   });
 
-  it("validates the listing ID param type", async () => {
-    const res = await request(app.callback()).get("/listing/invalid_type");
-    expect(res.status).toBe(400);
-  });
-
-  it("returns the listing with the given ID", async () => {
-    const res = await request(app.callback()).get(`/listing/${listingId}`);
+  it("returns the listing with the given slug", async () => {
+    const res = await request(app.callback()).get(`/listing/${listing.slug}`);
     expect(res.status).toBe(200);
-    expect(res.body._id).toBe(listingId);
+    expect(res.body.slug).toBe(listing.slug);
   });
 
-  it("returns a not found status when a listing with the given ID does not exist", async () => {
+  it("returns a not found status when a listing with the given slug does not exist", async () => {
+    const nonExistentSlug = "";
+    const listing = await app.context.db.listing.findBySlug(nonExistentSlug);
+    expect(listing).toBeNull();
     const res = await request(app.callback()).get(
-      `/listing/${getNonExistingListingId()}`
+      `/listing/${nonExistentSlug}`
     );
     expect(res.status).toBe(404);
   });

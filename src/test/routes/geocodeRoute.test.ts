@@ -16,7 +16,7 @@ describe("GET /listing/search/geocode", () => {
 
   beforeAll(async () => {
     boundary = await BoundaryModel.create(fremontBoundary);
-    listing = await app.context.db.listing.createListing(geocodeListing);
+    listing = await app.context.db.listing.createListingWithRetry(geocodeListing);
   });
 
   afterAll(async () => {

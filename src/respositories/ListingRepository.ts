@@ -36,7 +36,9 @@ export interface IListingRepository {
 
   findByPlaceId: (placeId: string) => Promise<ListingDetailResult | null>;
 
-  findByListingId: (placeId: string) => Promise<ListingDetailResult | null>;
+  findBySlug: (slug: string) => Promise<ListingDetailResult | null>;
+
+  findByListingId: (listingId: string) => Promise<ListingDetailResult | null>;
 
   findByListingIds: (ids: string[]) => Promise<ListingResult[]>;
 
@@ -48,7 +50,7 @@ export interface IListingRepository {
    * errors by retrying. You can opt out of this behavior by passing 0 as the
    * maxAttempts argument.
    */
-  createListing: (
+  createListingWithRetry: (
     listing: ListingData,
     maxAttempts?: number
   ) => Promise<ListingQueryResult>;
@@ -129,6 +131,13 @@ export const findByPlaceId = async (placeId: string) => {
   ).lean<ListingDetailResult>();
 };
 
+export const findBySlug = async (slug: string) => {
+  return ListingModel.findOne(
+    { slug },
+    ListingDetailResultProjectionFields
+  ).lean<ListingDetailResult>();
+};
+
 export const findByListingId = async (id: string) => {
   return ListingModel.findById(
     id,
@@ -181,8 +190,9 @@ export const ListingRepository: IListingRepository = {
   findByPlaceIdOrAddress,
   findWithinBounds,
   findByPlaceId,
+  findBySlug,
   findByListingId,
   findByListingIds,
-  createListing,
+  createListingWithRetry: createListing,
   deleteListingsById
 };

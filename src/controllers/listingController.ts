@@ -9,8 +9,8 @@ export type GetListingDetailContext = ControllerContext<
 >;
 
 export const getListingDetail = async (ctx: GetListingDetailContext) => {
-  const { id } = ctx.params;
-  const listing = await ctx.db.listing.findByListingId(id);
-  ctx.assert(listing, 404, `Listing not found with ID ${id}`);
+  const { slug } = ctx.params;
+  const listing = await ctx.db.listing.findBySlug(slug);
+  ctx.assert(listing, 404, `Listing not found with slug ${slug}`);
   ctx.body = listingDetailView(listing);
 };
