@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 import { envSchema } from "../zod_schemas/envSchema";
 
-dotenv.config();
+dotenv.config({ quiet: true });
 
 const parsed = envSchema.safeParse(process.env);
 
