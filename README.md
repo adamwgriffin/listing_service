@@ -6,7 +6,7 @@ Currently we only have boundaries for Seattle, so the
 search is limited to Seattle neighborhoods. The listing data is automatically
 generated using Faker. These are not real listings.
 
-# Architecture of the Service
+## Architecture of the Service
 
 The service mostly follows a MVC pattern. The model part is implimented as
 Mongoose models. However, the models are not used directly. We also follow a
